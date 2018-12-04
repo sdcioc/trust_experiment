@@ -1,0 +1,59 @@
+{
+    "intro_messages": {
+		"promotion"  : "",
+		"prevention" : ""
+    },
+    "messages" : {
+        "start" : " START ",
+        "stop"  : " Quitter ",
+        "main"  : " Lorsque vous êtes prêt, appuyez sur le bouton START ",
+        "end"   : " Je vous remercie pour votre aide ! ",
+        "showmap" : "Afficher la carte"
+    },
+    "parameters" : {
+        "no_questions"     : "6"
+    },
+    "questions" : {
+        "q1" : {
+            "top" : "",
+            "question" : "Comment évaluez-vous l'utilité des informations que je vous ai données?",
+            "type_answer" : "5b"
+            },
+        "q2" : {
+            "top" : "",
+            "question" : "Avez-vous trouvé la carte utile ?",
+            "type_answer"  : "3b"
+        },
+        "q3" : {
+            "top" : "Comment évaluez-vous le robot?",
+            "question" : "Poli ?",
+            "type_answer"  : "5b"
+        },
+        "q4" : {
+            "top" : "Comment évaluez-vous le robot? ",
+            "question" : "Amical ?",
+            "type_answer"  : "5b"
+        },
+        "q5" : {
+            "top" : "Comment évaluez-vous le robot?",
+            "question" : "Intimidant",
+            "type_answer" : "5b"
+        },
+        "q6" : {
+            "top" : "Comment évaluez-vous le robot?",
+            "question" : "Bien informé",
+            "type_answer"  : "5b"
+        }
+
+    },
+    "answers" : {
+        "1"  : "Toujours; Souvent; Parfois; Rarement; Jamais / presque jamais",
+        "3"  : "Jamais; Rarement; Parfois; Souvent; Toujours",
+        "3a" : "Dans le matin; Dans l'après midi; Dans la soirée",
+        "9"  : "Tout le temps; Une grande partie du temps; Une partie du temps; Une petite partie du temps; Pas du tout",
+        "10" : "S'adapte parfaitement; Convient très bien; S'adapte un peu; Ne convient pas",
+        "5b" : "Pas du tout; Légèrement; Modérément; Très; Extrêmement",
+        "5a" : "Jamais; Rarement; Parfois; Souvent; Presque toujours",
+        "3b" : "Oui; Non; Pas vraiment"
+    }
+}

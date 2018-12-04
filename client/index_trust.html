@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!--
+    surse externe
+-->
+<link rel="stylesheet" href="./css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/sweetalert2.min.css">
+<script type="text/javascript" src="./js/easeljs.min.js"></script>
+<script type="text/javascript" src="./js/eventemitter2.min.js"></script>
+<script type="text/javascript" src="./js/roslib.min.js"></script>
+<!--
+   am adaugat pentru view functia removeObject ca sa pot sterge path-ul 
+-->
+<script type="text/javascript" src="./js/ros2d.min.js"></script>
+<script type="text/javascript" src="./js/nav2d.js"></script>
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/sweetalert2.min.js"></script>
+
+<!--
+    surse interne
+<script type="text/javascript" src="./js/hbba.js"></script>
+<script type="text/javascript" src="js/hmi.js"></script>
+<script type="text/javascript" src="js/language.js"></script>
+<script type="text/javascript" src="js/functions.js"></script>
+<script type="text/javascript" src="js/record_questions.js"></script>
+<script type="text/javascript" src="js/start_recording.js"></script>
+
+//pentru harta
+<script type="text/javascript" src="./js/dashboard.js"></script>
+-->
+<link rel="stylesheet" type="text/css" href="css/start.css">
+<script type="text/javascript" src="js/wsros.js"></script>
+<script type="text/javascript" src="js/login_page.js"></script>
+<script type="text/javascript" src="js/experiment_info_page.js"></script>
+<script type="text/javascript" src="js/tiago_info_page.js"></script>
+<script type="text/javascript" src="js/pre_questions_page.js"></script>
+<script type="text/javascript" src="js/task_info_page.js"></script>
+<script type="text/javascript" src="js/main_page.js"></script>
+<script type="text/javascript" src="js/post_questions_page.js"></script>
+<script type="text/javascript" src="js/thank_you_page.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+</head>
+
+<body onload="init()">
+    
+
+    <div id="login_page">
+            <div class="container login-page-center">
+                <div class="form-group">
+                    <label for="login_page_user">User</label>
+                    <input type="text" class="form-control" id="login_page_user" aria-describedby="login_page_user_help" placeholder="Enter user">
+                    <small id="login_page_user_help" class="form-text text-muted">We'll never share your username with anyone else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="login_page_password">Password</label>
+                    <input type="text" class="form-control" id="login_page_password" placeholder="Password">
+                </div>
+                <button id="login_page_login_btn" onclick="login_page_login_btn_click()" class="btn btn-primary">Login</button>
+                <div id="login_page_text">
+        
+                </div>
+            </div>
+    </div>
+
+
+    <div id="experiment_info_page" class="dan_page">
+        <div class="dan_frame">
+            <div class="container dan_frame_text">
+                <p id="experiment_info_page_text">
+
+                </p>
+            </div>
+            <button id="experiment_info_page_next_btn" onclick="experiment_info_page_next_btn_click()" class="btn btn-primary dan_frame_btn">
+                Next
+            </button>
+        </div>
+    </div>
+
+    <div id="tiago_info_page" class="dan_page">
+        <div class="dan_frame">
+            <div class="container dan_frame_text">
+                <div id="tiago_info_page_text">
+
+                </div>
+            </div>
+            <button id="tiago_info_page_next_btn" onclick="tiago_info_page_next_btn_click()" class="btn btn-primary dan_frame_btn">
+                Next
+            </button>
+        </div>
+    </div>
+
+
+
+    <div id="pre_questions_page" class="dan_page">
+        <div class="dan_frame">
+
+            <div class="container dan_frame_text">
+                <div id="pre_questions_page_text">
+
+                </div>
+            </div>
+            <button id="pre_questions_page_next_btn" onclick="pre_questions_page_next_btn_click()" class="btn btn-primary dan_frame_btn">
+                Next
+            </button>
+        </div>
+    </div>
+
+    <div id="task_info_page"  class="dan_page">
+        <div class="dan_frame">
+
+            <div class="container dan_frame_text">
+                <div id="task_info_page_text">
+
+                </div>
+            </div>
+            <button id="task_info_page_next_btn" onclick="task_info_page_next_btn_click()"  class="btn btn-primary dan_frame_btn">
+                Next
+            </button>
+        </div>
+    </div>
+
+    <div id="main_page" class="dan_page">
+        <div id="main_page_task_intervetion" class="dan_main_page_left">
+                <div id="main_page_task_intervetion_task" class="dan_main_page_taks">
+                    <div class="card text-center">
+                            <div class="card-header">
+                              <p>Legend</p>
+                              <p>Green Task -> Succed task</p>
+                              <p>Red Task -> Failed Task</p>
+                              <p>Yellow Task -> In progress Task</p>
+                              <p>Blue Task -> Avaible Task</p>
+                              
+                              Chose a Task.
+                            </div>
+                            <div class="card-body">
+                                <p></p>
+                              <button class="btn btn-primary" onclick="main_page_start_task(1)">Task 1</button>
+                            </div>
+                            <div class="card-body">
+                                <p></p>
+                                <button class="btn btn-primary" onclick="main_page_start_task(2)">Task 2</button>
+                            </div>
+                            <div class="card-body">
+                                    <p></p>
+                                    <button class="btn btn-primary" onclick="main_page_start_task(3)">Task 3</button>
+                            </div>
+                            <div class="card-body">
+                                    <p></p>
+                                    <button class="btn btn-primary" onclick="main_page_start_task(4)">Task 4</button>
+                            </div>
+                            <div class="card-footer text-muted">
+                              Current Score: 10
+                            </div>
+                          </div>
+                </div>
+                <div id="main_page_task_intervetion_intervention" class="dan_main_page_intervention">
+                    <button id="main_page_task_intervetion_intervention_btn" class="btn btn-primary">Intervine</button>
+                </div>
+        </div>
+        <div id="main_page_info" class="dan_main_page_mid">
+            AAAA
+        </div>
+        <div id="main_page_chat_bot" class="dan_main_page_right">
+            BBBB
+        </div>
+    </div>
+
+    <div id="post_questions_page">
+        <div class="dan_frame">
+
+            <div class="container dan_frame_text">
+                <div id="post_questions_page_text">
+
+                </div>
+            </div>
+            <button id="post_questions_page_next_btn" onclick="post_questions_page_next_btn_click()" class="btn btn-primary dan_frame_btn">
+                Next
+            </button>
+        </div>
+    </div>
+
+
+    <div id="thank_you_page">
+        <div class="dan_frame">
+            <div id="thank_you_page_text">
+                <h1>THANK YOU FOR PARTICIPATING</h1>
+            </div>
+        </div>
+    </div>
+        
+</body>
+
+</html>
