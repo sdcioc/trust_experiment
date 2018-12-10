@@ -1,3 +1,4 @@
+#! /usr/bin/python
 from trust_package.srv import *
 import rospy
 import json
