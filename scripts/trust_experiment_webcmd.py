@@ -4,6 +4,7 @@ import json
 import std_msgs.msg
 import geometry_msgs.msg
 import trajectory_msgs.msg
+import std_msgs.msg
 
 head_positions = {
     "1" : [0, 0],
@@ -77,14 +78,38 @@ class RosbagManager:
         if(my_dict["type"] == "head_task"):
             head_msg = trajectory_msgs.msg.JointTrajectory();
             head_point1 = trajectory_msgs.msg.JointTrajectoryPoint();
+            head_point1.velocities = [];
+            head_point1.accelarations = [];
+            head_point1.effort = [];
+            head_point1.time_from_start = rospy.Time.now();
+            head_point1.time_from_start.secs = 0;
+            head_point1.time_from_start.nsecs = 100000000;
             head_point1.positions = [head_positions[my_dict["task"]][0], head_positions[my_dict["task"]][1]];
+            head_point1.joint_names = ['head_1_joint', 'head_2_joint'];
+            h = std_msgs.msg.Header();
+            h.stamp = rospy.Time.now();
+            h.stamp.secs = 0;
+            h.stamp.nsecs = 0;
+            head_msg.header = h;
             head_msg.points.append(head_point1);
             self.head_pub.publish(head_msg);
             self.rate.sleep();
         elif(my_dict["type"] == "head_move"):
             head_msg = trajectory_msgs.msg.JointTrajectory();
             head_point1 = trajectory_msgs.msg.JointTrajectoryPoint();
+            head_point1.velocities = [];
+            head_point1.accelarations = [];
+            head_point1.effort = [];
+            head_point1.time_from_start = rospy.Time.now();
+            head_point1.time_from_start.secs = 0;
+            head_point1.time_from_start.nsecs = 100000000;
             head_point1.positions = [my_dict["headx"], my_dict["heady"]];
+            head_point1.joint_names = ['head_1_joint', 'head_2_joint'];
+            h = std_msgs.msg.Header();
+            h.stamp = rospy.Time.now();
+            h.stamp.secs = 0;
+            h.stamp.nsecs = 0;
+            head_msg.header = h;
             head_msg.points.append(head_point1);
             self.head_pub.publish(head_msg);
             self.rate.sleep();
@@ -95,20 +120,20 @@ class RosbagManager:
             reply = rospy.wait_for_message(
             '/amcl_pose',
             geometry_msgs.msg.PoseWithCovarianceStamped, 3);
+            current_poi_position = convert_MapPosition_POIPosition(reply.pose.pose);
             #TODO: de calculat ianinte si in spate si rotatia mai complicat paote folosesc functia de conversie
             if(my_dict["name"] == "FORWARD"):
-                reply.pose.pose.position.x = reply.pose.pose.position.x;
-                reply.pose.pose.position.y = reply.pose.pose.position.y;
+                new_poi_position =  (current_poi_position[0]+math.cos(current_poi_position[2]), current_poi_position[1]+math.sin(current_poi_position[2]), current_poi_position[2]);
             elif(my_dict["name"] == "BACK"):
-                reply.pose.pose.position.x = reply.pose.pose.position.x;
-                reply.pose.pose.position.y = reply.pose.pose.position.y;
+                new_poi_position =  (current_poi_position[0]-math.cos(current_poi_position[2]), current_poi_position[1]-math.sin(current_poi_position[2]), current_poi_position[2]);
             elif(my_dict["name"] == "LEFT"):
-                reply.pose.pose.orientation.z = reply.pose.pose.orientation.z - 0.2;
+                new_poi_position =  (current_poi_position[0], current_poi_position[1], current_poi_position[2]+0.3);
             elif(my_dict["name"] == "RIGHT"):
-                reply.pose.pose.orientation.z = reply.pose.pose.orientation.z + 0.2;
+                new_poi_position =  (current_poi_position[0], current_poi_position[1], current_poi_position[2]-0.3);
             else:
-                reply.pose.pose.position.x = reply.pose.pose.position.x;
-            self.move_pub.publish(reply.pose.pose);
+                new_poi_position =  (current_poi_position[0], current_poi_position[1], current_poi_position[2]);
+            request_position = convert_POIPosition_MapPosition(new_poi_position);
+            self.move_pub.publish(request_position);
             self.rate.sleep();
         else:
             print "MESAJ ERONAT"
