@@ -1,3 +1,4 @@
+#! /usr/bin/python
 import rospy
 import json
 import std_msgs.msg
@@ -111,13 +112,13 @@ class RosbagManager:
             self.rate.sleep();
         else:
             print "MESAJ ERONAT"
-
+"""
         if((self.contor < int(my_dict['contor'])) and (my_dict['state'] == "START")):
             self.contor = int(my_dict['contor']);
             self.state = my_dict['state'];
         elif((self.contor == int(my_dict['contor'])) and (my_dict['state'] == "STOP")):
             self.state = my_dict['state'];
-
+"""
 if __name__ == '__main__':
     rospy.init_node('bibpoli_rosbag_node', anonymous=True);
     try:
