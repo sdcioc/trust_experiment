@@ -5,7 +5,7 @@ import json
 import math
 from google.cloud import vision
 import cv2
-import dlib
+#import dlib
 import cv_bridge
 
 
