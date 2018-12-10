@@ -4,6 +4,7 @@ var ros = new ROSLIB.Ros({
 var cmd_topic = null;
 var events_topic = null;
 var robot_feedback_topic = null;
+var robot_service_trust_client = null;
 
 ros.on('connection', function() {
     console.log('Connected to websocket server.');
@@ -22,6 +23,11 @@ ros.on('connection', function() {
         name : '/trust/robot_feedback',
         messageType : 'std_msgs/String'
     });
+    robot_service_trust_client = new ROSLIB.Service({
+        ros : ros,
+        name : '/trust_server',
+        serviceType : 'trust_package/TrustServer'
+        });
 });
 
 ros.on('error', function(error) {

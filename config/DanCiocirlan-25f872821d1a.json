@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "danciocirlan-198420",
+  "private_key_id": "25f872821d1a5ab61d8b170e12d8212736154821",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQChnSq11hgC0EbD\nvgRL5Y+BBNbv8KZIUJws4MYVjJWm5rqNFIck+g4hsMqtvxwyJUILyhPeUbOAUQQb\n0isACprMoLBeBjze/K8mZvbTrcF9OC0p7x6iSHvdn27K+h81HXcKLcef+W78hjE8\nGpumQz7bTFHj3zh9y5pI0tsS1p0qox0N6WAbq9s2RiIaqKcKtBUrOlTvrA5IyEdh\nMRP2HmuWI+dAOzSlR6dkKKDvFkgzUFGd/na91R70FQ6QwyaJ5rjVQn1uGJhz27W4\nhrbSUAdjpKuNU1GtcA2OAIsN1cdVACP/iNAUKVpVPpgflbQXnzvFL6Qg3M53NImx\nHYpqop/9AgMBAAECggEABVZwBS5rf5hKZgeeE7WivjOfN7B+hW/oIJFR6X9JqAgB\nzEwLxJxfoBw7LW7c6wkQ+9uyOUsAfzHtzU9tLSSshSqfeJODKig1TrLi3w3jkJOs\n5jAoFlsHgEPWQGzvX+03s8XcTHvL/xodgSstzdl1t393Suvh7UGuuE4Cf0ZITZKl\nEfK2yPEFrcJdsmB091BgQ4MJRNnElQ7QrEsOhMWZHdyszdO6dROH6lWYkxl0qxZe\nS3q3mT/RJOsT0Fsw+dSXsjo9C1v1CoKnhO4UdMW4bC3y41kzK4bqNc+WUdlJItTX\njgx0NBJzkeofNfWRtzzcKWzooRSbRphuIl2pYfgGEQKBgQDfSbRjxd08dacwPBfZ\nTkei9aW0BlIT3EhYiAGl/EWbBNX2Gjgj1+6++huGImAjkxINVjC8p3VB98Ye5Wlc\n8qAKzItz0FdcfzqThgjEQiXCiM4tVyXulZC5q6vi0f3ShanTuoD6BQh+W2KfqJwx\nTob0l6Dp+h6o1RKJeUyOOQg6dQKBgQC5SmmHs1Lz0ODEuElTpazG58f8Dbc+ZEq+\nDF6zmXD8J9STPXwzqAipRdvLxVDe1x3+C3vBTlPAv/aeXXfKD7pn64Ju9sEgspxH\n6oL8z6gHPzT8BJxiHsgAAKHfl7qCIZkXc+yptDfJipoE36vnVvQKHaQ/CAX0hsmf\n2bIlVkdOaQKBgAVj1BTse9Cvzl9ds/2s5BHM+DkGRgjwslZgwhlto4iAb2HHdD95\nQOwfQXbVcZiqPi9QO1DygeQbxQ6N3yM9QBvCoEMlblZvQ8y32ZJTPnIZt1Bk4CeI\nOLwipr2M8CGa1GSmBeMDKBdUwWa1PT/7c0qINnwva3oL2qyy3uQ4ADjZAoGAFV8O\n0vcM/1A9TJNQ6dP3HK4JM/pFA24/7LGyjpaJIJxbeWwjEjY0YYnMMzGcBUfcjru2\nV3J4WIgLovJ26Zhs0KWqUrAlUGcpfWYAG7a707Ino1XIz8xrFwz7nrV6bp3/cWQO\njPhbYuSYpS1DP5iY5z3J/vcm8LBHOye503KjINkCgYB0afSylFuzQsJ5DQuKCbJ8\nd2l2SkSUUhLb485O1BEpchJH1/reHgzcdZzpQLnBicv0ElcjKUn7QLoEjQb27FCD\nrSgkyDfFR28PJvwecrZt16Of5T6rV+Q927FxTo/Vgcfbsc2G6CwbE/0r9368B7Xr\nkGea3jps8vnzM664p2MIXg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "trustexp@danciocirlan-198420.iam.gserviceaccount.com",
+  "client_id": "117753692694898365567",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/trustexp%40danciocirlan-198420.iam.gserviceaccount.com"
+}

@@ -371,7 +371,7 @@ div#swal2-content.swal2-content{
 }
 .dan_main_page_taks {
 	width: 100%;
-	height: 50%;	
+	height: 30%;	
 	padding-top: 5%;
 	padding-bottom: 5%;
 	padding-left: 5%;
@@ -379,9 +379,77 @@ div#swal2-content.swal2-content{
 }
 .dan_main_page_intervention {
 	width: 100%;
-	height: 50%;	
+	height: 68%;	
 	padding-top: 5%;
 	padding-bottom: 5%;
 	padding-left: 5%;
 	padding-right: 5%;
+	text-align: center;
+}
+.main_page_task_intervetion_intervention_button_div {
+	width: 100%;
+	height: 12%;
+	text-align: center;
+	padding-top: 5%;
+	padding-bottom: 5%;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+.main_page_task_intervetion_head_sliders {
+	width: 100%;
+	height: 75%;
+	text-align: center;
+}
+.main_page_task_intervetion_finish_intervention_button_div {
+	width: 100%;
+	height: 12%;
+	text-align: center;
+	padding-top: 5%;
+	padding-bottom: 5%;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+.main_page_task_intervetion_head_sliders_text {
+	width: 100%;
+	height: 10%;
+}
+.main_page_task_intervetion_head_left_right_slider_div {
+	width: 100%;
+	height: 20%;
+}
+.main_page_task_intervetion_head_up_down_slider_div {
+	width: 100%;
+	height: 70%;
+	text-align: center;
+}
+.main_page_task_intervetion_move_base_arrows {
+	width: 100%;
+	height: 75%;
+	padding-top: 5%;
+	padding-bottom: 5%;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+.main_page_task_intervetion_move_base_arrows_up_buttton {
+	display: block;
+	width: 100%;
+	padding-bottom: 5%;
+}
+
+.main_page_task_intervetion_move_base_arrows_down_butttons {
+	width: 100%;
+	height: 50%;
+}
+.main_page_task_intervetion_scan {
+	width: 100%;
+	height: 75%;
+	padding-top: 5%;
+	padding-bottom: 5%;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+.main_page_info_nav {
+	width: 100%;
+	height: 50%;
 }

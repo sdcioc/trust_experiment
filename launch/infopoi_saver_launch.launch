@@ -1,0 +1,10 @@
+<launch>
+        <arg name="experiment_number" default="1" />
+        <!--
+        SAVE POIs
+        -->
+        <node pkg="trust_package" name="trust_package_poi_manager" type="bib_poli_poi_manager.py">
+            <param name="operation_type" value="info" />
+            <param name="filename" value="$(find trust_package)/config/$(arg experiment_number)_info.json" />
+        </node>
+</launch>

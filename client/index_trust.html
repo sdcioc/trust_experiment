@@ -8,10 +8,10 @@
 <!--
     surse externe
 -->
-<link rel="stylesheet" href="./css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="css/sweetalert2.min.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-slider.min.css">
 <script type="text/javascript" src="./js/easeljs.min.js"></script>
 <script type="text/javascript" src="./js/eventemitter2.min.js"></script>
 <script type="text/javascript" src="./js/roslib.min.js"></script>
@@ -23,6 +23,7 @@
 <script type="text/javascript" src="./js/jquery.min.js"></script>
 <script type="text/javascript" src="./js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/sweetalert2.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-slider.min.js"></script>
 
 <!--
     surse interne
@@ -35,6 +36,8 @@
 
 //pentru harta
 <script type="text/javascript" src="./js/dashboard.js"></script>
+
+bootstrap-slider
 -->
 <link rel="stylesheet" type="text/css" href="css/start.css">
 <script type="text/javascript" src="js/wsros.js"></script>
@@ -47,9 +50,10 @@
 <script type="text/javascript" src="js/post_questions_page.js"></script>
 <script type="text/javascript" src="js/thank_you_page.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/trust_map.js"></script>
 </head>
 
-<body onload="init()">
+<body onload="init();init_map()">
     
 
     <div id="login_page">
@@ -132,29 +136,24 @@
                 <div id="main_page_task_intervetion_task" class="dan_main_page_taks">
                     <div class="card text-center">
                             <div class="card-header">
-                              <p>Legend</p>
-                              <p>Green Task -> Succed task</p>
-                              <p>Red Task -> Failed Task</p>
-                              <p>Yellow Task -> In progress Task</p>
-                              <p>Blue Task -> Avaible Task</p>
                               
                               Chose a Task.
                             </div>
                             <div class="card-body">
                                 <p></p>
-                              <button class="btn btn-primary" onclick="main_page_start_task(1)">Task 1</button>
+                                <button id="main_page_task_intervetion_task_1" class="btn btn-primary" onclick="main_page_start_task(1)">Task 1</button>
                             </div>
                             <div class="card-body">
                                 <p></p>
-                                <button class="btn btn-primary" onclick="main_page_start_task(2)">Task 2</button>
+                                <button id="main_page_task_intervetion_task_2" class="btn btn-primary" onclick="main_page_start_task(2)">Task 2</button>
                             </div>
                             <div class="card-body">
-                                    <p></p>
-                                    <button class="btn btn-primary" onclick="main_page_start_task(3)">Task 3</button>
+                                <p></p>
+                                <button id="main_page_task_intervetion_task_3" class="btn btn-primary" onclick="main_page_start_task(3)">Task 3</button>
                             </div>
                             <div class="card-body">
-                                    <p></p>
-                                    <button class="btn btn-primary" onclick="main_page_start_task(4)">Task 4</button>
+                                <p></p>
+                                <button id="main_page_task_intervetion_task_4" class="btn btn-primary" onclick="main_page_start_task(4)">Task 4</button>
                             </div>
                             <div class="card-footer text-muted">
                               Current Score: 10
@@ -162,11 +161,108 @@
                           </div>
                 </div>
                 <div id="main_page_task_intervetion_intervention" class="dan_main_page_intervention">
-                    <button id="main_page_task_intervetion_intervention_btn" class="btn btn-primary">Intervine</button>
+                    <div class="main_page_task_intervetion_intervention_button_div">
+                        <button id="main_page_task_intervetion_intervention_btn" class="btn btn-primary" onclick="main_page_intervention()">Intervine</button>
+                    </div>
+                    <div id="main_page_task_intervetion_head_sliders_div" class="main_page_task_intervetion_head_sliders" hidden>
+                        <p class="main_page_task_intervetion_head_sliders_text">Head Move:</p>
+                            <div id="main_page_task_intervetion_head_left_right_slider_div" class="main_page_task_intervetion_head_left_right_slider_div">
+                                <input id="main_page_task_intervetion_head_left_right_slider" type="range"/>
+                            </div>
+                            <div id="main_page_task_intervetion_head_up_down_slider_div" class="main_page_task_intervetion_head_up_down_slider_div">
+                                <input id="main_page_task_intervetion_head_up_down_slider" type="range"/>
+                            </div>
+                    </div>
+                    <div id="main_page_task_intervetion_torso_up_down_slider_div" hidden>
+                        <input id="main_page_task_intervetion_torso_up_down_slider" type="range"/>
+                    </div>
+
+                    <div id="main_page_task_intervetion_move_base_arrows" class="main_page_task_intervetion_move_base_arrows" hidden>
+                        <div class="main_page_task_intervetion_move_base_arrows_up_buttton">
+                            <button id="main_page_task_intervetion_move_base_arrows_up_buttton" onlick="main_page_move_btn(1)" class="btn btn-primary">FOWARD</button>
+                        </div>
+                        <div class="main_page_task_intervetion_move_base_arrows_down_butttons">
+                            <button id="main_page_task_intervetion_move_base_arrows_left_buttton" onlick="main_page_move_btn(3)" class="btn btn-primary">LEFT</button>
+                            <button id="main_page_task_intervetion_move_base_arrows_down_buttton" onlick="main_page_move_btn(2)" class="btn btn-primary">BACK</button>
+                            <button id="main_page_task_intervetion_move_base_arrows_right_buttton" onlick="main_page_move_btn(4)" class="btn btn-primary">RIGHT</button>
+                        </div>
+                    </div>
+
+                    <div id="main_page_task_intervetion_scan" class="main_page_task_intervetion_scan" hidden>
+                        <!--
+                            TODO: in functie de task diferite raspunsuri
+                        -->
+                        <div id="main_page_task_intervetion_scan_task_1" hidden>
+                            <label for="main_page_task_intervetion_scan_task_1_number">Number of objects</label>
+                            <select class="form-control" id="main_page_task_intervetion_scan_task_1_number">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                              <option>6</option>
+                              <option>7</option>
+                            </select>
+                        </div>
+                        <div id="main_page_task_intervetion_scan_task_2" hidden>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="main_page_task_intervetion_scan_task_2_has_object">
+                                <label class="form-check-label" for="main_page_task_intervetion_scan_task_2_has_object">
+                                    Object X
+                                </label>
+                            </div>
+                        </div>
+                        <div id="main_page_task_intervetion_scan_task_3" hidden>
+                            <label for="main_page_task_intervetion_scan_task_3_number">Number of objects</label>
+                            <input id="main_page_task_intervetion_scan_task_3_number" type="number"/>
+                        </div>
+                        <div id="main_page_task_intervetion_scan_task_4" hidden>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="main_page_task_intervetion_scan_task_4_has_object_1">
+                                <label class="form-check-label" for="main_page_task_intervetion_scan_task_4_has_object_1">
+                                    Object X1
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="main_page_task_intervetion_scan_task_4_has_object_2">
+                                <label class="form-check-label" for="main_page_task_intervetion_scan_task_4_has_object_2">
+                                    Object X2
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="main_page_task_intervetion_scan_task_4_has_object_3">
+                                <label class="form-check-label" for="main_page_task_intervetion_scan_task_4_has_object_3">
+                                    Object X3
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="main_page_task_intervetion_scan_task_4_has_object_4">
+                                <label class="form-check-label" for="main_page_task_intervetion_scan_task_4_has_object_4">
+                                    Object X4
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main_page_task_intervetion_finish_intervention_button_div">
+                        <button id="main_page_task_intervetion_finish_intervention_btn" class="btn btn-primary" onclick="main_page_finish_intervention()">Finish Intervention</button>
+                    </div>
+                    
                 </div>
         </div>
         <div id="main_page_info" class="dan_main_page_mid">
             AAAA
+
+            <div id="main_page_info_nav" class="main_page_info_nav">
+
+            </div>
+
+            <div id="main_page_rgb_robot_div" class="main_page_info_nav">
+                <img id="main_page_rgb_robot_img">
+            </div>
+
+            <div id="main_page_rgb_map_div" class="main_page_info_nav" hidden>
+
+            </div>
         </div>
         <div id="main_page_chat_bot" class="dan_main_page_right">
             BBBB
