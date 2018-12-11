@@ -41,7 +41,7 @@ function login_page_login_btn_click() {
         + result);
         //TODO:if result
         console.log(result);
-        console.log(JSON.parse(result));
+        console.log(JSON.parse(result.response));
         changeState("experiment_info_page");
     });
 }
