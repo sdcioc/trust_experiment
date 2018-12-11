@@ -102,7 +102,7 @@ def trust_callback(req):
         responseDict["type"] = "Scan";
         reply = rospy.wait_for_message(
                         'xtion/rgb/image_rect_color',
-                        sensor_msgs.msg.Image, 1);
+                        sensor_msgs.msg.Image, 3);
         frame = cvBridge.imgmsg_to_cv2(reply, 'bgr8');
         ret, jpeg = cv2.imencode('.jpg', frame);
         image = vision.types.Image(content=jpeg.tobytes());

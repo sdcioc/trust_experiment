@@ -1,5 +1,5 @@
 var ros = new ROSLIB.Ros({
-    url : 'ws://localhost:9090'
+    url : 'ws://54.201.151.92:9090'
 });
 var cmd_topic = null;
 var events_topic = null;
