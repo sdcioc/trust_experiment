@@ -31,7 +31,7 @@ function login_page_login_btn_click() {
         password : password
     }
     var request = new ROSLIB.ServiceRequest({
-        a : new ROSLIB.String(JSON.stringify(requestDict))
+        a :JSON.stringify(requestDict)
     });
 
     robot_service_trust_client.callService(request, function(result) {
