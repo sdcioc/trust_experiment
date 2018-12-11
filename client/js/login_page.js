@@ -33,7 +33,7 @@ function login_page_login_btn_click() {
     var request = new ROSLIB.ServiceRequest({
         a :JSON.stringify(requestDict)
     });
-
+    events_topic.publish(JSON.stringify(requestDict));
     robot_service_trust_client.callService(request, function(result) {
         console.log('Result for service call on '
         + robot_service_trust_client.name
