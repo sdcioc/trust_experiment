@@ -27,7 +27,12 @@ ros.on('connection', function() {
         ros : ros,
         name : '/trust_server',
         serviceType : 'trust_package/TrustServer'
-        });
+    });
+    robot_image_topic = new ROSLIB.Topic({
+        ros : ros,
+        name : '/trust_package/base64image',
+        messageType : 'std_msgs/String'
+    });
 });
 
 ros.on('error', function(error) {

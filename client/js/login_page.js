@@ -39,9 +39,12 @@ function login_page_login_btn_click() {
         + robot_service_trust_client.name
         + ': '
         + result);
-        //TODO:if result
-        console.log(result);
-        console.log(JSON.parse(result.response));
-        changeState("experiment_info_page");
+        response = JSON.parse(result.response);
+        console.log(response);
+        if((response["name"] == "Success") && (response["type"] == "Login") ) {
+            changeState("experiment_info_page");
+        } else {
+            document.getElementById("login_page_text").innerHTML = "Fail Login, please try again";
+        }
     });
 }
