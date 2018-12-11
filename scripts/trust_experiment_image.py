@@ -1,9 +1,11 @@
+
+#! /usr/bin/python
+
 import rospy
 import json
 import math
 import cv2
 import cv_bridge
-#! /usr/bin/python
 
 import base64
 import std_msgs.msg
