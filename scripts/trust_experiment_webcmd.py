@@ -6,12 +6,6 @@ import geometry_msgs.msg
 import trajectory_msgs.msg
 import std_msgs.msg
 
-head_positions = {
-    "1" : [0, 0],
-    "2" : [0, 0],
-    "3" : [0, 0],
-    "4" : [0, 0]
-}
 
 def convert_POIPosition_MapPosition(position):
 	#tipul de mesaj pentru map
@@ -67,14 +61,26 @@ class RosbagManager:
                     '/head_controller/command',
                         trajectory_msgs.msg.JointTrajectory,
                         latch=True, queue_size=5);
+        
+        self.head_positions = {
+            "1" : [0, 0],
+            "2" : [0, 0],
+            "3" : [0, 0],
+            "4" : [0, 0]
+        }
         #conotrul ce reprezinta numarul experimentului
         self.contor = 0;
+        rospy.sleep(2);
         # un subscriber pentru comenzile de la sistemul central
         rospy.Subscriber("/trust/web_cmd", std_msgs.msg.String, self.command_subscriber);
 
     # calbbackul pentru comenzi (setez dinainte contorul ca sa nu inceapa sa inregistreze pe vechiul contor)
     def command_subscriber(self, command):
         my_dict = json.loads(command.data)
+        if(self.contor < int(my_dict['contor'])):
+            self.contor = int(my_dict['contor']);
+        else:
+            return;
         if(my_dict["type"] == "head_task"):
             head_msg = trajectory_msgs.msg.JointTrajectory();
             head_point1 = trajectory_msgs.msg.JointTrajectoryPoint();
@@ -84,7 +90,7 @@ class RosbagManager:
             head_point1.time_from_start = rospy.Time.now();
             head_point1.time_from_start.secs = 0;
             head_point1.time_from_start.nsecs = 100000000;
-            head_point1.positions = [head_positions[my_dict["task"]][0], head_positions[my_dict["task"]][1]];
+            head_point1.positions = [self.head_positions[my_dict["task"]][0], self.head_positions[my_dict["task"]][1]];
             head_point1.joint_names = ['head_1_joint', 'head_2_joint'];
             h = std_msgs.msg.Header();
             h.stamp = rospy.Time.now();
@@ -137,13 +143,7 @@ class RosbagManager:
             self.rate.sleep();
         else:
             print "MESAJ ERONAT"
-"""
-        if((self.contor < int(my_dict['contor'])) and (my_dict['state'] == "START")):
-            self.contor = int(my_dict['contor']);
-            self.state = my_dict['state'];
-        elif((self.contor == int(my_dict['contor'])) and (my_dict['state'] == "STOP")):
-            self.state = my_dict['state'];
-"""
+
 if __name__ == '__main__':
     rospy.init_node('bibpoli_rosbag_node', anonymous=True);
     try:

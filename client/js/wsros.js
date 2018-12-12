@@ -5,6 +5,7 @@ var cmd_topic = null;
 var events_topic = null;
 var robot_feedback_topic = null;
 var robot_service_trust_client = null;
+var cmd_topic_contor = 0;
 
 ros.on('connection', function() {
     console.log('Connected to websocket server.');
