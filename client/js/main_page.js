@@ -143,9 +143,12 @@ function main_page_enter() {
     document.getElementById("main_page_task_intervetion_move_base_arrows_left_buttton").disabled = true;
     document.getElementById("main_page_task_intervetion_move_base_arrows_down_buttton").disabled = true;
     document.getElementById("main_page_task_intervetion_move_base_arrows_right_buttton").disabled = true;
-    //TODO: de adaugat imaginea si de la adoua camera
+    
     robot_image_topic.subscribe(function(message) {
         document.getElementById("main_page_rgb_robot_img").src = "data:image/jpg;base64," + message.data;
+    });
+    room_image_topic.subscribe(function(message) {
+        document.getElementById("main_page_rgb_room_img").src = "data:image/jpg;base64," + message.data;
     });
 
 
@@ -240,6 +243,7 @@ function main_page_verify_move_base_arive() {
         + ': '
         + result);
         //TODO: pune ressult in move_base_success
+        console.log(result.response);
         var move_base_success = true;
         if(move_base_success) {
             main_page_current_state = "MOVE_HEAD";

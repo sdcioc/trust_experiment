@@ -1,0 +1,31 @@
+<launch>
+        <!--
+        ce harta se va folosi
+        -->
+        <arg name="map_number" default="1" />
+        <arg name="map_file" default="$(find trust_package)/config/maps/$(arg map_number)/map.yaml"/>
+        <!--
+        <param name="/user_lang" value="fr-FR"/>
+        LOAD MAP
+        -->
+        <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+        <!--
+        LOAD POIs
+        -->
+        <node pkg="trust_package" name="bib_poli_poi_manager" type="bib_poli_poi_manager.py">
+            <param name="operation_type" value="load" />
+            <param name="filename" value="$(find trust_package)/config/$(arg map_number)_pois.json" />
+        </node>
+
+
+        <!--
+        Throttler pentru rgb camera
+        -->
+        <node name="rgb_throttler" type="drop" pkg="topic_tools" args="/xtion/rgb/image_rect_color 1 4 /throttle_camera/robot_image" />
+        <!--
+        Throttler pentru rgb camera
+        -->
+        <node name="rgb_throttler" type="drop" pkg="topic_tools" args="/asus/rgb/image_rect_color 1 4 /throttle_camera/room_image" />
+   
+   
+</launch>

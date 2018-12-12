@@ -31,7 +31,12 @@ ros.on('connection', function() {
     });
     robot_image_topic = new ROSLIB.Topic({
         ros : ros,
-        name : '/trust_package/base64image',
+        name : '/trust_package/robot_base64image',
+        messageType : 'std_msgs/String'
+    });
+    room_image_topic = new ROSLIB.Topic({
+        ros : ros,
+        name : '/trust_package/room_base64image',
         messageType : 'std_msgs/String'
     });
 });
