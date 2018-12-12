@@ -5,6 +5,7 @@ import std_msgs.msg
 import geometry_msgs.msg
 import trajectory_msgs.msg
 import std_msgs.msg
+import math
 
 
 def convert_POIPosition_MapPosition(position):
@@ -82,6 +83,7 @@ class RosbagManager:
         else:
             return;
         if(my_dict["type"] == "head_task"):
+            print "HEAD_TASK"
             head_msg = trajectory_msgs.msg.JointTrajectory();
             head_point1 = trajectory_msgs.msg.JointTrajectoryPoint();
             head_point1.velocities = [];
@@ -91,7 +93,7 @@ class RosbagManager:
             head_point1.time_from_start.secs = 0;
             head_point1.time_from_start.nsecs = 100000000;
             head_point1.positions = [self.head_positions[str(my_dict["task"])][0], self.head_positions[str(my_dict["task"])][1]];
-            head_point1.joint_names = ['head_1_joint', 'head_2_joint'];
+            head_msg.joint_names = ['head_1_joint', 'head_2_joint'];
             h = std_msgs.msg.Header();
             h.stamp = rospy.Time.now();
             h.stamp.secs = 0;
@@ -101,6 +103,7 @@ class RosbagManager:
             self.head_pub.publish(head_msg);
             self.rate.sleep();
         elif(my_dict["type"] == "head_move"):
+            print "HEAD_MOVE"
             head_msg = trajectory_msgs.msg.JointTrajectory();
             head_point1 = trajectory_msgs.msg.JointTrajectoryPoint();
             head_point1.velocities = [];
@@ -110,7 +113,7 @@ class RosbagManager:
             head_point1.time_from_start.secs = 0;
             head_point1.time_from_start.nsecs = 100000000;
             head_point1.positions = [my_dict["headx"], my_dict["heady"]];
-            head_point1.joint_names = ['head_1_joint', 'head_2_joint'];
+            head_msg.joint_names = ['head_1_joint', 'head_2_joint'];
             h = std_msgs.msg.Header();
             h.stamp = rospy.Time.now();
             h.stamp.secs = 0;
@@ -120,9 +123,11 @@ class RosbagManager:
             self.head_pub.publish(head_msg);
             self.rate.sleep();
         elif(my_dict["type"] == "move_task"):
+            print "MOVE_TASK"
             self.move_pub.publish(get_poi_position("task"+str(my_dict["task"])));
             self.rate.sleep();
         elif(my_dict["type"] == "base_move"):
+            print "BASE_MOVE"
             reply = rospy.wait_for_message(
             '/amcl_pose',
             geometry_msgs.msg.PoseWithCovarianceStamped, 3);
