@@ -1,5 +1,5 @@
 var ros = new ROSLIB.Ros({
-    url : 'ws://' + window.location.hostname+ '9090'
+    url : 'ws://' + window.location.hostname+ ':9090'
 });
 var cmd_topic = null;
 var events_topic = null;
