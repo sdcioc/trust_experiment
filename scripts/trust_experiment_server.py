@@ -107,8 +107,9 @@ def trust_callback(req):
         ret, jpeg = cv2.imencode('.jpg', frame);
         image = vision.types.Image(content=jpeg.tobytes());
         response = google_vision_client.object_localization(image=image);
+        print response
         responseDict["name"] = "Result";
-        responseDict["response"] = response;
+        responseDict["response"] = "Success";
     else:
         print "NotImplemented"
         responseDict["type"] = "NotImplemented";

@@ -297,6 +297,8 @@ function main_page_verify_move_head() {
             + ': '
             + result);
             //TODO: setarea valorin in functie de task pentru scan
+            main_page_tasks[main_page_current_task] = 1;
+            main_page_prepare_for_next_task()
         });
         
     } else {

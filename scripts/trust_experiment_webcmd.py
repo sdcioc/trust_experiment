@@ -85,7 +85,7 @@ class RosbagManager:
             head_msg = trajectory_msgs.msg.JointTrajectory();
             head_point1 = trajectory_msgs.msg.JointTrajectoryPoint();
             head_point1.velocities = [];
-            head_point1.accelarations = [];
+            head_point1.accelerations = [];
             head_point1.effort = [];
             head_point1.time_from_start = rospy.Time.now();
             head_point1.time_from_start.secs = 0;
@@ -104,7 +104,7 @@ class RosbagManager:
             head_msg = trajectory_msgs.msg.JointTrajectory();
             head_point1 = trajectory_msgs.msg.JointTrajectoryPoint();
             head_point1.velocities = [];
-            head_point1.accelarations = [];
+            head_point1.accelerations = [];
             head_point1.effort = [];
             head_point1.time_from_start = rospy.Time.now();
             head_point1.time_from_start.secs = 0;
