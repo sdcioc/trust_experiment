@@ -209,7 +209,7 @@ function main_page_prepare_for_next_task() {
         document.getElementById("main_page_task_intervetion_task_4").disabled = false;
         local_sem = true;
     }
-    if(sem) {
+    if(local_sem) {
         main_page_current_state = "CHOSE_TASK";
         experiment_events[experiment_index] = {
             'dateString' : new Date().toJSON(),

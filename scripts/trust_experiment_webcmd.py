@@ -90,7 +90,7 @@ class RosbagManager:
             head_point1.time_from_start = rospy.Time.now();
             head_point1.time_from_start.secs = 0;
             head_point1.time_from_start.nsecs = 100000000;
-            head_point1.positions = [self.head_positions[my_dict["task"]][0], self.head_positions[my_dict["task"]][1]];
+            head_point1.positions = [self.head_positions[str(my_dict["task"])][0], self.head_positions[str(my_dict["task"])][1]];
             head_point1.joint_names = ['head_1_joint', 'head_2_joint'];
             h = std_msgs.msg.Header();
             h.stamp = rospy.Time.now();
