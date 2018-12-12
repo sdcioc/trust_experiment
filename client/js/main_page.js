@@ -24,9 +24,17 @@ var main_page_task4_correct_answer_obj_1 = true;
 var main_page_task4_correct_answer_obj_2 = false;
 var main_page_task4_correct_answer_obj_3 = true;
 var main_page_task4_correct_answer_obj_4 = true;
+var main_page_first_time = true;
 
 function main_page_enter() {
     document.getElementById("main_page").hidden = false;
+    if(main_page_first_time) {
+        main_page_first_time = false;
+        main_page_init();
+    }
+}
+
+function main_page_init() {
     experiment_events[experiment_index] = {
         'dateString' : new Date().toJSON(),
         'name' : "PageOpened",
@@ -190,6 +198,10 @@ function main_page_start_task(arg) {
     cmd_topic.publish(message_to_publish);
     main_page_move_base_timer(50);
 }
+function main_page_feedback() {
+    changeState("post_questions_page");
+}
+
 
 function main_page_prepare_for_next_task() {
     var local_sem = false;
@@ -225,6 +237,7 @@ function main_page_prepare_for_next_task() {
             'type' : "MainPage"
         }
         experiment_index = experiment_index + 1;
+        changeState("thank_you_page");
     }
 }
 
@@ -267,7 +280,7 @@ function main_page_verify_move_base_arive() {
             main_page_move_head_timer(30);
         } else {
             main_page_tasks[main_page_current_task] = 2;
-            main_page_prepare_for_next_task()
+            main_page_feedback()
         }
     });
 }
@@ -298,12 +311,12 @@ function main_page_verify_move_head() {
             + result);
             //TODO: setarea valorin in functie de task pentru scan
             main_page_tasks[main_page_current_task] = 1;
-            main_page_prepare_for_next_task()
+            main_page_feedback()
         });
         
     } else {
         main_page_tasks[main_page_current_task] = 2;
-        main_page_prepare_for_next_task()
+        main_page_feedback()
     }
 }
 
@@ -341,10 +354,10 @@ function main_page_verify_scan() {
     }
     if(scan_success) {
         main_page_tasks[main_page_current_task] = 1;
-        main_page_prepare_for_next_task();
+        main_page_feedback();
     } else {
         main_page_tasks[main_page_current_task] = 2;
-        main_page_prepare_for_next_task()
+        main_page_feedback()
     }
 }
 
