@@ -120,7 +120,7 @@ class RosbagManager:
             self.head_pub.publish(head_msg);
             self.rate.sleep();
         elif(my_dict["type"] == "move_task"):
-            self.move_pub.publish(get_poi_position("task"+my_dict["task"]));
+            self.move_pub.publish(get_poi_position("task"+str(my_dict["task"])));
             self.rate.sleep();
         elif(my_dict["type"] == "base_move"):
             reply = rospy.wait_for_message(

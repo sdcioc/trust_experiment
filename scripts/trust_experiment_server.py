@@ -90,7 +90,7 @@ def trust_callback(req):
             reply = rospy.wait_for_message(
             '/amcl_pose',
             geometry_msgs.msg.PoseWithCovarianceStamped, 3);
-            current_distance = get_distance(reply.pose.pose, get_poi_position("task"+requestDict["task"]));
+            current_distance = get_distance(reply.pose.pose, get_poi_position("task"+str(requestDict["task"])));
             if (current_distance < DISTANCE_ERROR):
                 responseDict["name"] = "Success";
             else:
