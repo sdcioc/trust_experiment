@@ -42,11 +42,15 @@ class RosbagManager:
     def move_callback(self, reply):
         #reply.pose (position, orietation)
         #self.amcl_pose.pose.pose (position, orietation)
+        print "Am primit comanda de move"
+        print reply
         self.amcl_pose.pose.pose.position = reply.pose.position;
         self.amcl_pose.pose.pose.orientation = reply.pose.orientation;
     
     def head_callback(self, reply):
         #reply.points[0].positions[0]
+        print "Am primit comanda de head"
+        print reply
         self.headx = reply.points[0].positions[0];
         self.heady = reply.points[0].positions[1];
         
