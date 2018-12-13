@@ -48,7 +48,8 @@ function post_questions_page_answer_click(arg) {
         'name' : "AnswerButtonPressed",
         'type' : "PostQuestionsPage",
         'Question' : postQuestionsIndex,
-        'Answer' : arg
+        'Answer' : arg,
+        'task' : main_page_current_task
     }
     experiment_index = experiment_index + 1;
     post_questions_page_change_question();
@@ -83,6 +84,7 @@ function post_questions_page_change_question() {
     if(postQuestionsIndex == postQuestionsMessages.length) {
         console.log(post_questions_answers);
         main_page_prepare_for_next_task();
+        changeState("main_page");
     } else {
         document.getElementById("post_questions_page_text").removeChild(last_post_questions_element);
         last_post_questions_element = document.createElement('div');

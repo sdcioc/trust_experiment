@@ -39,8 +39,6 @@ ros.on('connection', function() {
         name : '/trust_package/room_base64image',
         messageType : 'std_msgs/String'
     });
-    init_map();
-    main_page_init();
 });
 
 ros.on('error', function(error) {
