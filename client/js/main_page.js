@@ -52,24 +52,28 @@ function main_page_init() {
             ticks_labels: ['Left', 'Center', 'Right'],
             tooltip : 'hide',
             selection : 'none',
-            value : head_x,
-            enabled : false
+            value : head_x
         }
     );
     headLeftRightSlider.on("slideStop", function(event) {
         head_x = event.value;
         var valueToSend = head_x;
         console.log(valueToSend);
-        cmd_topic_contor = cmd_topic_contor + 1;
         var message_dict = {
             'type' : "head_move",
             'task' : main_page_current_task,
             'headx' : head_x,
-            'heady' : head_y,
-            'contor' : cmd_topic_contor
+            'heady' : head_y
         }
-        var message_to_publish = new ROSLIB.Message({
-            data : JSON.stringify(message_dict)
+        var request = new ROSLIB.ServiceRequest({
+            a : JSON.stringify(message_dict)
+        });
+    
+        robot_web_service_trust_client.callService(request, function(result) {
+            console.log('Result for service call on '
+            + robot_web_service_trust_client.name
+            + ': '
+            + result);
         });
         experiment_events[experiment_index] = {
             'dateString' : new Date().toJSON(),
@@ -80,7 +84,6 @@ function main_page_init() {
             'heady' : head_y
         }
         experiment_index = experiment_index + 1;
-        cmd_topic.publish(message_to_publish);
     })
     headUpDownSlider = $("#main_page_task_intervetion_head_up_down_slider").bootstrapSlider(
         {
@@ -94,24 +97,28 @@ function main_page_init() {
             orientation : 'vertical',
             reversed : false,
             selection : 'none',
-            value : head_y,
-            enabled : false
+            value : head_y
         }
     );
     headUpDownSlider.on("slideStop", function(event) {
         head_y = event.value;
         var valueToSend = head_y * -1;
         console.log(valueToSend);
-        cmd_topic_contor = cmd_topic_contor + 1;
         var message_dict = {
             'type' : "head_move",
             'task' : main_page_current_task,
             'headx' : head_x,
-            'heady' : head_y,
-            'contor' : cmd_topic_contor
+            'heady' : head_y
         }
-        var message_to_publish = new ROSLIB.Message({
-            data : JSON.stringify(message_dict)
+        var request = new ROSLIB.ServiceRequest({
+            a : JSON.stringify(message_dict)
+        });
+
+        robot_web_service_trust_client.callService(request, function(result) {
+            console.log('Result for service call on '
+            + robot_web_service_trust_client.name
+            + ': '
+            + result);
         });
         experiment_events[experiment_index] = {
             'dateString' : new Date().toJSON(),
@@ -122,7 +129,6 @@ function main_page_init() {
             'heady' : head_y
         }
         experiment_index = experiment_index + 1;
-        cmd_topic.publish(message_to_publish);
     })
     torsoUpDownSlider = $("#main_page_task_intervetion_torso_up_down_slider").bootstrapSlider(
         {
@@ -186,16 +192,21 @@ function main_page_start_task(arg) {
     autonomous_move = true;
     autonomous_head = true;
     autonomous_scan = true;
-    cmd_topic_contor = cmd_topic_contor + 1;
     var message_dict = {
         'type' : "move_task",
-        'task' : main_page_current_task,
-        'contor' : cmd_topic_contor
+        'task' : main_page_current_task
     }
-    var message_to_publish = new ROSLIB.Message({
-        data : JSON.stringify(message_dict)
+
+    var request = new ROSLIB.ServiceRequest({
+        a : JSON.stringify(message_dict)
     });
-    cmd_topic.publish(message_to_publish);
+
+    robot_web_service_trust_client.callService(request, function(result) {
+        console.log('Result for service call on '
+        + robot_web_service_trust_client.name
+        + ': '
+        + result);
+    });
     main_page_move_base_timer(50);
 }
 function main_page_feedback() {
@@ -267,16 +278,20 @@ function main_page_verify_move_base_arive() {
                 'task' : main_page_current_task
             }
             experiment_index = experiment_index + 1;
-            cmd_topic_contor = cmd_topic_contor + 1;
             var message_dict = {
                 'type' : "head_task",
-                'task' : main_page_current_task,
-                'contor' : cmd_topic_contor
+                'task' : main_page_current_task
             }
-            var message_to_publish = new ROSLIB.Message({
-                data : JSON.stringify(message_dict)
+            var request = new ROSLIB.ServiceRequest({
+                a : JSON.stringify(message_dict)
             });
-            cmd_topic.publish(message_to_publish);
+        
+            robot_web_service_trust_client.callService(request, function(result) {
+                console.log('Result for service call on '
+                + robot_web_service_trust_client.name
+                + ': '
+                + result);
+            });
             main_page_move_head_timer(30);
         } else {
             main_page_tasks[main_page_current_task] = 2;
@@ -464,8 +479,6 @@ function main_page_intervention() {
         }
         experiment_index = experiment_index + 1;
         document.getElementById("main_page_task_intervetion_head_sliders_div").hidden = false;
-        headLeftRightSlider.enable();
-        headUpDownSlider.enable();
         main_page_move_head_manual_timer(60);
     }
     else if(main_page_current_state == "SCAN_ONJECT") {
@@ -508,8 +521,6 @@ function main_page_finish_intervention() {
         experiment_index = experiment_index + 1;
         document.getElementById("main_page_task_intervetion_head_sliders_div").hidden = true;
         autonomous_head = true;
-        headLeftRightSlider.disable();
-        headUpDownSlider.disable();
         main_page_verify_move_head();
     } else if (main_page_current_state == "SCAN_ONJECT") {
         autonomous_scan = true;
@@ -528,12 +539,10 @@ function main_page_finish_intervention() {
 }
 
 function main_page_move_btn(arg) {
-    cmd_topic_contor = cmd_topic_contor + 1;
     var message_dict = {
         'type' : "base_move",
         'task' : main_page_current_task,
-        'name' : "",
-        'contor' : cmd_topic_contor
+        'name' : ""
     }
     if(arg == 1) {
         message_dict['name'] = "FORWARD";
@@ -554,8 +563,14 @@ function main_page_move_btn(arg) {
         'direction' :  message_dict['name']
     }
     experiment_index = experiment_index + 1;
-    var message_to_publish = new ROSLIB.Message({
-        data : JSON.stringify(message_dict)
+    var request = new ROSLIB.ServiceRequest({
+        a : JSON.stringify(message_dict)
     });
-    cmd_topic.publish(message_to_publish);
+
+    robot_web_service_trust_client.callService(request, function(result) {
+        console.log('Result for service call on '
+        + robot_web_service_trust_client.name
+        + ': '
+        + result);
+    });
 }

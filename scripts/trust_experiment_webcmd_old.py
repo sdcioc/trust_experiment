@@ -70,19 +70,17 @@ class TrustWebServerClass:
         }
         #conotrul ce reprezinta numarul experimentului
         self.contor = 0;
-        self.service = None;
         rospy.sleep(2);
-
-    def start_service(self):
-        self.server = rospy.Service('trust_web_server', TrustServer, self.trust_web_callback);
+        # un subscriber pentru comenzile de la sistemul central
+        rospy.Subscriber("/trust/web_cmd", std_msgs.msg.String, self.command_subscriber);
 
     # calbbackul pentru comenzi (setez dinainte contorul ca sa nu inceapa sa inregistreze pe vechiul contor)
-    def trust_web_callback(self, req):
-        print "A primit" + req.a;
-        my_dict = json.loads(req.a)
-        responseDict = {}
-        responseDict["type"] = my_dict["type"];
-        responseDict["name"] = "Fail";
+    def command_subscriber(self, command):
+        my_dict = json.loads(command.data)
+        if(self.contor < int(my_dict['contor'])):
+            self.contor = int(my_dict['contor']);
+        else:
+            return;
         if(my_dict["type"] == "head_task"):
             print "HEAD_TASK"
             head_msg = trajectory_msgs.msg.JointTrajectory();
@@ -103,7 +101,6 @@ class TrustWebServerClass:
             head_msg.points.append(head_point1);
             self.head_pub.publish(head_msg);
             self.rate.sleep();
-            responseDict["name"] = "Success";
         elif(my_dict["type"] == "head_move"):
             print "HEAD_MOVE"
             head_msg = trajectory_msgs.msg.JointTrajectory();
@@ -124,12 +121,10 @@ class TrustWebServerClass:
             head_msg.points.append(head_point1);
             self.head_pub.publish(head_msg);
             self.rate.sleep();
-            responseDict["name"] = "Success";
         elif(my_dict["type"] == "move_task"):
             print "MOVE_TASK"
             self.move_pub.publish(get_poi_position("task"+str(my_dict["task"])));
             self.rate.sleep();
-            responseDict["name"] = "Success";
         elif(my_dict["type"] == "base_move"):
             print "BASE_MOVE"
             reply = rospy.wait_for_message(
@@ -150,17 +145,14 @@ class TrustWebServerClass:
             request_position = convert_POIPosition_MapPosition(new_poi_position);
             self.move_pub.publish(request_position);
             self.rate.sleep();
-            responseDict["name"] = "Success";
         else:
             print "MESAJ ERONAT"
-        return TrustServerResponse(json.dumps(responseDict));
 
 if __name__ == '__main__':
     rospy.init_node('bibpoli_rosbag_node', anonymous=True);
     try:
         rospy.loginfo("[BIBPOLI_ROSBAG] STARTED");
-        TrustWebServerInstance = TrustWebServerClass();
-        TrustWebServerInstance.start_service();
+        my_logic_manager = TrustWebServerClass();
         rospy.spin();
     except KeyboardInterrupt:
         pass;

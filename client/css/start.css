@@ -458,3 +458,8 @@ div#swal2-content.swal2-content{
 	max-width: 100%;
 	max-height: 100%;
 }
+
+.main_page_info_header {
+	max-width: 100%;
+	max-height: 10%;
+}

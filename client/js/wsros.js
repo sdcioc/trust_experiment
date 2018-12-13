@@ -1,32 +1,25 @@
 var ros = new ROSLIB.Ros({
     url : 'ws://' + window.location.hostname+ ':9090'
 });
-var cmd_topic = null;
 var events_topic = null;
-var robot_feedback_topic = null;
 var robot_service_trust_client = null;
-var cmd_topic_contor = 0;
+var robot_web_service_trust_client = null;
 
 ros.on('connection', function() {
     console.log('Connected to websocket server.');
-    cmd_topic = new ROSLIB.Topic({
-        ros : ros,
-        name : '/trust/web_cmd',
-        messageType : 'std_msgs/String'
-    });
     events_topic = new ROSLIB.Topic({
         ros : ros,
         name : '/trust/events',
         messageType : 'std_msgs/String'
     });
-    robot_feedback_topic = new ROSLIB.Topic({
-        ros : ros,
-        name : '/trust/robot_feedback',
-        messageType : 'std_msgs/String'
-    });
     robot_service_trust_client = new ROSLIB.Service({
         ros : ros,
         name : '/trust_server',
+        serviceType : 'trust_package/TrustServer'
+    });
+    robot_web_service_trust_client = new ROSLIB.Service({
+        ros : ros,
+        name : '/trust_web_server',
         serviceType : 'trust_package/TrustServer'
     });
     robot_image_topic = new ROSLIB.Topic({

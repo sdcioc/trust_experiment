@@ -53,7 +53,7 @@ bootstrap-slider
 <script type="text/javascript" src="js/trust_map.js"></script>
 </head>
 
-<body onload="init()">
+<body onload="init();init_map()">
     
 
     <div id="login_page">
@@ -179,12 +179,12 @@ bootstrap-slider
 
                     <div id="main_page_task_intervetion_move_base_arrows" class="main_page_task_intervetion_move_base_arrows" hidden>
                         <div class="main_page_task_intervetion_move_base_arrows_up_buttton">
-                            <button id="main_page_task_intervetion_move_base_arrows_up_buttton" onlick="main_page_move_btn(1)" class="btn btn-primary">FOWARD</button>
+                            <button id="main_page_task_intervetion_move_base_arrows_up_buttton" onclick="main_page_move_btn(1)" class="btn btn-primary">FOWARD</button>
                         </div>
                         <div class="main_page_task_intervetion_move_base_arrows_down_butttons">
-                            <button id="main_page_task_intervetion_move_base_arrows_left_buttton" onlick="main_page_move_btn(3)" class="btn btn-primary">LEFT</button>
-                            <button id="main_page_task_intervetion_move_base_arrows_down_buttton" onlick="main_page_move_btn(2)" class="btn btn-primary">BACK</button>
-                            <button id="main_page_task_intervetion_move_base_arrows_right_buttton" onlick="main_page_move_btn(4)" class="btn btn-primary">RIGHT</button>
+                            <button id="main_page_task_intervetion_move_base_arrows_left_buttton" onclick="main_page_move_btn(3)" class="btn btn-primary">LEFT</button>
+                            <button id="main_page_task_intervetion_move_base_arrows_down_buttton" onclick="main_page_move_btn(2)" class="btn btn-primary">BACK</button>
+                            <button id="main_page_task_intervetion_move_base_arrows_right_buttton" onclick="main_page_move_btn(4)" class="btn btn-primary">RIGHT</button>
                         </div>
                     </div>
 
@@ -251,7 +251,9 @@ bootstrap-slider
         </div>
         <div id="main_page_info" class="dan_main_page_mid">
 
+            <div id="main_page_info_header" class="main_page_info_header">
                 AAAA
+            </div>
             <div id="main_page_info_nav" class="main_page_info_nav">
 
             </div>
