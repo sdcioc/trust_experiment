@@ -1,11 +1,13 @@
 #! /usr/bin/python
 import rospy
 import json
+import math
+
+
 import std_msgs.msg
 import geometry_msgs.msg
 import trajectory_msgs.msg
-import std_msgs.msg
-import math
+from trust_package.srv import *
 
 def convert_POIPosition_MapPosition(position):
 	#tipul de mesaj pentru map
