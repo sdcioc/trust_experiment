@@ -167,6 +167,9 @@ function main_page_init() {
 
 
     document.getElementById("main_page_task_intervetion_finish_intervention_btn").disabled = true;
+    document.getElementById("main_page_task_intervetion_intervention_btn").disabled = true;
+    document.getElementById("main_page_info_header").innerHTML = "<h1>Chose a task</h1>";
+    //TODO: random chose a task after timeout
 }
 
 function main_page_exit() {
@@ -207,7 +210,10 @@ function main_page_start_task(arg) {
         + ': '
         + result);
     });
+    document.getElementById("main_page_task_intervetion_intervention_btn").disabled = false;
     main_page_move_base_timer(50);
+
+    document.getElementById("main_page_info_header").innerHTML = "<h1>The robot moves to the table, In 50 seconds you can intervine by pressing intervine button</h1>";
 }
 function main_page_feedback() {
     changeState("post_questions_page");
@@ -341,6 +347,7 @@ function main_page_verify_scan() {
     //TODO verificare daca a intervenit
     //TODO in functie de ce a ales
     //TODO add event
+    document.getElementById("main_page_task_intervetion_intervention_btn").disabled = true;
     if(main_page_current_task == 1) {
         if(document.getElementById("main_page_task_intervetion_scan_task_1_number").value != 5) {
             scan_success = false;
@@ -382,6 +389,7 @@ function main_page_move_base_timer(arg) {
     } else {
         setTimeout(function(){
             if(autonomous_move) {
+                document.getElementById("main_page_info_header").innerHTML = "<h1>The robot moves to the table. In " + arg-1 + " seconds  you can intervine by pressing intervine button</h1>";
                 main_page_move_base_timer(arg-1);
             }
         }, 1000);
@@ -471,6 +479,7 @@ function main_page_intervention() {
         main_page_move_base_manual_timer(120);
     }
     else if(main_page_current_state == "MOVE_HEAD") {
+        autonomous_head = false;
         experiment_events[experiment_index] = {
             'dateString' : new Date().toJSON(),
             'name' : "HeadIntervention",
