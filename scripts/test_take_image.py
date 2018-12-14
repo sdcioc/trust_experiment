@@ -17,7 +17,7 @@ if __name__ == '__main__':
                         'xtion/rgb/image_rect_color',
                         sensor_msgs.msg.Image, 3);
         frame = cvBridge.imgmsg_to_cv2(reply, 'bgr8');
-        cv2.imwrite("/home/pal/test.jpg", frame);
+        cv2.imwrite("/home/ubuntu/test.jpg", frame);
         rospy.spin();
     except KeyboardInterrupt:
         pass;
