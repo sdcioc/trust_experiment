@@ -148,7 +148,7 @@ include_directories(
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
 install(PROGRAMS
-  scripts/trust_experiment_client.py
+  scripts/bib_poli_poi_manager.py
   scripts/trust_experiment_image.py
   scripts/trust_experiment_server.py
   scripts/trust_experiment_webcmd.py
