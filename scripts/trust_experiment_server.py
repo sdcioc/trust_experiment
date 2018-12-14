@@ -3,6 +3,7 @@ import rospy
 import json
 import math
 from google.cloud import vision
+import boto3
 import cv2
 #import dlib
 import cv_bridge
@@ -20,6 +21,7 @@ class TrustServerClass:
         self.google_vision_client = vision.ImageAnnotatorClient();
         self.DISTANCE_ERROR = 0.6;
         self.server = None;
+        self.amazon_vision_client = boto3.client("rekognition","us-west-2");
 
     def start_service(self):
         self.server = rospy.Service('trust_server', TrustServer, self.trust_callback);
@@ -111,11 +113,26 @@ class TrustServerClass:
                             sensor_msgs.msg.Image, 3);
             frame = self.cvBridge.imgmsg_to_cv2(reply, 'bgr8');
             ret, jpeg = cv2.imencode('.jpg', frame);
-            image = vision.types.Image(content=jpeg.tobytes());
-            response = self.google_vision_client.object_localization(image=image);
-            print response
-            responseDict["name"] = "Result";
-            responseDict["response"] = "Success";
+            if(requestDict["service"] == "google"):
+                image = vision.types.Image(content=jpeg.tobytes());
+                response = self.google_vision_client.object_localization(image=image);
+                #print response
+                for obj in response:
+                    print obj.name;
+                    #for vertex in obj.bounding_poly.normalized_vertices:
+                    #    print(' - ({}, {})'.format(vertex.x, vertex.y))
+                responseDict["name"] = "Result";
+                responseDict["response"] = "Success";
+            elif (requestDict["service"] == "amazon"):
+                response = self.amazon_vision_client.detect_labels(Image={'Bytes': jpeg.tobytes()},MaxLabels=123,MinConfidence=50);
+                #print response
+                for obj in response["Labels"]:
+                    print obj["Name"];
+                responseDict["name"] = "Result";
+                responseDict["response"] = "Success";
+            else:
+                responseDict["name"] = "NotImplementedService";
+                responseDict["response"] = "Fail";
         else:
             print "NotImplemented"
             responseDict["type"] = "NotImplemented";

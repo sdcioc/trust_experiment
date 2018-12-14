@@ -75,7 +75,7 @@ function pre_questions_page_exit() {
     preQuestionsIndex = 0;
     pre_questions_answers = [];
     document.getElementById("pre_questions_page_text").removeChild(last_pre_questions_element);
-    document.getElementById("pre_questions_page_next_btn").disabled = false;
+    document.getElementById("pre_questions_page_next_btn").hidden = false;
     document.getElementById("pre_questions_page").hidden = true;
 }
 
@@ -89,7 +89,7 @@ function pre_questions_page_change_question() {
         last_pre_questions_element = document.createElement('div');
         last_pre_questions_element.innerHTML = preQuestionsMessages[preQuestionsIndex];
         document.getElementById("pre_questions_page_text").appendChild(last_pre_questions_element);
-        document.getElementById("pre_questions_page_next_btn").disabled = true;
+        document.getElementById("pre_questions_page_next_btn").hidden = true;
     }
 }
 

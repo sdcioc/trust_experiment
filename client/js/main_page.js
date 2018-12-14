@@ -25,6 +25,20 @@ var main_page_task4_correct_answer_obj_2 = false;
 var main_page_task4_correct_answer_obj_3 = true;
 var main_page_task4_correct_answer_obj_4 = true;
 var main_page_first_time = true;
+var main_page_has_intervine_scan = false;
+var main_page_scan_service_response = null;
+var main_page_real_task = {
+    1:4,
+    2:3,
+    3:2,
+    4:1
+}
+var main_page_false_task = {
+    1:4,
+    2:3,
+    3:2,
+    4:1
+}
 
 function main_page_enter() {
     document.getElementById("main_page").hidden = false;
@@ -178,7 +192,7 @@ function main_page_exit() {
 
 function main_page_start_task(arg) {
     console.log(arg);
-    main_page_current_task = arg;
+    main_page_current_task = main_page_real_task[arg];
     experiment_events[experiment_index] = {
         'dateString' : new Date().toJSON(),
         'name' : "TaskStarted",
@@ -222,19 +236,19 @@ function main_page_feedback() {
 
 function main_page_prepare_for_next_task() {
     var local_sem = false;
-    if(main_page_tasks[1] == 0) {
+    if(main_page_tasks[main_page_false_task[1]] == 0) {
         document.getElementById("main_page_task_intervetion_task_1").disabled = false;
         local_sem = true;
     }
-    if(main_page_tasks[2] == 0) {
+    if(main_page_tasks[main_page_false_task[2]] == 0) {
         document.getElementById("main_page_task_intervetion_task_2").disabled = false;
         local_sem = true;
     }
-    if(main_page_tasks[3] == 0) {
+    if(main_page_tasks[main_page_false_task[3]] == 0) {
         document.getElementById("main_page_task_intervetion_task_3").disabled = false;
         local_sem = true;
     }
-    if(main_page_tasks[4] == 0) {
+    if(main_page_tasks[main_page_false_task[4]] == 0) {
         document.getElementById("main_page_task_intervetion_task_4").disabled = false;
         local_sem = true;
     }
@@ -273,6 +287,14 @@ function main_page_verify_move_base_arive() {
         + ': '
         + result);
         //TODO: pune ressult in move_base_success
+        /*
+        var response = JSON.parse(result.response);
+        if(response["name"]=="Success") {
+            move_base_success = true;
+        } else {
+            move_base_success = false;
+        }
+        */
         console.log(result.response);
         var move_base_success = true;
         if(move_base_success) {
@@ -330,10 +352,9 @@ function main_page_verify_move_head() {
             + robot_service_trust_client.name
             + ': '
             + result);
-            //TODO: setarea valorin in functie de task pentru scan
-            main_page_tasks[main_page_current_task] = 1;
-            main_page_feedback()
+            main_page_scan_service_response = JSON.parse(result.response);
         });
+        main_page_scan_timer(30);
         
     } else {
         main_page_tasks[main_page_current_task] = 2;
@@ -344,36 +365,55 @@ function main_page_verify_move_head() {
 
 function main_page_verify_scan() {
     var scan_success = true;
-    //TODO verificare daca a intervenit
-    //TODO in functie de ce a ales
-    //TODO add event
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = true;
-    if(main_page_current_task == 1) {
-        if(document.getElementById("main_page_task_intervetion_scan_task_1_number").value != 5) {
-            scan_success = false;
+    if (main_page_has_intervine_scan) {
+        if(main_page_current_task == 1) {
+            if(document.getElementById("main_page_task_intervetion_scan_task_1_number").value != main_page_task1_correct_answer) {
+                scan_success = false;
+            }
+        } else if(main_page_current_task == 2) {
+            if(document.getElementById("main_page_task_intervetion_scan_task_2_has_object").value != main_page_task2_correct_answer) {
+                scan_success = false;
+            }
+        } else if(main_page_current_task == 3) {
+            if(document.getElementById("main_page_task_intervetion_scan_task_3_number").value != main_page_task3_correct_answer) {
+                scan_success = false;
+            }
+        } else if(main_page_current_task == 4) {
+            if(document.getElementById("main_page_task_intervetion_scan_task_2_has_objec_1").value != main_page_task4_correct_answer_obj_1) {
+                scan_success = false;
+            }
+            if(document.getElementById("main_page_task_intervetion_scan_task_2_has_object_2").value != main_page_task4_correct_answer_obj_2) {
+                scan_success = false;
+            }
+            if(document.getElementById("main_page_task_intervetion_scan_task_2_has_object_3").value != main_page_task4_correct_answer_obj_3) {
+                scan_success = false;
+            }
+            if(document.getElementById("main_page_task_intervetion_scan_task_2_has_object_4").value != main_page_task4_correct_answer_obj_4) {
+                scan_success = false;
+            }
         }
-    } else if(main_page_current_task == 2) {
-        if(document.getElementById("main_page_task_intervetion_scan_task_2_has_object").value == false) {
-            scan_success = false;
+    } else {
+        //TODO do something with main_page_scan_service_response
+        if(main_page_current_task == 1) {
+        } else if(main_page_current_task == 2) {
+        } else if(main_page_current_task == 3) {
+        } else if(main_page_current_task == 4) {
         }
-    } else if(main_page_current_task == 3) {
-        if(document.getElementById("main_page_task_intervetion_scan_task_3_number").value != 7) {
-            scan_success = false;
-        }
-    } else if(main_page_current_task == 4) {
-        if(document.getElementById("main_page_task_intervetion_scan_task_2_has_objec_1").value == false) {
-            scan_success = false;
-        }
-        if(document.getElementById("main_page_task_intervetion_scan_task_2_has_object_2").value == true) {
-            scan_success = false;
-        }
-        if(document.getElementById("main_page_task_intervetion_scan_task_2_has_object_3").value == false) {
-            scan_success = false;
-        }
-        if(document.getElementById("main_page_task_intervetion_scan_task_2_has_object_4").value == false) {
-            scan_success = false;
-        }
+        main_page_scan_service_response = null;
     }
+    //TODO extra to event
+    experiment_events[experiment_index] = {
+        'dateString' : new Date().toJSON(),
+        'name' : "VerifyScan",
+        'type' : "MainPage",
+        'task' : main_page_current_task,
+        'has_intervine' : main_page_has_intervine_scan,
+        'scan_success' : scan_success,
+        'answers' : []
+    }
+    experiment_index = experiment_index + 1;
+    main_page_has_intervine_scan = false;
     if(scan_success) {
         main_page_tasks[main_page_current_task] = 1;
         main_page_feedback();
@@ -389,7 +429,7 @@ function main_page_move_base_timer(arg) {
     } else {
         setTimeout(function(){
             if(autonomous_move) {
-                document.getElementById("main_page_info_header").innerHTML = "<h1>The robot moves to the table. In " + arg-1 + " seconds  you can intervine by pressing intervine button</h1>";
+                document.getElementById("main_page_info_header").innerHTML = "<h1>The robot moves to the table. In " + (arg-1) + " seconds  you can intervine by pressing intervine button</h1>";
                 main_page_move_base_timer(arg-1);
             }
         }, 1000);
@@ -491,7 +531,6 @@ function main_page_intervention() {
         main_page_move_head_manual_timer(60);
     }
     else if(main_page_current_state == "SCAN_ONJECT") {
-        //TODO: in functie de task
         autonomous_scan = false;
         experiment_events[experiment_index] = {
             'dateString' : new Date().toJSON(),
@@ -542,6 +581,7 @@ function main_page_finish_intervention() {
         experiment_index = experiment_index + 1;
         document.getElementById("main_page_task_intervetion_scan").hidden = true;
         document.getElementById("main_page_task_intervetion_scan_task_"+str(main_page_current_task)).hidden = true;
+        main_page_has_intervine_scan = true;
         main_page_verify_scan();
     }
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = false;
