@@ -57,9 +57,6 @@ function main_page_init() {
     }
     experiment_index = experiment_index + 1;
 
-    /*
-    TODO: desenare patrulatere peste task-uri
-    */
    var colors = {
        1 : createjs.Graphics.getRGB(0,255,0),
        2 : createjs.Graphics.getRGB(255,255,0),
@@ -461,8 +458,7 @@ function main_page_verify_scan() {
                 scan_success = false;
             }
         } else if(main_page_current_task == 2) {
-            console.log("Am primit", document.getElementById("main_page_task_intervetion_scan_task_2_has_object").value);
-            if(document.getElementById("main_page_task_intervetion_scan_task_2_has_object").value != main_page_task2_correct_answer) {
+            if(document.getElementById("main_page_task_intervetion_scan_task_2_has_object").checked != main_page_task2_correct_answer) {
                 scan_success = false;
             }
         } else if(main_page_current_task == 3) {
@@ -470,16 +466,16 @@ function main_page_verify_scan() {
                 scan_success = false;
             }
         } else if(main_page_current_task == 4) {
-            if(document.getElementById("main_page_task_intervetion_scan_task_4_has_object_1").value != main_page_task4_correct_answer_obj_1) {
+            if(document.getElementById("main_page_task_intervetion_scan_task_4_has_object_1").checked != main_page_task4_correct_answer_obj_1) {
                 scan_success = false;
             }
-            if(document.getElementById("main_page_task_intervetion_scan_task_4_has_object_2").value != main_page_task4_correct_answer_obj_2) {
+            if(document.getElementById("main_page_task_intervetion_scan_task_4_has_object_2").checked != main_page_task4_correct_answer_obj_2) {
                 scan_success = false;
             }
-            if(document.getElementById("main_page_task_intervetion_scan_task_4_has_object_3").value != main_page_task4_correct_answer_obj_3) {
+            if(document.getElementById("main_page_task_intervetion_scan_task_4_has_object_3").checked != main_page_task4_correct_answer_obj_3) {
                 scan_success = false;
             }
-            if(document.getElementById("main_page_task_intervetion_scan_task_4_has_object_4").value != main_page_task4_correct_answer_obj_4) {
+            if(document.getElementById("main_page_task_intervetion_scan_task_4_has_object_4").checked != main_page_task4_correct_answer_obj_4) {
                 scan_success = false;
             }
         }
@@ -487,6 +483,9 @@ function main_page_verify_scan() {
         //TODO do something with main_page_scan_service_response
         if(main_page_current_task == 1) {
         } else if(main_page_current_task == 2) {
+            for(x in main_page_scan_service_response) {
+                console.log(x);
+            }
         } else if(main_page_current_task == 3) {
         } else if(main_page_current_task == 4) {
         }
