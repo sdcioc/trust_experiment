@@ -17,6 +17,8 @@ var autonomous_move = null;
 var autonomous_head = null;
 var autonomous_scan = null;
 
+
+var main_page_task2_correct_answer_arr = ["Duck","Toy"];
 var main_page_task1_correct_answer = 5;
 var main_page_task2_correct_answer = true;
 var main_page_task3_correct_answer = 7;
@@ -483,8 +485,22 @@ function main_page_verify_scan() {
         //TODO do something with main_page_scan_service_response
         if(main_page_current_task == 1) {
         } else if(main_page_current_task == 2) {
-            for(x in main_page_scan_service_response["result"]) {
-                console.log(x);
+            var sem_1 = false;
+            var sem_2 = false;
+            for(index in main_page_task2_correct_answer_arr) {
+                sem_1 = false;
+                for(jindex in main_page_scan_service_response["result"]) {
+                    if(main_page_scan_service_response["result"][jindex] == main_page_task2_correct_answer_arr[index]) {
+                        sem_1 = true;
+                    }
+                }
+                if(sem_1 == false) {
+                    console.log("Nu a gasit", main_page_task2_correct_answer_arr[index]);
+                    sem_2 = true;
+                }
+            }
+            if(sem_2 == true) {
+                scan_success = false;
             }
         } else if(main_page_current_task == 3) {
         } else if(main_page_current_task == 4) {
