@@ -61,19 +61,62 @@ function main_page_init() {
     TODO: desenare patrulatere peste task-uri
     */
 
-   var g = new createjs.Graphics();
-   g.setStrokeStyle(0);
-   g.beginStroke(createjs.Graphics.getRGB(255,0,0));
-   g.beginFill(createjs.Graphics.getRGB(255,0,0));
-   g.drawRect(0,0,1,1);
-   var s = new createjs.Shape(g);
-   s.scaleX = 0.5;
-   s.scaleY = 0.4;
-   s.x = 3.1;
-   s.y = -1.2;
-   s.rotation = 7;
-   viewer.addObject(s);
+   var g_3 = new createjs.Graphics();
+   g_3.setStrokeStyle(0);
+   g_3.beginStroke(createjs.Graphics.getRGB(255,0,0));
+   g_3.beginFill(createjs.Graphics.getRGB(255,0,0));
+   g_3.drawRect(0,0,1,1);
+   var s = new createjs.Shape(g_3);
+   s_3.scaleX = 0.5;
+   s_3.scaleY = 0.4;
+   s_3.x = 3.1;
+   s_3.y = -1.2;
+   s_3.rotation = 7;
+   viewer.addObject(s_3);
 
+
+
+   var g_2 = new createjs.Graphics();
+   g_2.setStrokeStyle(0);
+   g_2.beginStroke(createjs.Graphics.getRGB(255,255,0));
+   g_2.beginFill(createjs.Graphics.getRGB(255,255,0));
+   g_2.drawRect(0,0,1,1);
+   var s = new createjs.Shape(g_2);
+   s_2.scaleX = 0.2;
+   s_2.scaleY = 0.4;
+   s_2.x = 3.2;
+   s_2.y = 0.9;
+   s_2.rotation = 10;
+   viewer.addObject(s_2);
+
+
+
+   var g_1 = new createjs.Graphics();
+   g_1.setStrokeStyle(0);
+   g_1.beginStroke(createjs.Graphics.getRGB(0,255,0));
+   g_1.beginFill(createjs.Graphics.getRGB(0,255,0));
+   g_1.drawRect(0,0,1,1);
+   var s = new createjs.Shape(g_1);
+   s_1.scaleX = 0.3;
+   s_1.scaleY = 0.25;
+   s_1.x = 1.2;
+   s_1.y = 0.85;
+   s_1.rotation = 5;
+   viewer.addObject(s_1);
+
+
+   var g_4 = new createjs.Graphics();
+   g_4.setStrokeStyle(0);
+   g_4.beginStroke(createjs.Graphics.getRGB(0,0,255));
+   g_4.beginFill(createjs.Graphics.getRGB(0,0,255));
+   g_4.drawRect(0,0,1,1);
+   var s = new createjs.Shape(g_4);
+   s_4.scaleX = 0.5;
+   s_4.scaleY = 0.3;
+   s_4.x = 0.95;
+   s_4.y = -1.4;
+   s_4.rotation = 8;
+   viewer.addObject(s_4);
 
     /*
     Setare hartă
