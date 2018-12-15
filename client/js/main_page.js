@@ -71,7 +71,7 @@ function main_page_init() {
     );
     headLeftRightSlider.on("slideStop", function(event) {
         head_x = event.value;
-        var valueToSend = head_x;
+        var valueToSend = head_x * -1;
         console.log(valueToSend);
         var message_dict = {
             'type' : "head_move",
@@ -116,7 +116,7 @@ function main_page_init() {
     );
     headUpDownSlider.on("slideStop", function(event) {
         head_y = event.value;
-        var valueToSend = head_y * -1;
+        var valueToSend = head_y;
         console.log(valueToSend);
         var message_dict = {
             'type' : "head_move",
@@ -229,6 +229,7 @@ function main_page_start_task(arg) {
 
     document.getElementById("main_page_info_header").innerHTML = "<h1>The robot moves to the table, In 50 seconds you can intervine by pressing intervine button</h1>";
 }
+
 function main_page_feedback() {
     changeState("post_questions_page");
 }

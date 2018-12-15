@@ -26,12 +26,17 @@ class RosbagManager:
                     '/amcl_pose',
                         geometry_msgs.msg.PoseWithCovarianceStamped,
                         latch=True, queue_size=5);
+        self.robot_web_pose_pub = rospy.Publisher(
+                    '/robot_pose_web',
+                        geometry_msgs.msg.Pose,
+                        latch=True, queue_size=5);
         self.cvBridge = cv_bridge.CvBridge();
         self.cv_image_robot = cv2.imread('/home/ubuntu/test_robot.jpg');
         self.robot_sensor_image = self.cvBridge.cv2_to_imgmsg(self.cv_image_robot, "bgr8");
         self.cv_image_room = cv2.imread('/home/ubuntu/test_room.jpg');
         self.room_sensor_image = self.cvBridge.cv2_to_imgmsg(self.cv_image_room, "bgr8");
         self.amcl_pose = geometry_msgs.msg.PoseWithCovarianceStamped();
+        self.robot_web_pose = geometry_msgs.msg.Pose();
         self.headx = 0;
         self.heady = 0;
         rospy.sleep(2);
@@ -46,6 +51,8 @@ class RosbagManager:
         print reply
         self.amcl_pose.pose.pose.position = reply.pose.position;
         self.amcl_pose.pose.pose.orientation = reply.pose.orientation;
+        self.robot_web_pose.position = reply.pose.position;
+        self.robot_web_pose.orientation = reply.pose.orientation;
     
     def head_callback(self, reply):
         #reply.points[0].positions[0]
@@ -57,6 +64,8 @@ class RosbagManager:
     def loop(self):
         while not rospy.is_shutdown():
             self.amcl_pose_pub.publish(self.amcl_pose);
+            self.rate.sleep();
+            self.robot_web_pose_pub.publish(self.robot_web_pose);
             self.rate.sleep();
             self.image_robot_pub.publish(self.robot_sensor_image);
             self.rate.sleep();
