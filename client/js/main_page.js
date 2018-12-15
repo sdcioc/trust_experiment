@@ -66,7 +66,7 @@ function main_page_init() {
    g_3.beginStroke(createjs.Graphics.getRGB(255,0,0));
    g_3.beginFill(createjs.Graphics.getRGB(255,0,0));
    g_3.drawRect(0,0,1,1);
-   var s = new createjs.Shape(g_3);
+   var s_3 = new createjs.Shape(g_3);
    s_3.scaleX = 0.5;
    s_3.scaleY = 0.4;
    s_3.x = 3.1;
@@ -81,7 +81,7 @@ function main_page_init() {
    g_2.beginStroke(createjs.Graphics.getRGB(255,255,0));
    g_2.beginFill(createjs.Graphics.getRGB(255,255,0));
    g_2.drawRect(0,0,1,1);
-   var s = new createjs.Shape(g_2);
+   var s_2 = new createjs.Shape(g_2);
    s_2.scaleX = 0.2;
    s_2.scaleY = 0.4;
    s_2.x = 3.2;
@@ -96,7 +96,7 @@ function main_page_init() {
    g_1.beginStroke(createjs.Graphics.getRGB(0,255,0));
    g_1.beginFill(createjs.Graphics.getRGB(0,255,0));
    g_1.drawRect(0,0,1,1);
-   var s = new createjs.Shape(g_1);
+   var s_1 = new createjs.Shape(g_1);
    s_1.scaleX = 0.3;
    s_1.scaleY = 0.25;
    s_1.x = 1.2;
@@ -110,7 +110,7 @@ function main_page_init() {
    g_4.beginStroke(createjs.Graphics.getRGB(0,0,255));
    g_4.beginFill(createjs.Graphics.getRGB(0,0,255));
    g_4.drawRect(0,0,1,1);
-   var s = new createjs.Shape(g_4);
+   var s_4 = new createjs.Shape(g_4);
    s_4.scaleX = 0.5;
    s_4.scaleY = 0.3;
    s_4.x = 0.95;
