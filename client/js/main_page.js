@@ -63,12 +63,15 @@ function main_page_init() {
 
    var g = new createjs.Graphics();
    g.setStrokeStyle(0);
-   g.beginStroke(createjs.Graphics.getRGB(0,0,0));
+   g.beginStroke(createjs.Graphics.getRGB(255,0,0));
    g.beginFill(createjs.Graphics.getRGB(255,0,0));
    g.drawRect(0,0,1,1);
    var s = new createjs.Shape(g);
-   s.x = 0;
-   s.y = 0;
+   s.scaleX = 0.5;
+   s.scaleY = 0.4;
+   s.x = 3.1;
+   s.y = -1.2;
+   s.rotation = 7;
    viewer.addObject(s);
 
 
