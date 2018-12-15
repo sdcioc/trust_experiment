@@ -57,13 +57,31 @@ function main_page_init() {
     }
     experiment_index = experiment_index + 1;
 
+    /*
+    TODO: desenare patrulatere peste task-uri
+    */
 
+   var g = new createjs.Graphics();
+   g.setStrokeStyle(0);
+   g.beginStroke(createjs.Graphics.getRGB(0,0,0));
+   g.beginFill(createjs.Graphics.getRGB(255,0,0));
+   g.drawRect(0,0,1,1);
+   var s = new createjs.Shape(g);
+   s.x = 0;
+   s.y = 0;
+   viewer.addObject(s);
+
+
+    /*
+    Setare hartă
+    */
     viewer.scene.scaleX = 70;
     viewer.scene.scaleY = 60;
     viewer.scene.x = 150;
     viewer.scene.y = 100;
     viewer.scene.children[2].scaleY = 0.01
     viewer.scene.children[2].scaleX = 0.01
+
     headLeftRightSlider = $("#main_page_task_intervetion_head_left_right_slider").bootstrapSlider(
         {
             min : -1.3,
@@ -190,7 +208,7 @@ function main_page_init() {
 
     document.getElementById("main_page_task_intervetion_finish_intervention_btn").disabled = true;
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = true;
-    document.getElementById("main_page_info_header").innerHTML = "<h1>Chose a task</h1>";
+    document.getElementById("main_page_info_header").innerHTML = "Chose a task";
     //TODO: random chose a task after timeout
 }
 
@@ -269,6 +287,8 @@ function main_page_prepare_for_next_task() {
             'type' : "MainPage"
         }
         experiment_index = experiment_index + 1;
+
+        document.getElementById("main_page_info_header").innerHTML = "Chose a task";
     } else {
         main_page_current_state = "EXPERIMENT_FINISHED"
         experiment_events[experiment_index] = {
@@ -446,7 +466,7 @@ function main_page_move_base_timer(arg) {
     } else {
         setTimeout(function(){
             if(autonomous_move) {
-                document.getElementById("main_page_info_header").innerHTML = "<h1>The robot moves to the table. In " + (arg-1) + " seconds  you can intervine by pressing intervine button</h1>";
+                document.getElementById("main_page_info_header").innerHTML = "The robot moves to the table. In " + (arg-1) + " seconds  you can intervine by pressing intervine button";
                 main_page_move_base_timer(arg-1);
             }
         }, 1000);
@@ -461,6 +481,7 @@ function main_page_move_base_manual_timer(arg) {
         setTimeout(function(){
             if(autonomous_move==false) {
                 main_page_move_base_manual_timer(arg-1);
+                document.getElementById("main_page_info_header").innerHTML = "You control the robot. You have " + (arg-1) + " seconds to move him";
             }
         }, 1000);
     }
@@ -473,6 +494,7 @@ function main_page_move_head_timer(arg) {
         setTimeout(function(){
             if(autonomous_head) {
                 main_page_move_head_timer(arg-1);
+                document.getElementById("main_page_info_header").innerHTML = "The robot moves its head to see the table. In " + (arg-1) + " seconds  you can intervine by pressing intervine button";
             }
         }, 1000);
     }
@@ -486,6 +508,8 @@ function main_page_move_head_manual_timer(arg) {
         setTimeout(function(){
             if(autonomous_head==false) {
                 main_page_move_head_manual_timer(arg-1);
+
+                document.getElementById("main_page_info_header").innerHTML = "You control the robot. You have " + (arg-1) + " seconds to move its head";
             }
         }, 1000);
     }
@@ -499,6 +523,7 @@ function main_page_scan_timer(arg) {
         setTimeout(function(){
             if(autonomous_scan) {
                 main_page_scan_timer(arg-1);
+                document.getElementById("main_page_info_header").innerHTML = "The robot scans the table. In " + (arg-1) + " seconds  you can intervine by pressing intervine button";
             }
         }, 1000);
     }
@@ -512,6 +537,7 @@ function main_page_scan_manual_timer(arg) {
         setTimeout(function(){
             if(autonomous_scan==false) {
                 main_page_scan_manual_timer(arg-1);
+                document.getElementById("main_page_info_header").innerHTML = "You control the answer for scanning. You have " + (arg-1) + " seconds to complete the scan form";
             }
         }, 1000);
     }

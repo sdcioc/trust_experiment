@@ -83,8 +83,8 @@ function post_questions_page_change_question() {
     postQuestionsIndex = postQuestionsIndex + 1;
     if(postQuestionsIndex == postQuestionsMessages.length) {
         console.log(post_questions_answers);
-        main_page_prepare_for_next_task();
         changeState("main_page");
+        main_page_prepare_for_next_task();
     } else {
         document.getElementById("post_questions_page_text").removeChild(last_post_questions_element);
         last_post_questions_element = document.createElement('div');
