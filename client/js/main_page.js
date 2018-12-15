@@ -60,11 +60,17 @@ function main_page_init() {
     /*
     TODO: desenare patrulatere peste task-uri
     */
+   var colors = {
+       1 : createjs.Graphics.getRGB(0,255,0),
+       2 : createjs.Graphics.getRGB(255,255,0),
+       3 : createjs.Graphics.getRGB(255,0,0),
+       4 : createjs.Graphics.getRGB(0,0,255)
+   }
 
    var g_3 = new createjs.Graphics();
    g_3.setStrokeStyle(0);
-   g_3.beginStroke(createjs.Graphics.getRGB(255,0,0));
-   g_3.beginFill(createjs.Graphics.getRGB(255,0,0));
+   g_3.beginStroke(colors[main_page_false_task[3]]);
+   g_3.beginFill(colors[main_page_false_task[3]]);
    g_3.drawRect(0,0,1,1);
    var s_3 = new createjs.Shape(g_3);
    s_3.scaleX = 0.5;
@@ -78,8 +84,8 @@ function main_page_init() {
 
    var g_2 = new createjs.Graphics();
    g_2.setStrokeStyle(0);
-   g_2.beginStroke(createjs.Graphics.getRGB(255,255,0));
-   g_2.beginFill(createjs.Graphics.getRGB(255,255,0));
+   g_2.beginStroke(colors[main_page_false_task[2]]);
+   g_2.beginFill(colors[main_page_false_task[2]]);
    g_2.drawRect(0,0,1,1);
    var s_2 = new createjs.Shape(g_2);
    s_2.scaleX = 0.2;
@@ -93,8 +99,8 @@ function main_page_init() {
 
    var g_1 = new createjs.Graphics();
    g_1.setStrokeStyle(0);
-   g_1.beginStroke(createjs.Graphics.getRGB(0,255,0));
-   g_1.beginFill(createjs.Graphics.getRGB(0,255,0));
+   g_1.beginStroke(colors[main_page_false_task[1]]);
+   g_1.beginFill(colors[main_page_false_task[1]]);
    g_1.drawRect(0,0,1,1);
    var s_1 = new createjs.Shape(g_1);
    s_1.scaleX = 0.3;
@@ -107,8 +113,8 @@ function main_page_init() {
 
    var g_4 = new createjs.Graphics();
    g_4.setStrokeStyle(0);
-   g_4.beginStroke(createjs.Graphics.getRGB(0,0,255));
-   g_4.beginFill(createjs.Graphics.getRGB(0,0,255));
+   g_4.beginStroke(colors[main_page_false_task[4]]);
+   g_4.beginFill(colors[main_page_false_task[4]]);
    g_4.drawRect(0,0,1,1);
    var s_4 = new createjs.Shape(g_4);
    s_4.scaleX = 0.5;
