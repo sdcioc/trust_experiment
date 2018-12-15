@@ -205,7 +205,7 @@ function main_page_start_task(arg) {
     document.getElementById("main_page_task_intervetion_task_2").disabled = true;
     document.getElementById("main_page_task_intervetion_task_3").disabled = true;
     document.getElementById("main_page_task_intervetion_task_4").disabled = true;
-    main_page_tasks[arg] = 3;
+    main_page_tasks[main_page_current_task] = 3;
     autonomous_move = true;
     autonomous_head = true;
     autonomous_scan = true;
@@ -227,7 +227,7 @@ function main_page_start_task(arg) {
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = false;
     main_page_move_base_timer(50);
 
-    document.getElementById("main_page_info_header").innerHTML = "<h1>The robot moves to the table, In 50 seconds you can intervine by pressing intervine button</h1>";
+    document.getElementById("main_page_info_header").innerHTML = "The robot moves to the table, In 50 seconds you can intervine by pressing intervine button";
 }
 
 function main_page_feedback() {
@@ -342,7 +342,15 @@ function main_page_verify_move_head() {
         main_page_current_state = "SCAN_ONJECT";
         var requestDict = {
             type : "Scan",
-            task : main_page_current_task
+            task : main_page_current_task,
+            service : ""
+        }
+        if(main_page_cond1 == 0) {
+            requestDict["service"] = "google";
+        } else if (main_page_cond1 == 1) {
+            requestDict["service"] = "amazon";
+        } else {
+            requestDict["service"] = "dlib";
         }
         var request = new ROSLIB.ServiceRequest({
             a : JSON.stringify(requestDict)

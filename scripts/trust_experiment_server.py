@@ -7,6 +7,7 @@ import boto3
 import cv2
 #import dlib
 import cv_bridge
+import random
 
 
 import geometry_msgs.msg
@@ -89,6 +90,10 @@ class TrustServerClass:
             password = "dan";
             if( (requestDict["username"] == username) and (requestDict["password"] == password) ):
                 responseDict["name"] = "Success";
+                responseDict["cond1"] = 0;
+                responseDict["cond2"] = 0;
+                #responseDict["cond1"] = random.randint(0, 1);
+                #responseDict["cond2"] = random.randint(0, 2);
             else:
                 responseDict["name"] = "Fail";
         elif (requestDict["type"] == "VerifyMove"):

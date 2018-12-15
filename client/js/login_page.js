@@ -1,4 +1,6 @@
 
+var main_page_cond1 = null;
+var main_page_cond2 = null;
 function login_page_enter() {
     document.getElementById("login_page_user").value = "";
     document.getElementById("login_page_password").value = "";
@@ -42,6 +44,8 @@ function login_page_login_btn_click() {
         response = JSON.parse(result.response);
         console.log(response);
         if((response["name"] == "Success") && (response["type"] == "Login") ) {
+            main_page_cond1 = response["cond1"];
+            main_page_cond2 = response["cond2"];
             changeState("experiment_info_page");
         } else {
             document.getElementById("login_page_text").innerHTML = "Fail Login, please try again";

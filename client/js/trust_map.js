@@ -60,9 +60,12 @@ function init_map() {
     var nav = NAV2D.OccupancyGridClientNav({
         ros:        ros,
         rootObject: viewer.scene,
-        viewer:     viewer,
-        serverName: '/motv_identification_manager/nav_to_pose'
+        viewer:     viewer
     });
+
+
+    viewer.scaleToDimensions(4, 5);
+    viewer.shift(1,2);
     /*
     Un topic pentru pozitia robotului
     alaturi de functia de callback ce actualizează poziția robotului

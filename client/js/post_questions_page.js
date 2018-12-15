@@ -62,7 +62,7 @@ function post_questions_page_enter() {
     last_post_questions_element.innerHTML = postQuestionsMessages[postQuestionsIndex];
     document.getElementById("post_questions_page_text").appendChild(last_post_questions_element);
     document.getElementById("post_questions_page").hidden = false;
-    document.getElementById("post_questions_page_next_btn").hidden = false;
+    document.getElementById("post_questions_page_next_btn_div").hidden = false;
     experiment_events[experiment_index] = {
         'dateString' : new Date().toJSON(),
         'name' : "PageOpened",
@@ -75,7 +75,7 @@ function post_questions_page_exit() {
     postQuestionsIndex = 0;
     post_questions_answers = [];
     document.getElementById("post_questions_page_text").removeChild(last_post_questions_element);
-    document.getElementById("post_questions_page_next_btn").hidden = false;
+    document.getElementById("post_questions_page_next_btn_div").hidden = false;
     document.getElementById("post_questions_page").hidden = true;
 }
 
@@ -90,7 +90,7 @@ function post_questions_page_change_question() {
         last_post_questions_element = document.createElement('div');
         last_post_questions_element.innerHTML = postQuestionsMessages[postQuestionsIndex];
         document.getElementById("post_questions_page_text").appendChild(last_post_questions_element);
-        document.getElementById("post_questions_page_next_btn").hidden = true;
+        document.getElementById("post_questions_page_next_btn_div").hidden = true;
     }
 }
 
