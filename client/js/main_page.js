@@ -483,7 +483,7 @@ function main_page_verify_scan() {
         //TODO do something with main_page_scan_service_response
         if(main_page_current_task == 1) {
         } else if(main_page_current_task == 2) {
-            for(x in main_page_scan_service_response) {
+            for(x in main_page_scan_service_response["result"]) {
                 console.log(x);
             }
         } else if(main_page_current_task == 3) {
