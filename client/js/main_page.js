@@ -62,7 +62,8 @@ function main_page_init() {
     viewer.scene.scaleY = 60;
     viewer.scene.x = 150;
     viewer.scene.y = 100;
-    
+    viewer.scene.children[2].scaleY = 0.01
+    viewer.scene.children[2].scaleX = 0.01
     headLeftRightSlider = $("#main_page_task_intervetion_head_left_right_slider").bootstrapSlider(
         {
             min : -1.3,
