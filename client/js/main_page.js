@@ -49,6 +49,7 @@ function main_page_enter() {
 }
 
 function main_page_init() {
+    
     experiment_events[experiment_index] = {
         'dateString' : new Date().toJSON(),
         'name' : "PageOpened",
@@ -56,6 +57,12 @@ function main_page_init() {
     }
     experiment_index = experiment_index + 1;
 
+
+    viewer.scene.scaleX = 70;
+    viewer.scene.scaleY = 60;
+    viewer.scene.x = 150;
+    viewer.scene.y = 100;
+    
     headLeftRightSlider = $("#main_page_task_intervetion_head_left_right_slider").bootstrapSlider(
         {
             min : -1.3,
