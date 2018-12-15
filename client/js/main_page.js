@@ -461,6 +461,7 @@ function main_page_verify_scan() {
                 scan_success = false;
             }
         } else if(main_page_current_task == 2) {
+            console.log("Am primit", document.getElementById("main_page_task_intervetion_scan_task_2_has_object").value);
             if(document.getElementById("main_page_task_intervetion_scan_task_2_has_object").value != main_page_task2_correct_answer) {
                 scan_success = false;
             }
