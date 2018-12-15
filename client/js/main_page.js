@@ -389,7 +389,7 @@ function main_page_verify_scan() {
                 scan_success = false;
             }
         } else if(main_page_current_task == 4) {
-            if(document.getElementById("main_page_task_intervetion_scan_task_4_has_objec_1").value != main_page_task4_correct_answer_obj_1) {
+            if(document.getElementById("main_page_task_intervetion_scan_task_4_has_object_1").value != main_page_task4_correct_answer_obj_1) {
                 scan_success = false;
             }
             if(document.getElementById("main_page_task_intervetion_scan_task_4_has_object_2").value != main_page_task4_correct_answer_obj_2) {

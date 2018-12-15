@@ -64,12 +64,12 @@ function init_map() {
     });
 
 
-    viewer.scaleToDimensions(4, 5);
-    viewer.shift(1,2);
+    //viewer.scaleToDimensions(4, 5);
+    //viewer.shift(1,2);
     /*
     Un topic pentru pozitia robotului
     alaturi de functia de callback ce actualizează poziția robotului
-    */
+
     pose_topic = new ROSLIB.Topic({
         ros:            ros,
         name:           '/robot_pose_web',
@@ -78,6 +78,7 @@ function init_map() {
     pose_topic.subscribe(function(msg) {
         robot_pose = msg;
     });
+    */
     
 }
 
