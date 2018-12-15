@@ -121,9 +121,9 @@ class TrustServerClass:
             if(requestDict["service"] == "google"):
                 image = vision.types.Image(content=jpeg.tobytes());
                 response = self.google_vision_client.object_localization(image=image);
-                #print response
-                for obj in response:
-                    print obj.name;
+                print response
+                #for obj in response:
+                #    print obj.name;
                     #for vertex in obj.bounding_poly.normalized_vertices:
                     #    print(' - ({}, {})'.format(vertex.x, vertex.y))
                 responseDict["name"] = "Result";

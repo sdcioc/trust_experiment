@@ -549,7 +549,7 @@ function main_page_intervention() {
         }
         experiment_index = experiment_index + 1;
         document.getElementById("main_page_task_intervetion_scan").hidden = false;
-        document.getElementById("main_page_task_intervetion_scan_task_"+str(main_page_current_task)).hidden = false;
+        document.getElementById("main_page_task_intervetion_scan_task_"+main_page_current_task).hidden = false;
         main_page_scan_manual_timer(30);
     }
     document.getElementById("main_page_task_intervetion_finish_intervention_btn").disabled = false;
@@ -589,7 +589,7 @@ function main_page_finish_intervention() {
         }
         experiment_index = experiment_index + 1;
         document.getElementById("main_page_task_intervetion_scan").hidden = true;
-        document.getElementById("main_page_task_intervetion_scan_task_"+str(main_page_current_task)).hidden = true;
+        document.getElementById("main_page_task_intervetion_scan_task_"+main_page_current_task).hidden = true;
         main_page_has_intervine_scan = true;
         main_page_verify_scan();
     }
