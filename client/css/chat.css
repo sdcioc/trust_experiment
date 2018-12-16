@@ -45,6 +45,9 @@
     display: flex;
     width: 80%;
 }
+.send_message_button_div {
+    display: flex;
+}
 .send_message_button{
     background: whitesmoke;padding: 10px;font-size: 21px;border-radius: 50%;
 }

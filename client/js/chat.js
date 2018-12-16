@@ -66,9 +66,9 @@ $(".mytext").on("keydown", function(e){
     }
 });
 
-$('body > div > div > div > div:nth-child(2) > span').click(function(){
+function chat_send_message_button_click() {
     $(".mytext").trigger({type: 'keydown', which: 13, keyCode: 13});
-})
+}
 
 //-- Clear Chat
 resetChat();
