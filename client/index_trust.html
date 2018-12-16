@@ -270,8 +270,25 @@ bootstrap-slider
                 <img id="main_page_rgb_room_img" class="main_page_image">
             </div>
         </div>
-        <div id="main_page_chat_bot" class="dan_main_page_right frame">
+        <div id="main_page_chat_bot" class="dan_main_page_right">
 
+            <div class="frame">
+                    <div class="chat_messages_div">
+                            <ul id="chat_messages" class="chat_ul"></ul>
+                    </div>
+                    <div class="chat_write_div">
+                        <div class="msj-rta macro">                        
+                            <div class="text text-r" style="background:whitesmoke !important">
+                                <input class="mytext" placeholder="Type a message"/>
+                            </div> 
+        
+                        </div>
+                        <div style="padding:10px;">
+                            <span class="glyphicon glyphicon-share-alt send_message_button"></span>
+                        </div>                
+                    </div>
+
+            </div>
 <!--
                 <iframe
                 allow="microphone;"
@@ -280,20 +297,6 @@ bootstrap-slider
                 src="https://console.dialogflow.com/api-client/demo/embedded/d57b1b63-2ae7-44d7-a3d9-e99928e734ce">
             </iframe>
         -->
-            <div class="chat_messages_div">
-                    <ul id="chat_messages" class="chat_ul"></ul>
-            </div>
-            <div class="chat_write_div">
-                <div class="msj-rta macro">                        
-                    <div class="text text-r" style="background:whitesmoke !important">
-                        <input class="mytext" placeholder="Type a message"/>
-                    </div> 
-
-                </div>
-                <div style="padding:10px;">
-                    <span class="glyphicon glyphicon-share-alt send_message_button"></span>
-                </div>                
-            </div>
         </div>
     </div>
 
