@@ -32,7 +32,7 @@ function init() {
     document.getElementById("post_questions_page").my_exit = post_questions_page_exit;
     document.getElementById("thank_you_page").my_exit = thank_you_page_exit;
 
-    currentState = "login_page";
+    currentState = "main_page";
     document.getElementById(currentState).my_enter();
 }
 
