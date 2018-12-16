@@ -40,6 +40,7 @@
 bootstrap-slider
 -->
 <link rel="stylesheet" type="text/css" href="css/start.css">
+<link rel="stylesheet" type="text/css" href="css/chat.css">
 <script type="text/javascript" src="js/wsros.js"></script>
 <script type="text/javascript" src="js/login_page.js"></script>
 <script type="text/javascript" src="js/experiment_info_page.js"></script>
@@ -51,6 +52,7 @@ bootstrap-slider
 <script type="text/javascript" src="js/thank_you_page.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript" src="js/trust_map.js"></script>
+<script type="text/javascript" src="js/chat.js"></script>
 </head>
 
 <body onload="init();init_map()">
@@ -269,12 +271,27 @@ bootstrap-slider
             </div>
         </div>
         <div id="main_page_chat_bot" class="dan_main_page_right">
+
+<!--
                 <iframe
                 allow="microphone;"
                 width="350"
                 height="430"
                 src="https://console.dialogflow.com/api-client/demo/embedded/d57b1b63-2ae7-44d7-a3d9-e99928e734ce">
             </iframe>
+        -->
+            <ul></ul>
+            <div>
+                <div class="msj-rta macro">                        
+                    <div class="text text-r" style="background:whitesmoke !important">
+                        <input class="mytext" placeholder="Type a message"/>
+                    </div> 
+
+                </div>
+                <div style="padding:10px;">
+                    <span class="glyphicon glyphicon-share-alt"></span>
+                </div>                
+            </div>
         </div>
     </div>
 
