@@ -39,6 +39,8 @@ function init() {
         }
     });
 
+    resetChat();
+
     currentState = "main_page";
     document.getElementById(currentState).my_enter();
 
