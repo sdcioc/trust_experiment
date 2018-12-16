@@ -32,16 +32,18 @@ function init() {
     document.getElementById("post_questions_page").my_exit = post_questions_page_exit;
     document.getElementById("thank_you_page").my_exit = thank_you_page_exit;
 
+    $("#chat_text_to_send").keypress(function(event) {
+        console.log("intra", event)
+        if (event.which == 13) {
+            event.preventDefault();
+            chat_send_message_button_click();
+        }
+    });
+
     currentState = "main_page";
     document.getElementById(currentState).my_enter();
 
 
-$("#chat_text_to_send").keypress(function(event) {
-    if (event.which == 13) {
-        event.preventDefault();
-        chat_send_message_button_click();
-    }
-});
 }
 
 function changeState(toState) {
