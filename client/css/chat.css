@@ -59,6 +59,7 @@
     overflow-y:scroll;
     margin: 0;
     position: inherit;
+    height: 100%;
 }
 .msj:before{
     width: 0;

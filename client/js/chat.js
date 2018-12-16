@@ -41,8 +41,6 @@ function insertChat(who, text, time){
                                 '<p><small>'+date+'</small></p>' +
                             '</div>' +
                         '<div class="avatar" style="padding:0px 0px 0px 10px !important"><img class="img-circle" style="width:100%;" src="'+you.avatar+'" /></div>' +                                
-                  '</li>'  +                                
-                  '<li>'  +                                
                   '</li>';
     }
     setTimeout(
@@ -63,6 +61,13 @@ $(".mytext").on("keydown", function(e){
             insertChat("me", text);              
             $(this).val('');
         }
+    }
+});
+
+$("#chat_text_to_send").keypress(function(event) {
+    if (event.which == 13) {
+        event.preventDefault();
+        chat_send_message_button_click();
     }
 });
 

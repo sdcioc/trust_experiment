@@ -34,6 +34,14 @@ function init() {
 
     currentState = "main_page";
     document.getElementById(currentState).my_enter();
+
+
+$("#chat_text_to_send").keypress(function(event) {
+    if (event.which == 13) {
+        event.preventDefault();
+        chat_send_message_button_click();
+    }
+});
 }
 
 function changeState(toState) {
