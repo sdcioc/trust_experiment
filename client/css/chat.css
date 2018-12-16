@@ -35,21 +35,19 @@
 }
 .frame{
     background:#e0e0de;
-    height:450px;
     overflow:hidden;
     padding:0;
 }
 .frame > div:last-of-type{
     position:absolute;bottom:0;width:100%;display:flex;
 }
-body > div >div > div > div:nth-child(2) > span{
+body > div > div > div > div:nth-child(2) > span{
     background: whitesmoke;padding: 10px;font-size: 21px;border-radius: 50%;
 }
 body > div > div > div > div.msj-rta.macro{
     margin:auto;margin-left:1%;
 }
 .chat_ul {
-    width:100%;
     list-style-type: none;
     padding:18px;
     position:absolute;
