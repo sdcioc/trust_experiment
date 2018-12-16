@@ -45,13 +45,13 @@ function insertChat(who, text, time){
     }
     setTimeout(
         function(){                        
-            $("#chat_messages").append(control).scrollTop($("#chat_messages").prop('scrollHeight'));
+            //$("#chat_messages").append(control).scrollTop($("#chat_messages").prop('scrollHeight'));
         }, time);
     
 }
 
 function resetChat(){
-    $("#chat_messages").empty();
+    //$("#chat_messages").empty();
 }
 
 $(".mytext").on("keydown", function(e){
