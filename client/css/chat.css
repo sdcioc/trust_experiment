@@ -39,6 +39,7 @@
     padding:0;
     width: 100%;
     height: 80%;
+    border-radius: 10px;
 }
 .chat_text_to_send {
     float: left;
