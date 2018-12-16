@@ -53,7 +53,7 @@ function insertChat(who, text, time){
 function resetChat(){
     //$("#chat_messages").empty();
 }
-
+/*
 $(".mytext").on("keydown", function(e){
     if (e.which == 13){
         var text = $(this).val();
@@ -67,7 +67,7 @@ $(".mytext").on("keydown", function(e){
 $('body > div > div > div:nth-child(2) > span').click(function(){
     $(".mytext").trigger({type: 'keydown', which: 13, keyCode: 13});
 })
-
+*/
 //-- Clear Chat
 resetChat();
 
