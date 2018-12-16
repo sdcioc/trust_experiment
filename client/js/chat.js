@@ -113,7 +113,6 @@ function chat_send_message_button_click() {
 }
 
 //-- Clear Chat
-resetChat();
 
 //-- Print Messages
 insertChat("me", "Hello Tom...", 0);  
