@@ -68,7 +68,7 @@ $(".mytext").on("keydown", function(e){
 
 function chat_send_message_button_click() {
     console.log("a trimis mesaj");
-    insertChat("me", document.getElementById(chat_text_to_send).value);     
+    insertChat("me", document.getElementById("chat_text_to_send").value);     
 
     //$(".mytext").trigger({type: 'keydown', which: 13, keyCode: 13});
 }
