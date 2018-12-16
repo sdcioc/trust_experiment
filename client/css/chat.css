@@ -78,7 +78,15 @@ body > div > div > div > div.msj-rta.macro{
     border-style: solid;
     border-width: 13px 13px 0 0;
     border-color: whitesmoke transparent transparent transparent;           
-}  
+}
+.chat_messages_div {
+    height: 89%;
+    width: 100%;
+}
+.chat_write_div {
+    height: 10%;
+    width: 100%;
+}
 input:focus{
     outline: none;
 }        
