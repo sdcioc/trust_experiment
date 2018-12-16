@@ -83,7 +83,7 @@ function insertChat(who, text, time) {
         function(){                        
             //$("#chat_messages").append(control).scrollTop($("#chat_messages").prop('scrollHeight'));
             document.getElementById("chat_messages").appendChild(node);
-            document.getElementById("chat_messages").scrollTop(document.getElementById("chat_messages").scrollHeight);
+            document.getElementById("chat_messages").scroll(document.getElementById("chat_messages").scrollHeight);
         }, time);
 }
 function resetChat(){
