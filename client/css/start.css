@@ -467,4 +467,6 @@ div#swal2-content.swal2-content{
 .main_page_chat_bot_info_btn {
 	height: 19%;
 	width: 100%;
+	padding: 10%;
+	text-align: center;
 }
