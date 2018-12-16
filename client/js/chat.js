@@ -24,7 +24,7 @@ function insertChat(who, text, time){
     var date = formatAMPM(new Date());
     
     if (who == "me"){
-        control = '<li style="width:100%">' +
+        control = '<li style="width:100%;padding:5px;">' +
                         '<div class="msj macro">' +
                         '<div class="avatar"><img class="img-circle" style="width:100%;" src="'+ me.avatar +'" /></div>' +
                             '<div class="text text-l">' +
@@ -34,7 +34,7 @@ function insertChat(who, text, time){
                         '</div>' +
                     '</li>';                    
     }else{
-        control = '<li style="width:100%;">' +
+        control = '<li style="width:100%;padding:5px;">' +
                         '<div class="msj-rta macro">' + 
                             '<div class="text text-r">' +
                                 '<p>'+text+'</p>' +
