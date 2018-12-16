@@ -33,7 +33,6 @@ function init() {
     document.getElementById("thank_you_page").my_exit = thank_you_page_exit;
 
     $("#chat_text_to_send").keypress(function(event) {
-        console.log("intra", event)
         if (event.which == 13) {
             event.preventDefault();
             chat_send_message_button_click();
