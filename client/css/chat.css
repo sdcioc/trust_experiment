@@ -48,7 +48,7 @@ body > div > div > div:nth-child(2) > span{
 body > div > div > div.msj-rta.macro{
     margin:auto;margin-left:1%;
 }
-ul {
+.chat_ul {
     width:100%;
     list-style-type: none;
     padding:18px;
