@@ -15,6 +15,36 @@ import std_msgs.msg
 import sensor_msgs.msg
 from trust_package.srv import *
 
+taskArangement = [
+    [1, 2, 3, 4],
+    [1, 2, 4, 3],
+    [1, 3, 2, 4],
+    [1, 3, 4, 2],
+    [1, 4, 2, 3],
+    [1, 4, 3, 2],
+
+    [2, 1, 3, 4],
+    [2, 1, 4, 3],
+    [2, 3, 1, 4],
+    [2, 3, 4, 1],
+    [2, 4, 1, 3],
+    [2, 4, 3, 1],
+
+    [3, 2, 1, 4],
+    [3, 2, 4, 1],
+    [3, 1, 2, 4],
+    [3, 1, 4, 2],
+    [3, 4, 2, 1],
+    [3, 4, 1, 2],
+
+    [4, 2, 3, 1],
+    [4, 2, 1, 3],
+    [4, 3, 2, 1],
+    [4, 3, 1, 2],
+    [4, 1, 2, 3],
+    [4, 1, 3, 2],
+]
+
 class TrustServerClass:
 	#constructor
     def __init__(self):
@@ -92,9 +122,17 @@ class TrustServerClass:
                 responseDict["name"] = "Success";
                 responseDict["cond1"] = 0;
                 responseDict["cond2"] = 1;
+                index_ar = 0;
+                responseDict["main_page_real_task"] =  {
+                    1 : taskArangement[index_ar][0],
+                    2 : taskArangement[index_ar][1],
+                    3 : taskArangement[index_ar][2],
+                    4 : taskArangement[index_ar][3]
+                };
                 #TODO:
                 #responseDict["cond1"] = random.randint(0, 1);
                 #responseDict["cond2"] = random.randint(0, 2);
+                #index_ar = random.randint(0, 15);
             else:
                 responseDict["name"] = "Fail";
         elif (requestDict["type"] == "VerifyMove"):

@@ -54,6 +54,14 @@ function login_page_login_btn_click() {
             } else {
                 console.log("fara chat")
             }
+
+            main_page_real_task = response["main_page_real_task"];
+            for(x in main_page_real_task) {
+                main_page_false_task[main_page_real_task[x]] = x;
+            }
+            console.log(main_page_real_task);
+            console.log(main_page_false_task);
+
             changeState("experiment_info_page");
         } else {
             document.getElementById("login_page_text").innerHTML = "Fail Login, please try again";
