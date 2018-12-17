@@ -2,7 +2,7 @@ var me = {};
 me.avatar = "/img/usericon.png";
 
 var you = {};
-you.avatar = "/img/tiago.JPG";
+you.avatar = "/img/tiago.png";
 
 function formatAMPM(date) {
     var hours = date.getHours();
