@@ -267,7 +267,6 @@ function main_page_init() {
     if(main_page_cond2 == 0) {
         document.getElementById("main_page_chat_interface").hidden = true;
         document.getElementById("main_page_info").style.width = "74%";
-        document.getElementById("main_page_info_info_btn").hidden = false;
     }
 }
 
