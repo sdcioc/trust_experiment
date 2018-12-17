@@ -4,6 +4,9 @@ me.avatar = "/img/usericon.png";
 var you = {};
 you.avatar = "/img/tiago.png";
 
+
+var synth = window.speechSynthesis;
+
 function formatAMPM(date) {
     var hours = date.getHours();
     var minutes = date.getMinutes();
@@ -16,7 +19,8 @@ function formatAMPM(date) {
 }
 var accessToken = "35e1031ab43a4e62a4649eb20a3cf89d";
 var baseUrl = "https://api.api.ai/v1/";
-
+var chat_accessToken_reliable = "35e1031ab43a4e62a4649eb20a3cf89d";
+var chat_accessToken_unreliable = "35e1031ab43a4e62a4649eb20a3cf89d";
 function insertChat(who, text, time) {
     if (time === undefined){
         time = 0;
@@ -34,6 +38,14 @@ function insertChat(who, text, time) {
                             '<p><small>'+date+'</small></p>' +
                         '</div>' +
                     '</div>';
+            
+            if(main_page_cond2 == 1) {
+                accessToken = chat_accessToken_reliable;
+            } else if (main_page_cond2 == 1) {
+                accessToken = chat_accessToken_unreliable;
+            } else {
+                console.log("EROARE la chat conditie nevalida")
+            }
                         
 			$.ajax({
 				type: "POST",
@@ -62,6 +74,9 @@ function insertChat(who, text, time) {
                         '</div>' +
                         '<div class="avatar" style="padding:0px 0px 0px 10px !important"><img class="img-circle" style="width:100%;" src="'+you.avatar+'" /></div>' + 
                     '</div>';
+                var utterThis = new SpeechSynthesisUtterance(text);
+                utterThis.lang = "en-US";
+                synth.speak(utterThis);
     }
     node.innerHTML = control;
     setTimeout(

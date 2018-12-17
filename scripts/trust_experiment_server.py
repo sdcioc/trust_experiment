@@ -91,7 +91,8 @@ class TrustServerClass:
             if( (requestDict["username"] == username) and (requestDict["password"] == password) ):
                 responseDict["name"] = "Success";
                 responseDict["cond1"] = 0;
-                responseDict["cond2"] = 0;
+                responseDict["cond2"] = 1;
+                #TODO:
                 #responseDict["cond1"] = random.randint(0, 1);
                 #responseDict["cond2"] = random.randint(0, 2);
             else:

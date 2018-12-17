@@ -261,6 +261,12 @@ function main_page_init() {
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = true;
     document.getElementById("main_page_info_header").innerHTML = "Chose a task";
     //TODO: random chose a task after timeout
+
+
+    //TODO: pentru când nu avem chat să marim poz3le
+    if(main_page_cond2 == 0) {
+        document.getElementById("main_page_chat_interface").hidden = true;
+    }
 }
 
 function main_page_exit() {
