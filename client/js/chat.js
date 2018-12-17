@@ -48,7 +48,7 @@ function insertChat(who, text, time) {
 				success: function(data) {
                     //JSON.stringify(data, undefined, 2)
                     console.log("Am primit,", data);
-					insertChat("you", data.fulfillment.speech, 0);
+					insertChat("you", data.result.fulfillment.speech, 0);
 				},
 				error: function() {
 					console.log("Internal Server Error");
