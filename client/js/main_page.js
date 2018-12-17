@@ -266,7 +266,6 @@ function main_page_init() {
     //TODO: pentru când nu avem chat să marim poz3le
     if(main_page_cond2 == 0) {
         document.getElementById("main_page_chat_interface").hidden = true;
-        document.getElementById("main_page_info").style.width = "74%";
     }
 }
 
