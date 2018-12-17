@@ -41,7 +41,7 @@ function init() {
 
     resetChat();
 
-    currentState = "main_page";
+    currentState = "login_page";
     document.getElementById(currentState).my_enter();
 
 

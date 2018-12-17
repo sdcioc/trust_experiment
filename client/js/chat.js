@@ -14,10 +14,10 @@ function formatAMPM(date) {
     var strTime = hours + ':' + minutes + ' ' + ampm;
     return strTime;
 }
-var accessToken = "35e1031ab43a4e62a4649eb20a3cf89d";
+var chat_accessToken = "35e1031ab43a4e62a4649eb20a3cf89d";
 var baseUrl = "https://api.api.ai/v1/";
 var chat_accessToken_reliable = "35e1031ab43a4e62a4649eb20a3cf89d";
-var chat_accessToken_unreliable = "35e1031ab43a4e62a4649eb20a3cf89d";
+var chat_accessToken_unreliable = "41fbbc31033d4a76b34ccbd08eecbb3f";
 var chat_text_to_speak = new SpeechSynthesisUtterance();
 chat_text_to_speak.voice = speechSynthesis.getVoices().filter(function(voice) {return voice.name == "Daniel"})[0];
 chat_text_to_speak.lang = "en-GB";
@@ -45,9 +45,9 @@ function insertChat(who, text, time) {
                     '</div>';
             
             if(main_page_cond2 == 1) {
-                accessToken = chat_accessToken_reliable;
+                chat_accessToken = chat_accessToken_reliable;
             } else if (main_page_cond2 == 1) {
-                accessToken = chat_accessToken_unreliable;
+                chat_accessToken = chat_accessToken_unreliable;
             } else {
                 console.log("EROARE la chat conditie nevalida")
             }
@@ -58,9 +58,12 @@ function insertChat(who, text, time) {
 				contentType: "application/json; charset=utf-8",
 				dataType: "json",
 				headers: {
-					"Authorization": "Bearer " + accessToken
+					"Authorization": "Bearer " + chat_accessToken
 				},
-				data: JSON.stringify({ query: text, lang: "en", sessionId: "1" }),
+				data: JSON.stringify({ query: text, lang: "en", sessionId: "1", originalRequest: {
+                    source: "webpage",
+                    data: {"task":main_page_current_task, "state":main_page_current_state}
+                } }),
 
 				success: function(data) {
                     //JSON.stringify(data, undefined, 2)

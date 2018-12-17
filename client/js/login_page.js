@@ -46,6 +46,14 @@ function login_page_login_btn_click() {
         if((response["name"] == "Success") && (response["type"] == "Login") ) {
             main_page_cond1 = response["cond1"];
             main_page_cond2 = response["cond2"];
+
+            if(main_page_cond2 == 1) {
+                chat_accessToken = chat_accessToken_reliable;
+            } else if (main_page_cond2 == 1) {
+                chat_accessToken = chat_accessToken_unreliable;
+            } else {
+                console.log("fara chat")
+            }
             changeState("experiment_info_page");
         } else {
             document.getElementById("login_page_text").innerHTML = "Fail Login, please try again";
