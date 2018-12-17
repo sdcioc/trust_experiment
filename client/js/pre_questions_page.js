@@ -37,6 +37,7 @@ var preQuestionsIndex = 0;
 var last_pre_questions_element = null;
 var pre_questions_answers = {};
 var pre_questions_trust_feedback_slider = null;
+var pre_questions_trust_value = null;
 
 function pre_questions_page_answer_click(arg) {
     console.log(arg);
@@ -86,6 +87,9 @@ function pre_questions_page_enter() {
             value : 0.5
         }
     );
+    pre_questions_trust_feedback_slider.on("slideStop", function(event) {
+        pre_questions_trust_value = event.value;
+    })
 }
 
 function pre_questions_page_exit() {
@@ -123,5 +127,6 @@ function pre_questions_page_next_btn_click() {
 }
 
 function pre_questions_submit_feedback () {
-    console.log("Valoarea de trsut este", pre_questions_trust_feedback_slider.value);
+    console.log("Valoarea de trsut este", pre_questions_trust_value);
+    pre_questions_page_change_question();
 }
