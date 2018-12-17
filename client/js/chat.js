@@ -13,44 +13,9 @@ function formatAMPM(date) {
     minutes = minutes < 10 ? '0'+minutes : minutes;
     var strTime = hours + ':' + minutes + ' ' + ampm;
     return strTime;
-}            
-
-//-- No use time. It is a javaScript effect.
-function old_insertChat(who, text, time){
-    if (time === undefined){
-        time = 0;
-    }
-    var control = "";
-    var date = formatAMPM(new Date());
-    
-    if (who == "me"){
-        control = '<li style="width:100%;padding:5px;">' +
-                        '<div class="msj macro">' +
-                            '<div class="avatar"><img class="img-circle" style="width:100%;" src="'+ me.avatar +'" /></div>' +
-                            '<div class="text text-l">' +
-                                '<p>'+ text +'</p>' +
-                                '<p><small>'+date+'</small></p>' +
-                            '</div>' +
-                        '</div>' +
-                    '</li>';                    
-    }else{
-        control = '<li style="width:100%;padding:5px;">' +
-                        '<div class="msj-rta macro">' + 
-                            '<div class="text text-r">' +
-                                '<p>'+text+'</p>' +
-                                '<p><small>'+date+'</small></p>' +
-                            '</div>' +
-                            '<div class="avatar" style="padding:0px 0px 0px 10px !important"><img class="img-circle" style="width:100%;" src="'+you.avatar+'" /></div>' + 
-                        '</div>' +                               
-                  '</li>';
-    }
-    setTimeout(
-        function(){                        
-            $("#chat_messages").append(control).scrollTop($("#chat_messages").prop('scrollHeight'));
-        }, time);
-    
 }
-
+var accessToken = "35e1031ab43a4e62a4649eb20a3cf89d";
+var baseUrl = "https://api.api.ai/v1/";
 
 function insertChat(who, text, time) {
     if (time === undefined){
@@ -68,7 +33,26 @@ function insertChat(who, text, time) {
                             '<p>'+ text +'</p>' +
                             '<p><small>'+date+'</small></p>' +
                         '</div>' +
-                    '</div>';           
+                    '</div>';
+                        
+			$.ajax({
+				type: "POST",
+				url: baseUrl + "query?v=20150910",
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				headers: {
+					"Authorization": "Bearer " + accessToken
+				},
+				data: JSON.stringify({ query: text, lang: "en", sessionId: "1" }),
+
+				success: function(data) {
+                    //JSON.stringify(data, undefined, 2)
+					insertChat("you", data.fulfillment.speech, 0);
+				},
+				error: function() {
+					console.log("Internal Server Error");
+				}
+			}); 
     }else{
         control =   '<div class="msj-rta macro">' + 
                         '<div class="text text-r">' +
@@ -94,16 +78,6 @@ function resetChat(){
     }
 }
 
-$(".mytext").on("keydown", function(e){
-    if (e.which == 13){
-        var text = $(this).val();
-        if (text !== ""){
-            insertChat("me", text);              
-            $(this).val('');
-        }
-    }
-});
-
 
 function chat_send_message_button_click() {
     console.log("a trimis mesaj");
@@ -111,16 +85,3 @@ function chat_send_message_button_click() {
 
     //$(".mytext").trigger({type: 'keydown', which: 13, keyCode: 13});
 }
-
-//-- Clear Chat
-
-//-- Print Messages
-insertChat("me", "Hello Tom...", 0);  
-insertChat("you", "Hi, Pablo", 1500);
-insertChat("me", "What would you like to talk about today?", 3500);
-insertChat("you", "Tell me a joke",7000);
-insertChat("me", "Spaceman: Computer! Computer! Do we bring battery?!", 9500);
-insertChat("you", "LOL", 12000);
-
-
-//-- NOTE: No use time on insertChat.
