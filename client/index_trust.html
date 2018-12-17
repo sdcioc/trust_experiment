@@ -109,15 +109,48 @@ bootstrap-slider
         <div class="dan_frame">
 
             <div class="container dan_frame_text">
-                <div id="pre_questions_page_text">
+                <div id="pre_questions_page_text_1">
+                        <h1>
+                        Pre Game Questions
+                        </h1>
+                        <p>Tiago Rbot is a robot made by pal robotics.
+                        It has:</p>
+                        <ul>
+                        <li>A lidar for helping him to localise himself inside the room</li>
+                        <li>A mobile base for moving inside the room</li>
+                        <li>A mobile head with a RGB camera used for viewing and scanning the enviroment</li>
+                        </ul>
+                        <div id="pre_questions_page_feedback_div" class="pre_questions_page_feedback_div">
+                            <input id="pre_questions_page_feedback_slider" type="range"/>
+                        </div>
+                        <button onclick='pre_questions_submit_feedback()'>Submit Feedback</button>\
 
                 </div>
+                <div id="pre_questions_page_text_1">
+                        <h1>
+                        Pre Game Questions
+                        </h1>
+                        <p>Tiago Rbot is a robot made by pal robotics.
+                        It has:</p>
+                        <ul>
+                        <li>A lidar for helping him to localise himself inside the room</li>
+                        <li>A mobile base for moving inside the room</li>
+                        <li>A mobile head with a RGB camera used for viewing and scanning the enviroment</li>
+                        </ul>
+                        <button onclick='pre_questions_page_answer_click(1)'>Apasa 1</button>
+                        <button onclick='pre_questions_page_answer_click(2)'>Apasa 2</button>
+
+                </div>
+
             </div>
+
+<!--
             <div id="pre_questions_page_next_btn_div" class="dan_frame_btn">
                 <button id="pre_questions_page_next_btn" onclick="pre_questions_page_next_btn_click()" class="btn btn-primary">
                     Next
                 </button>
             </div>
+        -->
         </div>
     </div>
 
