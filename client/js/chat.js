@@ -4,9 +4,6 @@ me.avatar = "/img/usericon.png";
 var you = {};
 you.avatar = "/img/tiago.png";
 
-
-var synth = window.speechSynthesis;
-
 function formatAMPM(date) {
     var hours = date.getHours();
     var minutes = date.getMinutes();
@@ -21,6 +18,14 @@ var accessToken = "35e1031ab43a4e62a4649eb20a3cf89d";
 var baseUrl = "https://api.api.ai/v1/";
 var chat_accessToken_reliable = "35e1031ab43a4e62a4649eb20a3cf89d";
 var chat_accessToken_unreliable = "35e1031ab43a4e62a4649eb20a3cf89d";
+var chat_text_to_speak = new SpeechSynthesisUtterance();
+chat_text_to_speak.voice = speechSynthesis.getVoices().filter(function(voice) {return voice.name == "Daniel"})[0];
+chat_text_to_speak.lang = "en-GB";
+chat_text_to_speak.volume = 1;
+chat_text_to_speak.pitch = 1;
+chat_text_to_speak.rate = 0.8;
+
+
 function insertChat(who, text, time) {
     if (time === undefined){
         time = 0;
@@ -74,9 +79,8 @@ function insertChat(who, text, time) {
                         '</div>' +
                         '<div class="avatar" style="padding:0px 0px 0px 10px !important"><img class="img-circle" style="width:100%;" src="'+you.avatar+'" /></div>' + 
                     '</div>';
-                var utterThis = new SpeechSynthesisUtterance(text);
-                utterThis.lang = "en-US";
-                synth.speak(utterThis);
+                chat_text_to_speak.text = text;
+                speechSynthesis.speak(chat_text_to_speak);
     }
     node.innerHTML = control;
     setTimeout(
