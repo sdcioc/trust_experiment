@@ -62,7 +62,7 @@ function post_questions_page_exit() {
 
 function post_questions_page_change_question() {
     postQuestionsIndex = postQuestionsIndex + 1;
-    if(postQuestionsIndex == postQuestionsMessages.length) {
+    if(postQuestionsIndex == 3) {
         console.log(post_questions_answers);
         changeState("main_page");
         main_page_prepare_for_next_task();
