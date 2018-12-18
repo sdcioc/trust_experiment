@@ -152,6 +152,7 @@ install(PROGRAMS
   scripts/trust_experiment_image.py
   scripts/trust_experiment_server.py
   scripts/trust_experiment_webcmd.py
+  scripts/trust_robot_web_pose.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
  )
 
