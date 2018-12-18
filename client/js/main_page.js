@@ -257,18 +257,18 @@ function main_page_init() {
         document.getElementById("main_page_rgb_room_img").src = "data:image/jpg;base64," + message.data;
     });
 
-    var w = window,
-    d = document,
-    e = d.documentElement,
-    g = d.getElementsByTagName('body')[0],
-    x = w.innerWidth || e.clientWidth || g.clientWidth,
-    y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+    var w2 = window,
+    d2 = document,
+    e2 = d2.documentElement,
+    g2 = d2.getElementsByTagName('body')[0],
+    x2 = w2.innerWidth || e2.clientWidth || g2.clientWidth,
+    y2 = w2.innerHeight|| e2.clientHeight|| g2.clientHeight;
 	var robot_image_viewer = new MJPEGCANVAS.Viewer({
 		divID: 'main_page_rgb_robot_div',
 		host: window.location.hostname,
         port: 8000,
-		width: (x-15)/2,
-        height: ((y-10)*3)/10,
+		width: (x2-15)/2,
+        height: ((y2-10)*3)/10,
         quality: 40,
 		// topic: '/kinect2/k2_rgb_sd/image'
 	    topic: '/xtion/rgb/image_raw'
