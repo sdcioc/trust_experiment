@@ -257,15 +257,21 @@ function main_page_init() {
         document.getElementById("main_page_rgb_room_img").src = "data:image/jpg;base64," + message.data;
     });
 
+    var w = window,
+    d = document,
+    e = d.documentElement,
+    g = d.getElementsByTagName('body')[0],
+    x = w.innerWidth || e.clientWidth || g.clientWidth,
+    y = w.innerHeight|| e.clientHeight|| g.clientHeight;
 	var robot_image_viewer = new MJPEGCANVAS.Viewer({
 		divID: 'main_page_rgb_robot_div',
 		host: window.location.hostname,
         port: 8000,
-		width: 300,
-        height: 200,
-        quality: 60,
+		width: (x-15)/2,
+        height: ((y-10)*3)/10,
+        quality: 40,
 		// topic: '/kinect2/k2_rgb_sd/image'
-	    topic: '/throttle_camera/robot_image'
+	    topic: '/xtion/rgb/image_raw'
 	});
 
     document.getElementById("main_page_task_intervetion_finish_intervention_btn").disabled = true;
