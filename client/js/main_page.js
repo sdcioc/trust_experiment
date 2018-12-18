@@ -148,7 +148,7 @@ function main_page_init() {
     );
     headLeftRightSlider.on("slideStop", function(event) {
         head_x = event.value;
-        var valueToSend = head_x * -1;
+        var valueToSend = head_x;
         console.log(valueToSend);
         var message_dict = {
             'type' : "head_move",
@@ -193,7 +193,7 @@ function main_page_init() {
     );
     headUpDownSlider.on("slideStop", function(event) {
         head_y = event.value;
-        var valueToSend = head_y;
+        var valueToSend = head_y *-1;
         console.log(valueToSend);
         var message_dict = {
             'type' : "head_move",
@@ -249,13 +249,24 @@ function main_page_init() {
     document.getElementById("main_page_task_intervetion_move_base_arrows_down_buttton").disabled = true;
     document.getElementById("main_page_task_intervetion_move_base_arrows_right_buttton").disabled = true;
     
+    //TODO : image real times
     robot_image_topic.subscribe(function(message) {
-        document.getElementById("main_page_rgb_robot_img").src = "data:image/jpg;base64," + message.data;
+        //document.getElementById("main_page_rgb_robot_img").src = "data:image/jpg;base64," + message.data;
     });
     room_image_topic.subscribe(function(message) {
         document.getElementById("main_page_rgb_room_img").src = "data:image/jpg;base64," + message.data;
     });
 
+	var robot_image_viewer = new MJPEGCANVAS.Viewer({
+		divID: 'main_page_rgb_robot_div',
+		host: window.location.hostname,
+        port: 8000,
+		width: 300,
+        height: 200,
+        quality: 60,
+		// topic: '/kinect2/k2_rgb_sd/image'
+	    topic: '/throttle_camera/robot_image'
+	});
 
     document.getElementById("main_page_task_intervetion_finish_intervention_btn").disabled = true;
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = true;

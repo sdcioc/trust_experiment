@@ -64,6 +64,7 @@ function post_questions_page_change_question() {
     postQuestionsIndex = postQuestionsIndex + 1;
     if(postQuestionsIndex == 3) {
         console.log(post_questions_answers);
+        document.getElementById("post_questions_page_text_" + (postQuestionsIndex-1)).hidden = true;
         changeState("main_page");
         main_page_prepare_for_next_task();
     } else {
