@@ -27,7 +27,7 @@ function post_questions_page_enter() {
     postQuestionsIndex = 1;
     post_questions_answers = [];
     document.getElementById("post_questions_page").hidden = false;
-    document.getElementById("post_questions_page_text_" + preQuestionsIndex).hidden = false;
+    document.getElementById("post_questions_page_text_" + postQuestionsIndex).hidden = false;
     experiment_events[experiment_index] = {
         'dateString' : new Date().toJSON(),
         'name' : "PageOpened",
