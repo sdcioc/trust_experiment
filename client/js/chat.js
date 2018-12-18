@@ -43,15 +43,6 @@ function insertChat(who, text, time) {
                             '<p><small>'+date+'</small></p>' +
                         '</div>' +
                     '</div>';
-            
-            if(main_page_cond2 == 1) {
-                chat_accessToken = chat_accessToken_reliable;
-            } else if (main_page_cond2 == 1) {
-                chat_accessToken = chat_accessToken_unreliable;
-            } else {
-                console.log("EROARE la chat conditie nevalida")
-            }
-                        
 			$.ajax({
 				type: "POST",
 				url: baseUrl + "query?v=20150910",
@@ -88,13 +79,11 @@ function insertChat(who, text, time) {
     node.innerHTML = control;
     setTimeout(
         function(){                        
-            //$("#chat_messages").append(control).scrollTop($("#chat_messages").prop('scrollHeight'));
             document.getElementById("chat_messages").appendChild(node);
             document.getElementById("chat_messages").scrollTop = document.getElementById("chat_messages").scrollHeight;
         }, time);
 }
 function resetChat(){
-    //$("#chat_messages").empty();
     var my_ul = document.getElementById("chat_messages");
     while(my_ul.childNodes.length != 0) {
         my_ul.removeChild(my_ul.firstElementChild)
@@ -106,5 +95,4 @@ function chat_send_message_button_click() {
     console.log("a trimis mesaj");
     insertChat("me", document.getElementById("chat_text_to_send").value);     
     document.getElementById("chat_text_to_send").value = "";
-    //$(".mytext").trigger({type: 'keydown', which: 13, keyCode: 13});
 }

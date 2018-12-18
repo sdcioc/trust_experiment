@@ -14,5 +14,5 @@ if __name__ == '__main__':
     image = vision.types.Image(content=jpeg.tobytes());
     response = google_vision_client.object_localization(image=image);
     #print response
-    for obj in response:
+    for obj in response.localized_object_annotations:
         print obj.name;

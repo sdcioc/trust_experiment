@@ -1,6 +1,7 @@
 
 
 var currentState = null;
+var trust_values = [];
 
 function init() {
     document.getElementById("login_page").hidden = true;

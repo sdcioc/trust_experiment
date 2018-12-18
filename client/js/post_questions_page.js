@@ -1,40 +1,8 @@
 
-
-var postQuestionsMessages = [
-    "<h1>\
-    post Game Questions\
-    </h1>\
-    <p> Next you will have to answer some questions</p>\
-    ",
-    "<h1>\
-    post Game Questions\
-    </h1>\
-    <p>Tiago Rbot is a robot made by pal robotics.\
-    It has:</p>\
-    <ul>\
-    <li>A lidar for helping him to localise himself inside the room</li>\
-    <li>A mobile base for moving inside the room</li>\
-    <li>A mobile head with a RGB camera used for viewing and scanning the enviroment</li>\
-    </ul>\
-    <button onclick='post_questions_page_answer_click(1)'>Apasa 1</button>\
-    <button onclick='post_questions_page_answer_click(2)'>Apasa 2</button>\
-    ",
-    "<h1>\
-    post Game Questions\
-    </h1>\
-    <p>Tiago Rbot is a robot made by pal robotics.\
-    It has:</p>\
-    <ul>\
-    <li>A lidar for helping him to localise himself inside the room</li>\
-    <li>A mobile base for moving inside the room</li>\
-    <li>A mobile head with a RGB camera used for viewing and scanning the enviroment</li>\
-    </ul>\
-    <button onclick='post_questions_page_answer_click(1)'>Apasa 1</button>\
-    <button onclick='post_questions_page_answer_click(2)'>Apasa 2</button>\
-    "];
 var postQuestionsIndex = 0;
-var last_post_questions_element = null;
 var post_questions_answers = {};
+var post_questions_trust_feedback_slider = null;
+var post_questions_trust_value = null;
 
 function post_questions_page_answer_click(arg) {
     console.log(arg);
@@ -56,26 +24,39 @@ function post_questions_page_answer_click(arg) {
 }
 
 function post_questions_page_enter() {
-    postQuestionsIndex = 0;
+    postQuestionsIndex = 1;
     post_questions_answers = [];
-    last_post_questions_element = document.createElement('div');
-    last_post_questions_element.innerHTML = postQuestionsMessages[postQuestionsIndex];
-    document.getElementById("post_questions_page_text").appendChild(last_post_questions_element);
     document.getElementById("post_questions_page").hidden = false;
-    document.getElementById("post_questions_page_next_btn_div").hidden = false;
+    document.getElementById("post_questions_page_text_" + preQuestionsIndex).hidden = false;
     experiment_events[experiment_index] = {
         'dateString' : new Date().toJSON(),
         'name' : "PageOpened",
         'type' : "PostQuestionsPage"
     }
     experiment_index = experiment_index + 1;
+
+
+    post_questions_trust_feedback_slider = $("#post_questions_page_feedback_slider").bootstrapSlider(
+        {
+            min : 0,
+            max : 1,
+            step : 0.05,
+            ticks: [0, 0.5, 1],
+            ticks_positions: [0, 50, 100],
+            ticks_labels: ['Low', 'Medium', 'High'],
+            tooltip : 'hide',
+            selection : 'none',
+            value : 0.5
+        }
+    );
+    post_questions_trust_feedback_slider.on("slideStop", function(event) {
+        post_questions_trust_value = event.value;
+    })
 }
 
 function post_questions_page_exit() {
     postQuestionsIndex = 0;
     post_questions_answers = [];
-    document.getElementById("post_questions_page_text").removeChild(last_post_questions_element);
-    document.getElementById("post_questions_page_next_btn_div").hidden = false;
     document.getElementById("post_questions_page").hidden = true;
 }
 
@@ -86,11 +67,8 @@ function post_questions_page_change_question() {
         changeState("main_page");
         main_page_prepare_for_next_task();
     } else {
-        document.getElementById("post_questions_page_text").removeChild(last_post_questions_element);
-        last_post_questions_element = document.createElement('div');
-        last_post_questions_element.innerHTML = postQuestionsMessages[postQuestionsIndex];
-        document.getElementById("post_questions_page_text").appendChild(last_post_questions_element);
-        document.getElementById("post_questions_page_next_btn_div").hidden = true;
+        document.getElementById("post_questions_page_text_" + (postQuestionsIndex-1)).hidden = true;
+        document.getElementById("post_questions_page_text_" + postQuestionsIndex).hidden = false;
     }
 }
 
@@ -102,4 +80,13 @@ function post_questions_page_next_btn_click() {
     }
     experiment_index = experiment_index + 1;
     post_questions_page_change_question();
+}
+
+function post_questions_submit_feedback () {
+    console.log("Valoarea de trsut este", post_questions_trust_value);
+    trust_values.push({
+        "type" : main_page_current_task,
+        "value" : pre_questions_trust_value
+    })
+    post_questions_page_answer_click(post_questions_trust_value);
 }
