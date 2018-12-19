@@ -267,8 +267,8 @@ function main_page_init() {
 		divID: 'main_page_rgb_robot_div',
 		host: window.location.hostname,
         port: 8000,
-		width: (x-15)/2 -15 ,
-        height: ( (y-10)*3)/10 -10,
+		width: (x2-15)/2 -15 ,
+        height: ( (y2-10)*3)/10 -10,
         //quality: 40,
 		// topic: '/kinect2/k2_rgb_sd/image'
 	    topic: '/xtion/rgb/image_raw'
