@@ -16,7 +16,7 @@ def convert_POIPosition_MapPosition(position):
 	pos.header.frame_id = 'map';
 	pos.pose.position.x = position[0];
 	pos.pose.position.y = position[1];
-	pos.pose.orientation.z = math.sin(position[2] / 2.0);
+	#pos.pose.orientation.z = math.sin(position[2] / 2.0);
 	pos.pose.orientation.w = math.cos(position[2] / 2.0);
 	return pos;
 
@@ -73,6 +73,7 @@ class TrustWebServerClass:
         #conotrul ce reprezinta numarul experimentului
         self.contor = 0;
         self.service = None;
+        self.SPEED = 0.3;
         rospy.sleep(2);
 
     def start_service(self):
@@ -140,7 +141,7 @@ class TrustWebServerClass:
             current_poi_position = convert_MapPosition_POIPosition(reply.pose.pose);
             #TODO: de calculat ianinte si in spate si rotatia mai complicat paote folosesc functia de conversie
             if(my_dict["name"] == "FORWARD"):
-                new_poi_position =  (current_poi_position[0]+math.cos(current_poi_position[2]), current_poi_position[1]+math.sin(current_poi_position[2]), current_poi_position[2]);
+                new_poi_position =  (current_poi_position[0]+self.SPEED * math.cos(current_poi_position[2]), current_poi_position[1]+self.SPEED * math.sin(current_poi_position[2]), current_poi_position[2]);
             elif(my_dict["name"] == "BACK"):
                 new_poi_position =  (current_poi_position[0]-math.cos(current_poi_position[2]), current_poi_position[1]-math.sin(current_poi_position[2]), current_poi_position[2]);
             elif(my_dict["name"] == "LEFT"):
