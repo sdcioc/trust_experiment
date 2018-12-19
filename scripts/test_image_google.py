@@ -22,6 +22,6 @@ if __name__ == '__main__':
         #print response
         for obj in response.localized_object_annotations:
             print obj.name;
-            objs.append(obj);
+            objs.append(obj.name);
         with open("/home/ubuntu/result_photos" + "/" + filename + ".google.json", 'w') as fp:
             json.dump(objs, fp)

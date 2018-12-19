@@ -19,6 +19,6 @@ if __name__ == '__main__':
         #print response
         for obj in response["Labels"]:
             print obj["Name"];
-            objs.append(obj);
+            objs.append(obj["Name"]);
         with open("/home/ubuntu/result_photos" + "/" + filename + ".amazon.json", 'w') as fp:
             json.dump(objs, fp)
