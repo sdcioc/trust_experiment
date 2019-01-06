@@ -389,19 +389,15 @@ function main_page_verify_move_base_arive() {
         + robot_service_trust_client.name
         + ': '
         + result);
-        //TODO: pune ressult in move_base_success
-        /*
         var response = JSON.parse(result.response);
+        var move_base_success = true;
         if(response["name"]=="Success") {
             move_base_success = true;
         } else {
             move_base_success = false;
         }
-        */
         console.log(result.response);
-        var move_base_success = true;
         if(move_base_success) {
-            main_page_current_state = "MOVE_HEAD";
             experiment_events[experiment_index] = {
                 'dateString' : new Date().toJSON(),
                 'name' : "MoveSuccesfull",
@@ -409,24 +405,10 @@ function main_page_verify_move_base_arive() {
                 'task' : main_page_current_task
             }
             experiment_index = experiment_index + 1;
-            var message_dict = {
-                'type' : "head_task",
-                'task' : main_page_current_task
-            }
-            var request = new ROSLIB.ServiceRequest({
-                a : JSON.stringify(message_dict)
-            });
-        
-            robot_web_service_trust_client.callService(request, function(result) {
-                console.log('Result for service call on '
-                + robot_web_service_trust_client.name
-                + ': '
-                + result);
-            });
-            main_page_move_head_timer(30);
+            main_page_my_swal("MOVE_BASE", true);
         } else {
             main_page_tasks[main_page_current_task] = 2;
-            main_page_feedback()
+            main_page_my_swal("MOVE_BASE", false);
         }
     });
 }
@@ -441,35 +423,10 @@ function main_page_verify_move_head() {
             'task' : main_page_current_task
         }
         experiment_index = experiment_index + 1;
-        main_page_current_state = "SCAN_ONJECT";
-        var requestDict = {
-            type : "Scan",
-            task : main_page_current_task,
-            service : ""
-        }
-        if(main_page_cond1 == 0) {
-            requestDict["service"] = "google";
-        } else if (main_page_cond1 == 1) {
-            requestDict["service"] = "amazon";
-        } else {
-            requestDict["service"] = "dlib";
-        }
-        var request = new ROSLIB.ServiceRequest({
-            a : JSON.stringify(requestDict)
-        });
-    
-        robot_service_trust_client.callService(request, function(result) {
-            console.log('Result for service call on '
-            + robot_service_trust_client.name
-            + ': '
-            + result);
-            main_page_scan_service_response = JSON.parse(result.response);
-        });
-        main_page_scan_timer(30);
-        
+        main_page_my_swal("MOVE_HEAD", true);
     } else {
         main_page_tasks[main_page_current_task] = 2;
-        main_page_feedback()
+        main_page_my_swal("MOVE_HEAD", false);
     }
 }
 
@@ -544,10 +501,10 @@ function main_page_verify_scan() {
     main_page_has_intervine_scan = false;
     if(scan_success) {
         main_page_tasks[main_page_current_task] = 1;
-        main_page_feedback();
+        main_page_my_swal("SCAN", true);
     } else {
         main_page_tasks[main_page_current_task] = 2;
-        main_page_feedback()
+        main_page_my_swal("SCAN", false);
     }
 }
 
@@ -756,4 +713,218 @@ function main_page_move_btn(arg) {
         + ': '
         + result);
     });
+}
+
+function main_page_my_swal(type, success) {
+    var timerInterval = null;
+    if(type == "MOVE_BASE") {
+        if(success == true) {
+            Swal({
+            title: 'Move Base Successful',
+            html: 'Robot has arrived at the task. In <strong></strong> seconds it will move its head' +
+                  'or press the Ok button to do it now.',
+            timer: 4000,
+            onBeforeOpen: () => {
+                Swal.showLoading()
+                timerInterval = setInterval(() => {
+                Swal.getContent().querySelector('strong')
+                    .textContent = (Swal.getTimerLeft() / 1000)
+                    .toFixed(0)
+                }, 100)
+            },
+            onClose: () => {
+                clearInterval(timerInterval)
+            },
+            confirmButtonText: 'OK!'
+            }).then((result) => {
+                if (
+                    // Read more about handling dismissals
+                    result.dismiss === Swal.DismissReason.timer
+                ) {
+                    console.log('I was closed by the timer')
+                }
+                main_page_current_state = "MOVE_HEAD";
+                var message_dict = {
+                    'type' : "head_task",
+                    'task' : main_page_current_task
+                }
+                var request = new ROSLIB.ServiceRequest({
+                    a : JSON.stringify(message_dict)
+                });
+            
+                robot_web_service_trust_client.callService(request, function(result) {
+                    console.log('Result for service call on '
+                    + robot_web_service_trust_client.name
+                    + ': '
+                    + result);
+                });
+                main_page_move_head_timer(30);
+            });
+            
+        } else {
+            Swal({
+            title: 'Task Failed',
+            html: 'Robot has failed to arrive at the task. In <strong></strong> seconds you will complete' +
+                  ' the feedback or press the Ok button to do it now.',
+            timer: 10000,
+            onBeforeOpen: () => {
+                Swal.showLoading()
+                timerInterval = setInterval(() => {
+                Swal.getContent().querySelector('strong')
+                    .textContent = (Swal.getTimerLeft() / 1000)
+                    .toFixed(0)
+                }, 100)
+            },
+            onClose: () => {
+                clearInterval(timerInterval)
+            },
+            confirmButtonText: 'OK!'
+            }).then((result) => {
+                if (
+                    // Read more about handling dismissals
+                    result.dismiss === Swal.DismissReason.timer
+                ) {
+                    console.log('I was closed by the timer')
+                }
+                main_page_feedback()
+            });
+        }
+    } else if (type == "MOVE_HEAD") {
+        if(success == true) {
+            Swal({
+                title: 'Move Head Successful',
+                html: 'Robot has move his head for this task. In <strong></strong> seconds it will scan' +
+                      'or press the Ok button to do it now.',
+                timer: 4000,
+                onBeforeOpen: () => {
+                    Swal.showLoading()
+                    timerInterval = setInterval(() => {
+                    Swal.getContent().querySelector('strong')
+                        .textContent = (Swal.getTimerLeft() / 1000)
+                        .toFixed(0)
+                    }, 100)
+                },
+                onClose: () => {
+                    clearInterval(timerInterval)
+                },
+                confirmButtonText: 'OK!'
+                }).then((result) => {
+                    if (
+                        // Read more about handling dismissals
+                        result.dismiss === Swal.DismissReason.timer
+                    ) {
+                        console.log('I was closed by the timer')
+                    }
+                    main_page_current_state = "SCAN_ONJECT";
+                    var requestDict = {
+                        type : "Scan",
+                        task : main_page_current_task,
+                        service : ""
+                    }
+                    if(main_page_cond1 == 0) {
+                        requestDict["service"] = "google";
+                    } else if (main_page_cond1 == 1) {
+                        requestDict["service"] = "amazon";
+                    } else {
+                        requestDict["service"] = "dlib";
+                    }
+                    var request = new ROSLIB.ServiceRequest({
+                        a : JSON.stringify(requestDict)
+                    });
+                
+                    robot_service_trust_client.callService(request, function(result) {
+                        console.log('Result for service call on '
+                        + robot_service_trust_client.name
+                        + ': '
+                        + result);
+                        main_page_scan_service_response = JSON.parse(result.response);
+                    });
+                    main_page_scan_timer(30);
+                });
+        } else {
+            Swal({
+            title: 'Task Failed',
+            html: 'Robot has failed to move his head at the task. In <strong></strong> seconds you will complete' +
+                  ' the feedback or press the Ok button to do it now.',
+            timer: 10000,
+            onBeforeOpen: () => {
+                Swal.showLoading()
+                timerInterval = setInterval(() => {
+                Swal.getContent().querySelector('strong')
+                    .textContent = (Swal.getTimerLeft() / 1000)
+                    .toFixed(0)
+                }, 100)
+            },
+            onClose: () => {
+                clearInterval(timerInterval)
+            },
+            confirmButtonText: 'OK!'
+            }).then((result) => {
+                if (
+                    // Read more about handling dismissals
+                    result.dismiss === Swal.DismissReason.timer
+                ) {
+                    console.log('I was closed by the timer')
+                }
+                main_page_feedback()
+            });
+
+        }
+    } else if (type == "SCAN") {
+        if(success == true) {
+            Swal({
+                title: 'Task Successful',
+                html: 'Robot has completed the task. In <strong></strong> seconds you will complete' +
+                      ' the feedback or press the Ok button to do it now.',
+                timer: 10000,
+                onBeforeOpen: () => {
+                    Swal.showLoading()
+                    timerInterval = setInterval(() => {
+                    Swal.getContent().querySelector('strong')
+                        .textContent = (Swal.getTimerLeft() / 1000)
+                        .toFixed(0)
+                    }, 100)
+                },
+                onClose: () => {
+                    clearInterval(timerInterval)
+                },
+                confirmButtonText: 'OK!'
+                }).then((result) => {
+                    if (
+                        // Read more about handling dismissals
+                        result.dismiss === Swal.DismissReason.timer
+                    ) {
+                        console.log('I was closed by the timer')
+                    }
+                    main_page_feedback()
+                });
+        } else {
+            Swal({
+            title: 'Task Failed',
+            html: 'Robots scan results where bad for this task. In <strong></strong> seconds you will complete' +
+                  ' the feedback or press the Ok button to do it now.',
+            timer: 10000,
+            onBeforeOpen: () => {
+                Swal.showLoading()
+                timerInterval = setInterval(() => {
+                Swal.getContent().querySelector('strong')
+                    .textContent = (Swal.getTimerLeft() / 1000)
+                    .toFixed(0)
+                }, 100)
+            },
+            onClose: () => {
+                clearInterval(timerInterval)
+            },
+            confirmButtonText: 'OK!'
+            }).then((result) => {
+                if (
+                    // Read more about handling dismissals
+                    result.dismiss === Swal.DismissReason.timer
+                ) {
+                    console.log('I was closed by the timer')
+                }
+                main_page_feedback()
+            });
+        }
+    }
 }
