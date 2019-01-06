@@ -716,19 +716,22 @@ function main_page_move_btn(arg) {
 }
 
 function main_page_my_swal(type, success) {
+    /* TODO: daca nu vrem sa apese inafara casutei
+    allowOutsideClick: false
+    */
     var timerInterval = null;
     if(type == "MOVE_BASE") {
         if(success == true) {
-            Swal({
+            swal({
             title: 'Move Base Successful',
             html: 'Robot has arrived at the task. In <strong></strong> seconds it will move its head' +
                   'or press the Ok button to do it now.',
             timer: 4000,
             onBeforeOpen: () => {
-                Swal.showLoading()
+                swal.showLoading()
                 timerInterval = setInterval(() => {
-                Swal.getContent().querySelector('strong')
-                    .textContent = (Swal.getTimerLeft() / 1000)
+                    swal.getContent().querySelector('strong')
+                    .textContent = (swal.getTimerLeft() / 1000)
                     .toFixed(0)
                 }, 100)
             },
@@ -739,7 +742,7 @@ function main_page_my_swal(type, success) {
             }).then((result) => {
                 if (
                     // Read more about handling dismissals
-                    result.dismiss === Swal.DismissReason.timer
+                    result.dismiss === swal.DismissReason.timer
                 ) {
                     console.log('I was closed by the timer')
                 }
@@ -762,16 +765,16 @@ function main_page_my_swal(type, success) {
             });
             
         } else {
-            Swal({
+            swal({
             title: 'Task Failed',
             html: 'Robot has failed to arrive at the task. In <strong></strong> seconds you will complete' +
                   ' the feedback or press the Ok button to do it now.',
             timer: 10000,
             onBeforeOpen: () => {
-                Swal.showLoading()
+                swal.showLoading()
                 timerInterval = setInterval(() => {
-                Swal.getContent().querySelector('strong')
-                    .textContent = (Swal.getTimerLeft() / 1000)
+                    swal.getContent().querySelector('strong')
+                    .textContent = (swal.getTimerLeft() / 1000)
                     .toFixed(0)
                 }, 100)
             },
@@ -782,7 +785,7 @@ function main_page_my_swal(type, success) {
             }).then((result) => {
                 if (
                     // Read more about handling dismissals
-                    result.dismiss === Swal.DismissReason.timer
+                    result.dismiss === swal.DismissReason.timer
                 ) {
                     console.log('I was closed by the timer')
                 }
@@ -791,16 +794,16 @@ function main_page_my_swal(type, success) {
         }
     } else if (type == "MOVE_HEAD") {
         if(success == true) {
-            Swal({
+            swal({
                 title: 'Move Head Successful',
                 html: 'Robot has move his head for this task. In <strong></strong> seconds it will scan' +
                       'or press the Ok button to do it now.',
                 timer: 4000,
                 onBeforeOpen: () => {
-                    Swal.showLoading()
+                    swal.showLoading()
                     timerInterval = setInterval(() => {
-                    Swal.getContent().querySelector('strong')
-                        .textContent = (Swal.getTimerLeft() / 1000)
+                        swal.getContent().querySelector('strong')
+                        .textContent = (swal.getTimerLeft() / 1000)
                         .toFixed(0)
                     }, 100)
                 },
@@ -811,7 +814,7 @@ function main_page_my_swal(type, success) {
                 }).then((result) => {
                     if (
                         // Read more about handling dismissals
-                        result.dismiss === Swal.DismissReason.timer
+                        result.dismiss === swal.DismissReason.timer
                     ) {
                         console.log('I was closed by the timer')
                     }
@@ -842,16 +845,16 @@ function main_page_my_swal(type, success) {
                     main_page_scan_timer(30);
                 });
         } else {
-            Swal({
+            swal({
             title: 'Task Failed',
             html: 'Robot has failed to move his head at the task. In <strong></strong> seconds you will complete' +
                   ' the feedback or press the Ok button to do it now.',
             timer: 10000,
             onBeforeOpen: () => {
-                Swal.showLoading()
+                swal.showLoading()
                 timerInterval = setInterval(() => {
-                Swal.getContent().querySelector('strong')
-                    .textContent = (Swal.getTimerLeft() / 1000)
+                    swal.getContent().querySelector('strong')
+                    .textContent = (swal.getTimerLeft() / 1000)
                     .toFixed(0)
                 }, 100)
             },
@@ -862,7 +865,7 @@ function main_page_my_swal(type, success) {
             }).then((result) => {
                 if (
                     // Read more about handling dismissals
-                    result.dismiss === Swal.DismissReason.timer
+                    result.dismiss === swal.DismissReason.timer
                 ) {
                     console.log('I was closed by the timer')
                 }
@@ -872,16 +875,16 @@ function main_page_my_swal(type, success) {
         }
     } else if (type == "SCAN") {
         if(success == true) {
-            Swal({
+            swal({
                 title: 'Task Successful',
                 html: 'Robot has completed the task. In <strong></strong> seconds you will complete' +
                       ' the feedback or press the Ok button to do it now.',
                 timer: 10000,
                 onBeforeOpen: () => {
-                    Swal.showLoading()
+                    swal.showLoading()
                     timerInterval = setInterval(() => {
-                    Swal.getContent().querySelector('strong')
-                        .textContent = (Swal.getTimerLeft() / 1000)
+                        swal.getContent().querySelector('strong')
+                        .textContent = (swal.getTimerLeft() / 1000)
                         .toFixed(0)
                     }, 100)
                 },
@@ -892,23 +895,23 @@ function main_page_my_swal(type, success) {
                 }).then((result) => {
                     if (
                         // Read more about handling dismissals
-                        result.dismiss === Swal.DismissReason.timer
+                        result.dismiss === swal.DismissReason.timer
                     ) {
                         console.log('I was closed by the timer')
                     }
                     main_page_feedback()
                 });
         } else {
-            Swal({
+            swal({
             title: 'Task Failed',
             html: 'Robots scan results where bad for this task. In <strong></strong> seconds you will complete' +
                   ' the feedback or press the Ok button to do it now.',
             timer: 10000,
             onBeforeOpen: () => {
-                Swal.showLoading()
+                swal.showLoading()
                 timerInterval = setInterval(() => {
-                Swal.getContent().querySelector('strong')
-                    .textContent = (Swal.getTimerLeft() / 1000)
+                    swal.getContent().querySelector('strong')
+                    .textContent = (swal.getTimerLeft() / 1000)
                     .toFixed(0)
                 }, 100)
             },
@@ -919,7 +922,7 @@ function main_page_my_swal(type, success) {
             }).then((result) => {
                 if (
                     // Read more about handling dismissals
-                    result.dismiss === Swal.DismissReason.timer
+                    result.dismiss === swal.DismissReason.timer
                 ) {
                     console.log('I was closed by the timer')
                 }
