@@ -717,7 +717,8 @@ function main_page_move_btn(arg) {
 
 function main_page_my_swal(type, success) {
     /* TODO: daca nu vrem sa apese inafara casutei
-    allowOutsideClick: false
+    allowOutsideClick: false,
+    width : "50%"",
     */
     var timerInterval = null;
     if(type == "MOVE_BASE") {
@@ -728,7 +729,7 @@ function main_page_my_swal(type, success) {
                   'or press the Ok button to do it now.',
             timer: 4000,
             onBeforeOpen: () => {
-                swal.showLoading()
+                //swal.showLoading()
                 timerInterval = setInterval(() => {
                     swal.getContent().querySelector('strong')
                     .textContent = (swal.getTimerLeft() / 1000)
@@ -738,6 +739,8 @@ function main_page_my_swal(type, success) {
             onClose: () => {
                 clearInterval(timerInterval)
             },
+            allowOutsideClick: false,
+            width : "50%",
             confirmButtonText: 'OK!'
             }).then((result) => {
                 if (
@@ -771,7 +774,7 @@ function main_page_my_swal(type, success) {
                   ' the feedback or press the Ok button to do it now.',
             timer: 10000,
             onBeforeOpen: () => {
-                swal.showLoading()
+                //swal.showLoading()
                 timerInterval = setInterval(() => {
                     swal.getContent().querySelector('strong')
                     .textContent = (swal.getTimerLeft() / 1000)
@@ -781,6 +784,8 @@ function main_page_my_swal(type, success) {
             onClose: () => {
                 clearInterval(timerInterval)
             },
+            allowOutsideClick: false,
+            width : "50%",
             confirmButtonText: 'OK!'
             }).then((result) => {
                 if (
@@ -800,7 +805,7 @@ function main_page_my_swal(type, success) {
                       'or press the Ok button to do it now.',
                 timer: 4000,
                 onBeforeOpen: () => {
-                    swal.showLoading()
+                    //swal.showLoading()
                     timerInterval = setInterval(() => {
                         swal.getContent().querySelector('strong')
                         .textContent = (swal.getTimerLeft() / 1000)
@@ -810,6 +815,8 @@ function main_page_my_swal(type, success) {
                 onClose: () => {
                     clearInterval(timerInterval)
                 },
+                allowOutsideClick: false,
+                width : "50%",
                 confirmButtonText: 'OK!'
                 }).then((result) => {
                     if (
@@ -851,7 +858,7 @@ function main_page_my_swal(type, success) {
                   ' the feedback or press the Ok button to do it now.',
             timer: 10000,
             onBeforeOpen: () => {
-                swal.showLoading()
+                //swal.showLoading()
                 timerInterval = setInterval(() => {
                     swal.getContent().querySelector('strong')
                     .textContent = (swal.getTimerLeft() / 1000)
@@ -861,6 +868,8 @@ function main_page_my_swal(type, success) {
             onClose: () => {
                 clearInterval(timerInterval)
             },
+            allowOutsideClick: false,
+            width : "50%",
             confirmButtonText: 'OK!'
             }).then((result) => {
                 if (
@@ -881,7 +890,7 @@ function main_page_my_swal(type, success) {
                       ' the feedback or press the Ok button to do it now.',
                 timer: 10000,
                 onBeforeOpen: () => {
-                    swal.showLoading()
+                    //swal.showLoading()
                     timerInterval = setInterval(() => {
                         swal.getContent().querySelector('strong')
                         .textContent = (swal.getTimerLeft() / 1000)
@@ -891,6 +900,8 @@ function main_page_my_swal(type, success) {
                 onClose: () => {
                     clearInterval(timerInterval)
                 },
+                allowOutsideClick: false,
+                width : "50%",
                 confirmButtonText: 'OK!'
                 }).then((result) => {
                     if (
@@ -908,7 +919,7 @@ function main_page_my_swal(type, success) {
                   ' the feedback or press the Ok button to do it now.',
             timer: 10000,
             onBeforeOpen: () => {
-                swal.showLoading()
+                //swal.showLoading()
                 timerInterval = setInterval(() => {
                     swal.getContent().querySelector('strong')
                     .textContent = (swal.getTimerLeft() / 1000)
@@ -918,6 +929,8 @@ function main_page_my_swal(type, success) {
             onClose: () => {
                 clearInterval(timerInterval)
             },
+            allowOutsideClick: false,
+            width : "50%",
             confirmButtonText: 'OK!'
             }).then((result) => {
                 if (
