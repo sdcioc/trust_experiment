@@ -181,6 +181,15 @@ class TrustServerClass:
             else:
                 responseDict["name"] = "NotImplementedService";
                 responseDict["response"] = "Fail";
+        elif (requestDict["type"] == "FEEDBACK"):
+            print "FEEDBACK"
+            with open("/home/ubuntu/result_files" + "/" + requestDict["user"] + ".feedback.json", 'w') as fp:
+                json.dump(requestDict["results"], fp);
+        elif (requestDict["type"] == "EVENTS"):
+            print "FEEDBACK"
+            with open("/home/ubuntu/result_files" + "/" + requestDict["user"] + ".events.json", 'w') as fp:
+                json.dump(requestDict["results"], fp);
+
         else:
             print "NotImplemented"
             responseDict["type"] = "NotImplemented";

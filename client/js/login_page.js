@@ -1,6 +1,7 @@
 
 var main_page_cond1 = null;
 var main_page_cond2 = null;
+var current_user = null;
 function login_page_enter() {
     document.getElementById("login_page_user").value = "";
     document.getElementById("login_page_password").value = "";
@@ -61,7 +62,7 @@ function login_page_login_btn_click() {
             }
             console.log(main_page_real_task);
             console.log(main_page_false_task);
-
+            current_user = username;
             changeState("experiment_info_page");
         } else {
             document.getElementById("login_page_text").innerHTML = "Fail Login, please try again";

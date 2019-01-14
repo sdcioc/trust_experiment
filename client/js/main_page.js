@@ -433,20 +433,24 @@ function main_page_verify_move_head() {
 
 function main_page_verify_scan() {
     var scan_success = true;
+    var current_answer = [];
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = true;
     if (main_page_has_intervine_scan) {
         if(main_page_current_task == 1) {
             if(document.getElementById("main_page_task_intervetion_scan_task_1_number").value != main_page_task1_correct_answer) {
                 scan_success = false;
             }
+            current_answer.push(document.getElementById("main_page_task_intervetion_scan_task_1_number").value)
         } else if(main_page_current_task == 2) {
             if(document.getElementById("main_page_task_intervetion_scan_task_2_has_object").checked != main_page_task2_correct_answer) {
                 scan_success = false;
             }
+            current_answer.push(document.getElementById("main_page_task_intervetion_scan_task_2_has_object").checked)
         } else if(main_page_current_task == 3) {
             if(document.getElementById("main_page_task_intervetion_scan_task_3_number").value != main_page_task3_correct_answer) {
                 scan_success = false;
             }
+            current_answer.push(document.getElementById("main_page_task_intervetion_scan_task_3_number").value)
         } else if(main_page_current_task == 4) {
             if(document.getElementById("main_page_task_intervetion_scan_task_4_has_object_1").checked != main_page_task4_correct_answer_obj_1) {
                 scan_success = false;
@@ -460,6 +464,10 @@ function main_page_verify_scan() {
             if(document.getElementById("main_page_task_intervetion_scan_task_4_has_object_4").checked != main_page_task4_correct_answer_obj_4) {
                 scan_success = false;
             }
+            current_answer.push(document.getElementById("main_page_task_intervetion_scan_task_4_has_object_1").checked)
+            current_answer.push(document.getElementById("main_page_task_intervetion_scan_task_4_has_object_2").checked)
+            current_answer.push(document.getElementById("main_page_task_intervetion_scan_task_4_has_object_3").checked)
+            current_answer.push(document.getElementById("main_page_task_intervetion_scan_task_4_has_object_4").checked)
         }
     } else {
         //TODO do something with main_page_scan_service_response
@@ -485,9 +493,9 @@ function main_page_verify_scan() {
         } else if(main_page_current_task == 3) {
         } else if(main_page_current_task == 4) {
         }
-        main_page_scan_service_response = null;
+        current_answer.push(main_page_scan_service_response);
     }
-    //TODO extra to event
+    
     experiment_events[experiment_index] = {
         'dateString' : new Date().toJSON(),
         'name' : "VerifyScan",
@@ -495,9 +503,10 @@ function main_page_verify_scan() {
         'task' : main_page_current_task,
         'has_intervine' : main_page_has_intervine_scan,
         'scan_success' : scan_success,
-        'answers' : []
+        'answers' : current_answer
     }
     experiment_index = experiment_index + 1;
+    main_page_scan_service_response = null;
     main_page_has_intervine_scan = false;
     if(scan_success) {
         main_page_tasks[main_page_current_task] = 1;
@@ -716,10 +725,6 @@ function main_page_move_btn(arg) {
 }
 
 function main_page_my_swal(type, success) {
-    /* TODO: daca nu vrem sa apese inafara casutei
-    allowOutsideClick: false,
-    width : "50%"",
-    */
     var timerInterval = null;
     if(type == "MOVE_BASE") {
         if(success == true) {
@@ -741,6 +746,7 @@ function main_page_my_swal(type, success) {
             },
             allowOutsideClick: false,
             width : "50%",
+            type: 'success',
             confirmButtonText: 'OK!'
             }).then((result) => {
                 if (
@@ -786,6 +792,7 @@ function main_page_my_swal(type, success) {
             },
             allowOutsideClick: false,
             width : "50%",
+            type: 'error',
             confirmButtonText: 'OK!'
             }).then((result) => {
                 if (
@@ -817,6 +824,7 @@ function main_page_my_swal(type, success) {
                 },
                 allowOutsideClick: false,
                 width : "50%",
+                type: 'success',
                 confirmButtonText: 'OK!'
                 }).then((result) => {
                     if (
@@ -870,6 +878,7 @@ function main_page_my_swal(type, success) {
             },
             allowOutsideClick: false,
             width : "50%",
+            type: 'error',
             confirmButtonText: 'OK!'
             }).then((result) => {
                 if (
@@ -902,6 +911,7 @@ function main_page_my_swal(type, success) {
                 },
                 allowOutsideClick: false,
                 width : "50%",
+                type: 'success',
                 confirmButtonText: 'OK!'
                 }).then((result) => {
                     if (
@@ -931,6 +941,7 @@ function main_page_my_swal(type, success) {
             },
             allowOutsideClick: false,
             width : "50%",
+            type: 'error',
             confirmButtonText: 'OK!'
             }).then((result) => {
                 if (
