@@ -1,4 +1,6 @@
-
+/*
+OLD EXPERIMENT
+*/
 var headLeftRightSlider = null;
 var headUpDownSlider = null;
 var torsoUpDownSlider = null;
