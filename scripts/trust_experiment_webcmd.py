@@ -65,9 +65,9 @@ class TrustWebServerClass:
                         latch=True, queue_size=5);
         
         self.head_positions = {
-            "1" : [0, 0],
+            "1" : [1.3, 0],
             "2" : [0, 0],
-            "3" : [0, 0],
+            "3" : [-1.3, 0],
             "4" : [0, 0]
         }
         #conotrul ce reprezinta numarul experimentului
@@ -130,7 +130,15 @@ class TrustWebServerClass:
             responseDict["name"] = "Success";
         elif(my_dict["type"] == "move_task"):
             print "MOVE_TASK"
-            self.move_pub.publish(get_poi_position("task"+str(my_dict["task"])));
+            if(my_dict["task"] == 1):
+                self.move_pub.publish(get_poi_position("poi_bedroom");
+            if(my_dict["task"] == 2):
+                self.move_pub.publish(get_poi_position("poi_livingroom");
+            if(my_dict["task"] == 3):
+                if(my_dict["type"] == 1):
+                    self.move_pub.publish(get_poi_position("poi_bedroom");
+                else:
+                    self.move_pub.publish(get_poi_position("poi_livingroom");
             self.rate.sleep();
             responseDict["name"] = "Success";
         elif(my_dict["type"] == "base_move"):
