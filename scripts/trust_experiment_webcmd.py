@@ -131,14 +131,14 @@ class TrustWebServerClass:
         elif(my_dict["type"] == "move_task"):
             print "MOVE_TASK"
             if(my_dict["task"] == 1):
-                self.move_pub.publish(get_poi_position("poi_bedroom");
+                self.move_pub.publish(get_poi_position("poi_bedroom"));
             if(my_dict["task"] == 2):
-                self.move_pub.publish(get_poi_position("poi_livingroom");
+                self.move_pub.publish(get_poi_position("poi_livingroom"));
             if(my_dict["task"] == 3):
                 if(my_dict["type"] == 1):
-                    self.move_pub.publish(get_poi_position("poi_bedroom");
+                    self.move_pub.publish(get_poi_position("poi_bedroom"));
                 else:
-                    self.move_pub.publish(get_poi_position("poi_livingroom");
+                    self.move_pub.publish(get_poi_position("poi_livingroom"));
             self.rate.sleep();
             responseDict["name"] = "Success";
         elif(my_dict["type"] == "base_move"):
