@@ -189,10 +189,6 @@ bootstrap-slider
                                 <p></p>
                                 <button id="main_page_task_intervetion_task_3" class="btn btn-danger" onclick="main_page_start_task(3)">Task 3</button>
                             </div>
-                            <div class="card-body">
-                                <p></p>
-                                <button id="main_page_task_intervetion_task_4" class="btn btn-primary" onclick="main_page_start_task(4)">Task 4</button>
-                            </div>
                             <div class="card-footer text-muted">
                               Current Score: 10
                             </div>
@@ -209,6 +205,9 @@ bootstrap-slider
                             </div>
                             <div id="main_page_task_intervetion_head_up_down_slider_div" class="main_page_task_intervetion_head_up_down_slider_div">
                                 <input id="main_page_task_intervetion_head_up_down_slider" type="range"/>
+                            </div>
+                            <div class="main_page_task_intervetion_head_sliders_div_buttton">
+                                <button id="main_page_task_intervetion_head_sliders_div_buttton" onclick="main_page_scan_task()" class="btn btn-primary">SCAN</button>
                             </div>
                     </div>
                     <div id="main_page_task_intervetion_torso_up_down_slider_div" hidden>
@@ -231,54 +230,51 @@ bootstrap-slider
                             TODO: in functie de task diferite raspunsuri
                         -->
                         <div id="main_page_task_intervetion_scan_task_1" hidden>
-                            <label for="main_page_task_intervetion_scan_task_1_number">Number of objects</label>
-                            <select class="form-control" id="main_page_task_intervetion_scan_task_1_number">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                              <option>6</option>
-                              <option>7</option>
-                            </select>
-                        </div>
-                        <div id="main_page_task_intervetion_scan_task_2" hidden>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="main_page_task_intervetion_scan_task_2_has_object">
-                                <label class="form-check-label" for="main_page_task_intervetion_scan_task_2_has_object">
+                                <input class="form-check-input" type="checkbox" id="main_page_task_intervetion_scan_task_1_has_object">
+                                <label class="form-check-label" for="main_page_task_intervetion_scan_task_1_has_object">
                                     Object X
                                 </label>
                             </div>
                         </div>
-                        <div id="main_page_task_intervetion_scan_task_3" hidden>
-                            <label for="main_page_task_intervetion_scan_task_3_number">Number of objects</label>
-                            <input id="main_page_task_intervetion_scan_task_3_number" type="number"/>
+                        <div id="main_page_task_intervetion_scan_task_2" hidden>
+                            <label for="main_page_task_intervetion_scan_task_2_room">Type of room</label>
+                            <select class="form-control" id="main_page_task_intervetion_scan_task_2_room">
+                              <option>bedroom</option>
+                              <option>bathroom</option>
+                              <option>livingroom</option>
+                              <option>dorm</option>
+                              <option>hary potter chamber</option>
+                              <option>6</option>
+                              <option>7</option>
+                            </select>
                         </div>
-                        <div id="main_page_task_intervetion_scan_task_4" hidden>
+                        <div id="main_page_task_intervetion_scan_task_3" hidden>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="main_page_task_intervetion_scan_task_4_has_object_1">
-                                <label class="form-check-label" for="main_page_task_intervetion_scan_task_4_has_object_1">
-                                    Object X1
+                                <input class="form-check-input" type="checkbox" id="main_page_task_intervetion_scan_task_3_has_object_1">
+                                <label class="form-check-label" for="main_page_task_intervetion_scan_task_3_has_object_1">
+                                    Object X
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="main_page_task_intervetion_scan_task_4_has_object_2">
-                                <label class="form-check-label" for="main_page_task_intervetion_scan_task_4_has_object_2">
-                                    Object X2
+                                <input class="form-check-input" type="checkbox" id="main_page_task_intervetion_scan_task_3_has_object_2">
+                                <label class="form-check-label" for="main_page_task_intervetion_scan_task_3_has_object_2">
+                                    Object X
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="main_page_task_intervetion_scan_task_4_has_object_3">
-                                <label class="form-check-label" for="main_page_task_intervetion_scan_task_4_has_object_3">
-                                    Object X3
+                                <input class="form-check-input" type="checkbox" id="main_page_task_intervetion_scan_task_3_has_object_3">
+                                <label class="form-check-label" for="main_page_task_intervetion_scan_task_3_has_object_3">
+                                    Object X
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="main_page_task_intervetion_scan_task_4_has_object_4">
-                                <label class="form-check-label" for="main_page_task_intervetion_scan_task_4_has_object_4">
-                                    Object X4
+                                <input class="form-check-input" type="checkbox" id="main_page_task_intervetion_scan_task_3_has_object_4">
+                                <label class="form-check-label" for="main_page_task_intervetion_scan_task_3_has_object_4">
+                                    Object X
                                 </label>
                             </div>
+                        </div>
                         </div>
                     </div>
                     <div class="main_page_task_intervetion_finish_intervention_button_div">

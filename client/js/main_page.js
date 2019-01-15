@@ -10,36 +10,87 @@ var main_page_current_task = null;
 var main_page_tasks = {
     1:0,
     2:0,
-    3:0,
-    4:0
+    3:0
 }
 var autonomous_move = null;
 var autonomous_head = null;
-var autonomous_scan = null;
+var autonomous_result = null;
 
 
-var main_page_task2_correct_answer_arr = ["Duck","Toy"];
-var main_page_task1_correct_answer = 5;
-var main_page_task2_correct_answer = true;
-var main_page_task3_correct_answer = 7;
-var main_page_task4_correct_answer_obj_1 = true;
-var main_page_task4_correct_answer_obj_2 = false;
-var main_page_task4_correct_answer_obj_3 = true;
-var main_page_task4_correct_answer_obj_4 = true;
 var main_page_first_time = true;
-var main_page_has_intervine_scan = false;
-var main_page_scan_service_response = null;
+var main_page_has_intervine_result = false;
 var main_page_real_task = {
-    1:4,
+    1:1,
     2:3,
-    3:2,
-    4:1
+    3:2
 }
 var main_page_false_task = {
-    1:4,
+    1:1,
     2:3,
-    3:2,
-    4:1
+    3:2
+}
+
+var main_page_task_3_move_task = null;
+var main_page_task_3_scans = {
+    1:{
+        "television" : false,
+        "couch" : false,
+        "xbox" : false,
+        "bed" : false
+    },
+    2:{
+        "television" : false,
+        "couch" : false,
+        "xbox" : false,
+        "bed" : false
+    }
+};
+
+var main_page_current_task_head_task = null;
+var main_page_current_task_scans_remained = null;
+
+
+var main_page_tasks_objects_detection = {
+    1:{
+        "plant" : false
+    },
+    2:{
+        "television" : false,
+        "couch" : false,
+        "livingroom" : false,
+        "chair" : false
+    },
+    3:{
+        "television" : false,
+        "couch" : false,
+        "xbox" : false,
+        "bed" : false
+    }
+}
+
+
+var main_page_tasks_objects_detection_correct = {
+    1:{
+        "plant" : true
+    },
+    2:{
+        "television" : true,
+        "couch" : true,
+        "livingroom" : true,
+        "chair" : true
+    },
+    3:{
+        "television" : true,
+        "couch" : true,
+        "xbox" : false,
+        "bed" : true
+    }
+}
+
+var main_page_robot_poi_pose = {
+    "x" : 0,
+    "y" : 0,
+    "z" : 0
 }
 
 function main_page_enter() {
@@ -308,10 +359,15 @@ function main_page_start_task(arg) {
     main_page_tasks[main_page_current_task] = 3;
     autonomous_move = true;
     autonomous_head = true;
-    autonomous_scan = true;
+    autonomous_result = true;
     var message_dict = {
         'type' : "move_task",
         'task' : main_page_current_task
+    }
+
+    if (main_page_current_task == 3) {
+        main_page_task_3_move_task = 1;
+        message_dict['type'] = main_page_task_3_move_task;
     }
 
     var request = new ROSLIB.ServiceRequest({
@@ -327,7 +383,7 @@ function main_page_start_task(arg) {
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = false;
     main_page_move_base_timer(50);
 
-    document.getElementById("main_page_info_header").innerHTML = "The robot moves to the table, In 50 seconds you can intervine by pressing intervine button";
+    document.getElementById("main_page_info_header").innerHTML = "The robot moves trough rooms, In 50 seconds you can intervine by pressing intervine button";
 }
 
 function main_page_feedback() {
@@ -347,10 +403,6 @@ function main_page_prepare_for_next_task() {
     }
     if(main_page_tasks[main_page_false_task[3]] == 0) {
         document.getElementById("main_page_task_intervetion_task_3").disabled = false;
-        local_sem = true;
-    }
-    if(main_page_tasks[main_page_false_task[4]] == 0) {
-        document.getElementById("main_page_task_intervetion_task_4").disabled = false;
         local_sem = true;
     }
     if(local_sem) {
@@ -379,6 +431,9 @@ function main_page_verify_move_base_arive() {
     var requestDict = {
         type : "VerifyMove",
         task : main_page_current_task
+    }
+    if (main_page_current_task == 3) {
+        requestDict['type'] = main_page_task_3_move_task;
     }
     var request = new ROSLIB.ServiceRequest({
         a : JSON.stringify(requestDict)
@@ -415,6 +470,23 @@ function main_page_verify_move_base_arive() {
 
 function main_page_verify_move_head() {
     var move_head_success = true;
+
+    //move head straight after :P
+    var message_dict = {
+        'type' : "head_task",
+        'task' : 4
+    }
+    var request = new ROSLIB.ServiceRequest({
+        a : JSON.stringify(message_dict)
+    });
+
+    robot_web_service_trust_client.callService(request, function(result) {
+        console.log('Result for service call on '
+        + robot_web_service_trust_client.name
+        + ': '
+        + result);
+    });
+
     if(move_head_success) {
         experiment_events[experiment_index] = {
             'dateString' : new Date().toJSON(),
@@ -423,97 +495,97 @@ function main_page_verify_move_head() {
             'task' : main_page_current_task
         }
         experiment_index = experiment_index + 1;
-        main_page_my_swal("MOVE_HEAD", true);
+        main_page_my_swal("MOVE_HEAD_AND_SCAN", true);
     } else {
         main_page_tasks[main_page_current_task] = 2;
-        main_page_my_swal("MOVE_HEAD", false);
+        main_page_my_swal("MOVE_HEAD_AND_SCAN", false);
     }
 }
 
 
-function main_page_verify_scan() {
-    var scan_success = true;
-    var current_answer = [];
+function main_page_verify_result() {
+    var result_success = false;
+    var room_type = null;
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = true;
-    if (main_page_has_intervine_scan) {
+    if (main_page_has_intervine_result) {
         if(main_page_current_task == 1) {
-            if(document.getElementById("main_page_task_intervetion_scan_task_1_number").value != main_page_task1_correct_answer) {
-                scan_success = false;
-            }
-            current_answer.push(document.getElementById("main_page_task_intervetion_scan_task_1_number").value)
+            main_page_tasks_objects_detection[main_page_current_task]["plant"] = document.getElementById("main_page_task_intervetion_scan_task_1_has_object").checked;
         } else if(main_page_current_task == 2) {
-            if(document.getElementById("main_page_task_intervetion_scan_task_2_has_object").checked != main_page_task2_correct_answer) {
-                scan_success = false;
-            }
-            current_answer.push(document.getElementById("main_page_task_intervetion_scan_task_2_has_object").checked)
+            room_type = document.getElementById("main_page_task_intervetion_scan_task_2_room").value;
         } else if(main_page_current_task == 3) {
-            if(document.getElementById("main_page_task_intervetion_scan_task_3_number").value != main_page_task3_correct_answer) {
-                scan_success = false;
-            }
-            current_answer.push(document.getElementById("main_page_task_intervetion_scan_task_3_number").value)
-        } else if(main_page_current_task == 4) {
-            if(document.getElementById("main_page_task_intervetion_scan_task_4_has_object_1").checked != main_page_task4_correct_answer_obj_1) {
-                scan_success = false;
-            }
-            if(document.getElementById("main_page_task_intervetion_scan_task_4_has_object_2").checked != main_page_task4_correct_answer_obj_2) {
-                scan_success = false;
-            }
-            if(document.getElementById("main_page_task_intervetion_scan_task_4_has_object_3").checked != main_page_task4_correct_answer_obj_3) {
-                scan_success = false;
-            }
-            if(document.getElementById("main_page_task_intervetion_scan_task_4_has_object_4").checked != main_page_task4_correct_answer_obj_4) {
-                scan_success = false;
-            }
-            current_answer.push(document.getElementById("main_page_task_intervetion_scan_task_4_has_object_1").checked)
-            current_answer.push(document.getElementById("main_page_task_intervetion_scan_task_4_has_object_2").checked)
-            current_answer.push(document.getElementById("main_page_task_intervetion_scan_task_4_has_object_3").checked)
-            current_answer.push(document.getElementById("main_page_task_intervetion_scan_task_4_has_object_4").checked)
+            main_page_tasks_objects_detection[main_page_current_task]["plant"] = document.getElementById("main_page_task_intervetion_scan_task_3_has_object_1").checked;
+            main_page_tasks_objects_detection[main_page_current_task]["plant"] = document.getElementById("main_page_task_intervetion_scan_task_3_has_object_2").checked;
+            main_page_tasks_objects_detection[main_page_current_task]["plant"] = document.getElementById("main_page_task_intervetion_scan_task_3_has_object_3").checked;
+            main_page_tasks_objects_detection[main_page_current_task]["plant"] = document.getElementById("main_page_task_intervetion_scan_task_3_has_object_4").checked;
+        } else {
+            console.log("EROARE")
         }
     } else {
-        //TODO do something with main_page_scan_service_response
         if(main_page_current_task == 1) {
+            console.log("TASK 1 rezultat automat")
         } else if(main_page_current_task == 2) {
-            var sem_1 = false;
-            var sem_2 = false;
-            for(index in main_page_task2_correct_answer_arr) {
-                sem_1 = false;
-                for(jindex in main_page_scan_service_response["result"]) {
-                    if(main_page_scan_service_response["result"][jindex] == main_page_task2_correct_answer_arr[index]) {
-                        sem_1 = true;
-                    }
+            if(main_page_tasks_objects_detection[main_page_current_task]['livingroom']) {
+                room_type = 'livingroom';
+            } else {
+                if( (main_page_tasks_objects_detection[main_page_current_task]['television']) &&
+                (main_page_tasks_objects_detection[main_page_current_task]['couch']) &&
+                (main_page_tasks_objects_detection[main_page_current_task]['chair'])
+                ) {
+                    room_type = 'livingroom';
                 }
-                if(sem_1 == false) {
-                    console.log("Nu a gasit", main_page_task2_correct_answer_arr[index]);
-                    sem_2 = true;
-                }
-            }
-            if(sem_2 == true) {
-                scan_success = false;
             }
         } else if(main_page_current_task == 3) {
-        } else if(main_page_current_task == 4) {
+            for (x in main_page_task_3_scans[1]) {
+                if(main_page_task_3_scans[1][x]) {
+                    main_page_tasks_objects_detection[3][x] = true;
+                }
+            }
+            for (x in main_page_task_3_scans[2]) {
+                if(main_page_task_3_scans[2][x]) {
+                    main_page_tasks_objects_detection[3][x] = true;
+                }
+            }
+        } else {
+            console.log("EROARE")
         }
-        current_answer.push(main_page_scan_service_response);
+
+    }
+    //TODO verificare răspunsuri
+    if(main_page_current_task == 1) {
+        result_success = main_page_tasks_objects_detection[main_page_current_task]["plant"];
+    } else if(main_page_current_task == 2) {
+        if(room_type =='livingroom') {
+            result_success = true;
+        }
+    } else if(main_page_current_task == 3) {
+        if( (main_page_tasks_objects_detection[main_page_current_task]['television']) &&
+        (main_page_tasks_objects_detection[main_page_current_task]['couch']) &&
+        (main_page_tasks_objects_detection[main_page_current_task]['bed']) &&
+        (main_page_tasks_objects_detection[main_page_current_task]['xbox'])
+        ) {
+            result_success = true;
+        }
+    } else {
+        console.log("EROARE")
     }
     
     experiment_events[experiment_index] = {
         'dateString' : new Date().toJSON(),
-        'name' : "VerifyScan",
+        'name' : "VerifyResult",
         'type' : "MainPage",
         'task' : main_page_current_task,
-        'has_intervine' : main_page_has_intervine_scan,
-        'scan_success' : scan_success,
-        'answers' : current_answer
+        'has_intervine' : main_page_has_intervine_result,
+        'result_success' : result_success,
+        'answers' : main_page_tasks_objects_detection[main_page_current_task]
     }
     experiment_index = experiment_index + 1;
-    main_page_scan_service_response = null;
-    main_page_has_intervine_scan = false;
-    if(scan_success) {
+    main_page_has_intervine_result = false;
+    if(result_success) {
         main_page_tasks[main_page_current_task] = 1;
-        main_page_my_swal("SCAN", true);
+        main_page_my_swal("CALCULATE_RESULT", true);
     } else {
         main_page_tasks[main_page_current_task] = 2;
-        main_page_my_swal("SCAN", false);
+        main_page_my_swal("CALCULATE_RESULT", false);
     }
 }
 
@@ -523,7 +595,7 @@ function main_page_move_base_timer(arg) {
     } else {
         setTimeout(function(){
             if(autonomous_move) {
-                document.getElementById("main_page_info_header").innerHTML = "The robot moves to the table. In " + (arg-1) + " seconds  you can intervine by pressing intervine button";
+                document.getElementById("main_page_info_header").innerHTML = "The robot moves trough rooms. In " + (arg-1) + " seconds  you can intervine by pressing intervine button";
                 main_page_move_base_timer(arg-1);
             }
         }, 1000);
@@ -566,35 +638,35 @@ function main_page_move_head_manual_timer(arg) {
             if(autonomous_head==false) {
                 main_page_move_head_manual_timer(arg-1);
 
-                document.getElementById("main_page_info_header").innerHTML = "You control the robot. You have " + (arg-1) + " seconds to move its head";
+                document.getElementById("main_page_info_header").innerHTML = "You control the robot. You have " + (arg-1) + " seconds to move its head. You have " + (main_page_current_task_scans_remained) + " scans remained";
             }
         }, 1000);
     }
 }
 
 
-function main_page_scan_timer(arg) {
+function main_page_result_timer(arg) {
     if(arg == 0) {
-        main_page_verify_scan();
+        main_page_verify_result();
     } else {
         setTimeout(function(){
-            if(autonomous_scan) {
-                main_page_scan_timer(arg-1);
-                document.getElementById("main_page_info_header").innerHTML = "The robot scans the table. In " + (arg-1) + " seconds  you can intervine by pressing intervine button";
+            if(autonomous_result) {
+                main_page_result_timer(arg-1);
+                document.getElementById("main_page_info_header").innerHTML = "The robot calculates the result. In " + (arg-1) + " seconds  you can intervine by pressing intervine button";
             }
         }, 1000);
     }
 }
 
 
-function main_page_scan_manual_timer(arg) {
+function main_page_result_manual_timer(arg) {
     if(arg == 0) {
         main_page_finish_intervention();
     } else {
         setTimeout(function(){
-            if(autonomous_scan==false) {
-                main_page_scan_manual_timer(arg-1);
-                document.getElementById("main_page_info_header").innerHTML = "You control the answer for scanning. You have " + (arg-1) + " seconds to complete the scan form";
+            if(autonomous_result==false) {
+                main_page_result_manual_timer(arg-1);
+                document.getElementById("main_page_info_header").innerHTML = "You control the answer for result. You have " + (arg-1) + " seconds to complete the result form";
             }
         }, 1000);
     }
@@ -618,7 +690,7 @@ function main_page_intervention() {
         document.getElementById("main_page_task_intervetion_move_base_arrows_right_buttton").disabled = false;
         main_page_move_base_manual_timer(120);
     }
-    else if(main_page_current_state == "MOVE_HEAD") {
+    else if(main_page_current_state == "MOVE_HEAD_AND_SCAN") {
         autonomous_head = false;
         experiment_events[experiment_index] = {
             'dateString' : new Date().toJSON(),
@@ -627,21 +699,30 @@ function main_page_intervention() {
             'task' : main_page_current_task
         }
         experiment_index = experiment_index + 1;
+        if (main_page_current_task == 3) {
+            for (x in main_page_task_3_scans[main_page_task_3_move_task]) {
+                main_page_task_3_scans[main_page_task_3_move_task][x] = false;
+            }
+        } else {
+            for (x in main_page_tasks_objects_detection[main_page_current_task]) {
+                main_page_tasks_objects_detection[main_page_current_task][x] = false;
+            }
+        }
         document.getElementById("main_page_task_intervetion_head_sliders_div").hidden = false;
         main_page_move_head_manual_timer(60);
     }
-    else if(main_page_current_state == "SCAN_ONJECT") {
-        autonomous_scan = false;
+    else if(main_page_current_state == "CALCULATE_RESULT") {
+        autonomous_result = false;
         experiment_events[experiment_index] = {
             'dateString' : new Date().toJSON(),
-            'name' : "ScanIntervention",
+            'name' : "ResultIntervention",
             'type' : "MainPage",
             'task' : main_page_current_task
         }
         experiment_index = experiment_index + 1;
         document.getElementById("main_page_task_intervetion_scan").hidden = false;
         document.getElementById("main_page_task_intervetion_scan_task_"+main_page_current_task).hidden = false;
-        main_page_scan_manual_timer(30);
+        main_page_result_manual_timer(30);
     }
     document.getElementById("main_page_task_intervetion_finish_intervention_btn").disabled = false;
 }
@@ -659,7 +740,7 @@ function main_page_finish_intervention() {
         document.getElementById("main_page_task_intervetion_move_base_arrows").hidden = true;
         autonomous_move = true;
         main_page_verify_move_base_arive();
-    } else if (main_page_current_state == "MOVE_HEAD") {
+    } else if (main_page_current_state == "MOVE_HEAD_AND_SCAN") {
         experiment_events[experiment_index] = {
             'dateString' : new Date().toJSON(),
             'name' : "HeadFinishedIntervention",
@@ -669,20 +750,22 @@ function main_page_finish_intervention() {
         experiment_index = experiment_index + 1;
         document.getElementById("main_page_task_intervetion_head_sliders_div").hidden = true;
         autonomous_head = true;
+        //TODO enable scan button
+        document.getElementById("main_page_task_intervetion_head_sliders_div_buttton").disabled = false;
         main_page_verify_move_head();
-    } else if (main_page_current_state == "SCAN_ONJECT") {
-        autonomous_scan = true;
+    } else if (main_page_current_state == "CALCULATE_RESULT") {
+        autonomous_result = true;
         experiment_events[experiment_index] = {
             'dateString' : new Date().toJSON(),
-            'name' : "ScanFinishedInternvention",
+            'name' : "ResultFinishedInternvention",
             'type' : "MainPage",
             'task' : main_page_current_task
         }
         experiment_index = experiment_index + 1;
         document.getElementById("main_page_task_intervetion_scan").hidden = true;
         document.getElementById("main_page_task_intervetion_scan_task_"+main_page_current_task).hidden = true;
-        main_page_has_intervine_scan = true;
-        main_page_verify_scan();
+        main_page_has_intervine_result = true;
+        main_page_verify_result();
     }
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = false;
 }
@@ -724,6 +807,124 @@ function main_page_move_btn(arg) {
     });
 }
 
+function main_page_scan_task() {
+    main_page_current_task_scans_remained = main_page_current_task_scans_remained - 1;
+    if (main_page_current_task_scans_remained < 1) {
+        //TODO disable scan button
+        document.getElementById("main_page_task_intervetion_head_sliders_div_buttton").disabled = true;
+    }
+    if (main_page_current_task_scans_remained > -1) {
+        var requestDict = {
+            type : "Scan",
+            task : main_page_current_task,
+            service : ""
+        }
+        if(main_page_cond1 == 0) {
+            requestDict["service"] = "google";
+        } else if (main_page_cond1 == 1) {
+            requestDict["service"] = "amazon";
+        } else {
+            requestDict["service"] = "dlib";
+        }
+        var request = new ROSLIB.ServiceRequest({
+            a : JSON.stringify(requestDict)
+        });
+    
+        robot_service_trust_client.callService(request, function(result) {
+            console.log('Result for service call on '
+            + robot_service_trust_client.name
+            + ': '
+            + result);
+            main_page_scan_service_response = JSON.parse(result.response);
+            for (x in main_page_scan_service_response) {
+                if(main_page_current_task == 3) {
+                    if( main_page_scan_service_response[x] in main_page_task_3_scans[main_page_task_3_move_task]) {
+                        main_page_task_3_scans[main_page_task_3_move_task][main_page_scan_service_response[x]] = true;
+                    }
+
+                } else {
+                    if( main_page_scan_service_response[x] in main_page_tasks_objects_detection[main_page_current_task]) {
+                        main_page_tasks_objects_detection[main_page_current_task][main_page_scan_service_response[x]] = true;
+                    }
+                }
+            }
+            //TODO: do something with the result
+        });
+    }
+}
+
+
+function main_page_move_head_task() {
+    main_page_current_task_head_task = main_page_current_task_head_task + 1;
+    var message_dict = {
+        'type' : "head_task",
+        'task' : main_page_current_task_head_task
+    }
+    var request = new ROSLIB.ServiceRequest({
+        a : JSON.stringify(message_dict)
+    });
+
+    if(autonomous_head == true) {
+        robot_web_service_trust_client.callService(request, function(result) {
+            console.log('Result for service call on '
+            + robot_web_service_trust_client.name
+            + ': '
+            + result);
+
+            if(main_page_current_task_head_task < 4) {
+                setTimeout(function() {
+                    if(autonomous_head == true) {
+                        var requestDict = {
+                            type : "Scan",
+                            task : main_page_current_task,
+                            service : ""
+                        }
+                        if(main_page_cond1 == 0) {
+                            requestDict["service"] = "google";
+                        } else if (main_page_cond1 == 1) {
+                            requestDict["service"] = "amazon";
+                        } else {
+                            requestDict["service"] = "dlib";
+                        }
+                        var request = new ROSLIB.ServiceRequest({
+                            a : JSON.stringify(requestDict)
+                        });
+                    
+                        if(autonomous_head == true) {
+                            robot_service_trust_client.callService(request, function(result) {
+                                console.log('Result for service call on '
+                                + robot_service_trust_client.name
+                                + ': '
+                                + result);
+        
+                                if(autonomous_head == true) {
+                                    main_page_scan_service_response = JSON.parse(result.response);
+                                    for (x in main_page_scan_service_response) {
+                                        if(main_page_current_task == 3) {
+                                            if( main_page_scan_service_response[x] in main_page_task_3_scans[main_page_task_3_move_task]) {
+                                                main_page_task_3_scans[main_page_task_3_move_task][main_page_scan_service_response[x]] = true;
+                                            }
+                        
+                                        } else {
+                                            if( main_page_scan_service_response[x] in main_page_tasks_objects_detection[main_page_current_task]) {
+                                                main_page_tasks_objects_detection[main_page_current_task][main_page_scan_service_response[x]] = true;
+                                            }
+                                        }
+                                    }
+                                    //TODO: do something with the result
+                                    main_page_move_head_task();
+                                }
+                            });
+        
+                        }
+                    }
+                }, 3000);   
+            }
+        });
+    }
+
+}
+
 function main_page_my_swal(type, success) {
     var timerInterval = null;
     if(type == "MOVE_BASE") {
@@ -755,21 +956,9 @@ function main_page_my_swal(type, success) {
                 ) {
                     console.log('I was closed by the timer')
                 }
-                main_page_current_state = "MOVE_HEAD";
-                var message_dict = {
-                    'type' : "head_task",
-                    'task' : main_page_current_task
-                }
-                var request = new ROSLIB.ServiceRequest({
-                    a : JSON.stringify(message_dict)
-                });
-            
-                robot_web_service_trust_client.callService(request, function(result) {
-                    console.log('Result for service call on '
-                    + robot_web_service_trust_client.name
-                    + ': '
-                    + result);
-                });
+                main_page_current_state = "MOVE_HEAD_AND_SCAN";
+                main_page_current_task_head_task = 0;
+                main_page_move_head_task();
                 main_page_move_head_timer(30);
             });
             
@@ -804,7 +993,7 @@ function main_page_my_swal(type, success) {
                 main_page_feedback()
             });
         }
-    } else if (type == "MOVE_HEAD") {
+    } else if (type == "MOVE_HEAD_AND_SCAN") {
         if(success == true) {
             swal({
                 title: 'Move Head Successful',
@@ -833,31 +1022,34 @@ function main_page_my_swal(type, success) {
                     ) {
                         console.log('I was closed by the timer')
                     }
-                    main_page_current_state = "SCAN_ONJECT";
-                    var requestDict = {
-                        type : "Scan",
-                        task : main_page_current_task,
-                        service : ""
-                    }
-                    if(main_page_cond1 == 0) {
-                        requestDict["service"] = "google";
-                    } else if (main_page_cond1 == 1) {
-                        requestDict["service"] = "amazon";
+                    if ( (main_page_current_task == 3) && (main_page_task_3_move_task == 1))
+                    {
+                        main_page_task_3_move_task = 2;
+                        autonomous_move = true;
+                        autonomous_head = true;
+                        autonomous_result = true;
+                        var message_dict = {
+                            'type' : "move_task",
+                            'task' : main_page_current_task,
+                            'type' : main_page_task_3_move_task
+                        }
+                        var request = new ROSLIB.ServiceRequest({
+                            a : JSON.stringify(message_dict)
+                        });
+                    
+                        robot_web_service_trust_client.callService(request, function(result) {
+                            console.log('Result for service call on '
+                            + robot_web_service_trust_client.name
+                            + ': '
+                            + result);
+                        });
+                        main_page_move_base_timer(50);
+                    
+                        document.getElementById("main_page_info_header").innerHTML = "The robot moves trough rooms, In 50 seconds you can intervine by pressing intervine button";
                     } else {
-                        requestDict["service"] = "dlib";
+                        main_page_current_state = "CALCULATE_RESULT";
+                        main_page_result_timer(30);
                     }
-                    var request = new ROSLIB.ServiceRequest({
-                        a : JSON.stringify(requestDict)
-                    });
-                
-                    robot_service_trust_client.callService(request, function(result) {
-                        console.log('Result for service call on '
-                        + robot_service_trust_client.name
-                        + ': '
-                        + result);
-                        main_page_scan_service_response = JSON.parse(result.response);
-                    });
-                    main_page_scan_timer(30);
                 });
         } else {
             swal({
@@ -891,7 +1083,7 @@ function main_page_my_swal(type, success) {
             });
 
         }
-    } else if (type == "SCAN") {
+    } else if (type == "CALCULATE_RESULT") {
         if(success == true) {
             swal({
                 title: 'Task Successful',
