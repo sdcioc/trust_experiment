@@ -135,7 +135,7 @@ class TrustWebServerClass:
             if(my_dict["task"] == 2):
                 self.move_pub.publish(get_poi_position("poi_livingroom"));
             if(my_dict["task"] == 3):
-                if(my_dict["type"] == 1):
+                if(my_dict["subtype"] == 1):
                     self.move_pub.publish(get_poi_position("poi_bedroom"));
                 else:
                     self.move_pub.publish(get_poi_position("poi_livingroom"));

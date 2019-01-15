@@ -371,7 +371,7 @@ function main_page_start_task(arg) {
 
     if (main_page_current_task == 3) {
         main_page_task_3_move_task = 1;
-        message_dict['type'] = main_page_task_3_move_task;
+        message_dict['subtype'] = main_page_task_3_move_task;
     }
 
     var request = new ROSLIB.ServiceRequest({
@@ -1038,7 +1038,7 @@ function main_page_my_swal(type, success) {
                         var message_dict = {
                             'type' : "move_task",
                             'task' : main_page_current_task,
-                            'type' : main_page_task_3_move_task
+                            'subtype' : main_page_task_3_move_task
                         }
                         var request = new ROSLIB.ServiceRequest({
                             a : JSON.stringify(message_dict)
