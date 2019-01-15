@@ -437,7 +437,7 @@ function main_page_verify_move_base_arive() {
         task : main_page_current_task
     }
     if (main_page_current_task == 3) {
-        requestDict['type'] = main_page_task_3_move_task;
+        requestDict['subtype'] = main_page_task_3_move_task;
     }
     var request = new ROSLIB.ServiceRequest({
         a : JSON.stringify(requestDict)

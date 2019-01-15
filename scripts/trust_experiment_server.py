@@ -149,15 +149,15 @@ class TrustServerClass:
                 reply = rospy.wait_for_message(
                 '/amcl_pose',
                 geometry_msgs.msg.PoseWithCovarianceStamped, 3);
-                if(my_dict["task"] == 1):
-                    current_distance = self.get_distance(reply.pose.pose, self.get_poi_position("poi_bedroom")));
-                if(my_dict["task"] == 2):
-                    current_distance = self.get_distance(reply.pose.pose, self.get_poi_position("poi_livingroom")));
-                if(my_dict["task"] == 3):
-                    if(my_dict["type"] == 1):
-                        current_distance = self.get_distance(reply.pose.pose, self.get_poi_position("poi_bedroom")));
+                if(requestDict["task"] == 1):
+                    current_distance = self.get_distance(reply.pose.pose, self.get_poi_position("poi_bedroom"));
+                if(requestDict["task"] == 2):
+                    current_distance = self.get_distance(reply.pose.pose, self.get_poi_position("poi_livingroom"));
+                if(requestDict["task"] == 3):
+                    if(requestDict["subtype"] == 1):
+                        current_distance = self.get_distance(reply.pose.pose, self.get_poi_position("poi_bedroom"));
                     else:
-                        current_distance = self.get_distance(reply.pose.pose, self.get_poi_position("poi_livingroom")));
+                        current_distance = self.get_distance(reply.pose.pose, self.get_poi_position("poi_livingroom"));
                 if (current_distance < self.DISTANCE_ERROR):
                     responseDict["name"] = "Success";
                 else:
