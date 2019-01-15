@@ -360,7 +360,6 @@ function main_page_start_task(arg) {
     document.getElementById("main_page_task_intervetion_task_1").disabled = true;
     document.getElementById("main_page_task_intervetion_task_2").disabled = true;
     document.getElementById("main_page_task_intervetion_task_3").disabled = true;
-    document.getElementById("main_page_task_intervetion_task_4").disabled = true;
     main_page_tasks[main_page_current_task] = 3;
     autonomous_move = true;
     autonomous_head = true;
