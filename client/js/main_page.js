@@ -843,6 +843,7 @@ function main_page_scan_task() {
             + ': '
             + result);
             main_page_scan_service_response = JSON.parse(result.response);
+            main_page_scan_service_response = main_page_scan_service_response.result;
             for (x in main_page_scan_service_response) {
                 if(main_page_current_task == 3) {
                     if( main_page_scan_service_response[x].toUpperCase() in main_page_task_3_scans[main_page_task_3_move_task]) {
@@ -906,6 +907,7 @@ function main_page_move_head_task() {
         
                                 if(autonomous_head == true) {
                                     main_page_scan_service_response = JSON.parse(result.response);
+                                    main_page_scan_service_response = main_page_scan_service_response.result;
                                     for (x in main_page_scan_service_response) {
                                         if(main_page_current_task == 3) {
                                             if( main_page_scan_service_response[x].toUpperCase() in main_page_task_3_scans[main_page_task_3_move_task]) {
