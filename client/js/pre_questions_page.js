@@ -121,7 +121,7 @@ function pre_questions_page_exit() {
 
 function pre_questions_page_change_question() {
     preQuestionsIndex = preQuestionsIndex + 1;
-    if(preQuestionsIndex == 16) {
+    if(preQuestionsIndex == 17) {
         console.log(pre_questions_answers);
         document.getElementById("pre_questions_page_text_" + (preQuestionsIndex-1)).hidden = true;
         changeState("main_page");
