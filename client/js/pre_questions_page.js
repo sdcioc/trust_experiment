@@ -35,7 +35,7 @@ function pre_questions_page_enter() {
             ticks_labels: ['To an Extremely Small Extent', 'To a Very Small Extent', 'To a Small Extent', 'To a Moderate Extent', 'To a Large Extent', 'To a Very Large Extent', 'To an Extremely Large Extent'],
             tooltip : 'hide',
             orientation : 'vertical',
-            reversed : false,
+            reversed : true,
             selection : 'none',
             value : 0.5
         }
@@ -54,6 +54,8 @@ function pre_questions_page_enter() {
             ticks_positions: [0, 25, 50, 75, 100],
             ticks_labels: ['Very poor', 'Poor', 'Acceptabily', 'Well', 'Very Well'],
             tooltip : 'hide',
+            orientation : 'vertical',
+            reversed : true,
             selection : 'none',
             value : 0.5
         }
@@ -73,7 +75,7 @@ function pre_questions_page_enter() {
             ticks_labels: ['To an Extremely Small Extent', 'To a Very Small Extent', 'To a Small Extent', 'To a Moderate Extent', 'To a Large Extent', 'To a Very Large Extent', 'To an Extremely Large Extent'],
             tooltip : 'hide',
             orientation : 'vertical',
-            reversed : false,
+            reversed : true,
             selection : 'none',
             value : 0.5
         }
@@ -92,7 +94,7 @@ function pre_questions_page_enter() {
             ticks_labels: ['To an Extremely Small Extent', 'To a Very Small Extent', 'To a Small Extent', 'To a Moderate Extent', 'To a Large Extent', 'To a Very Large Extent', 'To an Extremely Large Extent'],
             tooltip : 'hide',
             orientation : 'vertical',
-            reversed : false,
+            reversed : true,
             selection : 'none',
             value : 0.5
         }
@@ -111,7 +113,7 @@ function pre_questions_page_enter() {
             ticks_labels: ['To an Extremely Small Extent', 'To a Very Small Extent', 'To a Small Extent', 'To a Moderate Extent', 'To a Large Extent', 'To a Very Large Extent', 'To an Extremely Large Extent'],
             tooltip : 'hide',
             orientation : 'vertical',
-            reversed : false,
+            reversed : true,
             selection : 'none',
             value : 0.5
         }
