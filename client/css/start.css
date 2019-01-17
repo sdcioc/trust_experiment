@@ -519,6 +519,8 @@ pre question page
 	width: 100%;
 	height: 20%;
 	text-align: center;
+	display: block;
+	margin: 40px;
 }
 .pre_questions_page_text {
 	width: 100%;
