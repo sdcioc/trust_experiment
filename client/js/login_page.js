@@ -3,7 +3,6 @@ var main_page_cond1 = null;
 var main_page_cond2 = null;
 var current_user = null;
 function login_page_enter() {
-    document.getElementById("login_page_user").value = "";
     document.getElementById("login_page_password").value = "";
     document.getElementById("login_page").hidden = false;
     experiment_events[experiment_index] = {
