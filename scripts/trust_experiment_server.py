@@ -8,6 +8,7 @@ import cv2
 #import dlib
 import cv_bridge
 import random
+import time
 
 
 import geometry_msgs.msg
@@ -124,12 +125,14 @@ class TrustServerClass:
         elif (requestDict["type"] == "Login"):
             print "Login"
             responseDict["type"] = "Login";
-            username = "dan";
+            #username = "dan";
             password = "dan";
-            if( (requestDict["username"] == username) and (requestDict["password"] == password) ):
+            #if( (requestDict["username"] == username) and (requestDict["password"] == password) ):
+            if(requestDict["password"] == password):
                 responseDict["name"] = "Success";
                 responseDict["cond1"] = 0;
                 responseDict["cond2"] = 1;
+                responseDict["username"] = "u" + str(int(time.time()));
                 index_ar = 0;
                 responseDict["main_page_real_task"] =  {
                     1 : taskArangement[index_ar][0],

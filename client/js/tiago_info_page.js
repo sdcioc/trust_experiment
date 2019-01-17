@@ -3,14 +3,14 @@ var tiagoInfoMessages = [
     "<h1>\
     Tiago Robot\
     </h1>\
-    <p>Tiago Rbot is a robot made by pal robotics.\
+    <p>Tiago Robot is a robot made by pal robotics.\
     It has:</p>\
     <ul>\
     <li>A lidar for helping him to localise himself inside the room</li>\
     <li>A mobile base for moving inside the room</li>\
     <li>A mobile head with a RGB camera used for viewing and scanning the enviroment</li>\
     </ul>\
-    <img src='img/ensta.png' class='rounded float-right' height='200' width='200'>\
+    <img src='img/tiago.png' class='rounded float-right' height='200' width='200'>\
     "
 ];
 var tiagoInfoIndex = 0;
@@ -39,7 +39,7 @@ function tiago_info_page_exit() {
 function tiago_info_page_next_btn_click() {
     tiagoInfoIndex = tiagoInfoIndex + 1;
     if(tiagoInfoIndex == tiagoInfoMessages.length) {
-        changeState("pre_questions_page");
+        changeState("task_info_page");
     } else {
         document.getElementById("tiago_info_page_text").removeChild(last_tiago_info_element);
         last_tiago_info_element = document.createElement('div');

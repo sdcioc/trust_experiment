@@ -2,7 +2,7 @@
 var postQuestionsIndex = 0;
 var post_questions_answers = {};
 var post_questions_trust_feedback_slider = null;
-var post_questions_trust_value = null;
+var post_questions_trust_value = 0.5;
 
 function post_questions_page_answer_click(arg) {
     console.log(arg);
@@ -41,9 +41,9 @@ function post_questions_page_enter() {
             min : 0,
             max : 1,
             step : 0.05,
-            ticks: [0, 0.5, 1],
-            ticks_positions: [0, 50, 100],
-            ticks_labels: ['Low', 'Medium', 'High'],
+            ticks: [0, 0.17, 0.34, 0.5, 0.67, 0.84, 1],
+            ticks_positions: [0, 17, 34, 50, 67, 84, 100],
+            ticks_labels: ['To an Extremely Small Extent', 'To a Very Small Extent', 'To a Small Extent', 'To a Moderate Extent', 'To a Large Extent', 'To a Very Large Extent', 'To an Extremely Large Extent'],
             tooltip : 'hide',
             selection : 'none',
             value : 0.5

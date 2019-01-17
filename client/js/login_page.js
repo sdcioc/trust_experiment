@@ -19,7 +19,7 @@ function login_page_exit() {
 }
 
 function login_page_login_btn_click() {
-    var username = document.getElementById("login_page_user").value;
+    //var username = document.getElementById("login_page_user").value;
     var password = document.getElementById("login_page_password").value;
     console.log("login presed user:" + username + " password:" + password);
     experiment_events[experiment_index] = {
@@ -30,7 +30,7 @@ function login_page_login_btn_click() {
     experiment_index = experiment_index + 1;
     var requestDict = {
         type : "Login",
-        username : username,
+        //username : username,
         password : password
     }
     var request = new ROSLIB.ServiceRequest({
@@ -62,7 +62,8 @@ function login_page_login_btn_click() {
             }
             console.log(main_page_real_task);
             console.log(main_page_false_task);
-            current_user = username;
+            //current_user = username;
+            current_user = response["username"];;
             changeState("experiment_info_page");
         } else {
             document.getElementById("login_page_text").innerHTML = "Fail Login, please try again";

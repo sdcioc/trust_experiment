@@ -12,7 +12,7 @@ var experimentInfoMessages = [
     <p>Human-Robot teams are starting to be used more and more. Two examples are: the human-robot teams in \
     disasters for finding persons and in manufacteur of products</p>\
     <p>We propose a game where the team is formed by a human and a robot.\
-    the goal of the game is to complete 4 tasks togheter. For every task will be 4 rewards depend of the following results:</p>\
+    the goal of the game is to complete 3 tasks togheter. For every task will be 3 rewards depend of the following results:</p>\
     <ul>\
     <li>The robot does alone the task</li>\
     <li>The robot fails alone in doing the task</li>\
@@ -20,7 +20,6 @@ var experimentInfoMessages = [
     <li>The human intervine and helps the robot, but fails in doing the task</li>\
     </ul>\
     <p>\
-    The rewards will depend on the task dificulty.\
     The human can intervine in the following way:\
     </p>\
     <ul>\
@@ -29,6 +28,9 @@ var experimentInfoMessages = [
     <li>Make the robot to use is camera for scanning for the answer</li>\
     <li>Give the robot the answer for this task</li>\
     </ul>\
+    <p>\
+    The game will take place in two rooms connected: room 1 and room 2.\
+    </p>\
     "
 ];
 var experimentInfoIndex = 0;
