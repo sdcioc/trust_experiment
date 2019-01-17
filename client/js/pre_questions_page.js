@@ -34,6 +34,8 @@ function pre_questions_page_enter() {
             ticks_positions: [0, 17, 34, 50, 67, 84, 100],
             ticks_labels: ['To an Extremely Small Extent', 'To a Very Small Extent', 'To a Small Extent', 'To a Moderate Extent', 'To a Large Extent', 'To a Very Large Extent', 'To an Extremely Large Extent'],
             tooltip : 'hide',
+            orientation : 'vertical',
+            reversed : false,
             selection : 'none',
             value : 0.5
         }
@@ -70,6 +72,8 @@ function pre_questions_page_enter() {
             ticks_positions: [0, 17, 34, 50, 67, 84, 100],
             ticks_labels: ['To an Extremely Small Extent', 'To a Very Small Extent', 'To a Small Extent', 'To a Moderate Extent', 'To a Large Extent', 'To a Very Large Extent', 'To an Extremely Large Extent'],
             tooltip : 'hide',
+            orientation : 'vertical',
+            reversed : false,
             selection : 'none',
             value : 0.5
         }
@@ -87,6 +91,8 @@ function pre_questions_page_enter() {
             ticks_positions: [0, 17, 34, 50, 67, 84, 100],
             ticks_labels: ['To an Extremely Small Extent', 'To a Very Small Extent', 'To a Small Extent', 'To a Moderate Extent', 'To a Large Extent', 'To a Very Large Extent', 'To an Extremely Large Extent'],
             tooltip : 'hide',
+            orientation : 'vertical',
+            reversed : false,
             selection : 'none',
             value : 0.5
         }
@@ -104,6 +110,8 @@ function pre_questions_page_enter() {
             ticks_positions: [0, 17, 34, 50, 67, 84, 100],
             ticks_labels: ['To an Extremely Small Extent', 'To a Very Small Extent', 'To a Small Extent', 'To a Moderate Extent', 'To a Large Extent', 'To a Very Large Extent', 'To an Extremely Large Extent'],
             tooltip : 'hide',
+            orientation : 'vertical',
+            reversed : false,
             selection : 'none',
             value : 0.5
         }

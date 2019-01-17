@@ -506,3 +506,21 @@ div#swal2-content.swal2-content{
 	height: 40%;
 	text-align: center;
 }
+
+/*
+pre question page
+*/
+.pre_questions_page_button_div {
+	width: 100%;
+	height: 40%;
+	text-align: center;
+}
+.pre_questions_page_feedback_div {
+	width: 100%;
+	height: 20%;
+	text-align: center;
+}
+.pre_questions_page_text {
+	width: 100%;
+	height: 100%;
+}

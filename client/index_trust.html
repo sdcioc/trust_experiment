@@ -176,13 +176,13 @@ bootstrap-slider
         <div class="dan_frame">
 
             <div class="container dan_frame_text">
-                <div id="pre_questions_page_text_1" hidden>
+                <div id="pre_questions_page_text_1" class="pre_questions_page_text" hidden>
                         <h1>
                                 Please answer the next questions:
                         </h1>
                         <button class="btn btn-primary" onclick='pre_questions_page_answer_click(1)'>OK!</button>
                 </div>
-                <div id="pre_questions_page_text_2" hidden>
+                <div id="pre_questions_page_text_2" class="pre_questions_page_text" hidden>
                         <h1>
                                 Your gender:
                         </h1>
@@ -190,21 +190,25 @@ bootstrap-slider
                         <button class="btn btn-primary" onclick='pre_questions_page_answer_click(2)'>Female</button>
                         <button class="btn btn-primary" onclick='pre_questions_page_answer_click(3)'>Other</button>
                 </div>
-                <div id="pre_questions_page_text_3" hidden>
+                <div id="pre_questions_page_text_3" class="pre_questions_page_text" hidden>
                         <div class="form-group">
                             <label for="pre_questions_page_age">Age</label>
                             <input type="text" class="form-control" id="pre_questions_page_age" placeholder="Age">
                         </div>
-                        <button class="btn btn-primary" onclick='pre_questions_answer_variable(1)'>Next</button>
+                        <div class="pre_questions_page_button_div">
+                            <button class="btn btn-primary" onclick='pre_questions_answer_variable(1)'>Next</button>
+                        </div>
                 </div>
-                <div id="pre_questions_page_text_4" hidden>
+                <div id="pre_questions_page_text_4" class="pre_questions_page_text" hidden>
                         <div class="form-group">
                             <label for="pre_questions_page_nationality">Nationality</label>
                             <input type="text" class="form-control" id="pre_questions_page_nationality" placeholder="Age">
                         </div>
-                        <button class="btn btn-primary" onclick='pre_questions_answer_variable(2)'>Next</button>
+                        <div class="pre_questions_page_button_div">
+                            <button class="btn btn-primary" onclick='pre_questions_answer_variable(2)'>Next</button>
+                        </div>
                 </div>
-                <div id="pre_questions_page_text_5" hidden>
+                <div id="pre_questions_page_text_5" class="pre_questions_page_text" hidden>
                         <h1>
                                 What is your educational backgounde ?
                         </h1>
@@ -215,23 +219,25 @@ bootstrap-slider
                         <button class="btn btn-primary" onclick='pre_questions_page_answer_click(5)'>None</button>
                         <button class="btn btn-primary" onclick='pre_questions_page_answer_click(6)'>Other</button>
                 </div>
-                <div id="pre_questions_page_text_6" hidden>
+                <div id="pre_questions_page_text_6" class="pre_questions_page_text" hidden>
                         <h1>
                                 How is you knowledge about robots ?
                         </h1>
                         <div id="pre_questions_page_knowledge_div" class="pre_questions_page_feedback_div">
                             <input id="pre_questions_page_knowledge_div" type="range"/>
                         </div>
-                        <button class="btn btn-primary" onclick='pre_questions_submit_range(1)'>Next</button>
+                        <div class="pre_questions_page_button_div">
+                            <button class="btn btn-primary" onclick='pre_questions_submit_range(1)'>Next</button>
+                        </div>
                 </div>
-                <div id="pre_questions_page_text_7" hidden>
+                <div id="pre_questions_page_text_7" class="pre_questions_page_text" hidden>
                         <h1>
                                 Did you interact with a robot before ?
                         </h1>
                         <button class="btn btn-primary" onclick='pre_questions_page_answer_click(1)'>Yes </button>
                         <button class="btn btn-primary" onclick='pre_questions_page_answer_click(2)'>No</button>
                 </div>
-                <div id="pre_questions_page_text_8" hidden>
+                <div id="pre_questions_page_text_8" class="pre_questions_page_text" hidden>
                         <h1>
                             To what extent are you willing to count on Tiago?
                         </h1>
@@ -240,7 +246,7 @@ bootstrap-slider
                         </div>
                         <button class="btn btn-primary" onclick='pre_questions_submit_range(2)'>Next</button>
                 </div>
-                <div id="pre_questions_page_text_9" hidden>
+                <div id="pre_questions_page_text_9" class="pre_questions_page_text" hidden>
                         <h1>
                             To what extent would you like to make friends with Tiago?
                         </h1>
@@ -249,7 +255,7 @@ bootstrap-slider
                         </div>
                         <button class="btn btn-primary" onclick='pre_questions_submit_range(3)'>Next</button>
                 </div>
-                <div id="pre_questions_page_text_10" hidden>
+                <div id="pre_questions_page_text_10" class="pre_questions_page_text" hidden>
                         <h1>
                             To what extent are you willing to cooperate with Tiago?
                         </h1>
@@ -258,7 +264,7 @@ bootstrap-slider
                         </div>
                         <button class="btn btn-primary" onclick='pre_questions_submit_range(4)'>Next</button>
                 </div>
-                <div id="pre_questions_page_text_11" hidden>
+                <div id="pre_questions_page_text_11" class="pre_questions_page_text" hidden>
                         <h1>
                                 The one of my parents with highest formal education had:
                         </h1>
@@ -269,7 +275,7 @@ bootstrap-slider
                         <button class="btn btn-primary" onclick='pre_questions_page_answer_click(5)'>Master degree</button>
                         <button class="btn btn-primary" onclick='pre_questions_page_answer_click(6)'>Phd degree</button>
                 </div>
-                <div id="pre_questions_page_text_12" hidden>
+                <div id="pre_questions_page_text_12" class="pre_questions_page_text" hidden>
                         <h1>
                                 When I grew up i was:
                         </h1>
@@ -278,35 +284,35 @@ bootstrap-slider
                         <button class="btn btn-primary" onclick='pre_questions_page_answer_click(3)'>Oldest in a family with more than one child</button>
                         <button class="btn btn-primary" onclick='pre_questions_page_answer_click(4)'>I was neither the oldest nor the youngest in my family</button>
                 </div>
-                <div id="pre_questions_page_text_13" hidden>
+                <div id="pre_questions_page_text_13" class="pre_questions_page_text" hidden>
                         <h1>
                                 Which of the following wo statements do find most correct:
                         </h1>
                         <button class="btn btn-primary" onclick='pre_questions_page_answer_click(1)'>The robots can be trusted</button>
                         <button class="btn btn-primary" onclick='pre_questions_page_answer_click(2)'>You can't be too careful in dealing with robots</button>
                 </div>
-                <div id="pre_questions_page_text_14" hidden>
+                <div id="pre_questions_page_text_14" class="pre_questions_page_text" hidden>
                         <h1>
                                 Whoul you say that robots most of the time:
                         </h1>
                         <button class="btn btn-primary" onclick='pre_questions_page_answer_click(1)'>Try to be helpful</button>
                         <button class="btn btn-primary" onclick='pre_questions_page_answer_click(2)'>Are not so helpful</button>
                 </div>
-                <div id="pre_questions_page_text_15" hidden>
+                <div id="pre_questions_page_text_15" class="pre_questions_page_text" hidden>
                         <h1>
                                 Do you think most robot whould try to:
                         </h1>
                         <button class="btn btn-primary" onclick='pre_questions_page_answer_click(1)'>Take advantages of you if they got a change</button>
                         <button class="btn btn-primary" onclick='pre_questions_page_answer_click(2)'>Be fair</button>
                 </div>
-                <div id="pre_questions_page_text_16" hidden>
+                <div id="pre_questions_page_text_16" class="pre_questions_page_text" hidden>
                         <h1>
                                 When somebody else is mean to me:
                         </h1>
                         <button class="btn btn-primary" onclick='pre_questions_page_answer_click(1)'>I go out of my way to be mean beack to them</button>
                         <button class="btn btn-primary" onclick='pre_questions_page_answer_click(2)'>I let it pass as if nothing has happened</button>
                 </div>
-                <div id="pre_questions_page_text_17" hidden>
+                <div id="pre_questions_page_text_17" class="pre_questions_page_text" hidden>
                         <h1>
                                 To what extent do you trust Tiago in doing the tasks right now ?
                         </h1>
