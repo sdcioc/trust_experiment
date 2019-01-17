@@ -23,6 +23,7 @@ var task_info_page_task_2_slider = null;
 var task_info_page_task_3_slider = null;
 
 function task_info_page_enter() {
+    taskInfoIndex = 1;
     document.getElementById("task_info_page").hidden = false;
     document.getElementById("task_info_page_task_1_text").innerHTML = "<h4>Task 1<h4>" + task_info_page_tasks_text[main_page_real_task[1]];
     document.getElementById("task_info_page_task_2_text").innerHTML = "<h4>Task 2<h4>" + task_info_page_tasks_text[main_page_real_task[2]];

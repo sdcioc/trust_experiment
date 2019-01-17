@@ -112,14 +112,14 @@ bootstrap-slider
         <div class="dan_frame">
 
             <div class="container dan_frame_text">
-                <div id="task_info_page_text_1" hidden>
+                <div id="task_info_page_text_1" class="task_info_page_text" hidden>
                     <div id="task_info_page_task_1_text" class="task_info_page_task_text">
 
                     </div>
                     <h1>
                         How difficult you find this task for Tiago?
                     </h1>
-                    <div id="task_info_page_task_1_feedback_div" class="pre_questions_page_feedback_div">
+                    <div id="task_info_page_task_1_feedback_div" class="task_info_page_feedback_div">
                         <input id="task_info_page_task_1_slider" type="range"/>
                     </div>
                     <button class="btn btn-primary" onclick='task_info_page_task_submit(1)'>Submit</button>
@@ -132,7 +132,7 @@ bootstrap-slider
                     <h1>
                         How difficult you find this task for Tiago?
                     </h1>
-                    <div id="task_info_page_task_2_feedback_div" class="pre_questions_page_feedback_div">
+                    <div id="task_info_page_task_2_feedback_div" class="task_info_page_feedback_div">
                         <input id="task_info_page_task_2_slider" type="range"/>
                     </div>
                     <button class="btn btn-primary" onclick='task_info_page_task_submit(2)'>Submit</button>
@@ -144,7 +144,7 @@ bootstrap-slider
                     <h1>
                         How difficult you find this task for Tiago?
                     </h1>
-                    <div id="task_info_page_task_3_feedback_div" class="pre_questions_page_feedback_div">
+                    <div id="task_info_page_task_3_feedback_div" class="task_info_page_feedback_div">
                         <input id="task_info_page_task_3_slider" type="range"/>
                     </div>
                     <button class="btn btn-primary" onclick='task_info_page_task_submit(3)'>Submit</button>
@@ -174,6 +174,7 @@ bootstrap-slider
                         <h1>
                                 Please answer the next questions:
                         </h1>
+                        <button class="btn btn-primary" onclick='pre_questions_page_answer_click(1)'>OK!</button>
                 </div>
                 <div id="pre_questions_page_text_2" hidden>
                         <h1>
