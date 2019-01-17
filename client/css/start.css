@@ -526,3 +526,7 @@ pre question page
 	width: 100%;
 	height: 100%;
 }
+.pre_questions_page_button {
+	display: block;
+	margin: 40px;
+}
