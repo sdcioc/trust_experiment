@@ -20,7 +20,7 @@ function login_page_exit() {
 function login_page_login_btn_click() {
     //var username = document.getElementById("login_page_user").value;
     var password = document.getElementById("login_page_password").value;
-    console.log("login presed user:" + username + " password:" + password);
+    //console.log("login presed user:" + username + " password:" + password);
     experiment_events[experiment_index] = {
         'dateString' : new Date().toJSON(),
         'name' : "NextButtonPressed",
