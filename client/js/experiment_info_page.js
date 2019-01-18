@@ -5,6 +5,7 @@ care necesită îndeplinirea unor task-uri. Omul va alege task-urile
 ce vor fi efectuate. fiecare task va aveea un punctaj.
 */
 
+/*
 var experimentInfoMessages = [
     "<h1>\
     The Human-Robot Team Game\
@@ -32,7 +33,37 @@ var experimentInfoMessages = [
     The game will take place in two rooms connected: room 1 and room 2.\
     </p>\
     "
-];
+];*/
+
+var experimentInfoMessages = [
+    "<h1>\
+    The Human-Robot Team Game\
+    </h1>\
+    <p>Human-Robot teams are more and more common. Two such examples are: human-robot teams in \
+    trying to find people in different disasters; and human-robot teams in products manufacturing</p>\
+    <p>We propose a game where the team is formed by a human and a robot.\
+    The goal of the game is to complete 3 tasks together. For each task there will be 3 rewards depending on the following results:</p>\
+    <ul>\
+    <li>The robot does the task alone </li>\
+    <li>The robot fails in doing the task alone </li>\
+    <li>The human intervenes and helps the robot to do task</li>\
+    <li>The human intervenes and helps the robot, but fails in doing the task</li>\
+    </ul>\
+    <p>\
+    The human can intervene in the following ways:\
+    </p>\
+    <ul>\
+    <li>Moves the robot to a certain point on the map</li>\
+    <li>Controls the head of the robot</li>\
+    <li>Selects what the robot scans </li>\
+    <li>Gives the robot the answer for the task</li>\
+    </ul>\
+    <p>\
+    The game will take place in two connected rooms: Room 1 and Room 2.\
+    </p>\
+    "
+]
+
 var experimentInfoIndex = 0;
 var last_experiment_info_element = null;
 

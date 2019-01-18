@@ -54,7 +54,7 @@ function pre_questions_page_enter() {
             ticks: [0, 0.25, 0.5, 0.75, 1],
             ticks_positions: [0, 25, 50, 75, 100],
             //ticks_labels: ['Very poor', 'Poor', 'Acceptabily', 'Well', 'Very Well'],
-            ticks_labels: ['Very Weel', 'Well', 'Acceptabily', 'Poor', 'Very Poor'],
+            ticks_labels: ['Very Well', 'Well', 'Acceptable', 'Poor', 'Very Poor'],
             tooltip : 'hide',
             orientation : 'vertical',
             reversed : true,

@@ -1,14 +1,14 @@
 
 var tiagoInfoMessages = [
     "<h1>\
-    Tiago Robot\
+    TIAGo Robot\
     </h1>\
-    <p>Tiago Robot is a robot made by pal robotics.\
-    It has:</p>\
+    <p>TIAGo is a robot developed by PAL Robotics, in Spain. \
+    It features:</p>\
     <ul>\
-    <li>A lidar for helping him to localise himself inside the room</li>\
+    <li>A lidar that helps with the localisation inside the room </li>\
     <li>A mobile base for moving inside the room</li>\
-    <li>A mobile head with a RGB camera used for viewing and scanning the enviroment</li>\
+    <li>A mobile head with an RGB camera used for viewing and scanning of the enviroment</li>\
     </ul>\
     <img src='img/tiago.png' class='rounded float-right' height='200' width='200'>\
     "

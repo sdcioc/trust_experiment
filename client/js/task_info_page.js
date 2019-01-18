@@ -1,15 +1,15 @@
 
 var task_info_page_tasks_text = {
-    1 : "For this task you and Tiago must find if there is any plant in room 1. At the start of the task Tiago has to move\
-        to a point in front of the room 1, shown with red on the map. After Tiago will move his head to scan the room and\
-        calculate te result for the task",
-    2 : "For this task you and Tiago must find what type of room is room 2. At the start of the task Tiago has to move\
-        to a point in front of the room 2, shown with blue on the map. After Tiago will move his head to scan the room and\
-        calculate te result for the task",
-    3 : "For this task you and Tiago must find if the next objects: coffe table, couch, chair, bed and Xbox are in the two rooms. At the start of the task Tiago has to move\
-        to a point in front of the room 1, shown with red on the map. Tiago will move his head to scan the room. After Tiago has to move\
-        to a point in front of the room 2, shown with blue on the map. After Tiago will move his head to scan the room and\
-        calculate te result for the task"
+    1 : "For this task you and TIAGo must find if there is any plant in Room 1. At the start of the task TIAGo has to move\
+        to a specific point in Room 1, which is shown with red on the map. After that, TIAGo will move its head to scan the room and\
+        to compute the result for the task.",
+    2 : "For this task you and TIAGo must find what type of room is Room 2. At the start of the task TIAGo has to move\
+        to a specific point in Room 2, shown with blue on the map. After that, TIAGo will move its head to scan the room and\
+        to figure out the answer for this task. ",
+    3 : "For this task you and TIAGo must find if the following objects are located in the two rooms: coffe table, couch, chair, bed and an Xbox. At the start of the task TIAGo has to move\
+        to a specific point in Room 1, which is shown with red on the map. Then, TIAGo will move its head to scan the room. After that TIAGo has to move\
+        to a point in Room 2, shown with blue on the map. Next, by moving its head, TIAGo will scan Room 2 and \
+        will compute the answer for the task"
 }
 var taskInfoIndex = 1;
 var last_task_info_element = null;
