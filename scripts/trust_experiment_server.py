@@ -130,19 +130,19 @@ class TrustServerClass:
             #if( (requestDict["username"] == username) and (requestDict["password"] == password) ):
             if(requestDict["password"] == password):
                 responseDict["name"] = "Success";
-                responseDict["cond1"] = 0;
-                responseDict["cond2"] = 1;
+                #TODO: TESTING
+                #responseDict["cond1"] = 0;
+                #responseDict["cond2"] = 1;
+                #index_ar = 0;
                 responseDict["username"] = "u" + str(int(time.time()));
-                index_ar = 0;
+                responseDict["cond1"] = random.randint(0, 1);
+                responseDict["cond2"] = random.randint(0, 2);
+                index_ar = random.randint(0, 5);
                 responseDict["main_page_real_task"] =  {
                     1 : taskArangement[index_ar][0],
                     2 : taskArangement[index_ar][1],
                     3 : taskArangement[index_ar][2]
                 };
-                #TODO:
-                #responseDict["cond1"] = random.randint(0, 1);
-                #responseDict["cond2"] = random.randint(0, 2);
-                #index_ar = random.randint(0, 5);
             else:
                 responseDict["name"] = "Fail";
         elif (requestDict["type"] == "VerifyMove"):
