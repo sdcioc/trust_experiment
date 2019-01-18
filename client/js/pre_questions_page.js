@@ -64,7 +64,6 @@ function pre_questions_page_enter() {
     pre_questions_knowledge_slider.on("slideStop", function(event) {
         pre_questions_knowledge_value = event.value;
     })
-    //pre_questions_knowledge_slider.refresh();
 
     pre_questions_count_slider = $("#pre_questions_page_count_div").bootstrapSlider(
         {
@@ -139,6 +138,17 @@ function pre_questions_page_change_question() {
     } else {
         document.getElementById("pre_questions_page_text_" + (preQuestionsIndex-1)).hidden = true;
         document.getElementById("pre_questions_page_text_" + preQuestionsIndex).hidden = false;
+        if(preQuestionsIndex == 6) {
+            pre_questions_knowledge_slider.bootstrapSlider("relayout")
+        } else if(preQuestionsIndex == 8) {
+            pre_questions_count_slider.bootstrapSlider("relayout")
+        } else if(preQuestionsIndex == 9) {
+            pre_questions_friend_slider.bootstrapSlider("relayout")
+        } else if(preQuestionsIndex == 10) {
+            pre_questions_cooperate_slider.bootstrapSlider("relayout")
+        } else if(preQuestionsIndex == 16) {
+            pre_questions_trust_feedback_slider.bootstrapSlider("relayout")
+        }
     }
 }
 
