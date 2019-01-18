@@ -64,7 +64,7 @@ function pre_questions_page_enter() {
     pre_questions_knowledge_slider.on("slideStop", function(event) {
         pre_questions_knowledge_value = event.value;
     })
-    pre_questions_knowledge_slider.refresh();
+    //pre_questions_knowledge_slider.refresh();
 
     pre_questions_count_slider = $("#pre_questions_page_count_div").bootstrapSlider(
         {
