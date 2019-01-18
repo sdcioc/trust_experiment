@@ -107,6 +107,11 @@ function task_info_page_next_btn_click() {
         experiment_index = experiment_index + 1;
         document.getElementById("task_info_page_text_" + (taskInfoIndex-1)).hidden = true;
         document.getElementById("task_info_page_text_" + taskInfoIndex).hidden = false;
+        if(taskInfoIndex == 2) {
+            task_info_page_task_2_slider.bootstrapSlider("relayout")
+        } else if(taskInfoIndex == 3) {
+            task_info_page_task_3_slider.bootstrapSlider("relayout")
+        }
     }
 }
 
