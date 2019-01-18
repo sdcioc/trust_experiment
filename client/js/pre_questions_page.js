@@ -32,7 +32,8 @@ function pre_questions_page_enter() {
             step : 0.05,
             ticks: [0, 0.17, 0.34, 0.5, 0.67, 0.84, 1],
             ticks_positions: [0, 17, 34, 50, 67, 84, 100],
-            ticks_labels: ['To an Extremely Small Extent', 'To a Very Small Extent', 'To a Small Extent', 'To a Moderate Extent', 'To a Large Extent', 'To a Very Large Extent', 'To an Extremely Large Extent'],
+            //ticks_labels: ['To an Extremely Small Extent', 'To a Very Small Extent', 'To a Small Extent', 'To a Moderate Extent', 'To a Large Extent', 'To a Very Large Extent', 'To an Extremely Large Extent'],  
+            ticks_labels: ['To an Extremely Large Extent', 'To a Very Large Extent', 'To a Large Extent', 'To a Moderate Extent', 'To a Small Extent', 'To a Very Small Extent', 'To an Extremely Small Extent'],
             tooltip : 'hide',
             orientation : 'vertical',
             reversed : true,
@@ -72,7 +73,8 @@ function pre_questions_page_enter() {
             step : 0.05,
             ticks: [0, 0.17, 0.34, 0.5, 0.67, 0.84, 1],
             ticks_positions: [0, 17, 34, 50, 67, 84, 100],
-            ticks_labels: ['To an Extremely Small Extent', 'To a Very Small Extent', 'To a Small Extent', 'To a Moderate Extent', 'To a Large Extent', 'To a Very Large Extent', 'To an Extremely Large Extent'],
+            //ticks_labels: ['To an Extremely Small Extent', 'To a Very Small Extent', 'To a Small Extent', 'To a Moderate Extent', 'To a Large Extent', 'To a Very Large Extent', 'To an Extremely Large Extent'],
+            ticks_labels: ['To an Extremely Large Extent', 'To a Very Large Extent', 'To a Large Extent', 'To a Moderate Extent', 'To a Small Extent', 'To a Very Small Extent', 'To an Extremely Small Extent'],
             tooltip : 'hide',
             orientation : 'vertical',
             reversed : true,
@@ -91,7 +93,8 @@ function pre_questions_page_enter() {
             step : 0.05,
             ticks: [0, 0.17, 0.34, 0.5, 0.67, 0.84, 1],
             ticks_positions: [0, 17, 34, 50, 67, 84, 100],
-            ticks_labels: ['To an Extremely Small Extent', 'To a Very Small Extent', 'To a Small Extent', 'To a Moderate Extent', 'To a Large Extent', 'To a Very Large Extent', 'To an Extremely Large Extent'],
+            //ticks_labels: ['To an Extremely Small Extent', 'To a Very Small Extent', 'To a Small Extent', 'To a Moderate Extent', 'To a Large Extent', 'To a Very Large Extent', 'To an Extremely Large Extent'],
+            ticks_labels: ['To an Extremely Large Extent', 'To a Very Large Extent', 'To a Large Extent', 'To a Moderate Extent', 'To a Small Extent', 'To a Very Small Extent', 'To an Extremely Small Extent'],
             tooltip : 'hide',
             orientation : 'vertical',
             reversed : true,
@@ -110,7 +113,8 @@ function pre_questions_page_enter() {
             step : 0.05,
             ticks: [0, 0.17, 0.34, 0.5, 0.67, 0.84, 1],
             ticks_positions: [0, 17, 34, 50, 67, 84, 100],
-            ticks_labels: ['To an Extremely Small Extent', 'To a Very Small Extent', 'To a Small Extent', 'To a Moderate Extent', 'To a Large Extent', 'To a Very Large Extent', 'To an Extremely Large Extent'],
+            //ticks_labels: ['To an Extremely Small Extent', 'To a Very Small Extent', 'To a Small Extent', 'To a Moderate Extent', 'To a Large Extent', 'To a Very Large Extent', 'To an Extremely Large Extent'],
+            ticks_labels: ['To an Extremely Large Extent', 'To a Very Large Extent', 'To a Large Extent', 'To a Moderate Extent', 'To a Small Extent', 'To a Very Small Extent', 'To an Extremely Small Extent'],
             tooltip : 'hide',
             orientation : 'vertical',
             reversed : true,
@@ -131,7 +135,7 @@ function pre_questions_page_exit() {
 
 function pre_questions_page_change_question() {
     preQuestionsIndex = preQuestionsIndex + 1;
-    if(preQuestionsIndex == 17) {
+    if(preQuestionsIndex == 18) {
         console.log(pre_questions_answers);
         document.getElementById("pre_questions_page_text_" + (preQuestionsIndex-1)).hidden = true;
         changeState("main_page");
@@ -146,7 +150,7 @@ function pre_questions_page_change_question() {
             pre_questions_friend_slider.bootstrapSlider("relayout")
         } else if(preQuestionsIndex == 10) {
             pre_questions_cooperate_slider.bootstrapSlider("relayout")
-        } else if(preQuestionsIndex == 16) {
+        } else if(preQuestionsIndex == 17) {
             pre_questions_trust_feedback_slider.bootstrapSlider("relayout")
         }
     }

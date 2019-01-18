@@ -43,7 +43,8 @@ function post_questions_page_enter() {
             step : 0.05,
             ticks: [0, 0.17, 0.34, 0.5, 0.67, 0.84, 1],
             ticks_positions: [0, 17, 34, 50, 67, 84, 100],
-            ticks_labels: ['To an Extremely Small Extent', 'To a Very Small Extent', 'To a Small Extent', 'To a Moderate Extent', 'To a Large Extent', 'To a Very Large Extent', 'To an Extremely Large Extent'],
+            //ticks_labels: ['To an Extremely Small Extent', 'To a Very Small Extent', 'To a Small Extent', 'To a Moderate Extent', 'To a Large Extent', 'To a Very Large Extent', 'To an Extremely Large Extent'],
+            ticks_labels: ['To an Extremely Large Extent', 'To a Very Large Extent', 'To a Large Extent', 'To a Moderate Extent', 'To a Small Extent', 'To a Very Small Extent', 'To an Extremely Small Extent'],
             tooltip : 'hide',
             orientation : 'vertical',
             reversed : true,
@@ -54,6 +55,7 @@ function post_questions_page_enter() {
     post_questions_trust_feedback_slider.on("slideStop", function(event) {
         post_questions_trust_value = event.value;
     })
+    post_questions_trust_feedback_slider.bootstrapSlider("relayout")
 }
 
 function post_questions_page_exit() {

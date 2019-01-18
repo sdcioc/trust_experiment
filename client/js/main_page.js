@@ -737,6 +737,10 @@ function main_page_intervention() {
         main_page_current_task_scans_remained = 3;
         document.getElementById("main_page_task_intervetion_head_sliders_div").hidden = false;
         main_page_current_task_interventions["MOVE_HEAD_AND_SCAN"] = true;
+        headLeftRightSlider.bootstrapSlider("relayout")
+        headUpDownSlider.bootstrapSlider("relayout")
+        headLeftRightSlider.bootstrapSlider("setValue", head_x);
+        headUpDownSlider.bootstrapSlider("setValue", head_y);
         main_page_move_head_manual_timer(60);
     }
     else if(main_page_current_state == "CALCULATE_RESULT") {
@@ -998,6 +1002,7 @@ function main_page_my_swal(type, success) {
             
         } else {
             main_page_current_task_score = main_page_current_task_score - 8;
+            main_page_total_score = main_page_total_score + main_page_current_task_score;
             swal({
             title: 'Task Failed',
             html: 'Robot has failed to arrive at the task. In <strong></strong> seconds you will complete' +
@@ -1092,6 +1097,7 @@ function main_page_my_swal(type, success) {
                 });
         } else {
             main_page_current_task_score = main_page_current_task_score - 5;
+            main_page_total_score = main_page_total_score + main_page_current_task_score;
             swal({
             title: 'Task Failed',
             html: 'Robot has failed to move his head at the task. In <strong></strong> seconds you will complete' +
@@ -1129,6 +1135,7 @@ function main_page_my_swal(type, success) {
             if(main_page_current_task_interventions["CALCULATE_RESULT"]) {
                 main_page_current_task_score = main_page_current_task_score - 1;
             }
+            main_page_total_score = main_page_total_score + main_page_current_task_score;
             swal({
                 title: 'Task Successful',
                 html: 'Robot has completed the task. In <strong></strong> seconds you will complete' +
@@ -1161,6 +1168,7 @@ function main_page_my_swal(type, success) {
                 });
         } else {
             main_page_current_task_score = main_page_current_task_score - 3;
+            main_page_total_score = main_page_total_score + main_page_current_task_score;
             swal({
             title: 'Task Failed',
             html: 'Robots scan results where bad for this task. In <strong></strong> seconds you will complete' +
@@ -1192,7 +1200,6 @@ function main_page_my_swal(type, success) {
                 main_page_feedback()
             });
         }
-        main_page_total_score = main_page_total_score + main_page_current_task_score;
         document.getElementById("main_page_total_score").innerHTML = "Current Score:" + main_page_total_score;
     }
 }
