@@ -319,7 +319,7 @@ function main_page_init() {
         //document.getElementById("main_page_rgb_robot_img").src = "data:image/jpg;base64," + message.data;
     });
     room_image_topic.subscribe(function(message) {
-        document.getElementById("main_page_rgb_room_img").src = "data:image/jpg;base64," + message.data;
+        //document.getElementById("main_page_rgb_room_img").src = "data:image/jpg;base64," + message.data;
     });
 
     var w2 = window,
@@ -338,7 +338,17 @@ function main_page_init() {
 		// topic: '/kinect2/k2_rgb_sd/image'
 	    topic: '/xtion/rgb/image_raw'
 	});
-
+    
+	var room_image_viewer = new MJPEGCANVAS.Viewer({
+		divID: 'main_page_rgb_map_div',
+		host: window.location.hostname,
+        port: 8000,
+		width: (x2-15)/2 -15 ,
+        height: ( (y2-10)*3)/10 -10,
+        //quality: 40,
+		// topic: '/kinect2/k2_rgb_sd/image'
+	    topic: '/camera/rgb/image_raw'
+	});
     document.getElementById("main_page_task_intervetion_finish_intervention_btn").disabled = true;
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = true;
     document.getElementById("main_page_info_header").innerHTML = "Chose a task";
@@ -964,9 +974,6 @@ function main_page_my_swal(type, success) {
     var timerInterval = null;
     if(type == "MOVE_BASE") {
         if(success == true) {
-            if(main_page_current_task_interventions["MOVE_BASE"]) {
-                main_page_current_task_score = main_page_current_task_score - 2;
-            }
             swal({
             title: 'Move Base Successful',
             html: 'Robot has arrived at the task. In <strong></strong> seconds it will move its head' +
@@ -1036,9 +1043,6 @@ function main_page_my_swal(type, success) {
         }
     } else if (type == "MOVE_HEAD_AND_SCAN") {
         if(success == true) {
-            if(main_page_current_task_interventions["MOVE_HEAD_AND_SCAN"]) {
-                main_page_current_task_score = main_page_current_task_score - 1;
-            }
             swal({
                 title: 'Move Head Successful',
                 html: 'Robot has move his head for this task. In <strong></strong> seconds it will scan' +
@@ -1087,6 +1091,7 @@ function main_page_my_swal(type, success) {
                             + ': '
                             + result);
                         });
+                        main_page_current_state = "MOVE_BASE";
                         main_page_move_base_timer(50);
                     
                         document.getElementById("main_page_info_header").innerHTML = "The robot moves trough rooms, In 50 seconds you can intervine by pressing intervine button";
@@ -1096,6 +1101,9 @@ function main_page_my_swal(type, success) {
                     }
                 });
         } else {
+            if(main_page_current_task_interventions["MOVE_BASE"]) {
+                main_page_current_task_score = main_page_current_task_score - 2;
+            }
             main_page_current_task_score = main_page_current_task_score - 5;
             main_page_total_score = main_page_total_score + main_page_current_task_score;
             swal({
@@ -1132,6 +1140,12 @@ function main_page_my_swal(type, success) {
         }
     } else if (type == "CALCULATE_RESULT") {
         if(success == true) {
+            if(main_page_current_task_interventions["MOVE_BASE"]) {
+                main_page_current_task_score = main_page_current_task_score - 2;
+            }
+            if(main_page_current_task_interventions["MOVE_HEAD_AND_SCAN"]) {
+                main_page_current_task_score = main_page_current_task_score - 1;
+            }
             if(main_page_current_task_interventions["CALCULATE_RESULT"]) {
                 main_page_current_task_score = main_page_current_task_score - 1;
             }
@@ -1167,6 +1181,12 @@ function main_page_my_swal(type, success) {
                     main_page_feedback()
                 });
         } else {
+            if(main_page_current_task_interventions["MOVE_BASE"]) {
+                main_page_current_task_score = main_page_current_task_score - 2;
+            }
+            if(main_page_current_task_interventions["MOVE_HEAD_AND_SCAN"]) {
+                main_page_current_task_score = main_page_current_task_score - 1;
+            }
             main_page_current_task_score = main_page_current_task_score - 3;
             main_page_total_score = main_page_total_score + main_page_current_task_score;
             swal({

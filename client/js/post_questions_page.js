@@ -66,7 +66,7 @@ function post_questions_page_exit() {
 
 function post_questions_page_change_question() {
     postQuestionsIndex = postQuestionsIndex + 1;
-    if(postQuestionsIndex == 3) {
+    if(postQuestionsIndex == 2) {
         console.log(post_questions_answers);
         document.getElementById("post_questions_page_text_" + (postQuestionsIndex-1)).hidden = true;
         changeState("main_page");
