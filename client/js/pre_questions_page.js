@@ -52,7 +52,8 @@ function pre_questions_page_enter() {
             step : 0.05,
             ticks: [0, 0.25, 0.5, 0.75, 1],
             ticks_positions: [0, 25, 50, 75, 100],
-            ticks_labels: ['Very poor', 'Poor', 'Acceptabily', 'Well', 'Very Well'],
+            //ticks_labels: ['Very poor', 'Poor', 'Acceptabily', 'Well', 'Very Well'],
+            ticks_labels: ['Very Weel', 'Well', 'Acceptabily', 'Poor', 'Very Poor'],
             tooltip : 'hide',
             orientation : 'vertical',
             reversed : true,
@@ -63,7 +64,7 @@ function pre_questions_page_enter() {
     pre_questions_knowledge_slider.on("slideStop", function(event) {
         pre_questions_knowledge_value = event.value;
     })
-
+    pre_questions_knowledge_slider.refresh();
 
     pre_questions_count_slider = $("#pre_questions_page_count_div").bootstrapSlider(
         {
