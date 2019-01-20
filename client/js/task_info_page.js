@@ -45,7 +45,7 @@ var task_info_page_tasks_text = {
         ,Map of the rooms with TIAGo position (yellow arrow), Image of the room camera</li>\
         <li>The right part contains: The info button to show this info again.</li>\
         </ul>\
-        <img src='img/info_1.jpeg' class='rounded float-right'>"
+        <img src='img/info_1.jpeg' class='rounded float-right' height='300' width='300'>"
     }
 }
 var taskInfoIndex = 1;

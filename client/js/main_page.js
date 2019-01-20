@@ -1191,12 +1191,12 @@ function main_page_info_button() {
         html_text = task_info_page_tasks_text[4][0];
     }
     swal({
-    title: 'Task Failed',
+    title: 'Ingo',
     html: html_text,
     timer: 10000,
     allowOutsideClick: false,
     width : "50%",
-    type: 'error',
+    type: 'infox',
     confirmButtonText: 'OK!'
     }).then((result) => {
         if (

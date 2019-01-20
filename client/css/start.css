@@ -519,14 +519,13 @@ pre question page
 	height: 100%;
 }
 .pre_questions_page_button {
-	display: block;
-	margin: 40px;
+	margin: 10px;
+	width: 340px;
 }
 .post_questions_page_button_div {
 	width: 100%;
 	height: 40%;
 	text-align: center;
-	padding-left: 45%;
 }
 .post_questions_page_feedback_div {
 	width: 100%;
