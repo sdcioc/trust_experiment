@@ -15,11 +15,11 @@ class RosbagManager:
     def __init__(self):
         self.rate = rospy.Rate(1);
         self.image_robot_pub = rospy.Publisher(
-                    'xtion/rgb/image_rect_color',
+                    '/xtion/rgb/image_raw',
                         sensor_msgs.msg.Image,
                         latch=True, queue_size=5);
         self.image_room_pub = rospy.Publisher(
-                    'asus/rgb/image_rect_color',
+                    '/camera/rgb/image_raw',
                         sensor_msgs.msg.Image,
                         latch=True, queue_size=5);
         self.amcl_pose_pub = rospy.Publisher(

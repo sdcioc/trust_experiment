@@ -314,13 +314,6 @@ function main_page_init() {
     document.getElementById("main_page_task_intervetion_move_base_arrows_down_buttton").disabled = true;
     document.getElementById("main_page_task_intervetion_move_base_arrows_right_buttton").disabled = true;
     
-    //TODO : image real times
-    robot_image_topic.subscribe(function(message) {
-        //document.getElementById("main_page_rgb_robot_img").src = "data:image/jpg;base64," + message.data;
-    });
-    room_image_topic.subscribe(function(message) {
-        //document.getElementById("main_page_rgb_room_img").src = "data:image/jpg;base64," + message.data;
-    });
 
     var w2 = window,
     d2 = document,
@@ -460,6 +453,7 @@ function main_page_prepare_for_next_task() {
 }
 
 function main_page_verify_move_base_arive() {
+    document.getElementById("main_page_task_intervetion_intervention_btn").disabled = true;
     var requestDict = {
         type : "VerifyMove",
         task : main_page_current_task
@@ -501,6 +495,7 @@ function main_page_verify_move_base_arive() {
 }
 
 function main_page_verify_move_head() {
+    document.getElementById("main_page_task_intervetion_intervention_btn").disabled = true;
     var move_head_success = true;
 
     //move head straight after :P
@@ -536,6 +531,7 @@ function main_page_verify_move_head() {
 
 
 function main_page_verify_result() {
+    document.getElementById("main_page_task_intervetion_intervention_btn").disabled = true;
     var result_success = false;
     var room_type = null;
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = true;
@@ -1221,5 +1217,6 @@ function main_page_my_swal(type, success) {
             });
         }
         document.getElementById("main_page_total_score").innerHTML = "Current Score:" + main_page_total_score;
+        document.getElementById("main_page_task_intervetion_intervention_btn").disabled = false;
     }
 }
