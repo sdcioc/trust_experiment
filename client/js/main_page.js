@@ -123,7 +123,7 @@ function main_page_init() {
         'type' : "MainPage"
     }
     experiment_index = experiment_index + 1;
-    
+
    var g_1 = new createjs.Graphics();
    g_1.setStrokeStyle(0);
    g_1.beginStroke(createjs.Graphics.getRGB(0,0,255));
@@ -380,15 +380,15 @@ function main_page_feedback() {
 
 function main_page_prepare_for_next_task() {
     var local_sem = false;
-    if(main_page_tasks[main_page_false_task[1]] == 0) {
+    if(main_page_tasks[main_page_real_task[1]] == 0) {
         document.getElementById("main_page_task_intervetion_task_1").disabled = false;
         local_sem = true;
     }
-    if(main_page_tasks[main_page_false_task[2]] == 0) {
+    if(main_page_tasks[main_page_real_task[2]] == 0) {
         document.getElementById("main_page_task_intervetion_task_2").disabled = false;
         local_sem = true;
     }
-    if(main_page_tasks[main_page_false_task[3]] == 0) {
+    if(main_page_tasks[main_page_real_task[3]] == 0) {
         document.getElementById("main_page_task_intervetion_task_3").disabled = false;
         local_sem = true;
     }
