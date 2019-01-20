@@ -28,7 +28,7 @@ var task_info_page_tasks_text = {
         <li>The right part contains: The info button to show this info again, if you forget and the CHAT box where you\
         can talk with tiago</li>\
         </ul>\
-        <img src='img/info_0.jpeg' class='rounded float-right' height='300' width='300'>",
+        <img src='img/info_0.jpeg' class='rounded float-right' height='300' width='450'>",
         1 : "<h4>Experiment User Interface</h4>\
         The interface is divided:</p>\
         <ul>\
@@ -45,7 +45,7 @@ var task_info_page_tasks_text = {
         ,Map of the rooms with TIAGo position (yellow arrow), Image of the room camera</li>\
         <li>The right part contains: The info button to show this info again.</li>\
         </ul>\
-        <img src='img/info_1.jpeg' class='rounded float-right' height='300' width='300'>"
+        <img src='img/info_1.jpeg' class='rounded float-right' height='300' width='450'>"
     }
 }
 var taskInfoIndex = 1;
