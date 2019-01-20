@@ -18,9 +18,9 @@ var last_tiago_info_element = null;
 
 function tiago_info_page_enter() {
     tiagoInfoIndex = 0;
-    last_tiago_info_element = document.createElement('div');
-    last_tiago_info_element.innerHTML = tiagoInfoMessages[tiagoInfoIndex];
-    document.getElementById("tiago_info_page_text").appendChild(last_tiago_info_element);
+    //last_tiago_info_element = document.createElement('div');
+    //last_tiago_info_element.innerHTML = tiagoInfoMessages[tiagoInfoIndex];
+    //document.getElementById("tiago_info_page_text").appendChild(last_tiago_info_element);
     document.getElementById("tiago_info_page").hidden = false;
     experiment_events[experiment_index] = {
         'dateString' : new Date().toJSON(),
@@ -32,7 +32,7 @@ function tiago_info_page_enter() {
 
 function tiago_info_page_exit() {
     tiagoInfoIndex = 0;
-    document.getElementById("tiago_info_page_text").removeChild(last_tiago_info_element);
+    //document.getElementById("tiago_info_page_text").removeChild(last_tiago_info_element);
     document.getElementById("tiago_info_page").hidden = true;
 }
 
@@ -41,10 +41,10 @@ function tiago_info_page_next_btn_click() {
     if(tiagoInfoIndex == tiagoInfoMessages.length) {
         changeState("task_info_page");
     } else {
-        document.getElementById("tiago_info_page_text").removeChild(last_tiago_info_element);
-        last_tiago_info_element = document.createElement('div');
-        last_tiago_info_element.innerHTML = tiagoInfoMessages[tiagoInfoIndex];
-        document.getElementById("tiago_info_page_text").appendChild(last_tiago_info_element);
+        //document.getElementById("tiago_info_page_text").removeChild(last_tiago_info_element);
+        //last_tiago_info_element = document.createElement('div');
+        //last_tiago_info_element.innerHTML = tiagoInfoMessages[tiagoInfoIndex];
+        //document.getElementById("tiago_info_page_text").appendChild(last_tiago_info_element);
         experiment_events[experiment_index] = {
             'dateString' : new Date().toJSON(),
             'name' : "NextButtonPressed",
