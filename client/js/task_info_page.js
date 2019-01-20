@@ -11,7 +11,7 @@ var task_info_page_tasks_text = {
         to a point in Room 2, shown with blue on the map. Next, by moving its head, TIAGo will scan Room 2 and \
         will compute the answer for the task",
     4 : {
-        0 : "<h4>Experiment User Interface<h4>\
+        0 : "<h4>Experiment User Interface</h4>\
         The interface is divided:</p>\
         <ul>\
         <li>The left part cotains the tasks zone where you can chose the task TIAGo and you will do next and the intervention zone\
@@ -28,8 +28,8 @@ var task_info_page_tasks_text = {
         <li>The right part contains: The info button to show this info again, if you forget and the CHAT box where you\
         can talk with tiago</li>\
         </ul>\
-        <img src='img/info_0.jpeg' class='rounded float-right'>",
-        1 : "<h4>Experiment User Interface<h4>\
+        <img src='img/info_0.jpeg' class='rounded float-right' height='300' width='300'>",
+        1 : "<h4>Experiment User Interface</h4>\
         The interface is divided:</p>\
         <ul>\
         <li>The left part cotains the tasks zone where you can chose the task TIAGo and you will do next and the intervention zone\
