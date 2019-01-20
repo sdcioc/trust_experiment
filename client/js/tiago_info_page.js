@@ -10,7 +10,7 @@ var tiagoInfoMessages = [
     <li>A mobile base for moving inside the room</li>\
     <li>A mobile head with an RGB camera used for viewing and scanning of the enviroment</li>\
     </ul>\
-    <img src='img/tiago.png' class='rounded float-right' height='200' width='200'>\
+    <img src='img/tiagofull.JPG' class='rounded float-right' height='200' width='200'>\
     "
 ];
 var tiagoInfoIndex = 0;
