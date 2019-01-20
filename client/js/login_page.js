@@ -49,7 +49,7 @@ function login_page_login_btn_click() {
 
             if(main_page_cond2 == 1) {
                 chat_accessToken = chat_accessToken_reliable;
-            } else if (main_page_cond2 == 1) {
+            } else if (main_page_cond2 == 2) {
                 chat_accessToken = chat_accessToken_unreliable;
             } else {
                 console.log("fara chat")

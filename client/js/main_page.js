@@ -130,8 +130,8 @@ function main_page_init() {
    g_1.beginFill(createjs.Graphics.getRGB(0,0,255));
    g_1.drawRect(0,0,1,1);
    var s_1 = new createjs.Shape(g_1);
-   s_1.scaleX = 0.3;
-   s_1.scaleY = 0.3;
+   s_1.scaleX = 0.15;
+   s_1.scaleY = 0.2;
    s_1.x = -0.3;
    s_1.y = 0.0;
    s_1.rotation = 0;
@@ -143,8 +143,8 @@ function main_page_init() {
    g_2.beginFill(createjs.Graphics.getRGB(255,0,0));
    g_2.drawRect(0,0,1,1);
    var s_2 = new createjs.Shape(g_2);
-   s_2.scaleX = 0.3;
-   s_2.scaleY = 0.3;
+   s_2.scaleX = 0.15;
+   s_2.scaleY = 0.2;
    s_2.x = -0.4;
    s_2.y = 1.2;
    s_2.rotation = 0;
@@ -157,7 +157,7 @@ function main_page_init() {
     viewer.scene.scaleY = 30;
     viewer.scene.x = 140;
     viewer.scene.y = 60;
-    viewer.scene.children[2].scaleY = 0.01
+    viewer.scene.children[2].scaleY = 0.02
     viewer.scene.children[2].scaleX = 0.01
 
     headLeftRightSlider = $("#main_page_task_intervetion_head_left_right_slider").bootstrapSlider(
@@ -1181,4 +1181,29 @@ function main_page_my_swal(type, success) {
         document.getElementById("main_page_total_score").innerHTML = "Current Score:" + main_page_total_score;
         document.getElementById("main_page_task_intervetion_intervention_btn").disabled = false;
     }
+}
+
+function main_page_info_button() {
+    var html_text = null;
+    if(main_page_cond2 == 0) {
+        html_text = task_info_page_tasks_text[4][1];
+    } else {
+        html_text = task_info_page_tasks_text[4][0];
+    }
+    swal({
+    title: 'Task Failed',
+    html: html_text,
+    timer: 10000,
+    allowOutsideClick: false,
+    width : "50%",
+    type: 'error',
+    confirmButtonText: 'OK!'
+    }).then((result) => {
+        if (
+            // Read more about handling dismissals
+            result.dismiss === swal.DismissReason.timer
+        ) {
+            console.log('I was closed by the timer')
+        }
+    });
 }
