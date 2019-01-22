@@ -14,7 +14,7 @@ var task_info_page_tasks_text = {
         0 : "<h4>Experiment User Interface</h4>\
         The interface is divided:</p>\
         <ul>\
-        <li>The left part cotains the tasks zone where you can chose the task TIAGo and you will do next and the intervention zone\
+        <li>The left part cotains the tasks zone where you can chose the task TIAGo and you will do next, the current score and the intervention zone\
         The intervention zone has 2 buttons: the intervene button (to help TIAGo if you do not think it can do the task alone) and the\
         finish intervention button when you finish your intervention. You can intervene in 3 ways:\
             <ul>\
@@ -32,7 +32,7 @@ var task_info_page_tasks_text = {
         1 : "<h4>Experiment User Interface</h4>\
         The interface is divided:</p>\
         <ul>\
-        <li>The left part cotains the tasks zone where you can chose the task TIAGo and you will do next and the intervention zone\
+        <li>The left part cotains the tasks zone where you can chose the task TIAGo and you will do next, the current score and the intervention zone\
         The intervention zone has 2 buttons: the intervene button (to help TIAGo if you do not think it can do the task alone) and the\
         finish intervention button when you finish your intervention. You can intervene in 3 ways:\
             <ul>\

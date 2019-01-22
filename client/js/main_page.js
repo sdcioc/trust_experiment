@@ -313,6 +313,8 @@ function main_page_init() {
     //TODO: pentru când nu avem chat să marim poz3le
     if(main_page_cond2 == 0) {
         document.getElementById("main_page_chat_interface").hidden = true;
+    } else {
+        insertChat("you", "Text me if anything", 0);
     }
 
     main_page_total_score = 0;
@@ -1193,7 +1195,7 @@ function main_page_info_button() {
     swal({
     title: 'Info',
     html: html_text,
-    timer: 10000,
+    //timer: 10000,
     allowOutsideClick: false,
     width : "50%",
     type: 'info',
