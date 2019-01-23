@@ -1089,6 +1089,7 @@ function main_page_my_swal(type, success) {
                 }
                 main_page_feedback()
             });
+            document.getElementById("main_page_total_score").innerHTML = "Current Score:" + main_page_total_score;
         }
     } else if (type == "MOVE_HEAD_AND_SCAN") {
         if(success == true) {
@@ -1199,6 +1200,7 @@ function main_page_my_swal(type, success) {
                 }
                 main_page_feedback()
             });
+            document.getElementById("main_page_total_score").innerHTML = "Current Score:" + main_page_total_score;
 
         }
     } else if (type == "CALCULATE_RESULT") {
@@ -1284,8 +1286,8 @@ function main_page_my_swal(type, success) {
             });
         }
         document.getElementById("main_page_total_score").innerHTML = "Current Score:" + main_page_total_score;
-        document.getElementById("main_page_task_intervetion_intervention_btn").disabled = false;
     }
+    document.getElementById("main_page_task_intervetion_intervention_btn").disabled = false;
 }
 
 function main_page_info_button() {
