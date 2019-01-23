@@ -17,7 +17,7 @@ var task_info_page_tasks_text = {
          <table class='table table-striped'>\
         <thead>\
             <tr>\
-            <th scope='col'>Action</th>\
+            <th scope='col'>Subtask result</th>\
             <th scope='col'>Moving the base</th>\
             <th scope='col'>Moving head and scan</th>\
             <th scope='col'>Calculate the results</th>\

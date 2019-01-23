@@ -1186,12 +1186,13 @@ function main_page_my_swal(type, success) {
 }
 
 function main_page_info_button() {
-    var html_text = null;
+    var html_text = "<div style='text-align:left;'>";
     if(main_page_cond2 == 0) {
         html_text = task_info_page_tasks_text[5][1];
     } else {
         html_text = task_info_page_tasks_text[5][0];
     }
+    html_text = html_text + "</div>"
     swal({
     title: 'Info',
     html: html_text,
