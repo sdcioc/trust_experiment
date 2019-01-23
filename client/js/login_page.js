@@ -62,8 +62,9 @@ function login_page_login_btn_click() {
             console.log(main_page_real_task);
             console.log(main_page_false_task);
             //current_user = username;
-            current_user = response["username"];;
-            changeState("experiment_info_page");
+            current_user = response["username"];
+            //changeState("experiment_info_page");
+            changeState("main_page");
         } else {
             document.getElementById("login_page_text").innerHTML = "Fail Login, please try again";
         }

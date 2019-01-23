@@ -12,10 +12,12 @@
 <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="css/sweetalert2.min.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap-slider.min.css">
+<link rel="stylesheet" type="text/css" href="css/pannellum.css">
 <script type="text/javascript" src="./js/easeljs.min.js"></script>
 <script type="text/javascript" src="./js/eventemitter2.min.js"></script>
 <script type="text/javascript" src="./js/roslib.min.js"></script>
 <script type="text/javascript" src="./js/mjpegcanvas.min.js"></script>
+<script type="text/javascript" src="./js/pannellum.js"></script>
 <!--
    am adaugat pentru view functia removeObject ca sa pot sterge path-ul 
 -->
@@ -517,7 +519,17 @@ bootstrap-slider
             </div>
 
             <div id="main_page_rgb_robot_div" class="main_page_info_nav">
-                <img id="main_page_rgb_robot_img" class="main_page_image">
+                <img id="main_page_rgb_robot_img_center" class="main_page_image" hidden>
+                <!--
+                    TODO: panorama
+                -->
+                <div id="main_page_rgb_robot_img_1" class="main_page_image" hidden>
+                    </div>
+                <div id="main_page_rgb_robot_img_2" class="main_page_image" hidden>
+                    </div>
+                <video id="main_page_robot_video_1" width="100%" height="100%" hidden></video>
+                <video id="main_page_robot_video_2" width="100%" height="100%" hidden></video>
+                <video id="main_page_robot_video_3" width="100%" height="100%" hidden></video>
             </div>
 
             <div id="main_page_info_nav" class="main_page_info_nav">
@@ -525,7 +537,12 @@ bootstrap-slider
             </div>
 
             <div id="main_page_rgb_map_div" class="main_page_info_nav">
-                <img id="main_page_rgb_room_img" class="main_page_image">
+                <img id="main_page_rgb_room_img_center" class="main_page_image" hidden>
+                <img id="main_page_rgb_room_img_1" class="main_page_image" hidden>
+                <img id="main_page_rgb_room_img_2" class="main_page_image" hidden>
+                <video id="main_page_robot_video_1" width="100%" height="100%" hidden></video>
+                <video id="main_page_robot_video_2" width="100%" height="100%" hidden></video>
+                <video id="main_page_robot_video_3" width="100%" height="100%" hidden></video>
             </div>
         </div>
         <div id="main_page_chat_bot" class="dan_main_page_right">

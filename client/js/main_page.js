@@ -105,7 +105,10 @@ var main_page_current_task_interventions = {
     "MOVE_HEAD_AND_SCAN" : false,
     "CALCULATE_RESULT" : false
 }
-
+var main_page_robot_img_1_viewer = null;
+var main_page_robot_img_2_viewer = null;
+var main_page_last_robot_div = null;
+var main_page_last_room_div = null;
 
 function main_page_enter() {
     document.getElementById("main_page").hidden = false;
@@ -113,6 +116,16 @@ function main_page_enter() {
         main_page_first_time = false;
         main_page_init();
     }
+    if(main_page_last_robot_div != null) {
+        document.getElementById(main_page_last_robot_div).hidden = true;
+    }
+    if(main_page_last_room_div != null) {
+        document.getElementById(main_page_last_room_div).hidden = true;
+    }
+    document.getElementById("main_page_rgb_robot_img_center").hidden = false;
+    main_page_last_robot_div = "main_page_rgb_robot_img_center";
+    document.getElementById("main_page_rgb_room_img_center").hidden = false;
+    main_page_last_room_div = "main_page_rgb_room_img_center";
 }
 
 function main_page_init() {
@@ -277,40 +290,12 @@ function main_page_init() {
     document.getElementById("main_page_task_intervetion_move_base_arrows_right_buttton").disabled = true;
     
 
-    var w2 = window,
-    d2 = document,
-    e2 = d2.documentElement,
-    g2 = d2.getElementsByTagName('body')[0],
-    x2 = w2.innerWidth || e2.clientWidth || g2.clientWidth,
-    y2 = w2.innerHeight|| e2.clientHeight|| g2.clientHeight;
-	var robot_image_viewer = new MJPEGCANVAS.Viewer({
-		divID: 'main_page_rgb_robot_div',
-		host: window.location.hostname,
-        port: 8000,
-		width: (x2-15)/2 -15 ,
-        height: ( (y2-10)*3)/10 -10,
-        //quality: 40,
-		// topic: '/kinect2/k2_rgb_sd/image'
-	    topic: '/xtion/rgb/image_raw'
-	});
-    
-	var room_image_viewer = new MJPEGCANVAS.Viewer({
-		divID: 'main_page_rgb_map_div',
-		host: window.location.hostname,
-        port: 8000,
-		width: (x2-15)/2 -15 ,
-        height: ( (y2-10)*3)/10 -10,
-        //quality: 40,
-		// topic: '/kinect2/k2_rgb_sd/image'
-	    topic: '/camera/rgb/image_raw'
-	});
     document.getElementById("main_page_task_intervetion_finish_intervention_btn").disabled = true;
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = true;
     document.getElementById("main_page_info_header").innerHTML = "Chose a task";
     //TODO: random chose a task after timeout
 
 
-    //TODO: pentru când nu avem chat să marim poz3le
     if(main_page_cond2 == 0) {
         document.getElementById("main_page_chat_interface").hidden = true;
     } else {
@@ -319,6 +304,52 @@ function main_page_init() {
 
     main_page_total_score = 0;
     document.getElementById("main_page_total_score").innerHTML = "Current Score:" + main_page_total_score;
+
+    //TODO: image and shit
+    main_page_cond3 = 1;//1-4
+    document.getElementById("main_page_rgb_robot_img_center").src = "/img/cond_" + main_page_cond3 + "/robot_center.JPG";
+
+    main_page_robot_img_1_viewer = pannellum.viewer('main_page_rgb_robot_img_1', ﻿{
+        "panorama": "/img/cond_" + main_page_cond3 + "/robot_center.JPG",
+        "autoLoad": true,
+        "showControls": false
+    });
+    main_page_robot_img_2_viewer = pannellum.viewer('main_page_rgb_robot_img_2', ﻿{
+        "panorama": "/img/cond_" + main_page_cond3 + "/robot_center.JPG",
+        "autoLoad": true,
+        "showControls": false
+    });
+
+    document.getElementById("main_page_rgb_room_img_center").src = "/img/cond_" + main_page_cond3 + "/room_center.jpeg";
+    document.getElementById("main_page_rgb_room_img_1").src = "/img/cond_" + main_page_cond3 + "/room_center.jpeg";
+    document.getElementById("main_page_rgb_room_img_2").src = "/img/cond_" + main_page_cond3 + "/room_center.jpeg";
+
+    var video = null;
+    var source = null;
+    video = document.getElementById('main_page_robot_video_1');
+    source = document.createElement('source');
+    source.setAttribute('src', '/video/robot_' + main_page_cond3 + "_1.mp4");
+    video.appendChild(source);
+    video = document.getElementById('main_page_robot_video_2');
+    source = document.createElement('source');
+    source.setAttribute('src', '/video/robot_' + main_page_cond3 + "_2.mp4");
+    video.appendChild(source);
+    video = document.getElementById('main_page_robot_video_3');
+    source = document.createElement('source');
+    source.setAttribute('src', '/video/robot_' + main_page_cond3 + "_3.mp4");
+    video.appendChild(source);
+    video = document.getElementById('main_page_room_video_1');
+    source = document.createElement('source');
+    source.setAttribute('src', '/video/room_' + main_page_cond3 + "_1.mp4");
+    video.appendChild(source);
+    video = document.getElementById('main_page_room_video_2');
+    source = document.createElement('source');
+    source.setAttribute('src', '/video/room_' + main_page_cond3 + "_2.mp4");
+    video.appendChild(source);
+    video = document.getElementById('main_page_room_video_3');
+    source = document.createElement('source');
+    source.setAttribute('src', '/video/room_' + main_page_cond3 + "_3.mp4");
+    video.appendChild(source);
 }
 
 function main_page_exit() {
@@ -363,6 +394,34 @@ function main_page_start_task(arg) {
         + ': '
         + result);
     });
+    if(main_page_last_robot_div != null) {
+        document.getElementById(main_page_last_robot_div).hidden = true;
+    }
+    if(main_page_last_room_div != null) {
+        document.getElementById(main_page_last_room_div).hidden = true;
+    }
+    if (main_page_current_task == 1) {
+        document.getElementById("main_page_robot_video_1").hidden = false;
+        main_page_last_robot_div = "main_page_robot_video_1";
+        document.getElementById("main_page_rooom_video_1").hidden = false;
+        main_page_last_room_div = "main_page_room_video_1";
+        document.getElementById('main_page_robot_video_1').play();
+        document.getElementById('main_page_room_video_1').play();
+    } else if (main_page_current_task == 2) {
+        document.getElementById("main_page_robot_video_2").hidden = false;
+        main_page_last_robot_div = "main_page_robot_video_2";
+        document.getElementById("main_page_rooom_video_2").hidden = false;
+        main_page_last_room_div = "main_page_room_video_2";
+        document.getElementById('main_page_robot_video_2').play();
+        document.getElementById('main_page_room_video_2').play();
+    } else if (main_page_current_task == 3) {
+        document.getElementById("main_page_robot_video_1").hidden = false;
+        main_page_last_robot_div = "main_page_robot_video_1";
+        document.getElementById("main_page_rooom_video_1").hidden = false;
+        main_page_last_room_div = "main_page_room_video_1";
+        document.getElementById('main_page_robot_video_1').play();
+        document.getElementById('main_page_room_video_1').play();
+    }
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = false;
     main_page_move_base_timer(50);
 
