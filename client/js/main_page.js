@@ -737,13 +737,13 @@ function main_page_intervention() {
             'task' : main_page_current_task
         }
         experiment_index = experiment_index + 1;
-        document.getElementById("main_page_task_intervetion_move_base_arrows").hidden = false;
-        document.getElementById("main_page_task_intervetion_move_base_arrows_up_buttton").disabled = false;
-        document.getElementById("main_page_task_intervetion_move_base_arrows_left_buttton").disabled = false;
-        document.getElementById("main_page_task_intervetion_move_base_arrows_down_buttton").disabled = false;
-        document.getElementById("main_page_task_intervetion_move_base_arrows_right_buttton").disabled = false;
+        //document.getElementById("main_page_task_intervetion_move_base_arrows").hidden = false;
+        //document.getElementById("main_page_task_intervetion_move_base_arrows_up_buttton").disabled = false;
+        //document.getElementById("main_page_task_intervetion_move_base_arrows_left_buttton").disabled = false;
+        //document.getElementById("main_page_task_intervetion_move_base_arrows_down_buttton").disabled = false;
+        //document.getElementById("main_page_task_intervetion_move_base_arrows_right_buttton").disabled = false;
         main_page_current_task_interventions["MOVE_BASE"] = true;
-        main_page_move_base_manual_timer(120);
+        main_page_move_base_manual_timer(20);
     }
     else if(main_page_current_state == "MOVE_HEAD_AND_SCAN") {
         autonomous_head = false;
@@ -771,6 +771,7 @@ function main_page_intervention() {
         headLeftRightSlider.bootstrapSlider("setValue", head_x);
         headUpDownSlider.bootstrapSlider("setValue", head_y);
         main_page_move_head_manual_timer(60);
+        document.getElementById("main_page_task_intervetion_finish_intervention_btn").disabled = false;
     }
     else if(main_page_current_state == "CALCULATE_RESULT") {
         autonomous_result = false;
@@ -785,8 +786,8 @@ function main_page_intervention() {
         document.getElementById("main_page_task_intervetion_scan_task_"+main_page_current_task).hidden = false;
         main_page_current_task_interventions["CALCULATE_RESULT"] = true;
         main_page_result_manual_timer(30);
+        document.getElementById("main_page_task_intervetion_finish_intervention_btn").disabled = false;
     }
-    document.getElementById("main_page_task_intervetion_finish_intervention_btn").disabled = false;
 }
 
 function main_page_finish_intervention() {
@@ -1022,6 +1023,35 @@ function main_page_my_swal(type, success) {
                 }
                 main_page_current_state = "MOVE_HEAD_AND_SCAN";
                 main_page_current_task_head_task = 0;
+                if(main_page_last_robot_div != null) {
+                    document.getElementById(main_page_last_robot_div).hidden = true;
+                }
+                if(main_page_last_room_div != null) {
+                    document.getElementById(main_page_last_room_div).hidden = true;
+                }
+                if (main_page_current_task == 1) {
+                    document.getElementById("main_page_rgb_robot_img_1").hidden = false;
+                    main_page_last_robot_div = "main_page_rgb_robot_img_1";
+                    document.getElementById("main_page_rgb_room_img_1").hidden = false;
+                    main_page_last_room_div = "main_page_rgb_room_img_1";
+                } else if (main_page_current_task == 2) {
+                    document.getElementById("main_page_rgb_robot_img_2").hidden = false;
+                    main_page_last_robot_div = "main_page_rgb_robot_img_2";
+                    document.getElementById("main_page_rgb_room_img_2").hidden = false;
+                    main_page_last_room_div = "main_page_rgb_room_img_2";
+                } else if (main_page_current_task == 3) {
+                    if(main_page_task_3_move_task == 1) {
+                        document.getElementById("main_page_rgb_robot_img_1").hidden = false;
+                        main_page_last_robot_div = "main_page_rgb_robot_img_1";
+                        document.getElementById("main_page_rgb_room_img_1").hidden = false;
+                        main_page_last_room_div = "main_page_rgb_room_img_1";
+                    } else {
+                        document.getElementById("main_page_rgb_robot_img_2").hidden = false;
+                        main_page_last_robot_div = "main_page_rgb_robot_img_2";
+                        document.getElementById("main_page_rgb_room_img_2").hidden = false;
+                        main_page_last_room_div = "main_page_rgb_room_img_2";
+                    }
+                }
                 main_page_move_head_task();
                 main_page_move_head_timer(30);
             });
@@ -1110,6 +1140,20 @@ function main_page_my_swal(type, success) {
                             + ': '
                             + result);
                         });
+                        if(main_page_last_robot_div != null) {
+                            document.getElementById(main_page_last_robot_div).hidden = true;
+                        }
+                        if(main_page_last_room_div != null) {
+                            document.getElementById(main_page_last_room_div).hidden = true;
+                        }
+                        if (main_page_current_task == 1) {
+                            document.getElementById("main_page_robot_video_3").hidden = false;
+                            main_page_last_robot_div = "main_page_robot_video_3";
+                            document.getElementById("main_page_room_video_3").hidden = false;
+                            main_page_last_room_div = "main_page_room_video_3";
+                            document.getElementById('main_page_robot_video_3').play();
+                            document.getElementById('main_page_room_video_3').play();
+                        } 
                         main_page_current_state = "MOVE_BASE";
                         main_page_move_base_timer(50);
                     
