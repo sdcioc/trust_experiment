@@ -320,9 +320,9 @@ function main_page_init() {
         "showControls": false
     });
 
-    document.getElementById("main_page_rgb_room_img_center").src = "/img/cond_" + main_page_cond3 + "/room_center.jpeg";
-    document.getElementById("main_page_rgb_room_img_1").src = "/img/cond_" + main_page_cond3 + "/room_center.jpeg";
-    document.getElementById("main_page_rgb_room_img_2").src = "/img/cond_" + main_page_cond3 + "/room_center.jpeg";
+    document.getElementById("main_page_rgb_room_img_center").src = "/img/cond_" + main_page_cond3 + "/room_center";
+    document.getElementById("main_page_rgb_room_img_1").src = "/img/cond_" + main_page_cond3 + "/room_center";
+    document.getElementById("main_page_rgb_room_img_2").src = "/img/cond_" + main_page_cond3 + "/room_center";
 
     var video = null;
     var source = null;
