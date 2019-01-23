@@ -1147,14 +1147,12 @@ function main_page_my_swal(type, success) {
                         if(main_page_last_room_div != null) {
                             document.getElementById(main_page_last_room_div).hidden = true;
                         }
-                        if (main_page_current_task == 1) {
-                            document.getElementById("main_page_robot_video_3").hidden = false;
-                            main_page_last_robot_div = "main_page_robot_video_3";
-                            document.getElementById("main_page_room_video_3").hidden = false;
-                            main_page_last_room_div = "main_page_room_video_3";
-                            document.getElementById('main_page_robot_video_3').play();
-                            document.getElementById('main_page_room_video_3').play();
-                        } 
+                        document.getElementById("main_page_robot_video_3").hidden = false;
+                        main_page_last_robot_div = "main_page_robot_video_3";
+                        document.getElementById("main_page_room_video_3").hidden = false;
+                        main_page_last_room_div = "main_page_room_video_3";
+                        document.getElementById('main_page_robot_video_3').play();
+                        document.getElementById('main_page_room_video_3').play();
                         main_page_current_state = "MOVE_BASE";
                         main_page_move_base_timer(50);
                     
