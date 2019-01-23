@@ -310,12 +310,12 @@ function main_page_init() {
     document.getElementById("main_page_rgb_robot_img_center").src = "/img/cond_" + main_page_cond3 + "/robot_center.JPG";
 
     main_page_robot_img_1_viewer = pannellum.viewer('main_page_rgb_robot_img_1', ﻿{
-        "panorama": "/img/cond_" + main_page_cond3 + "/robot_center.JPG",
+        "panorama": "/img/cond_" + main_page_cond3 + "/1.JPG",
         "autoLoad": true,
         "showControls": false
     });
     main_page_robot_img_2_viewer = pannellum.viewer('main_page_rgb_robot_img_2', ﻿{
-        "panorama": "/img/cond_" + main_page_cond3 + "/robot_center.JPG",
+        "panorama": "/img/cond_" + main_page_cond3 + "/2.JPG",
         "autoLoad": true,
         "showControls": false
     });
@@ -1053,7 +1053,7 @@ function main_page_my_swal(type, success) {
                     }
                 }
                 main_page_move_head_task();
-                main_page_move_head_timer(30);
+                //main_page_move_head_timer(30);
             });
             
         } else {
