@@ -403,21 +403,21 @@ function main_page_start_task(arg) {
     if (main_page_current_task == 1) {
         document.getElementById("main_page_robot_video_1").hidden = false;
         main_page_last_robot_div = "main_page_robot_video_1";
-        document.getElementById("main_page_rooom_video_1").hidden = false;
+        document.getElementById("main_page_room_video_1").hidden = false;
         main_page_last_room_div = "main_page_room_video_1";
         document.getElementById('main_page_robot_video_1').play();
         document.getElementById('main_page_room_video_1').play();
     } else if (main_page_current_task == 2) {
         document.getElementById("main_page_robot_video_2").hidden = false;
         main_page_last_robot_div = "main_page_robot_video_2";
-        document.getElementById("main_page_rooom_video_2").hidden = false;
+        document.getElementById("main_page_room_video_2").hidden = false;
         main_page_last_room_div = "main_page_room_video_2";
         document.getElementById('main_page_robot_video_2').play();
         document.getElementById('main_page_room_video_2').play();
     } else if (main_page_current_task == 3) {
         document.getElementById("main_page_robot_video_1").hidden = false;
         main_page_last_robot_div = "main_page_robot_video_1";
-        document.getElementById("main_page_rooom_video_1").hidden = false;
+        document.getElementById("main_page_room_video_1").hidden = false;
         main_page_last_room_div = "main_page_room_video_1";
         document.getElementById('main_page_robot_video_1').play();
         document.getElementById('main_page_room_video_1').play();
