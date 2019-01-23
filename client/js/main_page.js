@@ -186,7 +186,7 @@ function main_page_init() {
             value : head_x
         }
     );
-    headLeftRightSlider.on("slideStop", function(event) {
+    headLeftRightSlider.on("change", function(event) {
         head_x = event.value;
         var valueToSend = head_x;
         console.log(valueToSend);
@@ -226,7 +226,7 @@ function main_page_init() {
             value : head_y
         }
     );
-    headUpDownSlider.on("slideStop", function(event) {
+    headUpDownSlider.on("change", function(event) {
         head_y = event.value * -1;
         var valueToSend = head_y *-1;
         console.log(valueToSend);

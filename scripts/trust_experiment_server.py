@@ -178,7 +178,7 @@ class TrustServerClass:
             if(requestDict["service"] == "google"):
                 image = vision.types.Image(content=jpeg.tobytes());
                 response = self.google_vision_client.object_localization(image=image);
-                #print response
+                print response
                 responseDict["result"] = []
                 for obj in response.localized_object_annotations:
                     responseDict["result"].append(obj.name);
@@ -189,7 +189,7 @@ class TrustServerClass:
                 responseDict["response"] = "Success";
             elif (requestDict["service"] == "amazon"):
                 response = self.amazon_vision_client.detect_labels(Image={'Bytes': jpeg.tobytes()},MaxLabels=123,MinConfidence=50);
-                #print response
+                print response
                 responseDict["result"] = []
                 for obj in response["Labels"]:
                     responseDict["result"].append(obj["Name"]);
