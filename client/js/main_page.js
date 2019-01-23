@@ -187,7 +187,7 @@ function main_page_init() {
         }
     );
     headLeftRightSlider.on("change", function(event) {
-        head_x = event.newValue;
+        head_x = event.value.newValue;
         var valueToSend = head_x;
         console.log(valueToSend);
         if (main_page_current_task == 1) {
@@ -227,7 +227,7 @@ function main_page_init() {
         }
     );
     headUpDownSlider.on("change", function(event) {
-        head_y = event.newValue * -1;
+        head_y = event.value.newValue * -1;
         var valueToSend = head_y *-1;
         console.log(valueToSend);
         if (main_page_current_task == 1) {
