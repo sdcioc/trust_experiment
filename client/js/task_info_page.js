@@ -10,7 +10,47 @@ var task_info_page_tasks_text = {
         to a specific point in Room 1, which is shown with red on the map. Then, TIAGo will move its head to scan the room. After that TIAGo has to move\
         to a point in Room 2, shown with blue on the map. Next, by moving its head, TIAGo will scan Room 2 and \
         will compute the answer for the task",
-    4 : {
+    4 : "<h4>Game Points</h4>\
+        Every task will have maximum 7 points to gain. If the you intervene or the robot fail you will get fewer points.\
+        Every task has 3 parts: Moving at some point in the rooms, moving the head and scan the room and calculate the\
+         result for the task. The next table shows how many point you can lose.\
+         <table class='table table-striped'>\
+        <thead>\
+            <tr>\
+            <th scope='col'>Action</th>\
+            <th scope='col'>Moving the base</th>\
+            <th scope='col'>Moving head and scan</th>\
+            <th scope='col'>Calculate the results</th>\
+            </tr>\
+        </thead>\
+        <tbody>\
+            <tr>\
+            <th scope='row'>Succes(TIAGo alone)</th>\
+            <td>0</td>\
+            <td>0</td>\
+            <td>0</td>\
+            </tr>\
+            <tr>\
+            <th scope='row'>Fail(TIAGo alone)</th>\
+            <td>-8</td>\
+            <td>-5</td>\
+            <td>-3</td>\
+            </tr>\
+            <tr>\
+            <th scope='row'>Succes(TIAGo with intervention)</th>\
+            <td>-2</td>\
+            <td>-1</td>\
+            <td>-1</td>\
+            </tr>\
+            <tr>\
+            <th scope='row'>Fail(TIAGo with intervention)</th>\
+            <td>-8</td>\
+            <td>-5</td>\
+            <td>-3</td>\
+            </tr>\
+        </tbody>\
+        </table>",
+    5 : {
         0 : "<h4>Experiment User Interface</h4>\
         The interface is divided:</p>\
         <ul>\
@@ -65,10 +105,11 @@ function task_info_page_enter() {
     document.getElementById("task_info_page_task_1_text").innerHTML = "<h4>Task 1<h4>" + task_info_page_tasks_text[main_page_real_task[1]];
     document.getElementById("task_info_page_task_2_text").innerHTML = "<h4>Task 2<h4>" + task_info_page_tasks_text[main_page_real_task[2]];
     document.getElementById("task_info_page_task_3_text").innerHTML = "<h4>Task 3<h4>" + task_info_page_tasks_text[main_page_real_task[3]];
+    document.getElementById("task_info_page_points_text").innerHTML = task_info_page_tasks_text[4];
     if(main_page_cond2 == 0) {
-        document.getElementById("task_info_page_ui_text").innerHTML = task_info_page_tasks_text[4][1];
+        document.getElementById("task_info_page_ui_text").innerHTML = task_info_page_tasks_text[5][1];
     } else {
-        document.getElementById("task_info_page_ui_text").innerHTML = task_info_page_tasks_text[4][0];
+        document.getElementById("task_info_page_ui_text").innerHTML = task_info_page_tasks_text[5][0];
     }
     document.getElementById("task_info_page_text_" + taskInfoIndex).hidden = false;
     experiment_events[experiment_index] = {
