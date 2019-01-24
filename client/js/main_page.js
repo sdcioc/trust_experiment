@@ -314,12 +314,20 @@ function main_page_init() {
     document.getElementById("main_page_rgb_room_img_1").src = "/img/cond_" + main_page_cond3 + "/room_1.jpg";
     document.getElementById("main_page_rgb_room_img_2").src = "/img/cond_" + main_page_cond3 + "/room_2.jpg";
 
+    var w2 = window,
+    var d2 = document,
+    var e2 = d2.documentElement,
+    var g2 = d2.getElementsByTagName('body')[0],
+    var x2 = w2.innerWidth || e2.clientWidth || g2.clientWidth,
+    var y2 = w2.innerHeight|| e2.clientHeight|| g2.clientHeight;
     var video = null;
     var source = null;
     video = document.getElementById('main_page_robot_video_1');
     source = document.createElement('source');
     source.setAttribute('src', '/video/robot_' + main_page_cond3 + "_1.mp4");
     video.appendChild(source);
+    video.width = (x2-15)/2 - 15;
+    video.height = ( (y2-10)*3)/10 - 10;
     video = document.getElementById('main_page_robot_video_2');
     source = document.createElement('source');
     source.setAttribute('src', '/video/robot_' + main_page_cond3 + "_2.mp4");
@@ -952,15 +960,20 @@ function main_page_move_head_task() {
 
     if(autonomous_head == true) {
         var local_panorama_viewr = null;
+        var local_room = null;
         if (main_page_current_task == 1) {
             local_panorama_viewr = main_page_robot_img_1_viewer;
+            local_room = 1;
         } else if (main_page_current_task == 2) {
             local_panorama_viewr = main_page_robot_img_2_viewer;
+            local_room = 2;
         } else if (main_page_current_task == 3) {
             if(main_page_task_3_move_task == 1) {
                 local_panorama_viewr = main_page_robot_img_1_viewer;
+                local_room = 1;
             } else {
                 local_panorama_viewr = main_page_robot_img_2_viewer;
+                local_room = 2;
             }
         }
 
@@ -984,7 +997,7 @@ function main_page_move_head_task() {
                 if(autonomous_head == true) {
                     var requestDict = {
                         type : "Scan",
-                        task : main_page_current_task,
+                        room : local_room,
                         service : "",
                         yaw : local_panorama_viewr.getYaw(),
                         pitch : local_panorama_viewr.getPitch()

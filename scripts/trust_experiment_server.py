@@ -6,7 +6,6 @@ from google.cloud import vision
 import boto3
 import cv2
 #import dlib
-import cv_bridge
 import random
 import time
 
@@ -15,37 +14,7 @@ import geometry_msgs.msg
 import std_msgs.msg
 import sensor_msgs.msg
 from trust_package.srv import *
-"""
-taskArangement = [
-    [1, 2, 3, 4],
-    [1, 2, 4, 3],
-    [1, 3, 2, 4],
-    [1, 3, 4, 2],
-    [1, 4, 2, 3],
-    [1, 4, 3, 2],
 
-    [2, 1, 3, 4],
-    [2, 1, 4, 3],
-    [2, 3, 1, 4],
-    [2, 3, 4, 1],
-    [2, 4, 1, 3],
-    [2, 4, 3, 1],
-
-    [3, 2, 1, 4],
-    [3, 2, 4, 1],
-    [3, 1, 2, 4],
-    [3, 1, 4, 2],
-    [3, 4, 2, 1],
-    [3, 4, 1, 2],
-
-    [4, 2, 3, 1],
-    [4, 2, 1, 3],
-    [4, 3, 2, 1],
-    [4, 3, 1, 2],
-    [4, 1, 2, 3],
-    [4, 1, 3, 2],
-]
-"""
 taskArangement = [
     [1, 2, 3],
     [1, 3, 2],
@@ -57,61 +26,18 @@ taskArangement = [
 class TrustServerClass:
 	#constructor
     def __init__(self):
-        self.cvBridge = cv_bridge.CvBridge();
         self.google_vision_client = vision.ImageAnnotatorClient();
         self.DISTANCE_ERROR = 0.6;
         self.server = None;
         self.amazon_vision_client = boto3.client("rekognition","us-west-2");
+        self.images = {
+            1 : cv2.imread("/home/ubuntu/trust_project/catkin_ws/src/trust_experiment/client/img/cond_1/1.JPG"),
+            2 : cv2.imread("/home/ubuntu/trust_project/catkin_ws/src/trust_experiment/client/img/cond_1/2.JPG")
+        };
 
     def start_service(self):
         self.server = rospy.Service('trust_server', TrustServer, self.trust_callback);
 
-    def get_distance(self, point1, point2):
-        x1 = point1.position.x;
-        y1 = point1.position.y;
-        x2 = point2.pose.position.x;
-        y2 = point2.pose.position.y;
-        return math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
-
-
-    def convert_POIPosition_MapPosition(self, position):
-        #tipul de mesaj pentru map
-        pos = geometry_msgs.msg.PoseStamped();
-        #harta pe care are loc pozitionarea si directia
-        pos.header.frame_id = 'map';
-        pos.pose.position.x = position[0];
-        pos.pose.position.y = position[1];
-        pos.pose.orientation.z = math.sin(position[2] / 2.0);
-        pos.pose.orientation.w = math.cos(position[2] / 2.0);
-        return pos;
-
-    #intrare geometry_msgs.msg.PoseStamped (vector3 position, vector3 orientation)
-    def convert_MapPosition_POIPosition(self, position):
-            x = position.position.x;
-            y = position.position.y;
-            w = 2 * math.acos(position.orientation.w);
-            return (x, y, w);
-
-    def convert_POIName_RosparamName(self, poi_name):
-        prefix = '/mmap/poi/submap_0/';
-        if not poi_name.startswith(prefix):
-            poi_name = prefix + poi_name;
-        return poi_name;
-
-    #returneaza pozitia pe harta a punctului de interes
-    def get_poi_position(self, poi_name):
-        print "[INFO] getting position for poi {}".format(poi_name) 
-        poi_name = self.convert_POIName_RosparamName(poi_name)
-        try:
-            poi = rospy.get_param(poi_name)
-            if not poi:
-                return None
-            if len(poi[2:]) != 3:
-                return None
-            position = self.convert_POIPosition_MapPosition(poi[2:])
-            return position
-        except KeyError:
-            return None
 
     def trust_callback(self, req):
         print "A primit" + req.a;
@@ -148,33 +74,23 @@ class TrustServerClass:
         elif (requestDict["type"] == "VerifyMove"):
             print "VerifyMove"
             responseDict["type"] = "VerifyMove";
-            try:
-                reply = rospy.wait_for_message(
-                '/amcl_pose',
-                geometry_msgs.msg.PoseWithCovarianceStamped, 3);
-                if(requestDict["task"] == 1):
-                    current_distance = self.get_distance(reply.pose.pose, self.get_poi_position("poi_bedroom"));
-                if(requestDict["task"] == 2):
-                    current_distance = self.get_distance(reply.pose.pose, self.get_poi_position("poi_livingroom"));
-                if(requestDict["task"] == 3):
-                    if(requestDict["subtype"] == 1):
-                        current_distance = self.get_distance(reply.pose.pose, self.get_poi_position("poi_bedroom"));
-                    else:
-                        current_distance = self.get_distance(reply.pose.pose, self.get_poi_position("poi_livingroom"));
-                if (current_distance < self.DISTANCE_ERROR):
-                    responseDict["name"] = "Success";
-                else:
-                    responseDict["name"] = "Fail";
-            except rospy.exceptions.ROSException:
-                responseDict["name"] = "Fail";
+            responseDict["name"] = "Success";
         elif (requestDict["type"] == "Scan"):
             print "Scan"
             responseDict["type"] = "Scan";
-            reply = rospy.wait_for_message(
-                            'xtion/rgb/image_rect_color',
-                            sensor_msgs.msg.Image, 3);
-            frame = self.cvBridge.imgmsg_to_cv2(reply, 'bgr8');
-            ret, jpeg = cv2.imencode('.jpg', frame);
+            frame = self.images[requestDict["room"]];
+            #TODO de calculat ce parte din imagine iau
+            w_index = requestDict["yaw"] + 90;
+            h_index = requestDict["pitch"] + 50;
+            width, height = frame.size;
+            w_side = width / 6;
+            h_side = height / 6;
+            w_step = (w_side * 4) / 180;
+            h_step = (h_side * 4) / 100;
+            w_point = w_side + w_step * w_index;
+            h_point = h_side + h_step * h_index;
+            crop_img = frame[h_point-h_side:h_point+h_side, w_point-w_side:w_point+w_side];
+            ret, jpeg = cv2.imencode('.jpg', crop_img);
             if(requestDict["service"] == "google"):
                 image = vision.types.Image(content=jpeg.tobytes());
                 response = self.google_vision_client.object_localization(image=image);
