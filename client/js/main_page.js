@@ -186,8 +186,8 @@ function main_page_init() {
             value : head_x
         }
     );
-    headLeftRightSlider.on("change", function(event) {
-        head_x = event.value.newValue;
+    headLeftRightSlider.on("slideStop", function(event) {
+        head_x = event.value;
         var valueToSend = head_x;
         console.log(valueToSend);
         if (main_page_current_task == 1) {
@@ -226,8 +226,8 @@ function main_page_init() {
             value : head_y
         }
     );
-    headUpDownSlider.on("change", function(event) {
-        head_y = event.value.newValue * -1;
+    headUpDownSlider.on("slideStop", function(event) {
+        head_y = event.value * -1;
         var valueToSend = head_y *-1;
         console.log(valueToSend);
         if (main_page_current_task == 1) {
@@ -288,7 +288,11 @@ function main_page_init() {
         "minYaw" : -90,
         "maxYaw" : 90,
         "minPitch" : -50,
-        "maxPitch" : 50
+        "maxPitch" : 50,
+        "keyboardZoom" : false,
+        "mouseZoom" : false,
+        "draggable" : false,
+        "disableKeyboardCtrl" : true
     });
     main_page_robot_img_2_viewer = pannellum.viewer('main_page_rgb_robot_img_2', {
         "panorama": "/img/cond_" + main_page_cond3 + "/2.JPG",
@@ -299,12 +303,16 @@ function main_page_init() {
         "minYaw" : -90,
         "maxYaw" : 90,
         "minPitch" : -50,
-        "maxPitch" : 50
+        "maxPitch" : 50,
+        "keyboardZoom" : false,
+        "mouseZoom" : false,
+        "draggable" : false,
+        "disableKeyboardCtrl" : true
     });
 
     document.getElementById("main_page_rgb_room_img_center").src = "/img/cond_" + main_page_cond3 + "/room_center.jpg";
-    document.getElementById("main_page_rgb_room_img_1").src = "/img/cond_" + main_page_cond3 + "/room_center.jpg";
-    document.getElementById("main_page_rgb_room_img_2").src = "/img/cond_" + main_page_cond3 + "/room_center.jpg";
+    document.getElementById("main_page_rgb_room_img_1").src = "/img/cond_" + main_page_cond3 + "/room_1.jpg";
+    document.getElementById("main_page_rgb_room_img_2").src = "/img/cond_" + main_page_cond3 + "/room_2.jpg";
 
     var video = null;
     var source = null;
@@ -1080,7 +1088,11 @@ function main_page_my_swal(type, success) {
                         "minYaw" : -90,
                         "maxYaw" : 90,
                         "minPitch" : -50,
-                        "maxPitch" : 50
+                        "maxPitch" : 50,
+                        "keyboardZoom" : false,
+                        "mouseZoom" : false,
+                        "draggable" : false,
+                        "disableKeyboardCtrl" : true
                     });
                 } else if (main_page_current_task == 2) {
                     document.getElementById("main_page_rgb_robot_img_2").hidden = false;
@@ -1096,7 +1108,11 @@ function main_page_my_swal(type, success) {
                         "minYaw" : -90,
                         "maxYaw" : 90,
                         "minPitch" : -50,
-                        "maxPitch" : 50
+                        "maxPitch" : 50,
+                        "keyboardZoom" : false,
+                        "mouseZoom" : false,
+                        "draggable" : false,
+                        "disableKeyboardCtrl" : true
                     });
                 } else if (main_page_current_task == 3) {
                     if(main_page_task_3_move_task == 1) {
@@ -1113,7 +1129,11 @@ function main_page_my_swal(type, success) {
                             "minYaw" : -90,
                             "maxYaw" : 90,
                             "minPitch" : -50,
-                            "maxPitch" : 50
+                            "maxPitch" : 50,
+                            "keyboardZoom" : false,
+                            "mouseZoom" : false,
+                            "draggable" : false,
+                            "disableKeyboardCtrl" : true
                         });
                     } else {
                         document.getElementById("main_page_rgb_robot_img_2").hidden = false;
@@ -1129,7 +1149,11 @@ function main_page_my_swal(type, success) {
                             "minYaw" : -90,
                             "maxYaw" : 90,
                             "minPitch" : -50,
-                            "maxPitch" : 50
+                            "maxPitch" : 50,
+                            "keyboardZoom" : false,
+                            "mouseZoom" : false,
+                            "draggable" : false,
+                            "disableKeyboardCtrl" : true
                         });
                     }
                 }
