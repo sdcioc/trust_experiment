@@ -277,7 +277,7 @@ function main_page_init() {
 
     //TODO: image and shit
     main_page_cond3 = 1;//1-4
-    document.getElementById("main_page_rgb_robot_img_center").src = "/img/cond_" + main_page_cond3 + "/robot_center.JPG";
+    document.getElementById("main_page_rgb_robot_img_center").src = "/img/cond_" + main_page_cond3 + "/robot_center.jpg";
 
     main_page_robot_img_1_viewer = pannellum.viewer('main_page_rgb_robot_img_1', {
         "panorama": "/img/cond_" + main_page_cond3 + "/1.JPG",
@@ -421,7 +421,7 @@ function main_page_start_task(arg) {
         document.getElementById('main_page_room_video_1').play();
     }
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = false;
-    main_page_move_base_timer(50);
+    main_page_move_base_timer(20);
 
     document.getElementById("main_page_info_header").innerHTML = "The robot moves trough rooms, In 50 seconds you can intervine by pressing intervine button";
     main_page_current_task_score = 7;
