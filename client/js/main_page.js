@@ -137,7 +137,7 @@ function main_page_viewer_pose(moving_time, destination) {
             y : main_page_robot_pose.y
         }
     } else {
-        if(destination == 1) {
+        if(destination == 2) {
             main_page_robot_pose.x = main_page_last_robot_pose.x + ((-0.3 - main_page_last_robot_pose.x) / 15) * moving_time;
             main_page_robot_pose.y = main_page_last_robot_pose.y + ((0.0 - main_page_last_robot_pose.y) / 15) * moving_time;
         } else {
@@ -194,8 +194,8 @@ function main_page_init() {
    g_3.beginFill(createjs.Graphics.getRGB(0,255,0));
    g_3.drawRect(0,0,1,1);
    var s_3 = new createjs.Shape(g_3);
-   s_3.scaleX = 0.15;
-   s_3.scaleY = 0.2;
+   s_3.scaleX = 0.10;
+   s_3.scaleY = 0.10;
    s_3.x = 0;
    s_3.y = 0;
    s_3.rotation = 0;
