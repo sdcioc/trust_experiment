@@ -1097,16 +1097,31 @@ function main_page_my_swal(type, success) {
                         "panorama": "/img/cond_" + main_page_cond3 + "/1.JPG",
                         "autoLoad": true,
                         "showControls": false,
-                        "haov": 230,
-                        "vaov": 120,
-                        "minYaw" : -90,
-                        "maxYaw" : 90,
-                        "minPitch" : -50,
-                        "maxPitch" : 50,
                         "keyboardZoom" : false,
                         "mouseZoom" : false,
                         "draggable" : false,
-                        "disableKeyboardCtrl" : true
+                        "disableKeyboardCtrl" : true,
+                        "haov": 280,
+                        "vaov": 100,
+                        "minYaw" : -130,
+                        "maxYaw" : 130,
+                        "minPitch" : -50,
+                        "maxPitch" : 50
+                    });
+                    main_page_robot_img_1_viewer = pannellum.viewer('main_page_rgb_robot_img_1', {
+                        "panorama": "/img/cond_" + main_page_cond3 + "/1.JPG",
+                        "autoLoad": true,
+                        "showControls": false,
+                        "keyboardZoom" : false,
+                        "mouseZoom" : false,
+                        "draggable" : false,
+                        "disableKeyboardCtrl" : true,
+                        "haov": 280,
+                        "vaov": 100,
+                        "minYaw" : -130,
+                        "maxYaw" : 130,
+                        "minPitch" : -50,
+                        "maxPitch" : 50
                     });
                 } else if (main_page_current_task == 2) {
                     document.getElementById("main_page_rgb_robot_img_2").hidden = false;
@@ -1138,16 +1153,16 @@ function main_page_my_swal(type, success) {
                             "panorama": "/img/cond_" + main_page_cond3 + "/1.JPG",
                             "autoLoad": true,
                             "showControls": false,
-                            "haov": 230,
-                            "vaov": 120,
-                            "minYaw" : -90,
-                            "maxYaw" : 90,
-                            "minPitch" : -50,
-                            "maxPitch" : 50,
                             "keyboardZoom" : false,
                             "mouseZoom" : false,
                             "draggable" : false,
-                            "disableKeyboardCtrl" : true
+                            "disableKeyboardCtrl" : true,
+                            "haov": 280,
+                            "vaov": 100,
+                            "minYaw" : -130,
+                            "maxYaw" : 130,
+                            "minPitch" : -50,
+                            "maxPitch" : 50
                         });
                     } else {
                         document.getElementById("main_page_rgb_robot_img_2").hidden = false;
