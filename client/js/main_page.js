@@ -1088,6 +1088,7 @@ function main_page_my_swal(type, success) {
                     document.getElementById(main_page_last_room_div).hidden = true;
                 }
                 if (main_page_current_task == 1) {
+                    console.log("ai intrat pe caz 1 la head")
                     document.getElementById("main_page_rgb_robot_img_1").hidden = false;
                     main_page_last_robot_div = "main_page_rgb_robot_img_1";
                     document.getElementById("main_page_rgb_room_img_1").hidden = false;
@@ -1171,7 +1172,7 @@ function main_page_my_swal(type, success) {
                     }
                 }
                 main_page_move_head_task();
-                main_page_move_head_timer(30);
+                //main_page_move_head_timer(30);
             });
             
         } else {
