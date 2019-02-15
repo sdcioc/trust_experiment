@@ -175,10 +175,10 @@ function main_page_init() {
 
     headLeftRightSlider = $("#main_page_task_intervetion_head_left_right_slider").bootstrapSlider(
         {
-            min : -90,
-            max : 90,
+            min : -120,
+            max : 120,
             step : 1,
-            ticks: [-90, 0, 90],
+            ticks: [-120, 0, 120],
             ticks_positions: [0, 50, 100],
             ticks_labels: ['Left', 'Center', 'Right'],
             tooltip : 'hide',
@@ -901,20 +901,25 @@ function main_page_scan_task() {
     }
     if (main_page_current_task_scans_remained > -1) {
         var local_panorama_viewr = null;
+        var local_room = null;
         if (main_page_current_task == 1) {
             local_panorama_viewr = main_page_robot_img_1_viewer;
+            local_room = 1;
         } else if (main_page_current_task == 2) {
             local_panorama_viewr = main_page_robot_img_2_viewer;
+            local_room = 2;
         } else if (main_page_current_task == 3) {
             if(main_page_task_3_move_task == 1) {
                 local_panorama_viewr = main_page_robot_img_1_viewer;
+                local_room = 1;
             } else {
                 local_panorama_viewr = main_page_robot_img_2_viewer;
+                local_room = 2;
             }
         }
         var requestDict = {
             type : "Scan",
-            task : main_page_current_task,
+            room : local_room,
             service : "",
             yaw : local_panorama_viewr.getYaw(),
             pitch : local_panorama_viewr.getPitch()
