@@ -195,8 +195,8 @@ function main_page_init() {
    var s_3 = new createjs.Shape(g_3);
    s_3.scaleX = 0.10;
    s_3.scaleY = 0.10;
-   s_3.x = 0;
-   s_3.y = 0;
+   s_3.x = -0.3;
+   s_3.y = 0.3;
    s_3.rotation = 0;
    main_page_robot_pose = s_3;
    viewer.addObject(main_page_robot_pose);
@@ -478,6 +478,11 @@ function main_page_start_task(arg) {
 }
 
 function main_page_feedback() {
+    main_page_last_robot_pose = {
+        x : -0.3,
+        y : 0.3
+        
+    }
     changeState("post_questions_page");
 }
 
