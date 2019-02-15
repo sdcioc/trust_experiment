@@ -314,11 +314,11 @@ function main_page_init() {
     document.getElementById("main_page_rgb_room_img_1").src = "/img/cond_" + main_page_cond3 + "/room_1.jpg";
     document.getElementById("main_page_rgb_room_img_2").src = "/img/cond_" + main_page_cond3 + "/room_2.jpg";
 
-    var w2 = window,
-    var d2 = document,
-    var e2 = d2.documentElement,
-    var g2 = d2.getElementsByTagName('body')[0],
-    var x2 = w2.innerWidth || e2.clientWidth || g2.clientWidth,
+    var w2 = window;
+    var d2 = document;
+    var e2 = d2.documentElement;
+    var g2 = d2.getElementsByTagName('body')[0];
+    var x2 = w2.innerWidth || e2.clientWidth || g2.clientWidth;
     var y2 = w2.innerHeight|| e2.clientHeight|| g2.clientHeight;
     var video = null;
     var source = null;
