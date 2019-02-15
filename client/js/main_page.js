@@ -138,11 +138,11 @@ function main_page_viewer_pose(moving_time, destination) {
         }
     } else {
         if(destination == 1) {
-            main_page_robot_pose.x = main_page_last_robot_pose.x + ((-0.3 - main_page_last_robot_pose.x) / 15) * arg;
-            main_page_robot_pose.y = main_page_last_robot_pose.y + ((0.0 - main_page_last_robot_pose.y) / 15) * arg;
+            main_page_robot_pose.x = main_page_last_robot_pose.x + ((-0.3 - main_page_last_robot_pose.x) / 15) * moving_time;
+            main_page_robot_pose.y = main_page_last_robot_pose.y + ((0.0 - main_page_last_robot_pose.y) / 15) * moving_time;
         } else {
-            main_page_robot_pose.x = main_page_last_robot_pose.x + ((-0.4 - main_page_last_robot_pose.x) / 15) * arg;
-            main_page_robot_pose.y = main_page_last_robot_pose.y + ((1.2 - main_page_last_robot_pose.y) / 15) * arg;
+            main_page_robot_pose.x = main_page_last_robot_pose.x + ((-0.4 - main_page_last_robot_pose.x) / 15) * moving_time;
+            main_page_robot_pose.y = main_page_last_robot_pose.y + ((1.2 - main_page_last_robot_pose.y) / 15) * moving_time;
         }
         setTimeout(function(){
             main_page_viewer_pose(moving_time + 1, destination);
