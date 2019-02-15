@@ -91,9 +91,9 @@ class TrustServerClass:
             h_step = (h_side * 4) / 240;
             w_point = w_side + w_step * w_index;
             h_point = h_side + h_step * h_index;
-            crop_img = frame[h_point-h_side:h_point+h_side, w_point-w_side:w_point+w_side];
-            #ret, jpeg = cv2.imencode('.jpg', crop_img);
-            ret, jpeg = cv2.imencode('.jpg', frame);
+            crop_img = frame[:, w_point-w_side:w_point+w_side];
+            ret, jpeg = cv2.imencode('.jpg', crop_img);
+            #ret, jpeg = cv2.imencode('.jpg', frame);
             if(requestDict["service"] == "google"):
                 image = vision.types.Image(content=jpeg.tobytes());
                 response = self.google_vision_client.object_localization(image=image);
