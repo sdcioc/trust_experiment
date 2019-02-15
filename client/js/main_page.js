@@ -481,8 +481,10 @@ function main_page_feedback() {
     main_page_last_robot_pose = {
         x : -0.3,
         y : 0.3
-        
+
     }
+    main_page_robot_pose.x = -0.3;
+    main_page_robot_pose.y = 0.3;
     changeState("post_questions_page");
 }
 
