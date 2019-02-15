@@ -160,7 +160,6 @@ function main_page_init() {
     }
     experiment_index = experiment_index + 1;
 
-   viewer.removeObject(viewer.scene.children[2])
 
    var g_1 = new createjs.Graphics();
    g_1.setStrokeStyle(0);
@@ -214,6 +213,7 @@ function main_page_init() {
     viewer.scene.y = 60;
     viewer.scene.children[2].scaleY = 0.02
     viewer.scene.children[2].scaleX = 0.01
+    viewer.removeObject(viewer.scene.children[2])
 
     headLeftRightSlider = $("#main_page_task_intervetion_head_left_right_slider").bootstrapSlider(
         {
