@@ -109,6 +109,8 @@ var main_page_robot_img_1_viewer = null;
 var main_page_robot_img_2_viewer = null;
 var main_page_last_robot_div = null;
 var main_page_last_room_div = null;
+var main_page_robot_pose = null;
+var main_page_last_robot_pose = null;
 
 function main_page_enter() {
     document.getElementById("main_page").hidden = false;
@@ -128,6 +130,27 @@ function main_page_enter() {
     main_page_last_room_div = "main_page_rgb_room_img_center";
 }
 
+function main_page_viewer_pose(moving_time, destination) {
+    if(moving_time > 15) {
+        main_page_last_robot_pose = {
+            x : main_page_robot_pose.x,
+            y : main_page_robot_pose.y
+        }
+    } else {
+        if(destination == 1) {
+            main_page_robot_pose.x = main_page_last_robot_pose.x + ((-0.3 - main_page_last_robot_pose.x) / 15) * arg;
+            main_page_robot_pose.y = main_page_last_robot_pose.y + ((0.0 - main_page_last_robot_pose.y) / 15) * arg;
+        } else {
+            main_page_robot_pose.x = main_page_last_robot_pose.x + ((-0.4 - main_page_last_robot_pose.x) / 15) * arg;
+            main_page_robot_pose.y = main_page_last_robot_pose.y + ((1.2 - main_page_last_robot_pose.y) / 15) * arg;
+        }
+        setTimeout(function(){
+            main_page_viewer_pose(moving_time + 1, destination);
+        }, 1000);
+
+    }
+}
+
 function main_page_init() {
     
     experiment_events[experiment_index] = {
@@ -136,6 +159,8 @@ function main_page_init() {
         'type' : "MainPage"
     }
     experiment_index = experiment_index + 1;
+
+   viewer.removeObject(viewer.scene.children[2])
 
    var g_1 = new createjs.Graphics();
    g_1.setStrokeStyle(0);
@@ -163,6 +188,23 @@ function main_page_init() {
    s_2.rotation = 0;
    viewer.addObject(s_2);
 
+   var g_3 = new createjs.Graphics();
+   g_3.setStrokeStyle(0);
+   g_3.beginStroke(createjs.Graphics.getRGB(0,255,0));
+   g_3.beginFill(createjs.Graphics.getRGB(0,255,0));
+   g_3.drawRect(0,0,1,1);
+   var s_3 = new createjs.Shape(g_3);
+   s_3.scaleX = 0.15;
+   s_3.scaleY = 0.2;
+   s_3.x = 0;
+   s_3.y = 0;
+   s_3.rotation = 0;
+   main_page_robot_pose = s_3;
+   viewer.addObject(main_page_robot_pose);
+   main_page_last_robot_pose = {
+       x : main_page_robot_pose.x,
+       y : main_page_robot_pose.y
+   }
     /*
     Setare hartă
     */
@@ -405,6 +447,7 @@ function main_page_start_task(arg) {
         main_page_last_room_div = "main_page_room_video_1";
         document.getElementById('main_page_robot_video_1').play();
         document.getElementById('main_page_room_video_1').play();
+        main_page_viewer_pose(0, 1);
     } else if (main_page_current_task == 2) {
         document.getElementById("main_page_robot_video_2").hidden = false;
         main_page_last_robot_div = "main_page_robot_video_2";
@@ -412,6 +455,7 @@ function main_page_start_task(arg) {
         main_page_last_room_div = "main_page_room_video_2";
         document.getElementById('main_page_robot_video_2').play();
         document.getElementById('main_page_room_video_2').play();
+        main_page_viewer_pose(0, 2);
     } else if (main_page_current_task == 3) {
         document.getElementById("main_page_robot_video_1").hidden = false;
         main_page_last_robot_div = "main_page_robot_video_1";
@@ -419,6 +463,7 @@ function main_page_start_task(arg) {
         main_page_last_room_div = "main_page_room_video_1";
         document.getElementById('main_page_robot_video_1').play();
         document.getElementById('main_page_room_video_1').play();
+        main_page_viewer_pose(0, 1);
     }
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = false;
     main_page_move_base_timer(20);
@@ -1052,6 +1097,41 @@ function main_page_move_head_task() {
     }
 
 }
+function main_page_load_pannellum(arg) {
+    if(arg == 1) {
+        main_page_robot_img_1_viewer = pannellum.viewer('main_page_rgb_robot_img_1', {
+            "panorama": "/img/cond_" + main_page_cond3 + "/1.JPG",
+            "autoLoad": true,
+            "showControls": false,
+            "keyboardZoom" : false,
+            "mouseZoom" : false,
+            "draggable" : false,
+            "disableKeyboardCtrl" : true,
+            "haov": 280,
+            "vaov": 100,
+            "minYaw" : -120,
+            "maxYaw" : 120,
+            "minPitch" : -50,
+            "maxPitch" : 50
+        });
+    } else {
+        main_page_robot_img_2_viewer = pannellum.viewer('main_page_rgb_robot_img_2', {
+            "panorama": "/img/cond_" + main_page_cond3 + "/2.JPG",
+            "autoLoad": true,
+            "showControls": false,
+            "keyboardZoom" : false,
+            "mouseZoom" : false,
+            "draggable" : false,
+            "disableKeyboardCtrl" : true,
+            "haov": 280,
+            "vaov": 100,
+            "minYaw" : -120,
+            "maxYaw" : 120,
+            "minPitch" : -50,
+            "maxPitch" : 50
+        });
+    }
+}
 
 function main_page_my_swal(type, success) {
     var timerInterval = null;
@@ -1098,145 +1178,48 @@ function main_page_my_swal(type, success) {
                     main_page_last_robot_div = "main_page_rgb_robot_img_1";
                     document.getElementById("main_page_rgb_room_img_1").hidden = false;
                     main_page_last_room_div = "main_page_rgb_room_img_1";
-                    main_page_robot_img_1_viewer = pannellum.viewer('main_page_rgb_robot_img_1', {
-                        "panorama": "/img/cond_" + main_page_cond3 + "/1.JPG",
-                        "autoLoad": true,
-                        "showControls": false,
-                        "keyboardZoom" : false,
-                        "mouseZoom" : false,
-                        "draggable" : false,
-                        "disableKeyboardCtrl" : true,
-                        "haov": 280,
-                        "vaov": 100,
-                        "minYaw" : -120,
-                        "maxYaw" : 120,
-                        "minPitch" : -50,
-                        "maxPitch" : 50
-                    });
-                    main_page_robot_img_1_viewer = pannellum.viewer('main_page_rgb_robot_img_1', {
-                        "panorama": "/img/cond_" + main_page_cond3 + "/1.JPG",
-                        "autoLoad": true,
-                        "showControls": false,
-                        "keyboardZoom" : false,
-                        "mouseZoom" : false,
-                        "draggable" : false,
-                        "disableKeyboardCtrl" : true,
-                        "haov": 280,
-                        "vaov": 100,
-                        "minYaw" : -120,
-                        "maxYaw" : 120,
-                        "minPitch" : -50,
-                        "maxPitch" : 50
-                    });
+                    main_page_load_pannellum(1);
+                    main_page_load_pannellum(1);
+                    setTimeout(function(){
+                        main_page_load_pannellum(1);
+                    }, 1000);
                 } else if (main_page_current_task == 2) {
                     document.getElementById("main_page_rgb_robot_img_2").hidden = false;
                     main_page_last_robot_div = "main_page_rgb_robot_img_2";
                     document.getElementById("main_page_rgb_room_img_2").hidden = false;
                     main_page_last_room_div = "main_page_rgb_room_img_2";
-                    main_page_robot_img_2_viewer = pannellum.viewer('main_page_rgb_robot_img_2', {
-                        "panorama": "/img/cond_" + main_page_cond3 + "/2.JPG",
-                        "autoLoad": true,
-                        "showControls": false,
-                        "keyboardZoom" : false,
-                        "mouseZoom" : false,
-                        "draggable" : false,
-                        "disableKeyboardCtrl" : true,
-                        "haov": 280,
-                        "vaov": 100,
-                        "minYaw" : -120,
-                        "maxYaw" : 120,
-                        "minPitch" : -50,
-                        "maxPitch" : 50
-                    });
-                    main_page_robot_img_2_viewer = pannellum.viewer('main_page_rgb_robot_img_2', {
-                        "panorama": "/img/cond_" + main_page_cond3 + "/2.JPG",
-                        "autoLoad": true,
-                        "showControls": false,
-                        "keyboardZoom" : false,
-                        "mouseZoom" : false,
-                        "draggable" : false,
-                        "disableKeyboardCtrl" : true,
-                        "haov": 280,
-                        "vaov": 100,
-                        "minYaw" : -120,
-                        "maxYaw" : 120,
-                        "minPitch" : -50,
-                        "maxPitch" : 50
-                    });
+                    main_page_load_pannellum(2);
+                    main_page_load_pannellum(2);
+                    setTimeout(function(){
+                        main_page_load_pannellum(2);
+                    }, 1000);
                 } else if (main_page_current_task == 3) {
                     if(main_page_task_3_move_task == 1) {
                         document.getElementById("main_page_rgb_robot_img_1").hidden = false;
                         main_page_last_robot_div = "main_page_rgb_robot_img_1";
                         document.getElementById("main_page_rgb_room_img_1").hidden = false;
                         main_page_last_room_div = "main_page_rgb_room_img_1";
-                        main_page_robot_img_1_viewer = pannellum.viewer('main_page_rgb_robot_img_1', {
-                            "panorama": "/img/cond_" + main_page_cond3 + "/1.JPG",
-                            "autoLoad": true,
-                            "showControls": false,
-                            "keyboardZoom" : false,
-                            "mouseZoom" : false,
-                            "draggable" : false,
-                            "disableKeyboardCtrl" : true,
-                            "haov": 280,
-                            "vaov": 100,
-                            "minYaw" : -120,
-                            "maxYaw" : 120,
-                            "minPitch" : -50,
-                            "maxPitch" : 50
-                        });
-                        main_page_robot_img_1_viewer = pannellum.viewer('main_page_rgb_robot_img_1', {
-                            "panorama": "/img/cond_" + main_page_cond3 + "/1.JPG",
-                            "autoLoad": true,
-                            "showControls": false,
-                            "keyboardZoom" : false,
-                            "mouseZoom" : false,
-                            "draggable" : false,
-                            "disableKeyboardCtrl" : true,
-                            "haov": 280,
-                            "vaov": 100,
-                            "minYaw" : -120,
-                            "maxYaw" : 120,
-                            "minPitch" : -50,
-                            "maxPitch" : 50
-                        });
+                        main_page_load_pannellum(1);
+                        main_page_load_pannellum(1);
+                        setTimeout(function(){
+                            main_page_load_pannellum(1);
+                        }, 1000);
                     } else {
                         document.getElementById("main_page_rgb_robot_img_2").hidden = false;
                         main_page_last_robot_div = "main_page_rgb_robot_img_2";
                         document.getElementById("main_page_rgb_room_img_2").hidden = false;
                         main_page_last_room_div = "main_page_rgb_room_img_2";
-                        main_page_robot_img_2_viewer = pannellum.viewer('main_page_rgb_robot_img_2', {
-                            "panorama": "/img/cond_" + main_page_cond3 + "/2.JPG",
-                            "autoLoad": true,
-                            "showControls": false,
-                            "keyboardZoom" : false,
-                            "mouseZoom" : false,
-                            "draggable" : false,
-                            "disableKeyboardCtrl" : true,
-                            "haov": 280,
-                            "vaov": 100,
-                            "minYaw" : -120,
-                            "maxYaw" : 120,
-                            "minPitch" : -50,
-                            "maxPitch" : 50
-                        });
-                        main_page_robot_img_2_viewer = pannellum.viewer('main_page_rgb_robot_img_2', {
-                            "panorama": "/img/cond_" + main_page_cond3 + "/2.JPG",
-                            "autoLoad": true,
-                            "showControls": false,
-                            "keyboardZoom" : false,
-                            "mouseZoom" : false,
-                            "draggable" : false,
-                            "disableKeyboardCtrl" : true,
-                            "haov": 280,
-                            "vaov": 100,
-                            "minYaw" : -120,
-                            "maxYaw" : 120,
-                            "minPitch" : -50,
-                            "maxPitch" : 50
-                        });
+                        main_page_load_pannellum(2);
+                        main_page_load_pannellum(2);
+                        setTimeout(function(){
+                            main_page_load_pannellum(2);
+                        }, 1000);
                     }
                 }
-                main_page_move_head_task();
+                setTimeout(function(){
+                    main_page_move_head_task();
+                }, 2000);
+                
                 //main_page_move_head_timer(30);
             });
             
@@ -1338,7 +1321,8 @@ function main_page_my_swal(type, success) {
                         document.getElementById('main_page_robot_video_3').play();
                         document.getElementById('main_page_room_video_3').play();
                         main_page_current_state = "MOVE_BASE";
-                        main_page_move_base_timer(50);
+                        main_page_viewer_pose(0, 2);
+                        main_page_move_base_timer(25);
                     
                         document.getElementById("main_page_info_header").innerHTML = "The robot moves trough rooms, In 50 seconds you can intervine by pressing intervine button";
                     } else {

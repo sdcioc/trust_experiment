@@ -24,7 +24,7 @@ chat_text_to_speak.lang = "en-GB";
 chat_text_to_speak.volume = 1;
 chat_text_to_speak.pitch = 1;
 chat_text_to_speak.rate = 0.8;
-
+var chat_number_of_messages = 0;
 
 function insertChat(who, text, time) {
     if (time === undefined){
@@ -36,6 +36,7 @@ function insertChat(who, text, time) {
     node.style.width = "100%";
     node.style.padding = "5px";
     if (who == "me"){
+        chat_number_of_messages = chat_number_of_messages + 1;
         control =   '<div class="msj macro">' +
                         '<div class="avatar"><img class="img-circle" style="width:100%;" src="'+ me.avatar +'" /></div>' +
                         '<div class="text text-l">' +

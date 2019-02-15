@@ -17,6 +17,14 @@ function thank_you_page_enter() {
         + robot_service_trust_client.name
         + ': '
         + result);
+        experiment_events[experiment_index] = {
+            'dateString' : new Date().toJSON(),
+            'name' : "ConversationFinished",
+            'type' : "ThankYouPage",
+            "value" : chat_number_of_messages
+        }
+        experiment_index = experiment_index + 1;
+
         var requestDict = {
             type : "EVENTS",
             results : experiment_events,
