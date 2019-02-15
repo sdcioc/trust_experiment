@@ -80,13 +80,13 @@ class TrustServerClass:
             responseDict["type"] = "Scan";
             frame = self.images[requestDict["room"]];
             #TODO de calculat ce parte din imagine iau
-            w_index = requestDict["yaw"] + 90;
+            w_index = requestDict["yaw"] + 120;
             h_index = requestDict["pitch"] + 50;
             width, height = frame.size;
             w_side = width / 6;
             h_side = height / 6;
-            w_step = (w_side * 4) / 180;
-            h_step = (h_side * 4) / 100;
+            w_step = (w_side * 4) / 240;
+            h_step = (h_side * 4) / 240;
             w_point = w_side + w_step * w_index;
             h_point = h_side + h_step * h_index;
             crop_img = frame[h_point-h_side:h_point+h_side, w_point-w_side:w_point+w_side];
