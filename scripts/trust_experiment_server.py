@@ -82,7 +82,9 @@ class TrustServerClass:
             #TODO de calculat ce parte din imagine iau
             w_index = requestDict["yaw"] + 120;
             h_index = requestDict["pitch"] + 50;
-            width, height = frame.size;
+            width = frame[0].size/3;
+            height = frame.size/frame[0].size;
+            #width, height = frame.size;
             w_side = width / 6;
             h_side = height / 6;
             w_step = (w_side * 4) / 240;
