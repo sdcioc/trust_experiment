@@ -793,7 +793,7 @@ function main_page_intervention() {
                 main_page_robot_img_2_viewer.setYaw(head_x);
             }
         }
-        main_page_move_head_manual_timer(60);
+        //main_page_move_head_manual_timer(60);
         document.getElementById("main_page_task_intervetion_finish_intervention_btn").disabled = false;
     }
     else if(main_page_current_state == "CALCULATE_RESULT") {
