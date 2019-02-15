@@ -981,10 +981,10 @@ function main_page_move_head_task() {
             local_panorama_viewr.setYaw(0);
             local_panorama_viewr.setPitch(0);
         } else if (main_page_current_task_head_task == 2) {
-            local_panorama_viewr.setYaw(90);
+            local_panorama_viewr.setYaw(120);
             local_panorama_viewr.setPitch(0);
         } else if (main_page_current_task_head_task == 3) {
-            local_panorama_viewr.setYaw(-90);
+            local_panorama_viewr.setYaw(-120);
             local_panorama_viewr.setPitch(0);
         } else if (main_page_current_task_head_task == 4) {
             local_panorama_viewr.setYaw(0);
@@ -1103,8 +1103,8 @@ function main_page_my_swal(type, success) {
                         "disableKeyboardCtrl" : true,
                         "haov": 280,
                         "vaov": 100,
-                        "minYaw" : -130,
-                        "maxYaw" : 130,
+                        "minYaw" : -120,
+                        "maxYaw" : 120,
                         "minPitch" : -50,
                         "maxPitch" : 50
                     });
@@ -1118,8 +1118,8 @@ function main_page_my_swal(type, success) {
                         "disableKeyboardCtrl" : true,
                         "haov": 280,
                         "vaov": 100,
-                        "minYaw" : -130,
-                        "maxYaw" : 130,
+                        "minYaw" : -120,
+                        "maxYaw" : 120,
                         "minPitch" : -50,
                         "maxPitch" : 50
                     });
@@ -1128,6 +1128,21 @@ function main_page_my_swal(type, success) {
                     main_page_last_robot_div = "main_page_rgb_robot_img_2";
                     document.getElementById("main_page_rgb_room_img_2").hidden = false;
                     main_page_last_room_div = "main_page_rgb_room_img_2";
+                    main_page_robot_img_2_viewer = pannellum.viewer('main_page_rgb_robot_img_2', {
+                        "panorama": "/img/cond_" + main_page_cond3 + "/2.JPG",
+                        "autoLoad": true,
+                        "showControls": false,
+                        "keyboardZoom" : false,
+                        "mouseZoom" : false,
+                        "draggable" : false,
+                        "disableKeyboardCtrl" : true,
+                        "haov": 280,
+                        "vaov": 100,
+                        "minYaw" : -120,
+                        "maxYaw" : 120,
+                        "minPitch" : -50,
+                        "maxPitch" : 50
+                    });
                     main_page_robot_img_2_viewer = pannellum.viewer('main_page_rgb_robot_img_2', {
                         "panorama": "/img/cond_" + main_page_cond3 + "/2.JPG",
                         "autoLoad": true,
@@ -1159,8 +1174,23 @@ function main_page_my_swal(type, success) {
                             "disableKeyboardCtrl" : true,
                             "haov": 280,
                             "vaov": 100,
-                            "minYaw" : -130,
-                            "maxYaw" : 130,
+                            "minYaw" : -120,
+                            "maxYaw" : 120,
+                            "minPitch" : -50,
+                            "maxPitch" : 50
+                        });
+                        main_page_robot_img_1_viewer = pannellum.viewer('main_page_rgb_robot_img_1', {
+                            "panorama": "/img/cond_" + main_page_cond3 + "/1.JPG",
+                            "autoLoad": true,
+                            "showControls": false,
+                            "keyboardZoom" : false,
+                            "mouseZoom" : false,
+                            "draggable" : false,
+                            "disableKeyboardCtrl" : true,
+                            "haov": 280,
+                            "vaov": 100,
+                            "minYaw" : -120,
+                            "maxYaw" : 120,
                             "minPitch" : -50,
                             "maxPitch" : 50
                         });
@@ -1169,6 +1199,21 @@ function main_page_my_swal(type, success) {
                         main_page_last_robot_div = "main_page_rgb_robot_img_2";
                         document.getElementById("main_page_rgb_room_img_2").hidden = false;
                         main_page_last_room_div = "main_page_rgb_room_img_2";
+                        main_page_robot_img_2_viewer = pannellum.viewer('main_page_rgb_robot_img_2', {
+                            "panorama": "/img/cond_" + main_page_cond3 + "/2.JPG",
+                            "autoLoad": true,
+                            "showControls": false,
+                            "keyboardZoom" : false,
+                            "mouseZoom" : false,
+                            "draggable" : false,
+                            "disableKeyboardCtrl" : true,
+                            "haov": 280,
+                            "vaov": 100,
+                            "minYaw" : -120,
+                            "maxYaw" : 120,
+                            "minPitch" : -50,
+                            "maxPitch" : 50
+                        });
                         main_page_robot_img_2_viewer = pannellum.viewer('main_page_rgb_robot_img_2', {
                             "panorama": "/img/cond_" + main_page_cond3 + "/2.JPG",
                             "autoLoad": true,
