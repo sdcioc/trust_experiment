@@ -278,7 +278,7 @@ function main_page_init() {
     //TODO: image and shit
     main_page_cond3 = 1;//1-4
     document.getElementById("main_page_rgb_robot_img_center").src = "/img/cond_" + main_page_cond3 + "/robot_center.jpg";
-
+    /*
     main_page_robot_img_1_viewer = pannellum.viewer('main_page_rgb_robot_img_1', {
         "panorama": "/img/cond_" + main_page_cond3 + "/1.JPG",
         "autoLoad": true,
@@ -309,7 +309,7 @@ function main_page_init() {
         "draggable" : false,
         "disableKeyboardCtrl" : true
     });
-
+    */
     document.getElementById("main_page_rgb_room_img_center").src = "/img/cond_" + main_page_cond3 + "/room_center.jpg";
     document.getElementById("main_page_rgb_room_img_1").src = "/img/cond_" + main_page_cond3 + "/room_1.jpg";
     document.getElementById("main_page_rgb_room_img_2").src = "/img/cond_" + main_page_cond3 + "/room_2.jpg";
@@ -1117,16 +1117,16 @@ function main_page_my_swal(type, success) {
                         "panorama": "/img/cond_" + main_page_cond3 + "/2.JPG",
                         "autoLoad": true,
                         "showControls": false,
-                        "haov": 230,
-                        "vaov": 120,
-                        "minYaw" : -90,
-                        "maxYaw" : 90,
-                        "minPitch" : -50,
-                        "maxPitch" : 50,
                         "keyboardZoom" : false,
                         "mouseZoom" : false,
                         "draggable" : false,
-                        "disableKeyboardCtrl" : true
+                        "disableKeyboardCtrl" : true,
+                        "haov": 280,
+                        "vaov": 100,
+                        "minYaw" : -120,
+                        "maxYaw" : 120,
+                        "minPitch" : -50,
+                        "maxPitch" : 50
                     });
                 } else if (main_page_current_task == 3) {
                     if(main_page_task_3_move_task == 1) {
@@ -1158,16 +1158,16 @@ function main_page_my_swal(type, success) {
                             "panorama": "/img/cond_" + main_page_cond3 + "/2.JPG",
                             "autoLoad": true,
                             "showControls": false,
-                            "haov": 230,
-                            "vaov": 120,
-                            "minYaw" : -90,
-                            "maxYaw" : 90,
-                            "minPitch" : -50,
-                            "maxPitch" : 50,
                             "keyboardZoom" : false,
                             "mouseZoom" : false,
                             "draggable" : false,
-                            "disableKeyboardCtrl" : true
+                            "disableKeyboardCtrl" : true,
+                            "haov": 280,
+                            "vaov": 100,
+                            "minYaw" : -120,
+                            "maxYaw" : 120,
+                            "minPitch" : -50,
+                            "maxPitch" : 50
                         });
                     }
                 }
