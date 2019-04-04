@@ -60,7 +60,7 @@ var task_info_page_tasks_text = {
             <ul>\
             <li>Move (when TIAGo is moving): Announce the robot that is moving to the wrong way </li> \
             <li>Head and Scan: Use the sliders to move the head and the scan button to scan the current image </li> \
-            <li>Result: Use can select the correc results </li> \
+            <li>Result: User can select the correct results </li> \
             </ul>\
         </li>\
         <li>The middle part cotains: informations about the current state of the experiment, Image of the TIAGo camera\
@@ -78,7 +78,7 @@ var task_info_page_tasks_text = {
             <ul>\
             <li>Move (when TIAGo is moving): Announce the robot that is moving to the wrong way </li> \
             <li>Head and Scan: Use the sliders to move the head and the scan button to scan the current image </li> \
-            <li>Result: Use can select the correc results </li> \
+            <li>Result: User can select the correct results </li> \
             </ul>\
         </li>\
         <li>The middle part cotains: informations about the current state of the experiment, Image of the TIAGo camera\
