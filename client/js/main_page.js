@@ -18,7 +18,7 @@ var autonomous_result = null;
 
 
 var main_page_first_time = true;
-var main_page_has_intervine_result = false;
+var main_page_has_intervene_result = false;
 var main_page_real_task = {
     1:1,
     2:3,
@@ -468,7 +468,7 @@ function main_page_start_task(arg) {
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = false;
     main_page_move_base_timer(20);
 
-    document.getElementById("main_page_info_header").innerHTML = "The robot moves trough rooms, In 50 seconds you can intervine by pressing intervine button";
+    document.getElementById("main_page_info_header").innerHTML = "The robot moves trough rooms, In 50 seconds you can intervene by pressing intervene button";
     main_page_current_task_score = 7;
     main_page_current_task_interventions = {
         "MOVE_BASE" : false,
@@ -608,7 +608,7 @@ function main_page_verify_result() {
     var result_success = false;
     var room_type = null;
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = true;
-    if (main_page_has_intervine_result) {
+    if (main_page_has_intervene_result) {
         if(main_page_current_task == 1) {
             main_page_tasks_objects_detection[main_page_current_task]["PLANT"] = document.getElementById("main_page_task_intervetion_scan_task_1_has_object").checked;
         } else if(main_page_current_task == 2) {
@@ -678,12 +678,12 @@ function main_page_verify_result() {
         'name' : "VerifyResult",
         'type' : "MainPage",
         'task' : main_page_current_task,
-        'has_intervine' : main_page_has_intervine_result,
+        'has_intervene' : main_page_has_intervene_result,
         'result_success' : result_success,
         'answers' : main_page_tasks_objects_detection[main_page_current_task]
     }
     experiment_index = experiment_index + 1;
-    main_page_has_intervine_result = false;
+    main_page_has_intervene_result = false;
     if(result_success) {
         main_page_tasks[main_page_current_task] = 1;
         main_page_my_swal("CALCULATE_RESULT", true);
@@ -699,7 +699,7 @@ function main_page_move_base_timer(arg) {
     } else {
         setTimeout(function(){
             if(autonomous_move) {
-                document.getElementById("main_page_info_header").innerHTML = "The robot moves trough rooms. In " + (arg-1) + " seconds  you can intervine by pressing intervine button";
+                document.getElementById("main_page_info_header").innerHTML = "The robot moves trough rooms. In " + (arg-1) + " seconds  you can intervene by pressing intervene button";
                 main_page_move_base_timer(arg-1);
             }
         }, 1000);
@@ -727,7 +727,7 @@ function main_page_move_head_timer(arg) {
         setTimeout(function(){
             if(autonomous_head) {
                 main_page_move_head_timer(arg-1);
-                document.getElementById("main_page_info_header").innerHTML = "The robot moves its head to see the table. In " + (arg-1) + " seconds  you can intervine by pressing intervine button";
+                document.getElementById("main_page_info_header").innerHTML = "The robot moves its head to see the table. In " + (arg-1) + " seconds  you can intervene by pressing intervene button";
             }
         }, 1000);
     }
@@ -756,7 +756,7 @@ function main_page_result_timer(arg) {
         setTimeout(function(){
             if(autonomous_result) {
                 main_page_result_timer(arg-1);
-                document.getElementById("main_page_info_header").innerHTML = "The robot calculates the result. In " + (arg-1) + " seconds  you can intervine by pressing intervine button";
+                document.getElementById("main_page_info_header").innerHTML = "The robot calculates the result. In " + (arg-1) + " seconds  you can intervene by pressing intervene button";
             }
         }, 1000);
     }
@@ -902,7 +902,7 @@ function main_page_finish_intervention() {
         experiment_index = experiment_index + 1;
         document.getElementById("main_page_task_intervetion_scan").hidden = true;
         document.getElementById("main_page_task_intervetion_scan_task_"+main_page_current_task).hidden = true;
-        main_page_has_intervine_result = true;
+        main_page_has_intervene_result = true;
         main_page_verify_result();
     }
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = false;
@@ -1331,7 +1331,7 @@ function main_page_my_swal(type, success) {
                         main_page_viewer_pose(0, 2);
                         main_page_move_base_timer(25);
                     
-                        document.getElementById("main_page_info_header").innerHTML = "The robot moves trough rooms, In 50 seconds you can intervine by pressing intervine button";
+                        document.getElementById("main_page_info_header").innerHTML = "The robot moves trough rooms, In 50 seconds you can intervene by pressing intervene button";
                     } else {
                         main_page_current_state = "CALCULATE_RESULT";
                         main_page_result_timer(30);
@@ -1470,7 +1470,12 @@ function main_page_info_button() {
     } else {
         html_text = task_info_page_tasks_text[5][0];
     }
+
     html_text = html_text + "</div>"
+    html_text = html_text + "<h4>Task 1<h4>" + task_info_page_tasks_text[main_page_real_task[1]];
+    html_text = html_text + "<h4>Task 2<h4>" + task_info_page_tasks_text[main_page_real_task[2]];
+    html_text = html_text + "<h4>Task 3<h4>" + task_info_page_tasks_text[main_page_real_task[3]];
+
     swal({
     title: 'Info',
     html: html_text,

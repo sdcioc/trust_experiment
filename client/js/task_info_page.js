@@ -58,7 +58,7 @@ var task_info_page_tasks_text = {
         The intervention zone has 2 buttons: the intervene button (to help TIAGo if you do not think it can do the task alone) and the\
         finish intervention button when you finish your intervention. You can intervene in 3 ways:\
             <ul>\
-            <li>Move (when TIAGo is moving): Use the arrow for turning left or right or going forward or backward </li> \
+            <li>Move (when TIAGo is moving): Announce the robot that is moving to the wrong way </li> \
             <li>Head and Scan: Use the sliders to move the head and the scan button to scan the current image </li> \
             <li>Result: Use can select the correc results </li> \
             </ul>\
@@ -68,7 +68,7 @@ var task_info_page_tasks_text = {
         <li>The right part contains: The info button to show this info again, if you forget and the CHAT box where you\
         can talk with tiago</li>\
         </ul>\
-        <img src='img/info_0.jpeg' class='rounded float-right' height='300' width='450'>",
+        <img src='img/info_sim_0.jpeg' class='rounded float-right' height='300' width='450'>",
         1 : "<h4>Experiment User Interface</h4>\
         The interface is divided:</p>\
         <ul>\
@@ -76,7 +76,7 @@ var task_info_page_tasks_text = {
         The intervention zone has 2 buttons: the intervene button (to help TIAGo if you do not think it can do the task alone) and the\
         finish intervention button when you finish your intervention. You can intervene in 3 ways:\
             <ul>\
-            <li>Move (when TIAGo is moving): Use the arrow for turning left or right or going forward or backward </li> \
+            <li>Move (when TIAGo is moving): Announce the robot that is moving to the wrong way </li> \
             <li>Head and Scan: Use the sliders to move the head and the scan button to scan the current image </li> \
             <li>Result: Use can select the correc results </li> \
             </ul>\
@@ -85,7 +85,7 @@ var task_info_page_tasks_text = {
         ,Map of the rooms with TIAGo position (yellow arrow), Image of the room camera</li>\
         <li>The right part contains: The info button to show this info again.</li>\
         </ul>\
-        <img src='img/info_1.jpeg' class='rounded float-right' height='300' width='450'>"
+        <img src='img/info_sim_1.jpeg' class='rounded float-right' height='300' width='450'>"
     }
 }
 var taskInfoIndex = 1;
@@ -178,7 +178,7 @@ function task_info_page_exit() {
 
 function task_info_page_next_btn_click() {
     taskInfoIndex = taskInfoIndex + 1;
-    if(taskInfoIndex == 5) {
+    if(taskInfoIndex == 6) {
         document.getElementById("task_info_page_text_" + (taskInfoIndex-1)).hidden = true;
         changeState("pre_questions_page");
     } else {

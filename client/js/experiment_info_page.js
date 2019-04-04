@@ -53,7 +53,7 @@ var experimentInfoMessages = [
     The human can intervene in the following ways:\
     </p>\
     <ul>\
-    <li>Moves the robot to a certain point on the map</li>\
+    <li>Announces the robot that is moving to the wrong way</li>\
     <li>Controls the head of the robot</li>\
     <li>Selects what the robot scans </li>\
     <li>Gives the robot the answer for the task</li>\
