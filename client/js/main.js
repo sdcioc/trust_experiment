@@ -1,7 +1,8 @@
 
 
 var currentState = null;
-var trust_values = [];
+var feedback_values = {};
+var feedback_index = 0;
 
 function init() {
     document.getElementById("login_page").hidden = true;

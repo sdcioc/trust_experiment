@@ -89,9 +89,9 @@ function post_questions_page_next_btn_click() {
 
 function post_questions_submit_feedback () {
     console.log("Valoarea de trsut este", post_questions_trust_value);
-    trust_values.push({
-        "type" : main_page_current_task,
-        "value" : pre_questions_trust_value
-    })
+    //trust_values.push({
+    //    "type" : main_page_current_task,
+    //    "value" : post_questions_trust_value
+    //})
     post_questions_page_answer_click(post_questions_trust_value);
 }

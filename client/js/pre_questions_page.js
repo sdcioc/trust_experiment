@@ -168,10 +168,10 @@ function pre_questions_page_next_btn_click() {
 
 function pre_questions_submit_feedback () {
     console.log("Valoarea de trsut este", pre_questions_trust_value);
-    trust_values.push({
-        "type" : "pre",
-        "value" : pre_questions_trust_value
-    })
+    feedback_values[feedback_index] = {
+        "T0" : pre_questions_trust_value
+    };
+    feedback_index = feedback_index + 1;
     pre_questions_page_answer_click(pre_questions_trust_value);
 }
 

@@ -100,6 +100,7 @@ var main_page_robot_poi_pose = {
 
 var main_page_total_score = null;
 var main_page_current_task_score = null;
+var main_page_current_task_fail = null;
 var main_page_current_task_interventions = {
     "MOVE_BASE" : false,
     "MOVE_HEAD_AND_SCAN" : false,
@@ -470,6 +471,7 @@ function main_page_start_task(arg) {
 
     document.getElementById("main_page_info_header").innerHTML = "The robot moves trough rooms, In 50 seconds you can intervene by pressing intervene button";
     main_page_current_task_score = 7;
+    main_page_current_task_fail = 0;
     main_page_current_task_interventions = {
         "MOVE_BASE" : false,
         "MOVE_HEAD_AND_SCAN" : false,
@@ -490,6 +492,20 @@ function main_page_feedback() {
 
 
 function main_page_prepare_for_next_task() {
+    /*
+    TODO: salvare date analiza
+    */
+   feedback_values[feedback_index] = {
+        'COM' : main_page_cond2,
+        'D' : task_info_difficulty_values[main_page_current_task],
+        'IM' : main_page_current_task_interventions["MOVE_BASE"],
+        'IH' : main_page_current_task_interventions["MOVE_HEAD_AND_SCAN"],
+        'IR' : main_page_current_task_interventions["CALCULATE_RESULT"],
+        'F' : main_page_current_task_fail,
+        'P' : main_page_current_task_score,
+        'TK' : post_questions_trust_value,
+    }
+    feedback_index = feedback_index + 1;
     var local_sem = false;
     if(main_page_tasks[main_page_real_task[1]] == 0) {
         document.getElementById("main_page_task_intervetion_task_1").disabled = false;
@@ -1232,6 +1248,7 @@ function main_page_my_swal(type, success) {
             
         } else {
             main_page_current_task_score = main_page_current_task_score - 8;
+            main_page_current_task_fail = 1;
             main_page_total_score = main_page_total_score + main_page_current_task_score;
             swal({
             title: 'Task Failed',
@@ -1343,6 +1360,7 @@ function main_page_my_swal(type, success) {
             }
             main_page_current_task_score = main_page_current_task_score - 5;
             main_page_total_score = main_page_total_score + main_page_current_task_score;
+            main_page_current_task_fail = 2;
             swal({
             title: 'Task Failed',
             html: 'Robot has failed to move his head at the task. In <strong></strong> seconds you will complete' +
@@ -1427,6 +1445,7 @@ function main_page_my_swal(type, success) {
             }
             main_page_current_task_score = main_page_current_task_score - 3;
             main_page_total_score = main_page_total_score + main_page_current_task_score;
+            main_page_current_task_fail = 3;
             swal({
             title: 'Task Failed',
             html: 'Robots scan results where bad for this task. In <strong></strong> seconds you will complete' +

@@ -5,7 +5,7 @@ function thank_you_page_enter() {
     document.getElementById("thank_you_page").hidden = false;
     var requestDict = {
         type : "FEEDBACK",
-        results : trust_values,
+        results : feedback_values,
         user : current_user
     }
     var request = new ROSLIB.ServiceRequest({
