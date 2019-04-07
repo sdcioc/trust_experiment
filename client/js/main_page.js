@@ -504,6 +504,7 @@ function main_page_prepare_for_next_task() {
         'F' : main_page_current_task_fail,
         'P' : main_page_current_task_score,
         'TK' : post_questions_trust_value,
+        'S' : main_page_cond1
     }
     feedback_index = feedback_index + 1;
     var local_sem = false;
