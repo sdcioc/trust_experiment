@@ -33,14 +33,14 @@ var main_page_false_task = {
 var main_page_task_3_move_task = null;
 var main_page_task_3_scans = {
     1:{
-        "COFEE TABLE" : false,
+        "COFFEE TABLE" : false,
         "COUCH" : false,
         "BED" : false,
         "CHAIR" : false,
         "XBOX" : false
     },
     2:{
-        "COFEE TABLE" : false,
+        "COFFEE TABLE" : false,
         "COUCH" : false,
         "BED" : false,
         "CHAIR" : false,
@@ -56,14 +56,14 @@ var main_page_tasks_objects_detection = {
         "PLANT" : false
     },
     2:{
-        "COFEE TABLE" : false,
+        "COFFEE TABLE" : false,
         "COUCH" : false,
         "LIVING ROOM" : false,
         "CHAIR" : false,
         "TV" : false
     },
     3:{
-        "COFEE TABLE" : false,
+        "COFFEE TABLE" : false,
         "COUCH" : false,
         "BED" : false,
         "CHAIR" : false,
@@ -77,14 +77,14 @@ var main_page_tasks_objects_detection_correct = {
         "PLANT" : true
     },
     2:{
-        "COFEE TABLE" : true,
+        "COFFEE TABLE" : true,
         "COUCH" : true,
         "LIVING ROOM" : true,
         "CHAIR" : true,
         "TV" : true
     },
     3:{
-        "COFEE TABLE" : true,
+        "COFFEE TABLE" : true,
         "COUCH" : true,
         "BED" : true,
         "CHAIR" : true,
@@ -504,7 +504,8 @@ function main_page_prepare_for_next_task() {
         'F' : main_page_current_task_fail,
         'P' : main_page_current_task_score,
         'TK' : post_questions_trust_value,
-        'S' : main_page_cond1
+        'S' : main_page_cond1,
+        'Task' : main_page_current_task
     }
     feedback_index = feedback_index + 1;
     var local_sem = false;
@@ -631,7 +632,7 @@ function main_page_verify_result() {
         } else if(main_page_current_task == 2) {
             room_type = document.getElementById("main_page_task_intervetion_scan_task_2_room").value;
         } else if(main_page_current_task == 3) {
-            main_page_tasks_objects_detection[main_page_current_task]["COFEE TABLE"] = document.getElementById("main_page_task_intervetion_scan_task_3_has_object_1").checked;
+            main_page_tasks_objects_detection[main_page_current_task]["COFFEE TABLE"] = document.getElementById("main_page_task_intervetion_scan_task_3_has_object_1").checked;
             main_page_tasks_objects_detection[main_page_current_task]["COUCH"] = document.getElementById("main_page_task_intervetion_scan_task_3_has_object_2").checked;
             main_page_tasks_objects_detection[main_page_current_task]["BED"] = document.getElementById("main_page_task_intervetion_scan_task_3_has_object_3").checked;
             main_page_tasks_objects_detection[main_page_current_task]["CHAIR"] = document.getElementById("main_page_task_intervetion_scan_task_3_has_object_4").checked;
@@ -646,7 +647,7 @@ function main_page_verify_result() {
             if(main_page_tasks_objects_detection[main_page_current_task]['LIVING ROOM']) {
                 room_type = 'Livingroom';
             } else {
-                if( (main_page_tasks_objects_detection[main_page_current_task]['COFEE TABLE']) &&
+                if( (main_page_tasks_objects_detection[main_page_current_task]['COFFEE TABLE']) &&
                 (main_page_tasks_objects_detection[main_page_current_task]['COUCH']) &&
                 (main_page_tasks_objects_detection[main_page_current_task]['CHAIR'])&&
                 (main_page_tasks_objects_detection[main_page_current_task]['TV'])
@@ -678,7 +679,7 @@ function main_page_verify_result() {
             result_success = true;
         }
     } else if(main_page_current_task == 3) {
-        if( (main_page_tasks_objects_detection[main_page_current_task]['COFEE TABLE']) &&
+        if( (main_page_tasks_objects_detection[main_page_current_task]['COFFEE TABLE']) &&
         (main_page_tasks_objects_detection[main_page_current_task]['COUCH']) &&
         (main_page_tasks_objects_detection[main_page_current_task]['BED']) &&
         (main_page_tasks_objects_detection[main_page_current_task]['CHAIR'])&&

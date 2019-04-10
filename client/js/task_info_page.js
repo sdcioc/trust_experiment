@@ -6,7 +6,7 @@ var task_info_page_tasks_text = {
     2 : "For this task you and TIAGo must find what type of room is Room 2. At the start of the task TIAGo has to move\
         to a specific point in Room 2, shown with blue on the map. After that, TIAGo will move its head to scan the room and\
         to figure out the answer for this task. ",
-    3 : "For this task you and TIAGo must find if the following objects are located in the two rooms: coffe table, couch, chair, bed and an Xbox. At the start of the task TIAGo has to move\
+    3 : "For this task you and TIAGo must find if the following objects are located in the two rooms: a coffee table, a couch, a chair, a bed and a Xbox. At the start of the task TIAGo has to move\
         to a specific point in Room 1, which is shown with red on the map. Then, TIAGo will move its head to scan the room. After that TIAGo has to move\
         to a point in Room 2, shown with blue on the map. Next, by moving its head, TIAGo will scan Room 2 and \
         will compute the answer for the task",
@@ -25,7 +25,7 @@ var task_info_page_tasks_text = {
         </thead>\
         <tbody>\
             <tr>\
-            <th scope='row'>Succes(TIAGo alone)</th>\
+            <th scope='row'>Success(TIAGo alone)</th>\
             <td>0</td>\
             <td>0</td>\
             <td>0</td>\
@@ -37,7 +37,7 @@ var task_info_page_tasks_text = {
             <td>-3</td>\
             </tr>\
             <tr>\
-            <th scope='row'>Succes(TIAGo with intervention)</th>\
+            <th scope='row'>Success(TIAGo with intervention)</th>\
             <td>-2</td>\
             <td>-1</td>\
             <td>-1</td>\
