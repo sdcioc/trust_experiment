@@ -702,7 +702,7 @@ function main_page_verify_result() {
     }
     experiment_index = experiment_index + 1;
     main_page_has_intervene_result = false;
-    if(result_success) {
+    if(result_success == true) {
         main_page_tasks[main_page_current_task] = 1;
         main_page_my_swal("CALCULATE_RESULT", true);
     } else {
@@ -1350,10 +1350,10 @@ function main_page_my_swal(type, success) {
                         main_page_viewer_pose(0, 2);
                         main_page_move_base_timer(25);
                     
-                        document.getElementById("main_page_info_header").innerHTML = "The robot moves trough rooms, In 50 seconds you can intervene by pressing intervene button";
+                        document.getElementById("main_page_info_header").innerHTML = "The robot moves trough rooms, In 25 seconds you can intervene by pressing intervene button";
                     } else {
                         main_page_current_state = "CALCULATE_RESULT";
-                        main_page_result_timer(30);
+                        main_page_result_timer(15);
                     }
                 });
         } else {
