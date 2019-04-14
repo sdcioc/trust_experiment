@@ -623,7 +623,8 @@ function main_page_verify_move_head() {
 
 function main_page_verify_result() {
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = true;
-    var result_success = false;
+    var result_success;
+    result_success = false;
     var room_type = null;
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = true;
     if (main_page_has_intervene_result) {
@@ -691,6 +692,7 @@ function main_page_verify_result() {
         console.log("EROARE")
     }
     
+    console.log("e cu succes treaba1:", result_success);
     experiment_events[experiment_index] = {
         'dateString' : new Date().toJSON(),
         'name' : "VerifyResult",
@@ -702,7 +704,7 @@ function main_page_verify_result() {
     }
     experiment_index = experiment_index + 1;
     main_page_has_intervene_result = false;
-    console.log("e cu succes treaba:", result_success);
+    console.log("e cu succes treaba2:", result_success);
     if(result_success == true) {
         main_page_tasks[main_page_current_task] = 1;
         main_page_my_swal("CALCULATE_RESULT", true);
