@@ -702,6 +702,7 @@ function main_page_verify_result() {
     }
     experiment_index = experiment_index + 1;
     main_page_has_intervene_result = false;
+    console.log("e cu succes treaba:", result_success);
     if(result_success == true) {
         main_page_tasks[main_page_current_task] = 1;
         main_page_my_swal("CALCULATE_RESULT", true);
