@@ -1210,7 +1210,6 @@ function main_page_load_pannellum(arg) {
 }
 
 function main_page_my_swal(type, success) {
-    var timerInterval = null;
     if(type == "MOVE_BASE") {
         if(success == true) {
             swal({
@@ -1279,6 +1278,8 @@ function main_page_my_swal(type, success) {
                 }, 2000);
                 
                 main_page_move_head_timer(20);
+                document.getElementById("main_page_task_intervetion_intervention_btn").disabled = false;
+                document.getElementById("main_page_task_intervetion_intervention_button_div").hidden = false;
             });
             
         } else {
@@ -1353,6 +1354,8 @@ function main_page_my_swal(type, success) {
                         main_page_current_state = "CALCULATE_RESULT";
                         main_page_result_timer(15);
                     }
+                    document.getElementById("main_page_task_intervetion_intervention_btn").disabled = false;
+                    document.getElementById("main_page_task_intervetion_intervention_button_div").hidden = false;
                 });
         } else {
             if(main_page_current_task_interventions["MOVE_BASE"]) {
@@ -1426,8 +1429,6 @@ function main_page_my_swal(type, success) {
             });
         }
     }
-    document.getElementById("main_page_task_intervetion_intervention_btn").disabled = false;
-    document.getElementById("main_page_task_intervetion_intervention_button_div").hidden = false;
 }
 
 
@@ -1480,15 +1481,21 @@ function main_page_chose_task() {
                 document.getElementById('main_page_swal_tasks_info_btn').onclick = function() {
                     main_page_swal_chose_task_info();
                 };
-                document.getElementById('main_page_task_intervetion_task_1').onclick = function() {
-                    main_page_start_task(1);
-                };
-                document.getElementById('main_page_task_intervetion_task_2').onclick = function() {
-                    main_page_start_task(2);
-                };
-                document.getElementById('main_page_task_intervetion_task_3').onclick = function() {
-                    main_page_start_task(3);
-                };
+                if (document.getElementById('main_page_task_intervetion_task_1')) {
+                    document.getElementById('main_page_task_intervetion_task_1').onclick = function() {
+                        main_page_start_task(1);
+                    };
+                }
+                if (document.getElementById('main_page_task_intervetion_task_2')) {
+                    document.getElementById('main_page_task_intervetion_task_2').onclick = function() {
+                        main_page_start_task(2);
+                    };
+                }
+                if (document.getElementById('main_page_task_intervetion_task_2')) {
+                    document.getElementById('main_page_task_intervetion_task_3').onclick = function() {
+                        main_page_start_task(3);
+                    };
+                }
             }
             }).then((result) => {
                 if (
