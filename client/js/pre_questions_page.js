@@ -98,11 +98,11 @@ function test_pre_questions() {
             title: 'How is you knowledge about robots ?',
             input: 'radio',
             inputOptions: {
-                "1" : "Very Poor",
-                "2" : "Poor",
-                "3" : "Acceptable",
+                "5" : "Very Well",
                 "4" : "Well",
-                "5" : "Very Well"
+                "3" : "Acceptable",
+                "2" : "Poor",
+                "1" : "Very Poor"
             },
             showCancelButton: false,
             inputValidator: (value) => {
@@ -210,10 +210,10 @@ function test_pre_questions() {
             title: 'When I grew up i was:',
             input: 'radio',
             inputOptions: {
-                "O" : "The only child in my family",
-                "Y" : "Youngest in a family with more than one child",
-                "O" : "Oldest in a family with more than one child",
-                "M" : "I was neither the oldest nor the youngest in my family"
+                "ONLY" : "The only child in my family",
+                "YOUNG" : "Youngest in a family with more than one child",
+                "OLD" : "Oldest in a family with more than one child",
+                "MIDDLE" : "I was neither the oldest nor the youngest in my family"
             },
             showCancelButton: false,
             inputValidator: (value) => {

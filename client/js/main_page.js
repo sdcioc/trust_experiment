@@ -164,7 +164,6 @@ function main_page_init() {
     experiment_index = experiment_index + 1;
 
 
-    /*
    var g_1 = new createjs.Graphics();
    g_1.setStrokeStyle(0);
    g_1.beginStroke(createjs.Graphics.getRGB(0,0,255));
@@ -208,7 +207,9 @@ function main_page_init() {
        x : main_page_robot_pose.x,
        y : main_page_robot_pose.y
    }
+   /*
     Setare hartă
+    */
     viewer.scene.scaleX = 60;
     viewer.scene.scaleY = 30;
     viewer.scene.x = 140;
@@ -216,7 +217,6 @@ function main_page_init() {
     viewer.scene.children[2].scaleY = 0.02
     viewer.scene.children[2].scaleX = 0.01
     viewer.removeObject(viewer.scene.children[2])
-    */
 
     headLeftRightSlider = $("#main_page_task_intervetion_head_left_right_slider").bootstrapSlider(
         {
