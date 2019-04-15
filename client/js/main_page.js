@@ -1659,23 +1659,23 @@ function main_page_start_task(arg) {
     }
 }
 
-main_page_info_page_1_html = "<img src='img/info1.png' class='rounded float-right' height='300' width='450'>" +
+main_page_info_page_1_html = "<img src='img/info1.png' class='rounded'>" +
                             "The user interface is divided in three parts: left, middle, right";
-main_page_info_page_2_html = "<img src='img/info2.png' class='rounded float-right' height='300' width='450'>" +
+main_page_info_page_2_html = "<img src='img/info2.png' class='rounded'>" +
                             "Middle part is divided in three parts:<ul><li>Up - The robot rgb camera. You can see what the robot see" +
                             "</li><li>Middle - The Map. There are three squares on the map:<ul><li> The red one - Postion for Room 1" +
                             "</li><li>The blue one - Position of the Room 2</li><li>The green one - Current robot position on the map</li>" +
                             "</ul></li><li>Bottom - The upper camere where you can see the rooms and the robot</li></ul>"
 main_page_info_page_3_html = "";
 main_page_info_page_3_1_html = "Right part is a blank space that has no use";
-main_page_info_page_3_2_html = "<img src='img/info3.png' class='rounded float-right' height='300' width='450'>" +
+main_page_info_page_3_2_html = "<img src='img/info3.png' class='rounded'>" +
                                 "Right part is the place where you can chat with TIAGo. You can write messages in bottom" +
                                 " text area. You can send them by pressing the blue button or the 'enter' key on keyboard";
-main_page_info_page_4_html = "<img src='img/info4.png' class='rounded float-right' height='300' width='450'>" +
+main_page_info_page_4_html = "<img src='img/info4.png' class='rounded'>" +
                              "Left part is divided in two: <ul><li>Up - Where are the buttons and informations about the" +
                              " current status </li> <li> Down - where you have the tools to help TIAGo when you want to " +
                              "have an intervention";
-main_page_info_page_5_html = "<img src='img/info5.png' class='rounded float-right' height='300' width='450'>" +
+main_page_info_page_5_html = "<img src='img/info5.png' class='rounded'>" +
                             "In the left-up part you have: <ul>" +
                             "<li> The finish experiment button - If you want to finish the experiment before doing" +
                             "all the tasks you can press this button </li>" +
@@ -1684,7 +1684,7 @@ main_page_info_page_5_html = "<img src='img/info5.png' class='rounded float-righ
                             "<li> Chose a task button - When you want to start a new task just press this button </li>" +
                             "<li> Informations button - If you want informations about the interface and the experiment press this button </li>" +
                             "<li> Have an intervention button/Finish my intervention button - This button is use for starting/finishing a intervention </li></ul>";
-main_page_info_page_6_html = "<img src='img/info6.png' class='rounded float-right' height='300' width='450'>" +
+main_page_info_page_6_html = "<img src='img/info6.png' class='rounded'>" +
                             "The left-down part has different tools for helping TIAGo when is doing a task. If you" +
                             " have an intervention when TIAGo is moving you transmit that TIAGo is going in a wrong direction" +
                             " and TIAGo it will change its direction to the good one. If you have an intervention when TIAGo is" +
@@ -1734,7 +1734,7 @@ main_page_info_page_7_html = "<table class='table table-striped'>\
                             " like this: TIAGo is moving to the room point, When it arrive there it scan what it has on its RGB camera," +
                             " it move its head right and scan again, it move its head left and scan again, it moves its head back to the center" +
                             " and it starts calcualting the results.";
-main_page_info_page_8_html = "<img src='img/info8.png' class='rounded float-right' height='300' width='450'>" +
+main_page_info_page_8_html = "<img src='img/info8.png' class='rounded'>" +
                             "During the experiment you can press differnt buttons. If you are not doing any task the best decision will be" +
                             " to press Chose a task button and chose a task to start. If you think at any moment that TIAGo is not doing right" +
                             " the task you can have an intervention by pressing have an intervention button. At the end of every part of a task" +
