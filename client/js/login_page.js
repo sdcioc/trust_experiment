@@ -50,12 +50,18 @@ function login_page_login_btn_click() {
             main_page_cond2 = response["cond2"];
             main_page_cond3 = response["cond3"];
 
+            main_page_info_page_1_html = "<img src='img/info1_2.png' class='rounded float-right' height='300' width='450'>" +
+            "The user interface is divided in three parts: left, middle, right";
+            main_page_info_page_3_html = main_page_info_page_3_2_html;
             if(main_page_cond2 == 1) {
                 chat_accessToken = chat_accessToken_reliable;
             } else if (main_page_cond2 == 2) {
                 chat_accessToken = chat_accessToken_unreliable;
             } else {
                 console.log("fara chat")
+                main_page_info_page_1_html = "<img src='img/info1_1.png' class='rounded float-right' height='300' width='450'>" +
+                            "The user interface is divided in three parts: left, middle, right";
+                main_page_info_page_3_html = main_page_info_page_3_1_html;
             }
 
             main_page_real_task = response["main_page_real_task"];

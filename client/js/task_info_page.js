@@ -178,7 +178,7 @@ function task_info_page_exit() {
 
 function task_info_page_next_btn_click() {
     taskInfoIndex = taskInfoIndex + 1;
-    if(taskInfoIndex == 6) {
+    if(taskInfoIndex == 5) {
         document.getElementById("task_info_page_text_" + (taskInfoIndex-1)).hidden = true;
         changeState("pre_questions_page");
     } else {

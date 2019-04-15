@@ -397,6 +397,61 @@ function main_page_init() {
     source = document.createElement('source');
     source.setAttribute('src', '/video/room_' + main_page_cond3 + "_3.mp4");
     video.appendChild(source);
+
+    swal.mixin({
+        confirmButtonText: 'Next &rarr;',
+        showCancelButton: false,
+        progressSteps: ['1', '2', '3', '4', '5', '6', '7', '8'],
+        allowOutsideClick: false,
+        width : "80%",
+      }).queue([
+        {
+          title: 'UI',
+          type: "info",
+          html: main_page_info_page_1_html
+        },
+        {
+            title: 'Middle',
+            type: "info",
+            html: main_page_info_page_2_html
+        },
+        {
+            title: 'Right',
+            type: "info",
+            html: main_page_info_page_3_html
+        },
+        {
+            title: 'Left',
+            type: "info",
+            html: main_page_info_page_4_html
+        },
+        {
+            title: 'Left-Up',
+            type: "info",
+            html: main_page_info_page_5_html
+        },
+        {
+            title: 'Left-Down',
+            type: "info",
+            html: main_page_info_page_6_html
+        },
+        {
+            title: 'Tasks and Score',
+            type: "info",
+            html: main_page_info_page_7_html
+        },
+        {
+            title: 'Buttons',
+            type: "info",
+            html: main_page_info_page_8_html
+        }
+      ]).then((result) => {
+        if (result.dismiss === Swal.DismissReason.cancel) {
+            //main_page_chose_task();
+        } else if (result.value) {
+            //main_page_chose_task();
+        }
+      });
 }
 
 function main_page_exit() {
@@ -470,7 +525,8 @@ function main_page_prepare_for_next_task() {
         'TK' : post_questions_trust_value,
         'S' : main_page_cond1,
         'W' : main_page_cond3,
-        'Task' : main_page_current_task
+        'Task' : main_page_current_task,
+        "NM" : chat_number_of_messages
     }
     feedback_index = feedback_index + 1;
     var local_sem = false;
@@ -1603,6 +1659,88 @@ function main_page_start_task(arg) {
     }
 }
 
+main_page_info_page_1_html = "<img src='img/info1.png' class='rounded float-right' height='300' width='450'>" +
+                            "The user interface is divided in three parts: left, middle, right";
+main_page_info_page_2_html = "<img src='img/info2.png' class='rounded float-right' height='300' width='450'>" +
+                            "Middle part is divided in three parts:<ul><li>Up - The robot rgb camera. You can see what the robot see" +
+                            "</li><li>Middle - The Map. There are three squares on the map:<ul><li> The red one - Postion for Room 1" +
+                            "</li><li>The blue one - Position of the Room 2</li><li>The green one - Current robot position on the map</li>" +
+                            "</ul></li><li>Bottom - The upper camere where you can see the rooms and the robot</li></ul>"
+main_page_info_page_3_html = "";
+main_page_info_page_3_1_html = "Right part is a blank space that has no use";
+main_page_info_page_3_2_html = "<img src='img/info3.png' class='rounded float-right' height='300' width='450'>" +
+                                "Right part is the place where you can chat with TIAGo. You can write messages in bottom" +
+                                " text area. You can send them by pressing the blue button or the 'enter' key on keyboard";
+main_page_info_page_4_html = "<img src='img/info4.png' class='rounded float-right' height='300' width='450'>" +
+                             "Left part is divided in two: <ul><li>Up - Where are the buttons and informations about the" +
+                             " current status </li> <li> Down - where you have the tools to help TIAGo when you want to " +
+                             "have an intervention";
+main_page_info_page_5_html = "<img src='img/info5.png' class='rounded float-right' height='300' width='450'>" +
+                            "In the left-up part you have: <ul>" +
+                            "<li> The finish experiment button - If you want to finish the experiment before doing" +
+                            "all the tasks you can press this button </li>" +
+                            "<li> The current score </li> <li> The timer - The time for this part of the task </li>" +
+                            "<li> Status - The status of the robot during the task </li>" +
+                            "<li> Chose a task button - When you want to start a new task just press this button </li>" +
+                            "<li> Informations button - If you want informations about the interface and the experiment press this button </li>" +
+                            "<li> Have an intervention button/Finish my intervention button - This button is use for starting/finishing a intervention </li></ul>";
+main_page_info_page_6_html = "<img src='img/info6.png' class='rounded float-right' height='300' width='450'>" +
+                            "The left-down part has different tools for helping TIAGo when is doing a task. If you" +
+                            " have an intervention when TIAGo is moving you transmit that TIAGo is going in a wrong direction" +
+                            " and TIAGo it will change its direction to the good one. If you have an intervention when TIAGo is" +
+                            " scanning the romm you have 2 sliders that you can use to move TIAGo head and a scan button to scan" +
+                            " the part of the room that you see on the RGB camera. You only have THREE scans, so use them carrefuly." +
+                            " If you have an intervention when TIAGo is calculating the results you can tell him the results by checking" +
+                            " the boxes with the objects you saw, or selecting the type of room, or selecting if the object exist in that room";
+main_page_info_page_7_html = "<table class='table table-striped'>\
+                            <thead>\
+                                <tr>\
+                                <th scope='col'>Subtask result</th>\
+                                <th scope='col'>Move to the room</th>\
+                                <th scope='col'>Scan the room</th>\
+                                <th scope='col'>Calculate the results</th>\
+                                </tr>\
+                            </thead>\
+                            <tbody>\
+                                <tr>\
+                                <th scope='row'>Success(TIAGo alone)</th>\
+                                <td>0</td>\
+                                <td>0</td>\
+                                <td>0</td>\
+                                </tr>\
+                                <tr>\
+                                <th scope='row'>Fail(TIAGo alone)</th>\
+                                <td>-8</td>\
+                                <td>-5</td>\
+                                <td>-3</td>\
+                                </tr>\
+                                <tr>\
+                                <th scope='row'>Success(TIAGo with intervention)</th>\
+                                <td>-2</td>\
+                                <td>-1</td>\
+                                <td>-1</td>\
+                                </tr>\
+                                <tr>\
+                                <th scope='row'>Fail(TIAGo with intervention)</th>\
+                                <td>-8</td>\
+                                <td>-5</td>\
+                                <td>-3</td>\
+                                </tr>\
+                            </tbody>\
+                            </table>" +
+                            "The tasks have 3 parts: move to the room, scan the room and calcualte the results" +
+                            "A task has 7 points, but you can receive less points if the task fails or you have a intervention" +
+                            " to help TIAGo. You can have an intervetion o every part of the task. Ussualy a task done by TIAGo goes" + 
+                            " like this: TIAGo is moving to the room point, When it arrive there it scan what it has on its RGB camera," +
+                            " it move its head right and scan again, it move its head left and scan again, it moves its head back to the center" +
+                            " and it starts calcualting the results.";
+main_page_info_page_8_html = "<img src='img/info8.png' class='rounded float-right' height='300' width='450'>" +
+                            "During the experiment you can press differnt buttons. If you are not doing any task the best decision will be" +
+                            " to press Chose a task button and chose a task to start. If you think at any moment that TIAGo is not doing right" +
+                            " the task you can have an intervention by pressing have an intervention button. At the end of every part of a task" +
+                            " you will be asked if you trust TIAGo that was done correctly the part of the task where if you want to have an intervention" +
+                            " and help TIAGo to do the task succesfuly. After this you will get the answer if the part of the task has be done succesfully." +
+                            " If one part of the task fails the entire task fails.";
 function main_page_swal_chose_task_info() {
     console.log("de pus informatii")
     swal.close();
@@ -1610,18 +1748,50 @@ function main_page_swal_chose_task_info() {
         confirmButtonText: 'Next &rarr;',
         showCancelButton: true,
         cancelButtonText: 'Chose Task',
-        progressSteps: ['1', '2', '3'],
+        progressSteps: ['1', '2', '3', '4', '5', '6', '7', '8'],
         allowOutsideClick: false,
         width : "80%",
       }).queue([
         {
-          title: 'Question 1',
-          text: 'Chaining swal2 modals is easy'
+          title: 'UI',
+          type: "info",
+          html: main_page_info_page_1_html
         },
         {
-            html: "<h1>Question 2</h1>",
+            title: 'Middle',
+            type: "info",
+            html: main_page_info_page_2_html
         },
-        'Question 3'
+        {
+            title: 'Right',
+            type: "info",
+            html: main_page_info_page_3_html
+        },
+        {
+            title: 'Left',
+            type: "info",
+            html: main_page_info_page_4_html
+        },
+        {
+            title: 'Left-Up',
+            type: "info",
+            html: main_page_info_page_5_html
+        },
+        {
+            title: 'Left-Down',
+            type: "info",
+            html: main_page_info_page_6_html
+        },
+        {
+            title: 'Tasks and Score',
+            type: "info",
+            html: main_page_info_page_7_html
+        },
+        {
+            title: 'Buttons',
+            type: "info",
+            html: main_page_info_page_8_html
+        }
       ]).then((result) => {
         if (result.dismiss === Swal.DismissReason.cancel) {
             main_page_chose_task();
@@ -1648,26 +1818,59 @@ function main_page_info_button() {
     swal.mixin({
         confirmButtonText: 'Next &rarr;',
         showCancelButton: true,
-        cancelButtonText: 'Chose Task',
-        progressSteps: ['1', '2', '3'],
+        cancelButtonText: 'Cancel',
+        progressSteps: ['1', '2', '3', '4', '5', '6', '7', '8'],
         allowOutsideClick: false,
         width : "80%",
       }).queue([
         {
-          title: 'Question 1',
-          text: 'Chaining swal2 modals is easy'
+          title: 'UI',
+          type: "info",
+          html: main_page_info_page_1_html
         },
         {
-            html: "<h1>Question 2</h1>",
+            title: 'Middle',
+            type: "info",
+            html: main_page_info_page_2_html
         },
-        'Question 3'
+        {
+            title: 'Right',
+            type: "info",
+            html: main_page_info_page_3_html
+        },
+        {
+            title: 'Left',
+            type: "info",
+            html: main_page_info_page_4_html
+        },
+        {
+            title: 'Left-Up',
+            type: "info",
+            html: main_page_info_page_5_html
+        },
+        {
+            title: 'Left-Down',
+            type: "info",
+            html: main_page_info_page_6_html
+        },
+        {
+            title: 'Tasks and Score',
+            type: "info",
+            html: main_page_info_page_7_html
+        },
+        {
+            title: 'Buttons',
+            type: "info",
+            html: main_page_info_page_8_html
+        }
       ]).then((result) => {
         if (result.dismiss === Swal.DismissReason.cancel) {
-            main_page_chose_task();
+            //main_page_chose_task();
         } else if (result.value) {
-            main_page_chose_task();
+            //main_page_chose_task();
         }
-    })
+      })
+
 }
 
 function main_page_finish_experiment() {
