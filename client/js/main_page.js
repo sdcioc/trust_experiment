@@ -411,7 +411,7 @@ function main_page_feedback() {
     }
     main_page_robot_pose.x = -0.3;
     main_page_robot_pose.y = 0.3;
-    changeState("post_questions_page");
+    //changeState("post_questions_page");
 
     swal({
         allowOutsideClick: false,
@@ -1303,8 +1303,7 @@ function main_page_my_swal(type, success) {
         if(success == true) {
             swal({
                 title: 'Scanning Successful',
-                html: 'Robot has scan the room. Next it will calculate the results' +
-                      'or press the Ok button to do it now.',
+                html: 'Robot has scan the room. Next it will calculate the results',
                 allowOutsideClick: false,
                 width : "50%",
                 type: 'success',
