@@ -973,8 +973,8 @@ function main_page_finish_intervention() {
         main_page_has_intervene_result = true;
         main_page_verify_result();
     }
-    document.getElementById("main_page_task_intervetion_intervention_btn").disabled = false;
-    document.getElementById("main_page_task_intervetion_intervention_button_div").hidden = false;
+    //document.getElementById("main_page_task_intervetion_intervention_btn").disabled = false;
+    //document.getElementById("main_page_task_intervetion_intervention_button_div").hidden = false;
 }
 
 function main_page_move_btn(arg) {
@@ -1491,7 +1491,7 @@ function main_page_chose_task() {
                         main_page_start_task(2);
                     };
                 }
-                if (document.getElementById('main_page_task_intervetion_task_2')) {
+                if (document.getElementById('main_page_task_intervetion_task_3')) {
                     document.getElementById('main_page_task_intervetion_task_3').onclick = function() {
                         main_page_start_task(3);
                     };
