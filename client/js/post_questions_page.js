@@ -1,4 +1,15 @@
 
+var post_questions_trust_value = 4;
+function post_questions_page_enter() {
+    document.getElementById("post_questions_page").hidden = false;
+}
+
+function post_questions_page_exit() {
+    document.getElementById("post_questions_page").hidden = true;
+}
+
+
+/* folosit intrecut
 var postQuestionsIndex = 0;
 var post_questions_answers = {};
 var post_questions_trust_feedback_slider = null;
@@ -95,3 +106,4 @@ function post_questions_submit_feedback () {
     //})
     post_questions_page_answer_click(post_questions_trust_value);
 }
+*/

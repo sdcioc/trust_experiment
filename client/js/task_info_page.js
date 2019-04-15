@@ -11,7 +11,7 @@ var task_info_page_tasks_text = {
         to a point in Room 2, shown with blue on the map. Next, by moving its head, TIAGo will scan Room 2 and \
         will compute the answer for the task",
     4 : "<h4>Game Points</h4>\
-        Every task will have maximum 7 points to gain. If the you intervene or the robot fail you will get fewer points.\
+        Every task will have maximum 7 points to gain. If you intervene or the robot fail you will get fewer points.\
         Every task has 3 parts: Moving at some point in the rooms, moving the head and scan the room and calculate the\
          result for the task. The next table shows how many point you can lose.\
          <table class='table table-striped'>\
@@ -124,7 +124,7 @@ function task_info_page_enter() {
         {
             min : 0,
             max : 1,
-            step : 0.05,
+            step : 0.25,
             ticks: [0, 0.25, 0.5, 0.75, 1],
             ticks_positions: [0, 25, 50, 75, 100],
             ticks_labels: ['Very easy', 'Easy', 'Neutral', 'Difficult', 'Very difficult'],
@@ -141,7 +141,7 @@ function task_info_page_enter() {
         {
             min : 0,
             max : 1,
-            step : 0.05,
+            step : 0.25,
             ticks: [0, 0.25, 0.5, 0.75, 1],
             ticks_positions: [0, 25, 50, 75, 100],
             ticks_labels: ['Very easy', 'Easy', 'Neutral', 'Difficult', 'Very difficult'],
@@ -158,7 +158,7 @@ function task_info_page_enter() {
         {
             min : 0,
             max : 1,
-            step : 0.05,
+            step : 0.25,
             ticks: [0, 0.25, 0.5, 0.75, 1],
             ticks_positions: [0, 25, 50, 75, 100],
             ticks_labels: ['Very easy', 'Easy', 'Neutral', 'Difficult', 'Very difficult'],

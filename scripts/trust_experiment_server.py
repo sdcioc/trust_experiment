@@ -56,13 +56,14 @@ class TrustServerClass:
             #if( (requestDict["username"] == username) and (requestDict["password"] == password) ):
             if(requestDict["password"] == password):
                 responseDict["name"] = "Success";
-                #TODO: TESTING
+                #TESTING
                 #responseDict["cond1"] = 0;
                 #responseDict["cond2"] = 1;
                 #index_ar = 0;
                 responseDict["username"] = "u" + str(int(time.time()));
                 responseDict["cond1"] = random.randint(0, 1);
                 responseDict["cond2"] = random.randint(0, 2);
+                responseDict["cond3"] = random.randint(1, 4);
                 index_ar = random.randint(0, 5);
                 responseDict["main_page_real_task"] =  {
                     1 : taskArangement[index_ar][0],
@@ -79,7 +80,7 @@ class TrustServerClass:
             print "Scan"
             responseDict["type"] = "Scan";
             frame = self.images[requestDict["room"]];
-            #TODO de calculat ce parte din imagine iau
+            #de calculat ce parte din imagine iau
             w_index = requestDict["yaw"] + 70;
             h_index = requestDict["pitch"] + 50;
             width = frame[0].size/3;

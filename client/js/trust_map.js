@@ -50,8 +50,8 @@ function init_map() {
     */
     viewer = new ROS2D.Viewer({
         divID: 'main_page_info_nav',
-        width: (x-15)/2 - 15,
-        height: ( (y-10)*3)/10 - 10
+        width: (x-15)/2 -5,
+        height: ( (y-5)*33)/100
     });
 
     /*

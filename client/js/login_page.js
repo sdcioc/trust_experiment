@@ -1,6 +1,7 @@
 
 var main_page_cond1 = null;
 var main_page_cond2 = null;
+var main_page_cond3 = null;
 var current_user = null;
 function login_page_enter() {
     document.getElementById("login_page_password").value = "";
@@ -11,6 +12,7 @@ function login_page_enter() {
         'type' : "LoginPage"
     }
     experiment_index = experiment_index + 1;
+    //test_login();
 }
 
 function login_page_exit() {
@@ -46,6 +48,7 @@ function login_page_login_btn_click() {
         if((response["name"] == "Success") && (response["type"] == "Login") ) {
             main_page_cond1 = response["cond1"];
             main_page_cond2 = response["cond2"];
+            main_page_cond3 = response["cond3"];
 
             if(main_page_cond2 == 1) {
                 chat_accessToken = chat_accessToken_reliable;
@@ -69,4 +72,33 @@ function login_page_login_btn_click() {
             document.getElementById("login_page_text").innerHTML = "Fail Login, please try again";
         }
     });
+}
+
+function test_login() {
+    main_page_cond1 = 0;
+    main_page_cond2 = 1;
+    main_page_cond3 = 1;
+
+    if(main_page_cond2 == 1) {
+        chat_accessToken = chat_accessToken_reliable;
+    } else if (main_page_cond2 == 2) {
+        chat_accessToken = chat_accessToken_unreliable;
+    } else {
+        console.log("fara chat")
+    }
+
+    main_page_real_task = {
+        1:1,
+        2:3,
+        3:2
+    }
+    for(x in main_page_real_task) {
+        main_page_false_task[main_page_real_task[x]] = x;
+    }
+    console.log(main_page_real_task);
+    console.log(main_page_false_task);
+    //current_user = username;
+    current_user = "dan";
+    changeState("main_page");
+
 }

@@ -129,6 +129,8 @@ function main_page_enter() {
     main_page_last_robot_div = "main_page_rgb_robot_img_center";
     document.getElementById("main_page_rgb_room_img_center").hidden = false;
     main_page_last_room_div = "main_page_rgb_room_img_center";
+
+    //main_page_chose_task();
 }
 
 function main_page_viewer_pose(moving_time, destination) {
@@ -162,6 +164,7 @@ function main_page_init() {
     experiment_index = experiment_index + 1;
 
 
+    /*
    var g_1 = new createjs.Graphics();
    g_1.setStrokeStyle(0);
    g_1.beginStroke(createjs.Graphics.getRGB(0,0,255));
@@ -205,9 +208,7 @@ function main_page_init() {
        x : main_page_robot_pose.x,
        y : main_page_robot_pose.y
    }
-    /*
     Setare hartă
-    */
     viewer.scene.scaleX = 60;
     viewer.scene.scaleY = 30;
     viewer.scene.x = 140;
@@ -215,6 +216,7 @@ function main_page_init() {
     viewer.scene.children[2].scaleY = 0.02
     viewer.scene.children[2].scaleX = 0.01
     viewer.removeObject(viewer.scene.children[2])
+    */
 
     headLeftRightSlider = $("#main_page_task_intervetion_head_left_right_slider").bootstrapSlider(
         {
@@ -304,8 +306,12 @@ function main_page_init() {
     
 
     document.getElementById("main_page_task_intervetion_finish_intervention_btn").disabled = true;
+    document.getElementById("main_page_task_intervetion_finish_intervention_button_div").hidden = true;
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = true;
-    document.getElementById("main_page_info_header").innerHTML = "Chose a task";
+    document.getElementById("main_page_task_intervetion_intervention_button_div").hidden = true;
+    //document.getElementById("main_page_info_header").innerHTML = "Chose a task";
+    document.getElementById("main_page_task_robot_status").innerHTML = "Status:" + "Chose a task";
+    document.getElementById("main_page_timer").innerHTML = "Timer:" + "No timer";
     //TODO: random chose a task after timeout
 
 
@@ -316,10 +322,10 @@ function main_page_init() {
     }
 
     main_page_total_score = 0;
-    document.getElementById("main_page_total_score").innerHTML = "Current Score:" + main_page_total_score;
+    document.getElementById("main_page_total_score").innerHTML = "Total Score:" + main_page_total_score;
 
-    //TODO: image and shit
-    main_page_cond3 = 1;//1-4
+    //: image and shit
+    //main_page_cond3 = 1;//1-4
     document.getElementById("main_page_rgb_robot_img_center").src = "/img/cond_" + main_page_cond3 + "/robot_center.jpg";
     /*
     main_page_robot_img_1_viewer = pannellum.viewer('main_page_rgb_robot_img_1', {
@@ -397,88 +403,6 @@ function main_page_exit() {
     document.getElementById("main_page").hidden = true;
 }
 
-function main_page_start_task(arg) {
-    console.log(arg);
-    main_page_current_task = main_page_real_task[arg];
-    experiment_events[experiment_index] = {
-        'dateString' : new Date().toJSON(),
-        'name' : "TaskStarted",
-        'type' : "MainPage",
-        'task' : main_page_current_task
-    }
-    experiment_index = experiment_index + 1;
-    main_page_current_state = "MOVE_BASE";
-    document.getElementById("main_page_task_intervetion_task_1").disabled = true;
-    document.getElementById("main_page_task_intervetion_task_2").disabled = true;
-    document.getElementById("main_page_task_intervetion_task_3").disabled = true;
-    main_page_tasks[main_page_current_task] = 3;
-    autonomous_move = true;
-    autonomous_head = true;
-    autonomous_result = true;
-    var message_dict = {
-        'type' : "move_task",
-        'task' : main_page_current_task
-    }
-
-    if (main_page_current_task == 3) {
-        main_page_task_3_move_task = 1;
-        message_dict['subtype'] = main_page_task_3_move_task;
-    }
-
-    var request = new ROSLIB.ServiceRequest({
-        a : JSON.stringify(message_dict)
-    });
-
-    robot_web_service_trust_client.callService(request, function(result) {
-        console.log('Result for service call on '
-        + robot_web_service_trust_client.name
-        + ': '
-        + result);
-    });
-    if(main_page_last_robot_div != null) {
-        document.getElementById(main_page_last_robot_div).hidden = true;
-    }
-    if(main_page_last_room_div != null) {
-        document.getElementById(main_page_last_room_div).hidden = true;
-    }
-    if (main_page_current_task == 1) {
-        document.getElementById("main_page_robot_video_1").hidden = false;
-        main_page_last_robot_div = "main_page_robot_video_1";
-        document.getElementById("main_page_room_video_1").hidden = false;
-        main_page_last_room_div = "main_page_room_video_1";
-        document.getElementById('main_page_robot_video_1').play();
-        document.getElementById('main_page_room_video_1').play();
-        main_page_viewer_pose(0, 1);
-    } else if (main_page_current_task == 2) {
-        document.getElementById("main_page_robot_video_2").hidden = false;
-        main_page_last_robot_div = "main_page_robot_video_2";
-        document.getElementById("main_page_room_video_2").hidden = false;
-        main_page_last_room_div = "main_page_room_video_2";
-        document.getElementById('main_page_robot_video_2').play();
-        document.getElementById('main_page_room_video_2').play();
-        main_page_viewer_pose(0, 2);
-    } else if (main_page_current_task == 3) {
-        document.getElementById("main_page_robot_video_1").hidden = false;
-        main_page_last_robot_div = "main_page_robot_video_1";
-        document.getElementById("main_page_room_video_1").hidden = false;
-        main_page_last_room_div = "main_page_room_video_1";
-        document.getElementById('main_page_robot_video_1').play();
-        document.getElementById('main_page_room_video_1').play();
-        main_page_viewer_pose(0, 1);
-    }
-    document.getElementById("main_page_task_intervetion_intervention_btn").disabled = false;
-    main_page_move_base_timer(20);
-
-    document.getElementById("main_page_info_header").innerHTML = "The robot moves trough rooms, In 50 seconds you can intervene by pressing intervene button";
-    main_page_current_task_score = 7;
-    main_page_current_task_fail = 0;
-    main_page_current_task_interventions = {
-        "MOVE_BASE" : false,
-        "MOVE_HEAD_AND_SCAN" : false,
-        "CALCULATE_RESULT" : false
-    }
-}
-
 function main_page_feedback() {
     main_page_last_robot_pose = {
         x : -0.3,
@@ -488,6 +412,46 @@ function main_page_feedback() {
     main_page_robot_pose.x = -0.3;
     main_page_robot_pose.y = 0.3;
     changeState("post_questions_page");
+
+    swal({
+        allowOutsideClick: false,
+        width : "80%",
+        type: 'question',
+        showConfirmButton : false,
+        title: 'To what extent do you trust Tiago in doing the tasks right now ?',
+        input: 'radio',
+        inputOptions: {
+            "1" : "To an Extremely Small Extent",
+            "2" : "To a Very Small Extent",
+            "3" : "To a Small Extent",
+            "4" : "To a Moderate Extent",
+            "5" : "To a Large Extent",
+            "6" : "To a Very Large Extent",
+            "7" : "To an Extremely Large Extent"
+        },
+        showCancelButton: false,
+        inputValidator: (value) => {
+            if (!value) {
+                return 'You need to choose something!'
+            }
+        },
+        onBeforeOpen: () => {
+            if(main_page_last_robot_div != null) {
+                document.getElementById(main_page_last_robot_div).hidden = true;
+            }
+            if(main_page_last_room_div != null) {
+                document.getElementById(main_page_last_room_div).hidden = true;
+            }
+            document.getElementById("main_page_rgb_robot_img_center").hidden = false;
+            main_page_last_robot_div = "main_page_rgb_robot_img_center";
+            document.getElementById("main_page_rgb_room_img_center").hidden = false;
+            main_page_last_room_div = "main_page_rgb_room_img_center";
+        }
+    }).then((result) => {
+        console.log("ce rezulta este:", result.value);
+        post_questions_trust_value = Number.parseInt(result.value);
+        main_page_prepare_for_next_task();
+    });
 }
 
 
@@ -505,20 +469,18 @@ function main_page_prepare_for_next_task() {
         'P' : main_page_current_task_score,
         'TK' : post_questions_trust_value,
         'S' : main_page_cond1,
+        'W' : main_page_cond3,
         'Task' : main_page_current_task
     }
     feedback_index = feedback_index + 1;
     var local_sem = false;
     if(main_page_tasks[main_page_real_task[1]] == 0) {
-        document.getElementById("main_page_task_intervetion_task_1").disabled = false;
         local_sem = true;
     }
     if(main_page_tasks[main_page_real_task[2]] == 0) {
-        document.getElementById("main_page_task_intervetion_task_2").disabled = false;
         local_sem = true;
     }
     if(main_page_tasks[main_page_real_task[3]] == 0) {
-        document.getElementById("main_page_task_intervetion_task_3").disabled = false;
         local_sem = true;
     }
     if(local_sem) {
@@ -530,7 +492,10 @@ function main_page_prepare_for_next_task() {
         }
         experiment_index = experiment_index + 1;
 
-        document.getElementById("main_page_info_header").innerHTML = "Chose a task";
+        //document.getElementById("main_page_info_header").innerHTML = "Chose a task";
+        document.getElementById("main_page_task_robot_status").innerHTML = "Status:" + "Chose a task";
+        document.getElementById("main_page_timer").innerHTML = "Timer:" + "No timer";
+        document.getElementById("main_page_chose_task_btn").disabled = false;
     } else {
         main_page_current_state = "EXPERIMENT_FINISHED"
         experiment_events[experiment_index] = {
@@ -545,6 +510,7 @@ function main_page_prepare_for_next_task() {
 
 function main_page_verify_move_base_arive() {
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = true;
+    document.getElementById("main_page_task_intervetion_intervention_button_div").hidden = true;
     var requestDict = {
         type : "VerifyMove",
         task : main_page_current_task
@@ -587,6 +553,7 @@ function main_page_verify_move_base_arive() {
 
 function main_page_verify_move_head() {
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = true;
+    document.getElementById("main_page_task_intervetion_intervention_button_div").hidden = true;
     var move_head_success = true;
 
     //move head straight after :P
@@ -623,10 +590,10 @@ function main_page_verify_move_head() {
 
 function main_page_verify_result() {
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = true;
+    document.getElementById("main_page_task_intervetion_intervention_button_div").hidden = true;
     var result_success;
     result_success = false;
     var room_type = null;
-    document.getElementById("main_page_task_intervetion_intervention_btn").disabled = true;
     if (main_page_has_intervene_result) {
         if(main_page_current_task == 1) {
             main_page_tasks_objects_detection[main_page_current_task]["PLANT"] = document.getElementById("main_page_task_intervetion_scan_task_1_has_object").checked;
@@ -672,7 +639,7 @@ function main_page_verify_result() {
         }
 
     }
-    //TODO verificare răspunsuri
+    // verificare răspunsuri
     if(main_page_current_task == 1) {
         result_success = main_page_tasks_objects_detection[main_page_current_task]["PLANT"];
     } else if(main_page_current_task == 2) {
@@ -716,11 +683,35 @@ function main_page_verify_result() {
 
 function main_page_move_base_timer(arg) {
     if(arg == 0) {
-        main_page_verify_move_base_arive();
+        var html_text = "Tiago thinks that it has arrived corectly. If you trust him press 'Trust Tiago', if not press 'Have a intervention' and help Tiago"; 
+        swal({
+            html: html_text,
+            allowOutsideClick: false,
+            width : "80%",
+            type: 'question',
+            showConfirmButton : true,
+            confirmButtonText: 'Trust Tiago',
+            showCancelButton: true,
+            cancelButtonText: 'Have an intervention',
+            }).then((result) => {
+                if (result.dismiss === Swal.DismissReason.cancel) {
+                    main_page_intervention();
+                } else {
+                    main_page_verify_move_base_arive();
+                }
+                if (
+                    // Read more about handling dismissals
+                    result.dismiss === swal.DismissReason.timer
+                ) {
+                    console.log('I was closed by the timer')
+                }
+            });
+
     } else {
         setTimeout(function(){
             if(autonomous_move) {
-                document.getElementById("main_page_info_header").innerHTML = "The robot moves trough rooms. In " + (arg-1) + " seconds  you can intervene by pressing intervene button";
+                //document.getElementById("main_page_info_header").innerHTML = "The robot moves trough rooms. In " + (arg-1) + " seconds  you can intervene by pressing intervene button";
+                document.getElementById("main_page_timer").innerHTML = "Timer:" + (arg-1) + "s";
                 main_page_move_base_timer(arg-1);
             }
         }, 1000);
@@ -734,8 +725,9 @@ function main_page_move_base_manual_timer(arg) {
     } else {
         setTimeout(function(){
             if(autonomous_move==false) {
+                //document.getElementById("main_page_info_header").innerHTML = "You control the robot. You have " + (arg-1) + " seconds to move him";
+                document.getElementById("main_page_timer").innerHTML = "Timer:" + (arg-1) + "s";
                 main_page_move_base_manual_timer(arg-1);
-                document.getElementById("main_page_info_header").innerHTML = "You control the robot. You have " + (arg-1) + " seconds to move him";
             }
         }, 1000);
     }
@@ -743,12 +735,36 @@ function main_page_move_base_manual_timer(arg) {
 
 function main_page_move_head_timer(arg) {
     if(arg == 0) {
-        main_page_verify_move_head();
+        var html_text = "Tiago thinks that it has finished scanning the room. If you trust him press 'Trust Tiago', if not press 'Have a intervention' and help Tiago"; 
+        swal({
+            html: html_text,
+            allowOutsideClick: false,
+            width : "80%",
+            type: 'question',
+            showConfirmButton : true,
+            confirmButtonText: 'Trust Tiago',
+            showCancelButton: true,
+            cancelButtonText: 'Have an intervention',
+            }).then((result) => {
+                if (result.dismiss === Swal.DismissReason.cancel) {
+                    main_page_intervention();
+                } else {
+                    main_page_verify_move_head();
+                }
+                if (
+                    // Read more about handling dismissals
+                    result.dismiss === swal.DismissReason.timer
+                ) {
+                    console.log('I was closed by the timer')
+                }
+            });
     } else {
         setTimeout(function(){
             if(autonomous_head) {
+                //document.getElementById("main_page_info_header").innerHTML = "The robot moves its head to see the table. In " + (arg-1) + " seconds  you can intervene by pressing intervene button";
+                document.getElementById("main_page_task_robot_status").innerHTML = "Status:" + "Scaning the room";
+                document.getElementById("main_page_timer").innerHTML = "Timer:" + (arg-1) + "s";
                 main_page_move_head_timer(arg-1);
-                document.getElementById("main_page_info_header").innerHTML = "The robot moves its head to see the table. In " + (arg-1) + " seconds  you can intervene by pressing intervene button";
             }
         }, 1000);
     }
@@ -761,9 +777,10 @@ function main_page_move_head_manual_timer(arg) {
     } else {
         setTimeout(function(){
             if(autonomous_head==false) {
+                //document.getElementById("main_page_info_header").innerHTML = "You control the robot. You have " + (arg-1) + " seconds to move its head. You have " + (main_page_current_task_scans_remained) + " scans remained";
+                document.getElementById("main_page_task_robot_status").innerHTML = "Status:" + "Scaning the room";
+                document.getElementById("main_page_timer").innerHTML = "Timer:" + (arg-1) + "s";
                 main_page_move_head_manual_timer(arg-1);
-
-                document.getElementById("main_page_info_header").innerHTML = "You control the robot. You have " + (arg-1) + " seconds to move its head. You have " + (main_page_current_task_scans_remained) + " scans remained";
             }
         }, 1000);
     }
@@ -772,12 +789,36 @@ function main_page_move_head_manual_timer(arg) {
 
 function main_page_result_timer(arg) {
     if(arg == 0) {
-        main_page_verify_result();
+        var html_text = "Tiago thinks that it has finished calculating the results. If you trust him press 'Trust Tiago', if not press 'Have a intervention' and help Tiago"; 
+        swal({
+            html: html_text,
+            allowOutsideClick: false,
+            width : "80%",
+            type: 'question',
+            showConfirmButton : true,
+            confirmButtonText: 'Trust Tiago',
+            showCancelButton: true,
+            cancelButtonText: 'Have an intervention',
+            }).then((result) => {
+                if (result.dismiss === Swal.DismissReason.cancel) {
+                    main_page_intervention();
+                } else {
+                    main_page_verify_result();
+                }
+                if (
+                    // Read more about handling dismissals
+                    result.dismiss === swal.DismissReason.timer
+                ) {
+                    console.log('I was closed by the timer')
+                }
+            });
     } else {
         setTimeout(function(){
             if(autonomous_result) {
+                //document.getElementById("main_page_info_header").innerHTML = "The robot calculates the result. In " + (arg-1) + " seconds  you can intervene by pressing intervene button";
+                document.getElementById("main_page_task_robot_status").innerHTML = "Status:" + "Calculate the results";
+                document.getElementById("main_page_timer").innerHTML = "Timer:" + (arg-1) + "s";
                 main_page_result_timer(arg-1);
-                document.getElementById("main_page_info_header").innerHTML = "The robot calculates the result. In " + (arg-1) + " seconds  you can intervene by pressing intervene button";
             }
         }, 1000);
     }
@@ -790,8 +831,10 @@ function main_page_result_manual_timer(arg) {
     } else {
         setTimeout(function(){
             if(autonomous_result==false) {
+                //document.getElementById("main_page_info_header").innerHTML = "You control the answer for result. You have " + (arg-1) + " seconds to complete the result form";
+                document.getElementById("main_page_task_robot_status").innerHTML = "Status:" + "Calculate the results";
+                document.getElementById("main_page_timer").innerHTML = "Timer:" + (arg-1) + "s";
                 main_page_result_manual_timer(arg-1);
-                document.getElementById("main_page_info_header").innerHTML = "You control the answer for result. You have " + (arg-1) + " seconds to complete the result form";
             }
         }, 1000);
     }
@@ -799,6 +842,7 @@ function main_page_result_manual_timer(arg) {
 
 function main_page_intervention() {
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = true;
+    document.getElementById("main_page_task_intervetion_intervention_button_div").hidden = true;
     if(main_page_current_state == "MOVE_BASE") {
         autonomous_move = false;
         experiment_events[experiment_index] = {
@@ -868,6 +912,7 @@ function main_page_intervention() {
         }
         main_page_move_head_manual_timer(50);
         document.getElementById("main_page_task_intervetion_finish_intervention_btn").disabled = false;
+        document.getElementById("main_page_task_intervetion_finish_intervention_button_div").hidden = false;
     }
     else if(main_page_current_state == "CALCULATE_RESULT") {
         autonomous_result = false;
@@ -883,11 +928,13 @@ function main_page_intervention() {
         main_page_current_task_interventions["CALCULATE_RESULT"] = true;
         main_page_result_manual_timer(30);
         document.getElementById("main_page_task_intervetion_finish_intervention_btn").disabled = false;
+        document.getElementById("main_page_task_intervetion_finish_intervention_button_div").hidden = false;
     }
 }
 
 function main_page_finish_intervention() {
     document.getElementById("main_page_task_intervetion_finish_intervention_btn").disabled = true;
+    document.getElementById("main_page_task_intervetion_finish_intervention_button_div").hidden = true;
     if(main_page_current_state == "MOVE_BASE") {
         experiment_events[experiment_index] = {
             'dateString' : new Date().toJSON(),
@@ -909,7 +956,7 @@ function main_page_finish_intervention() {
         experiment_index = experiment_index + 1;
         document.getElementById("main_page_task_intervetion_head_sliders_div").hidden = true;
         autonomous_head = true;
-        //TODO enable scan button
+        // enable scan button
         document.getElementById("main_page_task_intervetion_head_sliders_div_buttton").disabled = false;
         main_page_verify_move_head();
     } else if (main_page_current_state == "CALCULATE_RESULT") {
@@ -927,6 +974,7 @@ function main_page_finish_intervention() {
         main_page_verify_result();
     }
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = false;
+    document.getElementById("main_page_task_intervetion_intervention_button_div").hidden = false;
 }
 
 function main_page_move_btn(arg) {
@@ -969,7 +1017,7 @@ function main_page_move_btn(arg) {
 function main_page_scan_task() {
     main_page_current_task_scans_remained = main_page_current_task_scans_remained - 1;
     if (main_page_current_task_scans_remained < 1) {
-        //TODO disable scan button
+        // disable scan button
         document.getElementById("main_page_task_intervetion_head_sliders_div_buttton").disabled = true;
     }
     if (main_page_current_task_scans_remained > -1) {
@@ -1027,7 +1075,7 @@ function main_page_scan_task() {
                     }
                 }
             }
-            //TODO: do something with the result
+            //: do something with the result
         });
     }
 }
@@ -1113,7 +1161,7 @@ function main_page_move_head_task() {
                                         }
                                     }
                                 }
-                                //TODO: do something with the result
+                                //: do something with the result
                                 main_page_move_head_task();
                             }
                         });
@@ -1166,32 +1214,14 @@ function main_page_my_swal(type, success) {
     if(type == "MOVE_BASE") {
         if(success == true) {
             swal({
-            title: 'Move Base Successful',
-            html: 'Robot has arrived at the task. In <strong></strong> seconds it will move its head' +
-                  'or press the Ok button to do it now.',
-            timer: 4000,
-            onBeforeOpen: () => {
-                //swal.showLoading()
-                timerInterval = setInterval(() => {
-                    swal.getContent().querySelector('strong')
-                    .textContent = (swal.getTimerLeft() / 1000)
-                    .toFixed(0)
-                }, 100)
-            },
-            onClose: () => {
-                clearInterval(timerInterval)
-            },
+            title: 'Moving Successful',
+            html: 'Robot has arrived in the room. Next it will scan the room',
             allowOutsideClick: false,
             width : "50%",
             type: 'success',
             confirmButtonText: 'OK!'
             }).then((result) => {
-                if (
-                    // Read more about handling dismissals
-                    result.dismiss === swal.DismissReason.timer
-                ) {
-                    console.log('I was closed by the timer')
-                }
+
                 main_page_current_state = "MOVE_HEAD_AND_SCAN";
                 main_page_current_task_head_task = 0;
                 if(main_page_last_robot_div != null) {
@@ -1255,67 +1285,31 @@ function main_page_my_swal(type, success) {
             main_page_current_task_score = main_page_current_task_score - 8;
             main_page_current_task_fail = 1;
             main_page_total_score = main_page_total_score + main_page_current_task_score;
+            document.getElementById("main_page_total_score").innerHTML = "Total Score:" + main_page_total_score;
             swal({
             title: 'Task Failed',
-            html: 'Robot has failed to arrive at the task. In <strong></strong> seconds you will complete' +
-                  ' the feedback or press the Ok button to do it now.Your score for this task is:' + main_page_current_task_score +
+            html: 'Robot has failed to arrive at the task. Next please complete' +
+                  ' the feedback.Your score for this task is:' + main_page_current_task_score +
                   ' Your total score is:' + main_page_total_score,
-            timer: 10000,
-            onBeforeOpen: () => {
-                //swal.showLoading()
-                timerInterval = setInterval(() => {
-                    swal.getContent().querySelector('strong')
-                    .textContent = (swal.getTimerLeft() / 1000)
-                    .toFixed(0)
-                }, 100)
-            },
-            onClose: () => {
-                clearInterval(timerInterval)
-            },
             allowOutsideClick: false,
             width : "50%",
             type: 'error',
             confirmButtonText: 'OK!'
             }).then((result) => {
-                if (
-                    // Read more about handling dismissals
-                    result.dismiss === swal.DismissReason.timer
-                ) {
-                    console.log('I was closed by the timer')
-                }
                 main_page_feedback()
             });
-            document.getElementById("main_page_total_score").innerHTML = "Current Score:" + main_page_total_score;
         }
     } else if (type == "MOVE_HEAD_AND_SCAN") {
         if(success == true) {
             swal({
-                title: 'Move Head Successful',
-                html: 'Robot has move his head for this task. In <strong></strong> seconds it will scan' +
+                title: 'Scanning Successful',
+                html: 'Robot has scan the room. Next it will calculate the results' +
                       'or press the Ok button to do it now.',
-                timer: 4000,
-                onBeforeOpen: () => {
-                    //swal.showLoading()
-                    timerInterval = setInterval(() => {
-                        swal.getContent().querySelector('strong')
-                        .textContent = (swal.getTimerLeft() / 1000)
-                        .toFixed(0)
-                    }, 100)
-                },
-                onClose: () => {
-                    clearInterval(timerInterval)
-                },
                 allowOutsideClick: false,
                 width : "50%",
                 type: 'success',
                 confirmButtonText: 'OK!'
                 }).then((result) => {
-                    if (
-                        // Read more about handling dismissals
-                        result.dismiss === swal.DismissReason.timer
-                    ) {
-                        console.log('I was closed by the timer')
-                    }
                     if ( (main_page_current_task == 3) && (main_page_task_3_move_task == 1))
                     {
                         main_page_task_3_move_task = 2;
@@ -1353,7 +1347,9 @@ function main_page_my_swal(type, success) {
                         main_page_viewer_pose(0, 2);
                         main_page_move_base_timer(25);
                     
-                        document.getElementById("main_page_info_header").innerHTML = "The robot moves trough rooms, In 25 seconds you can intervene by pressing intervene button";
+                        //document.getElementById("main_page_info_header").innerHTML = "The robot moves trough rooms, In 25 seconds you can intervene by pressing intervene button";
+                        document.getElementById("main_page_task_robot_status").innerHTML = "Status:" + "Moving to Room 2";
+                        document.getElementById("main_page_timer").innerHTML = "Timer:" + "25s";
                     } else {
                         main_page_current_state = "CALCULATE_RESULT";
                         main_page_result_timer(15);
@@ -1366,37 +1362,19 @@ function main_page_my_swal(type, success) {
             main_page_current_task_score = main_page_current_task_score - 5;
             main_page_total_score = main_page_total_score + main_page_current_task_score;
             main_page_current_task_fail = 2;
+            document.getElementById("main_page_total_score").innerHTML = "Total Score:" + main_page_total_score;
             swal({
             title: 'Task Failed',
-            html: 'Robot has failed to move his head at the task. In <strong></strong> seconds you will complete' +
-                  ' the feedback or press the Ok button to do it now.Your score for this task is:' + main_page_current_task_score +
+            html: 'Robot has failed to scan the room. Next please complete' +
+                  ' the feedback.Your score for this task is:' + main_page_current_task_score +
                   ' Your total score is:' + main_page_total_score,
-            timer: 10000,
-            onBeforeOpen: () => {
-                //swal.showLoading()
-                timerInterval = setInterval(() => {
-                    swal.getContent().querySelector('strong')
-                    .textContent = (swal.getTimerLeft() / 1000)
-                    .toFixed(0)
-                }, 100)
-            },
-            onClose: () => {
-                clearInterval(timerInterval)
-            },
             allowOutsideClick: false,
             width : "50%",
             type: 'error',
             confirmButtonText: 'OK!'
             }).then((result) => {
-                if (
-                    // Read more about handling dismissals
-                    result.dismiss === swal.DismissReason.timer
-                ) {
-                    console.log('I was closed by the timer')
-                }
                 main_page_feedback()
             });
-            document.getElementById("main_page_total_score").innerHTML = "Current Score:" + main_page_total_score;
 
         }
     } else if (type == "CALCULATE_RESULT") {
@@ -1411,34 +1389,17 @@ function main_page_my_swal(type, success) {
                 main_page_current_task_score = main_page_current_task_score - 1;
             }
             main_page_total_score = main_page_total_score + main_page_current_task_score;
+            document.getElementById("main_page_total_score").innerHTML = "Total Score:" + main_page_total_score;
             swal({
                 title: 'Task Successful',
-                html: 'Robot has completed the task. In <strong></strong> seconds you will complete' +
-                      ' the feedback or press the Ok button to do it now.Your score for this task is:' + main_page_current_task_score +
+                html: 'Robot has completed the task. Next please complete' +
+                      ' the feedback. Your score for this task is:' + main_page_current_task_score +
                       ' Your total score is:' + main_page_total_score,
-                timer: 10000,
-                onBeforeOpen: () => {
-                    //swal.showLoading()
-                    timerInterval = setInterval(() => {
-                        swal.getContent().querySelector('strong')
-                        .textContent = (swal.getTimerLeft() / 1000)
-                        .toFixed(0)
-                    }, 100)
-                },
-                onClose: () => {
-                    clearInterval(timerInterval)
-                },
                 allowOutsideClick: false,
                 width : "50%",
                 type: 'success',
                 confirmButtonText: 'OK!'
                 }).then((result) => {
-                    if (
-                        // Read more about handling dismissals
-                        result.dismiss === swal.DismissReason.timer
-                    ) {
-                        console.log('I was closed by the timer')
-                    }
                     main_page_feedback()
                 });
         } else {
@@ -1451,27 +1412,85 @@ function main_page_my_swal(type, success) {
             main_page_current_task_score = main_page_current_task_score - 3;
             main_page_total_score = main_page_total_score + main_page_current_task_score;
             main_page_current_task_fail = 3;
+            document.getElementById("main_page_total_score").innerHTML = "Total Score:" + main_page_total_score;
             swal({
             title: 'Task Failed',
-            html: 'Robots scan results where bad for this task. In <strong></strong> seconds you will complete' +
-                  ' the feedback or press the Ok button to do it now. Your score for this task is:' + main_page_current_task_score +
+            html: 'Robots scan results where bad for this task. Next please complete' +
+                  ' the feedback. Your score for this task is:' + main_page_current_task_score +
                   ' Your total score is:' + main_page_total_score,
-            timer: 10000,
-            onBeforeOpen: () => {
-                //swal.showLoading()
-                timerInterval = setInterval(() => {
-                    swal.getContent().querySelector('strong')
-                    .textContent = (swal.getTimerLeft() / 1000)
-                    .toFixed(0)
-                }, 100)
-            },
-            onClose: () => {
-                clearInterval(timerInterval)
-            },
             allowOutsideClick: false,
             width : "50%",
             type: 'error',
             confirmButtonText: 'OK!'
+            }).then((result) => {
+                main_page_feedback()
+            });
+        }
+    }
+    document.getElementById("main_page_task_intervetion_intervention_btn").disabled = false;
+    document.getElementById("main_page_task_intervetion_intervention_button_div").hidden = false;
+}
+
+
+
+function main_page_chose_task() {
+    var local_sem = false;
+    var html_text = "<h2>Chose a task</h2>";
+    //html_text = html_text + "<h3>Total Score:" + main_page_total_score + "</h3>";
+    html_text = html_text + "<button id='main_page_swal_tasks_info_btn' class='btn btn-info'>Informations about interface</button>"
+
+    if(main_page_tasks[main_page_real_task[1]] == 0) {
+        html_text = html_text + "<h4>Task 1<h4>" + task_info_page_tasks_text[main_page_real_task[1]] + "<p></p>";
+        html_text = html_text + "<button id='main_page_task_intervetion_task_1' class='btn btn-success'>Try task 1</button>"
+        local_sem = true;
+    } else {
+        //html_text = html_text + "<button id='main_page_task_intervetion_task_21' class='btn btn-success' onclick='main_page_start_task2(1)' disabled>Task 1</button>"
+    }
+
+    if(main_page_tasks[main_page_real_task[2]] == 0) {
+        html_text = html_text + "<h4>Task 2<h4>" + task_info_page_tasks_text[main_page_real_task[2]] + "<p></p>";
+        html_text = html_text + "<button id='main_page_task_intervetion_task_2' class='btn btn-success'>Try task 2</button>"
+        local_sem = true;
+    } else {
+        //html_text = html_text + "<button id='main_page_task_intervetion_task_2' class='btn btn-success' onclick='main_page_start_task2(2)' disabled>Task 2</button>"
+    }
+
+    if(main_page_tasks[main_page_real_task[3]] == 0) {
+        html_text = html_text + "<h4>Task 3<h4>" + task_info_page_tasks_text[main_page_real_task[3]] + "<p></p>";
+        html_text = html_text + "<button id='main_page_task_intervetion_task_3' class='btn btn-success'>Try task 3</button>"
+        local_sem = true;
+    } else {
+        //html_text = html_text + "<button id='main_page_task_intervetion_task_3' class='btn btn-success' onclick='main_page_start_task2(3)' disabled>Task 3</button>"
+    }
+    if(local_sem) {
+        main_page_current_state = "CHOSE_TASK";
+        experiment_events[experiment_index] = {
+            'dateString' : new Date().toJSON(),
+            'name' : "SelectNewTask",
+            'type' : "MainPage"
+        }
+        experiment_index = experiment_index + 1;
+
+        swal({
+            html: html_text,
+            allowOutsideClick: false,
+            width : "80%",
+            //type: 'question',
+            showConfirmButton : false,
+            onBeforeOpen: () => {
+                document.getElementById('main_page_swal_tasks_info_btn').onclick = function() {
+                    main_page_swal_chose_task_info();
+                };
+                document.getElementById('main_page_task_intervetion_task_1').onclick = function() {
+                    main_page_start_task(1);
+                };
+                document.getElementById('main_page_task_intervetion_task_2').onclick = function() {
+                    main_page_start_task(2);
+                };
+                document.getElementById('main_page_task_intervetion_task_3').onclick = function() {
+                    main_page_start_task(3);
+                };
+            }
             }).then((result) => {
                 if (
                     // Read more about handling dismissals
@@ -1479,12 +1498,132 @@ function main_page_my_swal(type, success) {
                 ) {
                     console.log('I was closed by the timer')
                 }
-                main_page_feedback()
             });
+    } else {
+        main_page_current_state = "EXPERIMENT_FINISHED"
+        experiment_events[experiment_index] = {
+            'dateString' : new Date().toJSON(),
+            'name' : "Experiemntfinished",
+            'type' : "MainPage"
         }
-        document.getElementById("main_page_total_score").innerHTML = "Current Score:" + main_page_total_score;
+        experiment_index = experiment_index + 1;
+        changeState("thank_you_page");
+    }
+}
+
+function main_page_start_task(arg) {
+    swal.close();
+    document.getElementById("main_page_chose_task_btn").disabled = true;
+    console.log(arg);
+    main_page_current_task = main_page_real_task[arg];
+    experiment_events[experiment_index] = {
+        'dateString' : new Date().toJSON(),
+        'name' : "TaskStarted",
+        'type' : "MainPage",
+        'task' : main_page_current_task
+    }
+    experiment_index = experiment_index + 1;
+    main_page_current_state = "MOVE_BASE";
+    main_page_tasks[main_page_current_task] = 3;
+    autonomous_move = true;
+    autonomous_head = true;
+    autonomous_result = true;
+    var message_dict = {
+        'type' : "move_task",
+        'task' : main_page_current_task
+    }
+
+    if (main_page_current_task == 3) {
+        main_page_task_3_move_task = 1;
+        message_dict['subtype'] = main_page_task_3_move_task;
+    }
+
+    var request = new ROSLIB.ServiceRequest({
+        a : JSON.stringify(message_dict)
+    });
+
+    robot_web_service_trust_client.callService(request, function(result) {
+        console.log('Result for service call on '
+        + robot_web_service_trust_client.name
+        + ': '
+        + result);
+    });
+    if(main_page_last_robot_div != null) {
+        document.getElementById(main_page_last_robot_div).hidden = true;
+    }
+    if(main_page_last_room_div != null) {
+        document.getElementById(main_page_last_room_div).hidden = true;
+    }
+    if (main_page_current_task == 1) {
+        document.getElementById("main_page_robot_video_1").hidden = false;
+        main_page_last_robot_div = "main_page_robot_video_1";
+        document.getElementById("main_page_room_video_1").hidden = false;
+        main_page_last_room_div = "main_page_room_video_1";
+        document.getElementById('main_page_robot_video_1').play();
+        document.getElementById('main_page_room_video_1').play();
+        main_page_viewer_pose(0, 1);
+        document.getElementById("main_page_task_robot_status").innerHTML = "Status:" + "Moving to Room 1";
+    } else if (main_page_current_task == 2) {
+        document.getElementById("main_page_robot_video_2").hidden = false;
+        main_page_last_robot_div = "main_page_robot_video_2";
+        document.getElementById("main_page_room_video_2").hidden = false;
+        main_page_last_room_div = "main_page_room_video_2";
+        document.getElementById('main_page_robot_video_2').play();
+        document.getElementById('main_page_room_video_2').play();
+        document.getElementById("main_page_task_robot_status").innerHTML = "Status:" + "Moving to Room 2";
+        main_page_viewer_pose(0, 2);
+    } else if (main_page_current_task == 3) {
+        document.getElementById("main_page_robot_video_1").hidden = false;
+        main_page_last_robot_div = "main_page_robot_video_1";
+        document.getElementById("main_page_room_video_1").hidden = false;
+        main_page_last_room_div = "main_page_room_video_1";
+        document.getElementById('main_page_robot_video_1').play();
+        document.getElementById('main_page_room_video_1').play();
+        main_page_viewer_pose(0, 1);
+        document.getElementById("main_page_task_robot_status").innerHTML = "Status:" + "Moving to Room 1";
     }
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = false;
+    document.getElementById("main_page_task_intervetion_intervention_button_div").hidden = false;
+    main_page_move_base_timer(20);
+
+    //document.getElementById("main_page_info_header").innerHTML = "The robot moves trough rooms, In 50 seconds you can intervene by pressing intervene button";
+
+    main_page_current_task_score = 7;
+    main_page_current_task_fail = 0;
+    main_page_current_task_interventions = {
+        "MOVE_BASE" : false,
+        "MOVE_HEAD_AND_SCAN" : false,
+        "CALCULATE_RESULT" : false
+    }
+}
+
+function main_page_swal_chose_task_info() {
+    console.log("de pus informatii")
+    swal.close();
+    swal.mixin({
+        confirmButtonText: 'Next &rarr;',
+        showCancelButton: true,
+        cancelButtonText: 'Chose Task',
+        progressSteps: ['1', '2', '3'],
+        allowOutsideClick: false,
+        width : "80%",
+      }).queue([
+        {
+          title: 'Question 1',
+          text: 'Chaining swal2 modals is easy'
+        },
+        {
+            html: "<h1>Question 2</h1>",
+        },
+        'Question 3'
+      ]).then((result) => {
+        if (result.dismiss === Swal.DismissReason.cancel) {
+            main_page_chose_task();
+        } else if (result.value) {
+            main_page_chose_task();
+        }
+      })
+
 }
 
 function main_page_info_button() {
@@ -1500,20 +1639,38 @@ function main_page_info_button() {
     html_text = html_text + "<h4>Task 2<h4>" + task_info_page_tasks_text[main_page_real_task[2]];
     html_text = html_text + "<h4>Task 3<h4>" + task_info_page_tasks_text[main_page_real_task[3]];
 
-    swal({
-    title: 'Info',
-    html: html_text,
-    //timer: 10000,
-    allowOutsideClick: false,
-    width : "50%",
-    type: 'info',
-    confirmButtonText: 'OK!'
-    }).then((result) => {
-        if (
-            // Read more about handling dismissals
-            result.dismiss === swal.DismissReason.timer
-        ) {
-            console.log('I was closed by the timer')
+    swal.mixin({
+        confirmButtonText: 'Next &rarr;',
+        showCancelButton: true,
+        cancelButtonText: 'Chose Task',
+        progressSteps: ['1', '2', '3'],
+        allowOutsideClick: false,
+        width : "80%",
+      }).queue([
+        {
+          title: 'Question 1',
+          text: 'Chaining swal2 modals is easy'
+        },
+        {
+            html: "<h1>Question 2</h1>",
+        },
+        'Question 3'
+      ]).then((result) => {
+        if (result.dismiss === Swal.DismissReason.cancel) {
+            main_page_chose_task();
+        } else if (result.value) {
+            main_page_chose_task();
         }
-    });
+    })
+}
+
+function main_page_finish_experiment() {
+    main_page_current_state = "EXPERIMENT_FINISHED"
+    experiment_events[experiment_index] = {
+        'dateString' : new Date().toJSON(),
+        'name' : "Experiemntfinished",
+        'type' : "MainPage"
+    }
+    experiment_index = experiment_index + 1;
+    changeState("thank_you_page");
 }

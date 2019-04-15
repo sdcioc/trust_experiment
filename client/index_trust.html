@@ -170,7 +170,7 @@ bootstrap-slider
                     </div>
                 </div> 
                 <!--
-                    TODO: in functie de daca avem sau nu chat
+                    : in functie de daca avem sau nu chat
                 -->
                 <div id="task_info_page_text_4" hidden>
                         <div id="task_info_page_points_text">
@@ -198,232 +198,55 @@ bootstrap-slider
         <div class="dan_frame">
 
             <div class="container dan_frame_text">
-                <div id="pre_questions_page_text_1" class="pre_questions_page_text" hidden>
-                        <h1>
-                                Please answer the following questions:
-                        </h1>
-                        <div class="pre_questions_page_button_div">
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(1)'>OK!</button>
-                        </div>
-                </div>
-                <div id="pre_questions_page_text_2" class="pre_questions_page_text" hidden>
-                        <h1>
-                                Your gender:
-                        </h1>
-                        <div class="pre_questions_page_button_div">
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(1)'>Male</button>
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(2)'>Female</button>
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(3)'>Other</button>
-                        </div>
-                </div>
-                <div id="pre_questions_page_text_3" class="pre_questions_page_text" hidden>
-                        <div class="form-group">
-                            <label for="pre_questions_page_age">Age</label>
-                            <input type="text" class="form-control" id="pre_questions_page_age" placeholder="Age">
-                        </div>
-                        <div class="pre_questions_page_button_div">
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_answer_variable(1)'>Next</button>
-                        </div>
-                </div>
-                <div id="pre_questions_page_text_4" class="pre_questions_page_text" hidden>
-                        <div class="form-group">
-                            <label for="pre_questions_page_nationality">Nationality</label>
-                            <input type="text" class="form-control" id="pre_questions_page_nationality" placeholder="Nationality">
-                        </div>
-                        <div class="pre_questions_page_button_div">
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_answer_variable(2)'>Next</button>
-                        </div>
-                </div>
-                <div id="pre_questions_page_text_5" class="pre_questions_page_text" hidden>
-                        <h1>
-                                What is your educational background ?
-                        </h1>
-                        <div class="pre_questions_page_button_div">
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(1)'>Social and Cognitive Sciences </button>
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(2)'>Technical Sciences</button>
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(3)'>Medical Sciences</button>
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(4)'>Computer Sciences</button>
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(5)'>None</button>
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(6)'>Other</button>
-                        </div>
-                </div>
-                <div id="pre_questions_page_text_6" class="pre_questions_page_text" hidden>
-                        <h1>
-                                How is you knowledge about robots ?
-                        </h1>
-                        <div class="pre_questions_page_feedback_div">
-                            <input id="pre_questions_page_knowledge_div" type="range"/>
-                        </div>
-                        <div class="pre_questions_page_button_div">
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_submit_range(1)'>Next</button>
-                        </div>
-                </div>
-                <div id="pre_questions_page_text_7" class="pre_questions_page_text" hidden>
-                        <h1>
-                                Did you interact with a robot before ?
-                        </h1>
-
-                        <div class="pre_questions_page_button_div">
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(1)'>Yes </button>
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(2)'>No</button>
-                        </div>
-                </div>
-                <div id="pre_questions_page_text_8" class="pre_questions_page_text" hidden>
-                        <h1>
-                            To what extent are you willing to count on Tiago?
-                        </h1>
-                        <div class="pre_questions_page_feedback_div">
-                            <input id="pre_questions_page_count_div" type="range"/>
-                        </div>
-                        <div class="pre_questions_page_button_div">
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_submit_range(2)'>Next</button>
-                        </div>
-                </div>
-                <div id="pre_questions_page_text_9" class="pre_questions_page_text" hidden>
-                        <h1>
-                            To what extent would you like to become friends with Tiago?
-                        </h1>
-                        <div class="pre_questions_page_feedback_div">
-                            <input id="pre_questions_page_friend_div" type="range"/>
-                        </div>
-                        <div class="pre_questions_page_button_div">
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_submit_range(3)'>Next</button>
-                        </div>
-                </div>
-                <div id="pre_questions_page_text_10" class="pre_questions_page_text" hidden>
-                        <h1>
-                            To what extent are you willing to cooperate with Tiago?
-                        </h1>
-                        <div class="pre_questions_page_feedback_div">
-                            <input id="pre_questions_page_cooperate_div" type="range"/>
-                        </div>
-                        <div class="pre_questions_page_button_div">
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_submit_range(4)'>Next</button>
-                        </div>
-                </div>
-                <div id="pre_questions_page_text_11" class="pre_questions_page_text" hidden>
-                        <h1>
-                                <!--The one of my parents with highest formal education had:-->
-                                The highest formal education of one of my parents is:
-                        </h1>
-
-                        <div class="pre_questions_page_button_div">
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(1)'>Elementary school</button>
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(2)'>High school</button>
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(3)'>Professional school</button>
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(4)'>Bachelor Degree</button>
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(5)'>Master degree</button>
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(6)'>PhD degree</button>
-                        </div>
-                </div>
-                <div id="pre_questions_page_text_12" class="pre_questions_page_text" hidden>
-                        <h1>
-                                When I grew up i was:
-                        </h1>
-
-                        <div class="pre_questions_page_button_div">
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(1)'>The only child in my family</button>
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(2)'>Youngest in a family with more than one child</button>
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(3)'>Oldest in a family with more than one child</button>
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(4)'>I was neither the oldest nor the youngest in my family</button>
-                        </div>
-                </div>
-                <div id="pre_questions_page_text_13" class="pre_questions_page_text" hidden>
-                        <h1>
-                                <!--Which of the following two statements do you find most correct:-->
-                                With which of the following two statements do you agree:
-                        </h1>
-
-                        <div class="pre_questions_page_button_div">
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(1)'>The robots can be trusted</button>
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(2)'>You can't be too careful in dealing with robots</button>
-                        </div>
-                </div>
-                <div id="pre_questions_page_text_14" class="pre_questions_page_text" hidden>
-                        <h1>
-                                Would you say that most of the time robots:
-                        </h1>
-
-                        <div class="pre_questions_page_button_div">
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(1)'>Try to be helpful</button>
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(2)'>Are not so helpful</button>
-                        </div>
-                </div>
-                <div id="pre_questions_page_text_15" class="pre_questions_page_text" hidden>
-                        <h1>
-                                Do you think that robots would try to:
-                        </h1>
-
-                        <div class="pre_questions_page_button_div">
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(1)'>Take advantages of you if they got a change</button>
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(2)'>Be fair</button>
-                        </div>
-                </div>
-                <div id="pre_questions_page_text_16" class="pre_questions_page_text" hidden>
-                        <h1>
-                                When somebody else is mean to me:
-                        </h1>
-
-                        <div class="pre_questions_page_button_div">
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(1)'>I go out of my way to be mean back to them</button>
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_page_answer_click(2)'>I let it pass as if nothing had happened</button>
-                        </div>
-                </div>
-                <div id="pre_questions_page_text_17" class="pre_questions_page_text" hidden>
-                        <h1>
-                                To what extent do you trust Tiago in doing the tasks right now ?
-                        </h1>
-                        <div id="pre_questions_page_feedback_div" class="pre_questions_page_feedback_div">
-                            <input id="pre_questions_page_feedback_slider" type="range"/>
-                        </div>
-                        <div class="pre_questions_page_button_div">
-                            <button class="btn btn-primary pre_questions_page_button" onclick='pre_questions_submit_feedback()'>Submit Feedback</button>
-                        </div>
-                </div>
+                <h1>
+                    Pre-experiment Questionnaire
+                </h1>
 
             </div>
-
-<!--
-            <div id="pre_questions_page_next_btn_div" class="dan_frame_btn">
-                <button id="pre_questions_page_next_btn" onclick="pre_questions_page_next_btn_click()" class="btn btn-primary">
-                    Next
-                </button>
-            </div>
-        -->
         </div>
     </div>
 
     <div id="main_page" class="dan_page">
         <div id="main_page_task_intervetion" class="dan_main_page_left">
                 <div id="main_page_task_intervetion_task" class="dan_main_page_taks">
+                    <!--
+                        Înainte erau task-urile aici
+                    -->
                     <div class="card text-center">
-                            <div class="card-header">
-                              
-                              Chose a Task.
-                            </div>
-                            <div class="card-body">
-                                <p></p>
-                                <button id="main_page_task_intervetion_task_1" class="btn btn-success" onclick="main_page_start_task(1)">Task 1</button>
-                            </div>
-                            <div class="card-body">
-                                <p></p>
-                                <button id="main_page_task_intervetion_task_2" class="btn btn-warning" onclick="main_page_start_task(2)">Task 2</button>
-                            </div>
-                            <div class="card-body">
-                                <p></p>
-                                <button id="main_page_task_intervetion_task_3" class="btn btn-danger" onclick="main_page_start_task(3)">Task 3</button>
-                            </div>
-                            <div class="card-footer text-muted">
+                        <div class="card-header">
+                                <button id="main_page_finish_experiment_btn" class="btn btn-danger" onclick="main_page_finish_experiment()">Finish experiment</button>
                                 <div id ="main_page_total_score">
-
+                                    Total Score : 0
                                 </div>
+                                <div id ="main_page_timer">
+                                    Timer : no timer
+                                </div>
+                                <div id ="main_page_task_robot_status">
+                                    Status : no status
+                                </div>
+                        </div>
+                        <div class="card-body">
+                            <button id="main_page_chose_task_btn" class="btn btn-success" onclick="main_page_chose_task()">Chose next task</button>
+                        </div>
+                        <div class="card-body">
+                            <p></p>
+                            <button id="" class="btn btn-primary" onclick="main_page_info_button()">Informations about interface</button>
+                        </div>
+                        <div class="card-body">
+                            <div id="main_page_task_intervetion_intervention_button_div">
+                                <p></p>
+                                <button id="main_page_task_intervetion_intervention_btn" class="btn btn-success" onclick="main_page_intervention()">Have an intervention</button>
                             </div>
-                          </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="main_page_task_intervetion_finish_intervention_button_div">
+                                <p></p>
+                                <button id="main_page_task_intervetion_finish_intervention_btn" class="btn btn-danger" onclick="main_page_finish_intervention()">Finish my intervention</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div id="main_page_task_intervetion_intervention" class="dan_main_page_intervention">
-                    <div class="main_page_task_intervetion_intervention_button_div">
-                        <button id="main_page_task_intervetion_intervention_btn" class="btn btn-primary" onclick="main_page_intervention()">Intervene</button>
-                    </div>
                     <div id="main_page_task_intervetion_head_sliders_div" class="main_page_task_intervetion_head_sliders" hidden>
                             <div class="main_page_task_intervetion_head_sliders_div_buttton">
                                 <button id="main_page_task_intervetion_head_sliders_div_buttton" onclick="main_page_scan_task()" class="btn btn-primary">SCAN</button>
@@ -450,7 +273,7 @@ bootstrap-slider
 
                     <div id="main_page_task_intervetion_scan" class="main_page_task_intervetion_scan" hidden>
                         <!--
-                            TODO: in functie de task diferite raspunsuri
+                            : in functie de task diferite raspunsuri
                         -->
                         <div id="main_page_task_intervetion_scan_task_1" hidden>
                             <div class="form-check">
@@ -502,23 +325,15 @@ bootstrap-slider
                             </div>
                         </div>
                     </div>
-
-                    <div class="main_page_task_intervetion_finish_intervention_button_div">
-                        <button id="main_page_task_intervetion_finish_intervention_btn" class="btn btn-danger" onclick="main_page_finish_intervention()">Finish Intervention</button>
-                    </div>
                     
                 </div>
         </div>
         <div id="main_page_info" class="dan_main_page_mid">
 
-            <div id="main_page_info_header" class="main_page_info_header">
-                AAAA
-            </div>
-
             <div id="main_page_rgb_robot_div" class="main_page_info_nav">
                 <img id="main_page_rgb_robot_img_center" class="main_page_image" hidden>
                 <!--
-                    TODO: panorama
+                    : panorama
                 -->
                 <div id="main_page_rgb_robot_img_1" class="main_page_image" hidden>
                     </div>
@@ -543,9 +358,6 @@ bootstrap-slider
             </div>
         </div>
         <div id="main_page_chat_bot" class="dan_main_page_right">
-                <div class="main_page_chat_bot_info_btn">
-                        <button id="" class="btn btn-primary" onclick="main_page_info_button()">Info</button>
-                </div>
 
             <div id="main_page_chat_interface" class="frame">
                     <div class="chat_messages_div">
@@ -580,42 +392,8 @@ bootstrap-slider
         <div class="dan_frame">
 
             <div class="container dan_frame_text">
-                    <div id="post_questions_page_text_1" class="post_questions_page_text"  hidden>
-                            <h1>
-                            To what extent do you trust Tiago in doing the tasks right now ?
-                            </h1>
-                            <div id="post_questions_page_feedback_div" class="post_questions_page_feedback_div">
-                                <input id="post_questions_page_feedback_slider" type="range"/>
-                            </div>
-                            <div class="post_questions_page_button_div">
-                                <button class="btn btn-primary" onclick='post_questions_submit_feedback()'>Submit Feedback</button>
-                            </div>
-    
-                    </div>
-                    <div id="post_questions_page_text_2" class="post_questions_page_text"  hidden>
-                            <h1>
-                            Post Game Questions
-                            </h1>
-                            <p>Tiago Rbot is a robot made by pal robotics.
-                            It has:</p>
-                            <ul>
-                            <li>A lidar for helping him to localise himself inside the room</li>
-                            <li>A mobile base for moving inside the room</li>
-                            <li>A mobile head with a RGB camera used for viewing and scanning the enviroment</li>
-                            </ul>
-                            <button class="btn btn-primary" onclick='post_questions_page_answer_click(1)'>Apasa 1</button>
-                            <button class="btn btn-primary" onclick='post_questions_page_answer_click(2)'>Apasa 2</button>
-    
-                    </div>
+                
             </div>
-<!--
-            <div id="post_questions_page_next_btn_div" class="dan_frame_btn">
-                <button id="post_questions_page_next_btn" onclick="post_questions_page_next_btn_click()" class="btn btn-primary">
-                    Next
-                </button>
-            </div>
-
--->
         </div>
     </div>
 
