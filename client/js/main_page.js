@@ -417,7 +417,7 @@ function main_page_feedback() {
         allowOutsideClick: false,
         width : "80%",
         type: 'question',
-        showConfirmButton : false,
+        showConfirmButton : true,
         title: 'To what extent do you trust Tiago in doing the tasks right now ?',
         input: 'radio',
         inputOptions: {
