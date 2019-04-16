@@ -8,13 +8,16 @@
 <!--
     surse externe
 -->
-<link rel="stylesheet" href="./css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="css/sweetalert2.min.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-slider.min.css">
+<link rel="stylesheet" type="text/css" href="css/pannellum.css">
 <script type="text/javascript" src="./js/easeljs.min.js"></script>
 <script type="text/javascript" src="./js/eventemitter2.min.js"></script>
 <script type="text/javascript" src="./js/roslib.min.js"></script>
+<script type="text/javascript" src="./js/mjpegcanvas.min.js"></script>
+<script type="text/javascript" src="./js/pannellum.js"></script>
 <!--
    am adaugat pentru view functia removeObject ca sa pot sterge path-ul 
 -->
@@ -23,108 +26,385 @@
 <script type="text/javascript" src="./js/jquery.min.js"></script>
 <script type="text/javascript" src="./js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/sweetalert2.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-slider.min.js"></script>
 
 <!--
     surse interne
--->
-<link rel="stylesheet" type="text/css" href="css/start.css">
 <script type="text/javascript" src="./js/hbba.js"></script>
 <script type="text/javascript" src="js/hmi.js"></script>
 <script type="text/javascript" src="js/language.js"></script>
-<script type="text/javascript" src="./js/dashboard.js"></script>
 <script type="text/javascript" src="js/functions.js"></script>
 <script type="text/javascript" src="js/record_questions.js"></script>
 <script type="text/javascript" src="js/start_recording.js"></script>
+
+//pentru harta
+<script type="text/javascript" src="./js/dashboard.js"></script>
+
+bootstrap-slider
+-->
+<link rel="stylesheet" type="text/css" href="css/start.css">
+<link rel="stylesheet" type="text/css" href="css/chat.css">
+<script type="text/javascript" src="js/wsros.js"></script>
+<script type="text/javascript" src="js/login_page.js"></script>
+<script type="text/javascript" src="js/experiment_info_page.js"></script>
+<script type="text/javascript" src="js/tiago_info_page.js"></script>
+<script type="text/javascript" src="js/pre_questions_page.js"></script>
+<script type="text/javascript" src="js/task_info_page.js"></script>
+<script type="text/javascript" src="js/main_page.js"></script>
+<script type="text/javascript" src="js/post_questions_page.js"></script>
+<script type="text/javascript" src="js/thank_you_page.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/trust_map.js"></script>
+<script type="text/javascript" src="js/chat.js"></script>
 </head>
 
-<body onload="init()">
+<body onload="init();init_map()">
     
-        <!--
-            modulul pentru harta
-        -->
-        <div id="nav"></div>
-        <!--
-            modulul pentru logo-ul ensta
-        -->
-        <div id="logo">
-            <img src="./img/ensta.png" alt="" style="margin-left: 30%">
 
-            <!--
-            butonul pentru afisare
-            <button type='button' class='btn btn-info' id='show_map'><span class="btn-main-game-span"></span> </button>
-             -->
-        </div>
-        <!--
-            modulul pentru experiment
-        -->
-        <div id="experiment">
-
-            <!--
-                Pagina de start ce contine butonul de start
-            -->
-            <div id ="start_page">
-                <div class="container-app">
-                    <div class="row">
-                        <div class="col-md-12 col-lg-12" id="info">
-                            <h1 id="info_main" class="el_blue"></h1>
-                        </div>
-                    </div>
-                    <!-- <div class="smallempty"></div> -->
-                    <div class="bigempty"></div>
-                    <div class="row">
-
-                        <button type='button' class='btn btn-info btn-index-game' id='start_quest'><span class="btn-main-game-span"></span> </button>
-                    </div>
+    <div id="login_page">
+            <div class="container login-page-center">
+                <!--
+                <div class="form-group">
+                    <label for="login_page_user">User</label>
+                    <input type="text" class="form-control" id="login_page_user" aria-describedby="login_page_user_help" placeholder="Enter user">
+                    <small id="login_page_user_help" class="form-text text-muted">We'll never share your username with anyone else.</small>
                 </div>
-            </div>
-
-            <!--
-                Pagina pentru chestionar. Contine:
-                -intro unde este afisat butonul de QUIT
-                -app unde sunt afisate intrebarile
-                -end_quest unde este afisat mesajul de multumire dupa terminarea chestionarului
-            -->
-            <div id="questions_page">
-                <div class="container-app">
-                    <div class="row" id="intro">
-                        <div class="tinyempty"></div>
-            
-                        <div class="col-md-6 col-lg-6">
-                            <h1 class="el_blue" id="quest_no"></h1>
-                        </div>
-                        <div class="col-md-6 col-lg-6">
-                            <!-- add the buton here for quit -->
-                            <button class='btn btn-info btn-game' type='button' id='return'><i class="fa fa-sign-out fa-rotate-180 fa-5x"></i><span class="btn-game-span"> </span></button>
-                        </div>
-                    </div>
-                    <div class="row" id="app">
-                        <div class="smallempty"></div>
-                        <div class="col-md-12 col-lg-12" id="questions">
-                            <h1 class="centering" id="top"></h1>
-                            <div class="smallempty"></div>
-                            <h1 id="question"></h1>
-                            <div class="empty"></div>
-                            <!-- <h3 class="centering" id="indiciu"></h3> -->
-                        </div>
-            
-                        <div class="col-md-12 col-lg-12" id="answers">
-                            <div class="empty"></div>
-                            <!-- here there will be the buttons for the answers. -->
-                            
-                        </div>
-                    </div>
-            
-                    <div class="row">
-                        <div class="col-md-12 col-lg-12" id="end_quest">
-                            <div class="bigempty"></div>
-                            <h1 class="el_blue" id="end"></h1>
-                        </div>
-                    </div>
+                -->
+                <div class="form-group">
+                    <label for="login_page_password">Password</label>
+                    <input type="text" class="form-control" id="login_page_password" placeholder="Password">
                 </div>
-            </div>
-
-        </div>
+                <button id="login_page_login_btn" onclick="login_page_login_btn_click()" class="btn btn-primary">Login</button>
+                <div id="login_page_text">
         
+                </div>
+            </div>
+    </div>
+
+
+    <div id="experiment_info_page" class="dan_page">
+        <div class="dan_frame">
+            <div class="container dan_frame_text">
+                <p id="experiment_info_page_text">
+
+                </p>
+            </div>
+            <button id="experiment_info_page_next_btn" onclick="experiment_info_page_next_btn_click()" class="btn btn-primary dan_frame_btn">
+                Next
+            </button>
+        </div>
+    </div>
+
+    <div id="tiago_info_page" class="dan_page">
+        <div class="dan_frame">
+            <div class="container dan_frame_text">
+                <h1>
+                TIAGo Robot
+                </h1>
+                <div class="tiago_info_page_div">
+                        <p>TIAGo is a robot developed by PAL Robotics, in Spain.
+                        It features:</p>
+                        <ul>
+                        <li>A lidar that helps with the localisation inside the room </li>
+                        <li>A mobile base for moving inside the room</li>
+                        <li>A mobile head with an RGB camera used for viewing and scanning of the enviroment</li>
+                        </ul>
+                </div>
+                <div class="tiago_info_page_div">
+                    <img src='img/tiagofull.JPG' class='rounded float-right' height='300' width='300' style="transform: rotate(90deg);">
+                </div>
+            </div>
+            <button id="tiago_info_page_next_btn" onclick="tiago_info_page_next_btn_click()" class="btn btn-primary dan_frame_btn">
+                Next
+            </button>
+        </div>
+    </div>
+
+
+
+    <div id="task_info_page"  class="dan_page">
+        <div class="dan_frame">
+
+            <div class="container dan_frame_text">
+                <div id="task_info_page_text_1" class="task_info_page_text" hidden>
+                    <div id="task_info_page_task_1_text" class="task_info_page_task_text">
+
+                    </div>
+                    <h1>
+                        How difficult you find this task for Tiago?
+                    </h1>
+                    <div id="task_info_page_task_1_feedback_div" class="task_info_page_feedback_div">
+                        <input id="task_info_page_task_1_slider" type="range"/>
+                    </div>
+                    <div class="task_info_page_task_button">
+                            <button class="btn btn-primary" onclick='task_info_page_task_submit(1)'>Submit</button>
+                    </div>
+                </div>
+
+                <div id="task_info_page_text_2" class="task_info_page_text" hidden>
+                    <div id="task_info_page_task_2_text" class="task_info_page_task_text">
+
+                    </div>
+                    <h1>
+                        How difficult you find this task for Tiago?
+                    </h1>
+                    <div id="task_info_page_task_2_feedback_div" class="task_info_page_feedback_div">
+                        <input id="task_info_page_task_2_slider" type="range"/>
+                    </div>
+                    <div class="task_info_page_task_button">
+                        <button class="btn btn-primary" onclick='task_info_page_task_submit(2)'>Submit</button>
+                    </div>
+                </div> 
+                <div id="task_info_page_text_3" class="task_info_page_text" hidden>
+                    <div id="task_info_page_task_3_text" class="task_info_page_task_text">
+
+                    </div>
+                    <h1>
+                        How difficult you find this task for Tiago?
+                    </h1>
+                    <div id="task_info_page_task_3_feedback_div" class="task_info_page_feedback_div">
+                        <input id="task_info_page_task_3_slider" type="range"/>
+                    </div>
+                    <div class="task_info_page_task_button">
+                        <button class="btn btn-primary" onclick='task_info_page_task_submit(3)'>Submit</button>
+                    </div>
+                </div> 
+                <!--
+                    : in functie de daca avem sau nu chat
+                -->
+                <div id="task_info_page_text_4" hidden>
+                        <div id="task_info_page_points_text">
+    
+                        </div>
+                        <button id="task_info_page_next_btn" onclick="task_info_page_next_btn_click()"  class="btn btn-primary dan_frame_btn">
+                            Next
+                        </button>
+                </div>   
+                <div id="task_info_page_text_5" hidden>
+                        <div id="task_info_page_ui_text">
+    
+                        </div>
+                        <button id="task_info_page_next_btn" onclick="task_info_page_next_btn_click()"  class="btn btn-primary dan_frame_btn">
+                            Next
+                        </button>
+                </div>                
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="pre_questions_page" class="dan_page">
+        <div class="dan_frame">
+
+            <div class="container dan_frame_text">
+                <h1>
+                    Pre-experiment Questionnaire
+                </h1>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="main_page" class="dan_page">
+        <div id="main_page_task_intervetion" class="dan_main_page_left">
+                <div id="main_page_task_intervetion_task" class="dan_main_page_taks">
+                    <!--
+                        Înainte erau task-urile aici
+                    -->
+                    <div class="card text-center">
+                        <div class="card-header">
+                                <button id="main_page_finish_experiment_btn" class="btn btn-danger" onclick="main_page_finish_experiment()">Finish experiment</button>
+                                <div id ="main_page_total_score">
+                                    Total Score : 0
+                                </div>
+                                <div id ="main_page_timer">
+                                    Timer : no timer
+                                </div>
+                                <div id ="main_page_task_robot_status">
+                                    Status : no status
+                                </div>
+                        </div>
+                        <div class="card-body">
+                            <button id="main_page_chose_task_btn" class="btn btn-success" onclick="main_page_chose_task()">Chose next task</button>
+                        </div>
+                        <div class="card-body">
+                            <p></p>
+                            <button id="" class="btn btn-primary" onclick="main_page_info_button()">Informations about interface</button>
+                        </div>
+                        <div class="card-body">
+                            <div id="main_page_task_intervetion_intervention_button_div">
+                                <p></p>
+                                <button id="main_page_task_intervetion_intervention_btn" class="btn btn-success" onclick="main_page_intervention()">Have an intervention</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="main_page_task_intervetion_finish_intervention_button_div">
+                                <p></p>
+                                <button id="main_page_task_intervetion_finish_intervention_btn" class="btn btn-danger" onclick="main_page_finish_intervention()">Finish my intervention</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="main_page_task_intervetion_intervention" class="dan_main_page_intervention">
+                    <div id="main_page_task_intervetion_head_sliders_div" class="main_page_task_intervetion_head_sliders" hidden>
+                            <div class="main_page_task_intervetion_head_sliders_div_buttton">
+                                <button id="main_page_task_intervetion_head_sliders_div_buttton" onclick="main_page_scan_task()" class="btn btn-primary">SCAN</button>
+                            </div>
+                            <p class="main_page_task_intervetion_head_sliders_text">Head Move:</p>
+                            <div id="main_page_task_intervetion_head_left_right_slider_div" class="main_page_task_intervetion_head_left_right_slider_div">
+                                <input id="main_page_task_intervetion_head_left_right_slider" type="range"/>
+                            </div>
+                            <div id="main_page_task_intervetion_head_up_down_slider_div" class="main_page_task_intervetion_head_up_down_slider_div">
+                                <input id="main_page_task_intervetion_head_up_down_slider" type="range"/>
+                            </div>
+                    </div>
+
+                    <div id="main_page_task_intervetion_move_base_arrows" class="main_page_task_intervetion_move_base_arrows" hidden>
+                        <div class="main_page_task_intervetion_move_base_arrows_up_buttton">
+                            <button id="main_page_task_intervetion_move_base_arrows_up_buttton" onclick="main_page_move_btn(1)" class="btn btn-primary">FOWARD</button>
+                        </div>
+                        <div class="main_page_task_intervetion_move_base_arrows_down_butttons">
+                            <button id="main_page_task_intervetion_move_base_arrows_left_buttton" onclick="main_page_move_btn(3)" class="btn btn-primary">LEFT</button>
+                            <button id="main_page_task_intervetion_move_base_arrows_down_buttton" onclick="main_page_move_btn(2)" class="btn btn-primary">BACK</button>
+                            <button id="main_page_task_intervetion_move_base_arrows_right_buttton" onclick="main_page_move_btn(4)" class="btn btn-primary">RIGHT</button>
+                        </div>
+                    </div>
+
+                    <div id="main_page_task_intervetion_scan" class="main_page_task_intervetion_scan" hidden>
+                        <!--
+                            : in functie de task diferite raspunsuri
+                        -->
+                        <div id="main_page_task_intervetion_scan_task_1" hidden>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="main_page_task_intervetion_scan_task_1_has_object">
+                                <label class="form-check-label" for="main_page_task_intervetion_scan_task_1_has_object">
+                                    Plant
+                                </label>
+                            </div>
+                        </div>
+                        <div id="main_page_task_intervetion_scan_task_2" hidden>
+                            <label for="main_page_task_intervetion_scan_task_2_room">Type of room</label>
+                            <select class="form-control" id="main_page_task_intervetion_scan_task_2_room">
+                              <option>Bedroom</option>
+                              <option>Bathroom</option>
+                              <option>Livingroom</option>
+                              <option>Kitchen</option>
+                            </select>
+                        </div>
+                        <div id="main_page_task_intervetion_scan_task_3" hidden>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="main_page_task_intervetion_scan_task_3_has_object_1">
+                                <label class="form-check-label" for="main_page_task_intervetion_scan_task_3_has_object_1">
+                                    Cofee table
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="main_page_task_intervetion_scan_task_3_has_object_2">
+                                <label class="form-check-label" for="main_page_task_intervetion_scan_task_3_has_object_2">
+                                    Couch
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="main_page_task_intervetion_scan_task_3_has_object_3">
+                                <label class="form-check-label" for="main_page_task_intervetion_scan_task_3_has_object_3">
+                                    Bed
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="main_page_task_intervetion_scan_task_3_has_object_4">
+                                <label class="form-check-label" for="main_page_task_intervetion_scan_task_3_has_object_4">
+                                    Chair
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="main_page_task_intervetion_scan_task_3_has_object_5">
+                                <label class="form-check-label" for="main_page_task_intervetion_scan_task_3_has_object_5">
+                                    Xbox
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+        </div>
+        <div id="main_page_info" class="dan_main_page_mid">
+
+            <div id="main_page_rgb_robot_div" class="main_page_info_nav">
+                <img id="main_page_rgb_robot_img_center" class="main_page_image" hidden>
+                <!--
+                    : panorama
+                -->
+                <div id="main_page_rgb_robot_img_1" class="main_page_image" hidden>
+                    </div>
+                <div id="main_page_rgb_robot_img_2" class="main_page_image" hidden>
+                    </div>
+                <video id="main_page_robot_video_1" class="main_page_image" hidden></video>
+                <video id="main_page_robot_video_2" class="main_page_image" hidden></video>
+                <video id="main_page_robot_video_3" class="main_page_image" hidden></video>
+            </div>
+
+            <div id="main_page_info_nav" class="main_page_info_nav">
+
+            </div>
+
+            <div id="main_page_rgb_map_div" class="main_page_info_nav">
+                <img id="main_page_rgb_room_img_center" class="main_page_image" hidden>
+                <img id="main_page_rgb_room_img_1" class="main_page_image" hidden>
+                <img id="main_page_rgb_room_img_2" class="main_page_image" hidden>
+                <video id="main_page_room_video_1" class="main_page_image" hidden></video>
+                <video id="main_page_room_video_2" class="main_page_image" hidden></video>
+                <video id="main_page_room_video_3" class="main_page_image" hidden></video>
+            </div>
+        </div>
+        <div id="main_page_chat_bot" class="dan_main_page_right">
+
+            <div id="main_page_chat_interface" class="frame">
+                    <div class="chat_messages_div">
+                            <ul id="chat_messages" class="chat_ul"></ul>
+                    </div>
+                    <div class="chat_write_div">
+                        <div class="macro chat_text_to_send">                        
+                            <div class="text text-r" style="background:whitesmoke !important; width: 100%">
+                                <input id="chat_text_to_send" class="mytext" placeholder="Type a message"/>
+                            </div> 
+        
+                        </div>
+                        <div style="padding:10px;" class="send_message_button_div">
+                            <button id="chat_send_message_button" onclick="chat_send_message_button_click()" class="send_message_button">
+                            </button>
+                        </div>                
+                    </div>
+
+            </div>
+<!--
+                <iframe
+                allow="microphone;"
+                width="350"
+                height="430"
+                src="https://console.dialogflow.com/api-client/demo/embedded/d57b1b63-2ae7-44d7-a3d9-e99928e734ce">
+            </iframe>
+        -->
+        </div>
+    </div>
+
+    <div id="post_questions_page">
+        <div class="dan_frame">
+
+            <div class="container dan_frame_text">
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div id="thank_you_page">
+        <div class="dan_frame">
+            <div id="thank_you_page_text">
+                <h1>THANK YOU FOR PARTICIPATING</h1>
+            </div>
+        </div>
+    </div>
         
 </body>
 
