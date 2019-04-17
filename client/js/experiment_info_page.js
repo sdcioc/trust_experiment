@@ -40,7 +40,7 @@ var experimentInfoMessages = [
     The Human-Robot Team Game\
     </h1>\
     <p>Human-Robot teams are more and more common. Two such examples are: human-robot teams in \
-    trying to find people in different disasters; and human-robot teams in products manufacturing</p>\
+    trying to find people in different disasters; and human-robot teams in product manufacturing</p>\
     <p>We propose a game where the team is formed by a human and a robot.\
     The goal of the game is to complete 3 tasks together. For each task there will be a reward depending on the following results:</p>\
     <ul>\

@@ -310,9 +310,9 @@ function main_page_init() {
     document.getElementById("main_page_task_intervetion_intervention_btn").disabled = true;
     document.getElementById("main_page_task_intervetion_intervention_button_div").hidden = true;
     //document.getElementById("main_page_info_header").innerHTML = "Chose a task";
-    document.getElementById("main_page_task_robot_status").innerHTML = "Status:" + "Chose a task";
+    document.getElementById("main_page_task_robot_status").innerHTML = "Status:" + "Choose a task";
     document.getElementById("main_page_timer").innerHTML = "Timer:" + "No timer";
-    //TODO: random chose a task after timeout
+    //TODO: random choose a task after timeout
 
 
     if(main_page_cond2 == 0) {
@@ -549,7 +549,7 @@ function main_page_prepare_for_next_task() {
         experiment_index = experiment_index + 1;
 
         //document.getElementById("main_page_info_header").innerHTML = "Chose a task";
-        document.getElementById("main_page_task_robot_status").innerHTML = "Status:" + "Chose a task";
+        document.getElementById("main_page_task_robot_status").innerHTML = "Status:" + "Choose a task";
         document.getElementById("main_page_timer").innerHTML = "Timer:" + "No timer";
         document.getElementById("main_page_chose_task_btn").disabled = false;
     } else {
@@ -739,7 +739,7 @@ function main_page_verify_result() {
 
 function main_page_move_base_timer(arg) {
     if(arg == 0) {
-        var html_text = "Tiago thinks that it has arrived corectly. If you trust him press 'Trust Tiago', if not press 'Have a intervention' and help Tiago"; 
+        var html_text = "Tiago thinks that it has arrived corectly. If you trust him press 'Trust Tiago', if not press 'Have an intervention' and help Tiago"; 
         swal({
             html: html_text,
             allowOutsideClick: false,
@@ -791,7 +791,7 @@ function main_page_move_base_manual_timer(arg) {
 
 function main_page_move_head_timer(arg) {
     if(arg == 0) {
-        var html_text = "Tiago thinks that it has finished scanning the room. If you trust him press 'Trust Tiago', if not press 'Have a intervention' and help Tiago"; 
+        var html_text = "Tiago thinks that it has finished scanning the room. If you trust him press 'Trust Tiago', if not press 'Have an intervention' and help Tiago"; 
         swal({
             html: html_text,
             allowOutsideClick: false,
@@ -845,7 +845,7 @@ function main_page_move_head_manual_timer(arg) {
 
 function main_page_result_timer(arg) {
     if(arg == 0) {
-        var html_text = "Tiago thinks that it has finished calculating the results. If you trust him press 'Trust Tiago', if not press 'Have a intervention' and help Tiago"; 
+        var html_text = "Tiago thinks that it has finished calculating the results. If you trust him press 'Trust Tiago', if not press 'Have an intervention' and help Tiago"; 
         swal({
             html: html_text,
             allowOutsideClick: false,
@@ -1491,7 +1491,7 @@ function main_page_my_swal(type, success) {
 
 function main_page_chose_task() {
     var local_sem = false;
-    var html_text = "<h2>Chose a task</h2>";
+    var html_text = "<h2>Choose a task</h2>";
     //html_text = html_text + "<h3>Total Score:" + main_page_total_score + "</h3>";
     html_text = html_text + "<button id='main_page_swal_tasks_info_btn' class='btn btn-info'>Informations about interface</button>"
 
@@ -1668,7 +1668,7 @@ main_page_info_page_2_html = "<img src='img/info2.png' class='rounded' height='3
                             "Middle part is divided in three parts:<ul><li>Up - The robot rgb camera. You can see what the robot see" +
                             "</li><li>Middle - The Map. There are three squares on the map:<ul><li> The red one - Postion for Room 1" +
                             "</li><li>The blue one - Position of the Room 2</li><li>The green one - Current robot position on the map</li>" +
-                            "</ul></li><li>Bottom - The upper camere where you can see the rooms and the robot</li></ul>" +
+                            "</ul></li><li>Bottom - The upper camera where you can see the rooms and the robot</li></ul>" +
                             "</div>";
 main_page_info_page_3_html = "";
 main_page_info_page_3_1_html = "<div style='text-align:left;font-size:large;'>" +
@@ -1689,19 +1689,19 @@ main_page_info_page_5_html = "<img src='img/info5.png' class='rounded' height='2
                             "<div style='text-align:left;font-size:large;'>" +
                             "In the left-up part you have: <ul>" +
                             "<li> The finish experiment button - If you want to finish the experiment before doing" +
-                            "all the tasks you can press this button </li>" +
+                            " all the tasks you can press this button </li>" +
                             "<li> The current score </li> <li> The timer - The time for this part of the task </li>" +
                             "<li> Status - The status of the robot during the task </li>" +
-                            "<li> Chose a task button - When you want to start a new task just press this button </li>" +
+                            "<li> Choose a task button - When you want to start a new task just press this button </li>" +
                             "<li> Informations button - If you want informations about the interface and the experiment press this button </li>" +
-                            "<li> Have an intervention button/Finish my intervention button - This button is use for starting/finishing a intervention </li></ul>" +
+                            "<li> Have an intervention button/Finish my intervention button - This button is use for starting/finishing an intervention </li></ul>" +
                             "</div>";
 main_page_info_page_6_html = "<img src='img/info6.png' class='rounded' height='200' width='200'><p></p>" +
                             "<div style='text-align:left;font-size:large;'>" +
-                            "The left-down part has different tools for helping TIAGo when is doing a task. If you" +
+                            "The left-down part has different tools to help TIAGo when it is doing a task. If you" +
                             " have an intervention when TIAGo is moving you transmit that TIAGo is going in a wrong direction" +
                             " and TIAGo it will change its direction to the good one. If you have an intervention when TIAGo is" +
-                            " scanning the romm you have 2 sliders that you can use to move TIAGo head and a scan button to scan" +
+                            " scanning the room you have 2 sliders that you can use to move TIAGo's head and a scan button to scan" +
                             " the part of the room that you see on the RGB camera. You only have THREE scans, so use them carrefuly." +
                             " If you have an intervention when TIAGo is calculating the results you can tell him the results by checking" +
                             " the boxes with the objects you saw, or selecting the type of room, or selecting if the object exist in that room" +
@@ -1744,16 +1744,16 @@ main_page_info_page_7_html = "<table class='table table-striped'>\
                             </table>" +
                             "<div style='text-align:left;font-size:large;'>" +
                             "The tasks have 3 parts: move to the room, scan the room and calcualte the results" +
-                            "A task has 7 points, but you can receive less points if the task fails or you have a intervention" +
+                            "A task has 7 points, but you can receive less points if the task fails or you have an intervention" +
                             " to help TIAGo. You can have an intervetion o every part of the task. Ussualy a task done by TIAGo goes" + 
-                            " like this: TIAGo is moving to the room point, When it arrive there it scan what it has on its RGB camera," +
-                            " it move its head right and scan again, it move its head left and scan again, it moves its head back to the center" +
+                            " like this: TIAGo is moving to the room point, When it arrive there it scans what it has on its RGB camera," +
+                            " it moves its head right and scan again, it moves its head left and scan again, it moves its head back to the center" +
                             " and it starts calcualting the results." +
                             "</div>";
 main_page_info_page_8_html = "<img src='img/info8.png' class='rounded' height='250' width='500'><p></p>" +
                             "<div style='text-align:left;font-size:large;'>" +
                             "During the experiment you can press differnt buttons. If you are not doing any task the best decision will be" +
-                            " to press Chose a task button and chose a task to start. If you think at any moment that TIAGo is not doing right" +
+                            " to press Choose a task button and choose a task to start. If you think at any moment that TIAGo is not doing right" +
                             " the task you can have an intervention by pressing have an intervention button. At the end of every part of a task" +
                             " you will be asked if you trust TIAGo that was done correctly the part of the task where if you want to have an intervention" +
                             " and help TIAGo to do the task succesfuly. After this you will get the answer if the part of the task has be done succesfully." +
@@ -1765,7 +1765,7 @@ function main_page_swal_chose_task_info() {
     swal.mixin({
         confirmButtonText: 'Next &rarr;',
         showCancelButton: true,
-        cancelButtonText: 'Chose Task',
+        cancelButtonText: 'Choose Task',
         progressSteps: ['1', '2', '3', '4', '5', '6', '7', '8'],
         allowOutsideClick: false,
         width : "80%",
