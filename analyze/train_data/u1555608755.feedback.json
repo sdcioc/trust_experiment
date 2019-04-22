@@ -1,0 +1,1 @@
+{"1": {"Task": 1, "D": 0.5, "P": 4, "F": 3, "IR": false, "IH": false, "S": 1, "IM": false, "TK": 7, "W": 4, "COM": 2, "NM": 0}, "0": {"QA": [true, "female", "53", "RO", "O", "3", "yes", "6", "7", "7", "PHD", "YOUNG", "RT", "RH", "RA", "C", "7"], "T0": 7}, "2": {"Task": 2, "D": 0.5, "P": 3, "F": 3, "IR": true, "IH": true, "S": 1, "IM": false, "TK": 7, "W": 4, "COM": 2, "NM": 0}}
