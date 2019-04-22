@@ -153,7 +153,7 @@ def do_machinea_leaning_stuff(train_X, train_Y, test_X, test_Y):
     lsvc.fit(train_X, train_Y)
     test_predict_Y = lsvc.predict(test_X);
     returnValue.append({
-        'name' : "LabelPropagation",
+        'name' : "LinearSVC",
         'score' : label_prop_model.score(X, y),
         'accuracy_naive' : (test_Y != test_predict_Y).sum() * 1.0 / len(test_predict_Y),
         'accuracy_score' : accuracy_score(test_Y, test_predict_Y),
