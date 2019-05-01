@@ -28,7 +28,7 @@ def do_machinea_leaning_stuff(train_X, train_Y, test_X, test_Y):
     test_predict_Y = [];
 
     # de facut ceva cu acest rezultat
-    f_classif(X, y);
+    #f_classif(X, y);
 
     #Algoritmi de clasificare
     rfc = RandomForestClassifier(n_estimators=100, max_depth=2, random_state=0);
@@ -36,7 +36,7 @@ def do_machinea_leaning_stuff(train_X, train_Y, test_X, test_Y):
     test_predict_Y = rfc.predict(test_X);
     returnValue.append({
         'name' : "RandomForestClassifier",
-        'score' : rfc.score(X, y),
+        'score' : rfc.score(test_X, test_Y),
         'accuracy_naive' : (test_Y != test_predict_Y).sum() * 1.0 / len(test_predict_Y),
         'accuracy_score' : accuracy_score(test_Y, test_predict_Y),
         'classification_report' : classification_report(test_Y, test_predict_Y)
@@ -47,7 +47,7 @@ def do_machinea_leaning_stuff(train_X, train_Y, test_X, test_Y):
     test_predict_Y = etc.predict(test_X);
     returnValue.append({
         'name' : "ExtraTreesClassifier",
-        'score' : etc.score(X, y),
+        'score' : etc.score(test_X, test_Y),
         'accuracy_naive' : (test_Y != test_predict_Y).sum() * 1.0 / len(test_predict_Y),
         'accuracy_score' : accuracy_score(test_Y, test_predict_Y),
         'classification_report' : classification_report(test_Y, test_predict_Y)
@@ -59,7 +59,7 @@ def do_machinea_leaning_stuff(train_X, train_Y, test_X, test_Y):
     # TODO : poate folosim si asta print(gpc.predict_proba(test_X))
     returnValue.append({
         'name' : "GaussianProcessClassifier",
-        'score' : gpc.score(X, y),
+        'score' : gpc.score(test_X, test_Y),
         'accuracy_naive' : (test_Y != test_predict_Y).sum() * 1.0 / len(test_predict_Y),
         'accuracy_score' : accuracy_score(test_Y, test_predict_Y),
         'classification_report' : classification_report(test_Y, test_predict_Y)
@@ -71,7 +71,7 @@ def do_machinea_leaning_stuff(train_X, train_Y, test_X, test_Y):
     test_predict_Y = pac.predict(test_X);
     returnValue.append({
         'name' : "PassiveAggressiveClassifier",
-        'score' : pac.score(X, y),
+        'score' : pac.score(test_X, test_Y),
         'accuracy_naive' : (test_Y != test_predict_Y).sum() * 1.0 / len(test_predict_Y),
         'accuracy_score' : accuracy_score(test_Y, test_predict_Y),
         'classification_report' : classification_report(test_Y, test_predict_Y)
@@ -82,7 +82,7 @@ def do_machinea_leaning_stuff(train_X, train_Y, test_X, test_Y):
     test_predict_Y = rc.predict(test_X);
     returnValue.append({
         'name' : "RidgeClassifier",
-        'score' : rc.score(X, y),
+        'score' : rc.score(test_X, test_Y),
         'accuracy_naive' : (test_Y != test_predict_Y).sum() * 1.0 / len(test_predict_Y),
         'accuracy_score' : accuracy_score(test_Y, test_predict_Y),
         'classification_report' : classification_report(test_Y, test_predict_Y)
@@ -93,7 +93,7 @@ def do_machinea_leaning_stuff(train_X, train_Y, test_X, test_Y):
     test_predict_Y = sgdc.predict(test_X);
     returnValue.append({
         'name' : "SGDClassifier",
-        'score' : sgdc.score(X, y),
+        'score' : sgdc.score(test_X, test_Y),
         'accuracy_naive' : (test_Y != test_predict_Y).sum() * 1.0 / len(test_predict_Y),
         'accuracy_score' : accuracy_score(test_Y, test_predict_Y),
         'classification_report' : classification_report(test_Y, test_predict_Y)
@@ -105,7 +105,7 @@ def do_machinea_leaning_stuff(train_X, train_Y, test_X, test_Y):
     test_predict_Y = bnb.predict(test_X);
     returnValue.append({
         'name' : "BernoulliNB",
-        'score' : bnb.score(X, y),
+        'score' : bnb.score(test_X, test_Y),
         'accuracy_naive' : (test_Y != test_predict_Y).sum() * 1.0 / len(test_predict_Y),
         'accuracy_score' : accuracy_score(test_Y, test_predict_Y),
         'classification_report' : classification_report(test_Y, test_predict_Y)
@@ -116,7 +116,7 @@ def do_machinea_leaning_stuff(train_X, train_Y, test_X, test_Y):
     test_predict_Y = knnc.predict(test_X);
     returnValue.append({
         'name' : "KNeighborsClassifier",
-        'score' : knnc.score(X, y),
+        'score' : knnc.score(test_X, test_Y),
         'accuracy_naive' : (test_Y != test_predict_Y).sum() * 1.0 / len(test_predict_Y),
         'accuracy_score' : accuracy_score(test_Y, test_predict_Y),
         'classification_report' : classification_report(test_Y, test_predict_Y)
@@ -127,7 +127,7 @@ def do_machinea_leaning_stuff(train_X, train_Y, test_X, test_Y):
     test_predict_Y = mlpc.predict(test_X);
     returnValue.append({
         'name' : "MLPClassifier",
-        'score' : mlpc.score(X, y),
+        'score' : mlpc.score(test_X, test_Y),
         'accuracy_naive' : (test_Y != test_predict_Y).sum() * 1.0 / len(test_predict_Y),
         'accuracy_score' : accuracy_score(test_Y, test_predict_Y),
         'classification_report' : classification_report(test_Y, test_predict_Y)
@@ -135,14 +135,14 @@ def do_machinea_leaning_stuff(train_X, train_Y, test_X, test_Y):
 
     label_prop_model = LabelPropagation();
     rng = np.random.RandomState(42);
-    random_unlabeled_points = rng.rand(len(y)) < 0.3;
-    labels = np.copy(y);
+    random_unlabeled_points = rng.rand(len(train_Y)) < 0.3;
+    labels = np.copy(train_Y);
     labels[random_unlabeled_points] = -1;
-    label_prop_model.fit(X, labels);
+    label_prop_model.fit(train_X, labels);
     test_predict_Y = label_prop_model.predict(test_X);
     returnValue.append({
         'name' : "LabelPropagation",
-        'score' : label_prop_model.score(X, y),
+        'score' : label_prop_model.score(test_X, test_Y),
         'accuracy_naive' : (test_Y != test_predict_Y).sum() * 1.0 / len(test_predict_Y),
         'accuracy_score' : accuracy_score(test_Y, test_predict_Y),
         'classification_report' : classification_report(test_Y, test_predict_Y)
@@ -154,7 +154,7 @@ def do_machinea_leaning_stuff(train_X, train_Y, test_X, test_Y):
     test_predict_Y = lsvc.predict(test_X);
     returnValue.append({
         'name' : "LinearSVC",
-        'score' : label_prop_model.score(X, y),
+        'score' : label_prop_model.score(test_X, test_Y),
         'accuracy_naive' : (test_Y != test_predict_Y).sum() * 1.0 / len(test_predict_Y),
         'accuracy_score' : accuracy_score(test_Y, test_predict_Y),
         'classification_report' : classification_report(test_Y, test_predict_Y)
@@ -166,7 +166,7 @@ def do_machinea_leaning_stuff(train_X, train_Y, test_X, test_Y):
     test_predict_Y = svc.predict(test_X);
     returnValue.append({
         'name' : "SVC",
-        'score' : svc.score(X, y),
+        'score' : svc.score(test_X, test_Y),
         'accuracy_naive' : (test_Y != test_predict_Y).sum() * 1.0 / len(test_predict_Y),
         'accuracy_score' : accuracy_score(test_Y, test_predict_Y),
         'classification_report' : classification_report(test_Y, test_predict_Y)
@@ -177,7 +177,7 @@ def do_machinea_leaning_stuff(train_X, train_Y, test_X, test_Y):
     test_predict_Y = dtc.predict(test_X);
     returnValue.append({
         'name' : "DecisionTreeClassifier",
-        'score' : dtc.score(X, y),
+        'score' : dtc.score(test_X, test_Y),
         'accuracy_naive' : (test_Y != test_predict_Y).sum() * 1.0 / len(test_predict_Y),
         'accuracy_score' : accuracy_score(test_Y, test_predict_Y),
         'classification_report' : classification_report(test_Y, test_predict_Y)
@@ -188,7 +188,7 @@ def do_machinea_leaning_stuff(train_X, train_Y, test_X, test_Y):
     test_predict_Y = cccv.predict(test_X);
     returnValue.append({
         'name' : "CalibratedClassifierCV",
-        'score' : cccv.score(X, y),
+        'score' : cccv.score(test_X, test_Y),
         'accuracy_naive' : (test_Y != test_predict_Y).sum() * 1.0 / len(test_predict_Y),
         'accuracy_score' : accuracy_score(test_Y, test_predict_Y),
         'classification_report' : classification_report(test_Y, test_predict_Y)
